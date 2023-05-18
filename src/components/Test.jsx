@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Select from './Select'
 
 const Test = () => {
     const [goods, setGoods] = useState([
@@ -965,6 +966,11 @@ const Test = () => {
                   ))}
                 </div>
               </div>
+            </div>
+            <div style={{margin: '15px 0', borderTop: '5px solid red'}}>
+              <h1 style={{margin: '15px 0'}}>Select</h1>
+              <Select
+              />
             </div>
         </>
       )
