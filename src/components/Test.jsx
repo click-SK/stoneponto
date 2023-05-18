@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import Select from './Select'
+import SelectSec from './SelectSecond'
 
 const Test = () => {
     const [goods, setGoods] = useState([
@@ -923,10 +925,12 @@ const Test = () => {
       // })
     
       // console.log('goods',goods);
+
+      console.log('cur',currentItem);
     
       const selectItemFunc = (e) => {
         console.log(e);
-        setcurrentItem(e)
+        // setcurrentItem(e)
       }
     
       return (
@@ -965,6 +969,34 @@ const Test = () => {
                   ))}
                 </div>
               </div>
+            </div>
+            <div style={{margin: '15px 0', borderTop: '5px solid red'}}>
+              <h1 style={{margin: '15px 0'}}>Select</h1>
+              <Select
+              goods={goods}
+              setcurrentItem={setcurrentItem}
+              />
+              {currentItem?.quality && 
+              <SelectSec
+                item={currentItem?.quality}
+                title={'Якість'}
+              />} 
+              {currentItem?.cutting && 
+              <SelectSec
+                item={currentItem?.cutting}
+                title={'Порезка'}
+              />} 
+              {currentItem?.solderingOfGates && 
+              <SelectSec
+                item={currentItem?.solderingOfGates}
+                title={'Пропайка подворотов'}
+              />} 
+              {currentItem?.SolderingPockets && 
+              <SelectSec
+                item={currentItem?.SolderingPockets}
+                title={'Пропайка карманов'}
+              />} 
+              
             </div>
         </>
       )
