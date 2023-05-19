@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../style/calculator.scss'
 
 
 
@@ -15,8 +16,9 @@ const SelectSecond = ({item, title}) => {
 
       }
     return (
+        <>
+        <h3>{title}</h3>
         <div className="custom-select">
-            <h3>{title}</h3>
             <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
                 {selectedOption?.name || item[0]?.name}
             </div>
@@ -29,7 +31,8 @@ const SelectSecond = ({item, title}) => {
                     ))}
                 </div>
             )}
-            </div>
+        </div>
+        </>
     );
 };
 
