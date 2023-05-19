@@ -1,0 +1,28 @@
+{
+    "name": "Холст",
+      "stretchOnTheStretcher":500,
+      "goods": [
+          {
+              "quality": [
+          {
+            "name": "Выберете качество",
+            "price": 0
+          },
+          {
+            "name": "1440dpi",
+            "price": 300
+          }
+        ],
+              "cutting": [
+          {
+            "name": "Нет",
+            "price": 0
+          },
+          {
+            "name": "Под обрез",
+            "price": 100
+          }
+        ]
+          }
+        ]
+  }
