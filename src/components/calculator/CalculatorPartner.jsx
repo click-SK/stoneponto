@@ -941,7 +941,7 @@ const CalculatorPartner = () => {
      useEffect(() => {
       const arr = [];
       if(selectedOption?.name) {
-        arr.push(`Якість:${selectedOption?.name}`);
+        arr.push(`${selectedOption?.name}`);
       }
       console.log('arr',arr);
       setdescArray(arr);
