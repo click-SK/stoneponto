@@ -1,0 +1,42 @@
+@import "./globalTamplate.scss";
+
+.calc_wrap{
+    font-family: 'Montserrat', sans-serif;
+}
+
+title{
+    display: flex;
+}
+
+button{
+    @extend %button_prime;
+    &:hover{
+        @extend %button_prime_hover;
+    }
+}
+
+.btn_second{
+    @extend %button_second;
+    &:hover{
+        @extend %button_second_hover;
+    }
+}
+
+input{
+    @extend %input;
+    width: 100%;
+
+    &:focus{
+        @extend %input_focus;
+    }
+}
+
+textarea{
+    @extend %input;
+    
+    &:focus{
+        @extend %input_focus
+    }
+}
+
+

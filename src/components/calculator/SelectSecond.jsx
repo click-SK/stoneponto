@@ -16,8 +16,9 @@ const SelectSecond = ({item, title}) => {
       }
     return (
         <div className="custom-select">
+            <h3>{title}</h3>
             <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
-                {selectedOption?.name || title}
+                {selectedOption?.name || item[0]?.name}
             </div>
             {isOpen && (
                 <div className="options">
