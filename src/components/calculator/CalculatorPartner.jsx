@@ -928,12 +928,24 @@ const CalculatorPartner = () => {
     const [delivery, setDelivery] = useState('')
     const [totalSum, setTotalSum] = useState(null)
 
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [descArray, setdescArray] = useState([]);
+
 
     useEffect(() => {
         fetch('https://ponto-print.herokuapp.com/get-all-calc')
        .then(response => response.json())
        .then(res => setGoodsList(res))
      },[])
+
+     useEffect(() => {
+      const arr = [];
+      if(selectedOption?.name) {
+        arr.push(`Якість:${selectedOption?.name}`);
+      }
+      console.log('arr',arr);
+      setdescArray(arr);
+   },[selectedOption])
 
      console.log('list',goodsList);
 
@@ -944,8 +956,7 @@ const CalculatorPartner = () => {
             setselectedFile(file);
         }
     }
-
-
+    console.log('selectedOption',selectedOption);
     console.log(selectedFile);
 
     return (
@@ -967,6 +978,8 @@ const CalculatorPartner = () => {
                     <SelectSec
                         item={currentItem?.quality}
                         title={'Качество'}
+                        selectedOption={selectedOption}
+                        setSelectedOption={setSelectedOption}
                     />} 
                 </div>
             </div>
@@ -999,7 +1012,7 @@ const CalculatorPartner = () => {
                        />
                 </div>
             </div>
-            <div className='wrap_row adding'>
+            {/* <div className='wrap_row adding'>
                 <div className='colum '>
                     {currentItem?.cutting && 
                     <SelectSec
@@ -1032,11 +1045,17 @@ const CalculatorPartner = () => {
                         
                     />
                 </div>
-            </div>
+            </div> */}
             <div className='wrap_row'>
                 <div className='calc-item'>
                     <h3>Описание</h3>
-                    <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea>
+                    {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
+                    {descArray.length !=0 && descArray.map((item,idx) => (
+              <div key={idx}>
+                <p>{item}</p>
+              </div>
+            ))}
+            1
                 </div>
                 <div className='calc-item'>
                     <h3>Заметки</h3>
