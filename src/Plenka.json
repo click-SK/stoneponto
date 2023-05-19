@@ -1,0 +1,271 @@
+{
+  "name": "Пленка",
+  "goods": [
+    {
+      "name": "Глянцевая пленка",
+      "mounting": 500,
+      "price": 100,
+      "quality": [
+        {
+          "name": "Выберете качество",
+          "price": 0
+        },
+        {
+          "name": "720dpi",
+          "price": 100
+        },
+        {
+          "name": "1080dpi",
+          "price": 200
+        },
+        {
+          "name": "1440dpi",
+          "price": 300
+        }
+      ],
+      "cutting": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Под обрез",
+          "price": 100
+        },
+        {
+          "name": "Плотерная",
+          "price": 100
+        }
+      ],
+      "lamination": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Матовая",
+          "price": 100
+        },
+        {
+          "name": "Глянцевая",
+          "price": 100
+        }
+      ]
+    },
+    {
+      "name": "Матовая пленка",
+      "mounting": 500,
+      "price": 100,
+      "quality": [
+        {
+          "name": "Выберете качество",
+          "price": 0
+        },
+        {
+          "name": "720dpi",
+          "price": 100
+        },
+        {
+          "name": "1080dpi",
+          "price": 200
+        },
+        {
+          "name": "1440dpi",
+          "price": 300
+        }
+      ],
+      "cutting": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Под обрез",
+          "price": 100
+        },
+        {
+          "name": "Плотерная",
+          "price": 100
+        }
+      ],
+      "lamination": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Матовая",
+          "price": 100
+        },
+        {
+          "name": "Глянцевая",
+          "price": 100
+        }
+      ]
+    },
+    {
+      "name": "Прозрачная самоклеющаяся пленка",
+      "price": 100,
+      "quality": [
+        {
+          "name": "Выберете качество",
+          "price": 0
+        },
+        {
+          "name": "720dpi",
+          "price": 100
+        },
+        {
+          "name": "1080dpi",
+          "price": 200
+        },
+        {
+          "name": "1440dpi",
+          "price": 300
+        }
+      ],
+      "cutting": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Под обрез",
+          "price": 100
+        },
+        {
+          "name": "Плотерная",
+          "price": 100
+        }
+      ],
+      "lamination": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Матовая",
+          "price": 100
+        },
+        {
+          "name": "Глянцевая",
+          "price": 100
+        },
+        {
+          "name": "Белая",
+          "price": 100
+        }
+      ]
+    },
+    {
+      "name": "Перфорированая пленка",
+      "price": 100,
+      "quality": [
+        {
+          "name": "Выберете качество",
+          "price": 0
+        },
+        {
+          "name": "720dpi",
+          "price": 100
+        },
+        {
+          "name": "1080dpi",
+          "price": 200
+        },
+        {
+          "name": "1440dpi",
+          "price": 300
+        }
+      ],
+      "cutting": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Под обрез",
+          "price": 100
+        }
+      ]
+    },
+    {
+      "name": "Самоклеющая пленка с черным елеевым слоем",
+      "price": 100,
+      "quality": [
+        {
+          "name": "Выберете качество",
+          "price": 0
+        },
+        {
+          "name": "720dpi",
+          "price": 100
+        },
+        {
+          "name": "1080dpi",
+          "price": 200
+        },
+        {
+          "name": "1440dpi",
+          "price": 300
+        }
+      ],
+      "cutting": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Под обрез",
+          "price": 100
+        },
+        {
+          "name": "Плотерная",
+          "price": 100
+        }
+      ],
+      "lamination": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Матовая",
+          "price": 100
+        },
+        {
+          "name": "Глянцевая",
+          "price": 100
+        }
+      ]
+    },
+    {
+      "name": "Цветная пленка серии Oracal 641",
+      "mounting": 500,
+      "stamp": 500,
+      "price": 100,
+      "color": [
+        {
+          "image": "image1",
+          "name": "Зеркальне золото",
+          "price": 100
+        },
+        {
+          "image": "image2",
+          "name": "Зеркальне серебро",
+          "price": 100
+        }
+      ],
+      "cutting": [
+        {
+          "name": "Нет",
+          "price": 0
+        },
+        {
+          "name": "Плотерная",
+          "price": 100
+        }
+      ]
+    }
+  ]
+}
