@@ -922,10 +922,12 @@ const CalculatorPartner = () => {
     const [width, setWitdh] = useState(null)
     const [height, setHeight] = useState(null)
     const [count, setCount] = useState(null)
-    const [description, setDescription] = useState(null)
+    const [description, setDescription] = useState('')
     const [selectedFile, setselectedFile] = useState({})
     const [coment, setComent] = useState(null)
     const [delivery, setDelivery] = useState('')
+    const [totalSum, setTotalSum] = useState(null)
+
 
     useEffect(() => {
         fetch('https://ponto-print.herokuapp.com/get-all-calc')
@@ -950,7 +952,7 @@ const CalculatorPartner = () => {
         <div className='calc_wrap'>
             <title>
                 <h2>Загрузка файла</h2>
-                <button className='btn btn_second'>Цены за 1м2</button>
+                <button className='btn'>Цены за 1м2</button>
             </title>
             <div className='wrap_row'>
                 <div className='calc-item material'>
@@ -969,7 +971,7 @@ const CalculatorPartner = () => {
                 </div>
             </div>
             <div className='wrap_row'>
-                <div className='calc-item'>
+                <div className='calc-item input_size'>
                        <InputsTamplate
                        title={'Ширина'}
                        type={'number'}
@@ -978,7 +980,7 @@ const CalculatorPartner = () => {
                        handleCangeInput={setWitdh}
                        />
                 </div>
-                <div className='calc-item'>
+                <div className='calc-item input_size'>
                        <InputsTamplate
                        title={'Высота'}
                        type={'number'}
@@ -987,7 +989,7 @@ const CalculatorPartner = () => {
                        handleCangeInput={setHeight}
                        />
                 </div>
-                <div className='calc-item'>
+                <div className='calc-item input_size'>
                        <InputsTamplate
                        title={'Тираж'}
                        type={'number'}
@@ -997,22 +999,26 @@ const CalculatorPartner = () => {
                        />
                 </div>
             </div>
-            <div className='wrap_row'>
-                <div className='colum adding'>
+            <div className='wrap_row adding'>
+                <div className='colum '>
                     {currentItem?.cutting && 
                     <SelectSec
                     item={currentItem?.cutting}
                     title={'Порезка'}
                 />} 
                 {currentItem?.solderingOfGates && 
-                    <div>
-                        <SelectSec
-                        item={currentItem?.solderingOfGates}
-                        title={'Пропайка подворотов'}
-                        />
-                        <SelectSec
-                        item={currentItem?.SolderingPockets}
-                        title={'Пропайка карманов'}/>
+                    <div className='soldering'>
+                        <div className='soldering_item'>
+                            <SelectSec
+                            item={currentItem?.solderingOfGates}
+                            title={'Пропайка подворотов'}
+                            />
+                        </div>
+                        <div className='soldering_item'>
+                            <SelectSec
+                            item={currentItem?.SolderingPockets}
+                            title={'Пропайка карманов'}/>
+                        </div>
                     </div>
                 }
                 </div>
@@ -1028,15 +1034,17 @@ const CalculatorPartner = () => {
                 </div>
             </div>
             <div className='wrap_row'>
-                <h3>Описание</h3>
-                <textarea name="description" id="" cols="50" rows="6" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-            </div>
-            <div className='wrap_row'>
-                <h3>Заметки</h3>
-                <textarea name="coment" id="" cols="50" rows="6" value={coment} onChange={(e) => setComent(e.target.value)}></textarea>
-            </div>
-            <div className='wrap_row'>
                 <div className='calc-item'>
+                    <h3>Описание</h3>
+                    <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea>
+                </div>
+                <div className='calc-item'>
+                    <h3>Заметки</h3>
+                    <textarea name="coment" id="" cols="50" rows="6" value={coment} onChange={(e) => setComent(e.target.value)}></textarea>
+                </div>
+            </div>
+            <div className='wrap_row footer_calc' >
+                <div className='calc-item delivery'>
                        <InputsTamplate
                        title={'Адрес доставки'}
                        type={'text'}
@@ -1045,8 +1053,11 @@ const CalculatorPartner = () => {
                        handleCangeInput={setDelivery}
                        />
                 </div>
+            <div className='total_sum'>
+                <h3> Итого:<p>{totalSum || "0 "}</p>грн</h3>
             </div>
-            <button>submit</button>
+            <button onClick={() => setDescription('hello')}>submit</button>
+            </div>
             </div>
     );
 };

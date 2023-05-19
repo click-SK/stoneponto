@@ -1,11 +1,17 @@
+
+$color_prime: #ff6c3a;
+$color_second: #222935;
+$color_text_white: #fff;
+$color_text_black: #141414;
+
 %button_prime{
-    background: #ff6c3a;
+    background: $color_prime;
     font-size: 12px;
     text-transform: uppercase;
     padding: 5px 15px;
     font-weight: bold;
     border-radius: 4px;
-    color: #fff;
+    color: $color_text_white;
     position: relative;
     overflow: hidden;
     border-bottom: 3px solid rgba(0,0,0,0.4);
@@ -17,17 +23,17 @@
 }
 
 %button_prime_hover{
-    background: #222935;
+    background: $color_second;
 }
 
 %button_second{
-    background: #222935;
+    background: $color_second;
     font-size: 12px;
     text-transform: uppercase;
     padding: 5px 15px;
     font-weight: bold;
     border-radius: 4px;
-    color: #fff;
+    color: $color_text_white;
     position: relative;
     overflow: hidden;
     border-bottom: 3px solid rgba(0,0,0,0.4);
@@ -39,14 +45,14 @@
 }
 
 %button_second_hover{
-    background:  #ff6c3a;
+    background:  $color_prime;
 }
 
 %input{
     font-size: 14px;
     line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
+    color: $color_text_black;
+    background-color: $color_text_white;
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
