@@ -949,15 +949,6 @@ const CalculatorPartner = () => {
        .then(res => setGoodsList(res))
      },[])
 
-  //    useEffect(() => {
-  //     const arr = [];
-  //     if(selectedOption?.name) {
-  //       arr.push(`${selectedOption?.name}`);
-  //     }
-  //     console.log('arr',arr);
-  //     setdescArray(state => [state,...arr]);
-  //  },[selectedOption])
-
 
      useEffect(() =>{
       if(quadrature && count){
@@ -965,8 +956,6 @@ const CalculatorPartner = () => {
       }
      },[count,totalPrice])
      
-
-
     const handleChange = (event) =>{
         const file = event.target.files[0];
 
@@ -988,7 +977,7 @@ const CalculatorPartner = () => {
           </div>
           <div className="calc-item quality">
             {currentItem?.quality 
-            ?
+            &&
             <SelectSec
                 item={currentItem?.quality}
                 title={"Качество"}
@@ -997,11 +986,9 @@ const CalculatorPartner = () => {
                 // selectedOption={selectedOptionQuality}
                 // setSelectedOption={setSelectedOptionQuality}
               />
-            :
-            <div></div>
             }
             {currentItem?.goods 
-            ?
+            &&
             <SelectSec
                 item={currentItem?.goods[0]?.quality}
                 title={"Качество"}
@@ -1010,8 +997,6 @@ const CalculatorPartner = () => {
                 // selectedOption={selectedOptionQuality}
                 // setSelectedOption={setSelectedOptionQuality}
               />
-            :
-            <div></div>
             }
           </div>
         </div>
