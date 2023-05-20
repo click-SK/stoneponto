@@ -921,16 +921,27 @@ const CalculatorPartner = () => {
     const [currentItem, setcurrentItem] = useState({});
     const [width, setWitdh] = useState(null)
     const [height, setHeight] = useState(null)
+    // const [quadrature, setquadrature] = useState(null)
     const [count, setCount] = useState(null)
     const [description, setDescription] = useState('')
     const [selectedFile, setselectedFile] = useState({})
     const [coment, setComent] = useState(null)
     const [delivery, setDelivery] = useState('')
+    const [totalPrice, setTotalPrice] = useState(null)
     const [totalSum, setTotalSum] = useState(null)
 
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOptionQuality, setSelectedOptionQuality] = useState(null);
+    const [selectedOptionCutting, setSelectedOptionCutting] = useState(null);
+    const [selectedOptionSolderGates, setSelectedOptionSolderGates] = useState(null);
+    const [selectedOptionSolderPockets, setSelectedOptionSolderPockets] = useState(null);
+    const [selectedOptionLamination, setSelectedOptionLamination] = useState(null);
+    const [selectedOptionColor, setSelectedOptionColor] = useState(null);
+    const [selectedOptionPoster, setSelectedPoster] = useState(null);
+    const [isStump, setIsStump] = useState(false);
+   
     const [descArray, setdescArray] = useState([]);
-
+    
+    const quadrature = ((Number(width) * Number(height))/1000000)
 
     useEffect(() => {
         fetch('https://ponto-print.herokuapp.com/get-all-calc')
@@ -938,16 +949,23 @@ const CalculatorPartner = () => {
        .then(res => setGoodsList(res))
      },[])
 
-     useEffect(() => {
-      const arr = [];
-      if(selectedOption?.name) {
-        arr.push(`${selectedOption?.name}`);
-      }
-      console.log('arr',arr);
-      setdescArray(arr);
-   },[selectedOption])
+  //    useEffect(() => {
+  //     const arr = [];
+  //     if(selectedOption?.name) {
+  //       arr.push(`${selectedOption?.name}`);
+  //     }
+  //     console.log('arr',arr);
+  //     setdescArray(state => [state,...arr]);
+  //  },[selectedOption])
 
-     console.log('list',goodsList);
+
+     useEffect(() =>{
+      if(quadrature && count){
+        setTotalSum(state => state + Number(totalPrice))
+      }
+     },[count,totalPrice])
+     
+
 
     const handleChange = (event) =>{
         const file = event.target.files[0];
@@ -956,8 +974,8 @@ const CalculatorPartner = () => {
             setselectedFile(file);
         }
     }
-    console.log('selectedOption',selectedOption);
-    console.log(selectedFile);
+
+    
 
     return (
         <div className='calc_wrap'>
@@ -978,8 +996,10 @@ const CalculatorPartner = () => {
                     <SelectSec
                         item={currentItem?.quality}
                         title={'Качество'}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
+                        totalPrice={totalPrice}
+                        setTotalPrice={setTotalPrice}
+                        // selectedOption={selectedOptionQuality}
+                        // setSelectedOption={setSelectedOptionQuality}
                     />} 
                 </div>
             </div>
@@ -1012,12 +1032,14 @@ const CalculatorPartner = () => {
                        />
                 </div>
             </div>
-            {/* <div className='wrap_row adding'>
+            <div className='wrap_row adding'>
                 <div className='colum '>
                     {currentItem?.cutting && 
                     <SelectSec
                     item={currentItem?.cutting}
                     title={'Порезка'}
+                    totalPrice={totalPrice}
+                    setTotalPrice={setTotalPrice}
                 />} 
                 {currentItem?.solderingOfGates && 
                     <div className='soldering'>
@@ -1025,12 +1047,16 @@ const CalculatorPartner = () => {
                             <SelectSec
                             item={currentItem?.solderingOfGates}
                             title={'Пропайка подворотов'}
+                            totalPrice={totalPrice}
+                            setTotalPrice={setTotalPrice}
                             />
                         </div>
                         <div className='soldering_item'>
                             <SelectSec
                             item={currentItem?.SolderingPockets}
-                            title={'Пропайка карманов'}/>
+                            title={'Пропайка карманов'}
+                            totalPrice={totalPrice}
+                            setTotalPrice={setTotalPrice}/>
                         </div>
                     </div>
                 }
@@ -1045,17 +1071,17 @@ const CalculatorPartner = () => {
                         
                     />
                 </div>
-            </div> */}
+            </div>
             <div className='wrap_row'>
                 <div className='calc-item'>
                     <h3>Описание</h3>
+                    <div className='description'>
                     {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
                     {descArray.length !=0 && descArray.map((item,idx) => (
-              <div key={idx}>
-                <p>{item}</p>
-              </div>
-            ))}
-            1
+                        <p key={idx}>{item}</p>
+                    ))}
+            </div>
+            
                 </div>
                 <div className='calc-item'>
                     <h3>Заметки</h3>

@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../../style/calculator.scss'
 
 
 
 
-const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
+const SelectSecond = ({item, title,setTotalPrice,totalPrice}) => {
 
-    // const [selectedOption, setSelectedOption] = useState(null);
+    // selectedOption, setSelectedOption
+    const [selectedOption, setSelectedOption] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
   
     
       const selectItemFunc = (e) => {
         setSelectedOption(e);
         setIsOpen(false);
+    }
+    // console.log(selectedOption?.price);
 
-      }
+     useEffect(() =>{
+        setTotalPrice(selectedOption?.price)
+     },[selectedOption])
+    
+
     return (
         <>
         <h3>{title}</h3>

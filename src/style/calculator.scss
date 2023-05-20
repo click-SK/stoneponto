@@ -20,6 +20,9 @@ title{
     }
     button{
         background: $color_prime;
+        &:hover{
+            background: $color_prime; 
+        }
     }
 
 }
@@ -123,6 +126,12 @@ textarea{
     &:focus{
         @extend %input_focus
     }
+}
+
+.description{
+    width: 100%;
+    min-height: 122px;
+    @extend %input;
 }
 
 .custom-select{
