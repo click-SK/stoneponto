@@ -5,9 +5,6 @@ const Select = ({goods,setcurrentItem}) => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
-
-
-//   const [goods, setGoods] = useState([
 //     {
 //       name: 'Выберете материал'
 //     },
@@ -928,18 +925,20 @@ const Select = ({goods,setcurrentItem}) => {
   const selectItemFunc = (e) => {
     setSelectedOption(e);
     setIsOpen(false);
-    console.log(e);
+    console.log('item',e);
     setcurrentItem(e)
   }
+
+  console.log('goods',goods);
 
   return (
     <div className="custom-select">
       <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
-        {selectedOption?.name || goods[0]?.name}
+        {selectedOption?.name || 'hello'}
       </div>
       {isOpen && (
         <div className="options">
-          {goods.map((item,idx) => (
+          {goods && goods.map((item,idx) => (
                     <div key={idx}>
                         <div>
                           {item.name == 'Банери' || item.name == 'Пленка' || item.name == 'Бумага' 
@@ -949,7 +948,7 @@ const Select = ({goods,setcurrentItem}) => {
                           <p onClick={() => selectItemFunc(item)}>{item.name}</p>
                           }
                         </div>
-                        {item?.goods && item?.goods.map((el,id) => (
+                        {item?.goods.length != 0 && item?.goods.map((el,id) => (
                             <div className="option" key={id} onClick={() => selectItemFunc(el)}>
                                 {el.name}
                             </div>
