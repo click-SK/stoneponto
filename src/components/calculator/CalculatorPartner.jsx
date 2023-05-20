@@ -974,137 +974,157 @@ const CalculatorPartner = () => {
             setselectedFile(file);
         }
     }
-    //   console.log('currentItem?.goods[0]?.quality',currentItem?.goods[0]?.quality);
-
-    
 
     return (
-        <div className='calc_wrap'>
-            <title>
-                <h2>Загрузка файла</h2>
-                <button className='btn'>Цены за 1м2</button>
-            </title>
-            <div className='wrap_row'>
-                <div className='calc-item material'>
-                    <h3>Материал</h3>
-                    <Select
-                    goods={goodsList}
-                    setcurrentItem={setcurrentItem}
-                    />
-                </div>
-                <div className='calc-item quality'>
-                    {currentItem?.quality && 
-                    <SelectSec
-                        item={currentItem?.quality}
-                        title={'Качество'}
-                        totalPrice={totalPrice}
-                        setTotalPrice={setTotalPrice}
-                        // selectedOption={selectedOptionQuality}
-                        // setSelectedOption={setSelectedOptionQuality}
-                    />} 
-                </div>
-            </div>
-            <div className='wrap_row'>
-                <div className='calc-item input_size'>
-                       <InputsTamplate
-                       title={'Ширина'}
-                       type={'number'}
-                       placeholder={'Введите ширину в мм.'}
-                       value={width}
-                       handleCangeInput={setWitdh}
-                       />
-                </div>
-                <div className='calc-item input_size'>
-                       <InputsTamplate
-                       title={'Высота'}
-                       type={'number'}
-                       placeholder={'Введите высоту в мм.'}
-                       value={height}
-                       handleCangeInput={setHeight}
-                       />
-                </div>
-                <div className='calc-item input_size'>
-                       <InputsTamplate
-                       title={'Тираж'}
-                       type={'number'}
-                       placeholder={'Введите тираж'}
-                       value={count}
-                       handleCangeInput={setCount}
-                       />
-                </div>
-            </div>
-            <div className='wrap_row adding'>
-                <div className='colum '>
-                    {currentItem?.cutting && 
-                    <SelectSec
-                    item={currentItem?.cutting}
-                    title={'Порезка'}
+      <div className="calc_wrap">
+        <title>
+          <h2>Загрузка файла</h2>
+          <button className="btn">Цены за 1м2</button>
+        </title>
+        <div className="wrap_row">
+          <div className="calc-item material">
+            <h3>Материал</h3>
+            <Select goods={goodsList} setcurrentItem={setcurrentItem} />
+          </div>
+          <div className="calc-item quality">
+            {currentItem?.quality 
+            ?
+            <SelectSec
+                item={currentItem?.quality}
+                title={"Качество"}
+                totalPrice={totalPrice}
+                setTotalPrice={setTotalPrice}
+                // selectedOption={selectedOptionQuality}
+                // setSelectedOption={setSelectedOptionQuality}
+              />
+            :
+            <div></div>
+            }
+            {currentItem?.goods 
+            ?
+            <SelectSec
+                item={currentItem?.goods[0]?.quality}
+                title={"Качество"}
+                totalPrice={totalPrice}
+                setTotalPrice={setTotalPrice}
+                // selectedOption={selectedOptionQuality}
+                // setSelectedOption={setSelectedOptionQuality}
+              />
+            :
+            <div></div>
+            }
+          </div>
+        </div>
+        <div className="wrap_row">
+          <div className="calc-item input_size">
+            <InputsTamplate
+              title={"Ширина"}
+              type={"number"}
+              placeholder={"Введите ширину в мм."}
+              value={width}
+              handleCangeInput={setWitdh}
+            />
+          </div>
+          <div className="calc-item input_size">
+            <InputsTamplate
+              title={"Высота"}
+              type={"number"}
+              placeholder={"Введите высоту в мм."}
+              value={height}
+              handleCangeInput={setHeight}
+            />
+          </div>
+          <div className="calc-item input_size">
+            <InputsTamplate
+              title={"Тираж"}
+              type={"number"}
+              placeholder={"Введите тираж"}
+              value={count}
+              handleCangeInput={setCount}
+            />
+          </div>
+        </div>
+        <div className="wrap_row adding">
+          <div className="colum ">
+            {currentItem?.cutting && (
+              <SelectSec
+                item={currentItem?.cutting}
+                title={"Порезка"}
+                totalPrice={totalPrice}
+                setTotalPrice={setTotalPrice}
+              />
+            )}
+            {currentItem?.solderingOfGates && (
+              <div className="soldering">
+                <div className="soldering_item">
+                  <SelectSec
+                    item={currentItem?.solderingOfGates}
+                    title={"Пропайка подворотов"}
                     totalPrice={totalPrice}
                     setTotalPrice={setTotalPrice}
-                />} 
-                {currentItem?.solderingOfGates &&
-                    <div className='soldering'>
-                        <div className='soldering_item'>
-                            <SelectSec
-                            item={currentItem?.solderingOfGates}
-                            title={'Пропайка подворотов'}
-                            totalPrice={totalPrice}
-                            setTotalPrice={setTotalPrice}
-                            />
-                        </div>
-                        <div className='soldering_item'>
-                            <SelectSec
-                            item={currentItem?.solderingPockets}
-                            title={'Пропайка карманов'}
-                            totalPrice={totalPrice}
-                            setTotalPrice={setTotalPrice}/>
-                        </div>
-                    </div>
-                }
+                  />
                 </div>
+                <div className="soldering_item">
+                  <SelectSec
+                    item={currentItem?.solderingPockets}
+                    title={"Пропайка карманов"}
+                    totalPrice={totalPrice}
+                    setTotalPrice={setTotalPrice}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
 
-                <div className='colum upload'>
-                    <h3>Файл</h3>
-                    <input 
-                        type='file'
-                        accept='.jpg, .tif, .rar, .zip, .7z, .cdr'
-                        onChange={handleChange}
-                        
-                    />
-                </div>
+          <div className="colum upload">
+            <h3>Файл</h3>
+            <input
+              type="file"
+              accept=".jpg, .tif, .rar, .zip, .7z, .cdr"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="wrap_row">
+          <div className="calc-item">
+            <h3>Описание</h3>
+            <div className="description">
+              {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
+              {descArray.length != 0 &&
+                descArray.map((item, idx) => <p key={idx}>{item}</p>)}
             </div>
-            <div className='wrap_row'>
-                <div className='calc-item'>
-                    <h3>Описание</h3>
-                    <div className='description'>
-                    {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
-                    {descArray.length !=0 && descArray.map((item,idx) => (
-                        <p key={idx}>{item}</p>
-                    ))}
-            </div>
-            
-                </div>
-                <div className='calc-item'>
-                    <h3>Заметки</h3>
-                    <textarea name="coment" id="" cols="50" rows="6" value={coment} onChange={(e) => setComent(e.target.value)}></textarea>
-                </div>
-            </div>
-            <div className='wrap_row footer_calc' >
-                <div className='calc-item delivery'>
-                       <InputsTamplate
-                       title={'Адрес доставки'}
-                       type={'text'}
-                       placeholder={'Адрес'}
-                       value={delivery}
-                       handleCangeInput={setDelivery}
-                       />
-                </div>
-            <div className='total_sum'>
-                <h3> Итого:<p>{totalSum || "0 "}</p>грн</h3>
-            </div>
-            <button onClick={() => setDescription('hello')}>submit</button>
-            </div>
-            </div>
+          </div>
+          <div className="calc-item">
+            <h3>Заметки</h3>
+            <textarea
+              name="coment"
+              id=""
+              cols="50"
+              rows="6"
+              value={coment}
+              onChange={(e) => setComent(e.target.value)}
+            ></textarea>
+          </div>
+        </div>
+        <div className="wrap_row footer_calc">
+          <div className="calc-item delivery">
+            <InputsTamplate
+              title={"Адрес доставки"}
+              type={"text"}
+              placeholder={"Адрес"}
+              value={delivery}
+              handleCangeInput={setDelivery}
+            />
+          </div>
+          <div className="total_sum">
+            <h3>
+              {" "}
+              Итого:<p>{totalSum || "0 "}</p>грн
+            </h3>
+          </div>
+          <button onClick={() => setDescription("hello")}>submit</button>
+        </div>
+      </div>
     );
 };
 
