@@ -144,6 +144,7 @@ textarea{
     border: 1px solid #ccc;
     text-align: left;
     padding: 0 5px;
+    cursor: pointer;
     .selected-option{
         width: 100%;
     }
@@ -158,7 +159,7 @@ textarea{
         z-index: 1000;
         
         .option{
-            
+            padding-left: 15px;
             &:hover{
                 background: $color_prime;
                 color: $color_text_white;
@@ -220,4 +221,9 @@ textarea{
             background: $color_prime;
         }
     }
+}
+
+.color_img{
+    width: 36px;
+    height: 12px;
 }
