@@ -4,10 +4,10 @@ import '../../style/calculator.scss'
 
 
 
-const SelectSecond = ({item, title,setTotalPrice,totalPrice}) => {
+const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
 
     // selectedOption, setSelectedOption
-    const [selectedOption, setSelectedOption] = useState(null);
+    // const [selectedOption, setSelectedOption] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
   
     
@@ -17,9 +17,9 @@ const SelectSecond = ({item, title,setTotalPrice,totalPrice}) => {
     }
     // console.log(selectedOption?.price);
 
-     useEffect(() =>{
-        setTotalPrice(selectedOption?.price)
-     },[selectedOption])
+    //  useEffect(() =>{
+    //     setTotalSum(selectedOption?.price)
+    //  },[selectedOption])
     
 
     return (

@@ -936,7 +936,7 @@ const CalculatorPartner = () => {
     const [selectedOptionSolderPockets, setSelectedOptionSolderPockets] = useState(null);
     const [selectedOptionLamination, setSelectedOptionLamination] = useState(null);
     const [selectedOptionColor, setSelectedOptionColor] = useState(null);
-    const [selectedOptionPoster, setSelectedPoster] = useState(null);
+    const [selectedOptionPoster, setSelectedOptionPoster] = useState(null);
     const [isStump, setIsStump] = useState(false);
    
     const [descArray, setdescArray] = useState([]);
@@ -964,6 +964,8 @@ const CalculatorPartner = () => {
         }
     }
 
+    console.log('check',isStump);
+
     return (
       <div className="calc_wrap">
         <title>
@@ -981,21 +983,17 @@ const CalculatorPartner = () => {
             <SelectSec
                 item={currentItem?.quality}
                 title={"Качество"}
-                totalPrice={totalPrice}
-                setTotalPrice={setTotalPrice}
-                // selectedOption={selectedOptionQuality}
-                // setSelectedOption={setSelectedOptionQuality}
+                selectedOption={selectedOptionQuality}
+                setSelectedOption={setSelectedOptionQuality}
               />
             }
-            {currentItem?.goods 
+            {currentItem?.goods && currentItem?.goods.length != 0
             &&
             <SelectSec
                 item={currentItem?.goods[0]?.quality}
                 title={"Качество"}
-                totalPrice={totalPrice}
-                setTotalPrice={setTotalPrice}
-                // selectedOption={selectedOptionQuality}
-                // setSelectedOption={setSelectedOptionQuality}
+                selectedOption={selectedOptionQuality}
+                setSelectedOption={setSelectedOptionQuality}
               />
             }
           </div>
@@ -1031,30 +1029,49 @@ const CalculatorPartner = () => {
         </div>
         <div className="wrap_row adding">
           <div className="colum ">
-            {currentItem?.cutting && (
+            {currentItem?.cutting && currentItem?.cutting != 0 && (
               <SelectSec
                 item={currentItem?.cutting}
                 title={"Порезка"}
-                totalPrice={totalPrice}
-                setTotalPrice={setTotalPrice}
+                selectedOption={selectedOptionCutting}
+                setSelectedOption={setSelectedOptionCutting}
               />
             )}
-            {currentItem?.solderingOfGates && (
+            {currentItem?.lamination && currentItem?.lamination != 0 && (
+              <SelectSec
+                item={currentItem?.lamination}
+                title={"Ламинация"}
+                selectedOption={selectedOptionLamination}
+                setSelectedOption={setSelectedOptionLamination}
+              />
+            )}
+            {currentItem?.poster && currentItem?.poster != 0 && (
+              <SelectSec
+                item={currentItem?.poster}
+                title={"Постер"}
+                selectedOption={selectedOptionPoster}
+                setSelectedOption={setSelectedOptionPoster}
+              />
+            )}
+            {currentItem?.stump && (
+              <input type='checkbox' value={isStump}/>
+             )}
+            {currentItem?.solderingOfGates && currentItem?.solderingOfGates != 0 && (
               <div className="soldering">
                 <div className="soldering_item">
                   <SelectSec
                     item={currentItem?.solderingOfGates}
                     title={"Пропайка подворотов"}
-                    totalPrice={totalPrice}
-                    setTotalPrice={setTotalPrice}
+                    selectedOption={selectedOptionSolderGates}
+                    setSelectedOption={setSelectedOptionSolderGates}
                   />
                 </div>
                 <div className="soldering_item">
                   <SelectSec
                     item={currentItem?.solderingPockets}
                     title={"Пропайка карманов"}
-                    totalPrice={totalPrice}
-                    setTotalPrice={setTotalPrice}
+                    selectedOption={selectedOptionSolderPockets}
+                    setSelectedOption={setSelectedOptionSolderPockets}
                   />
                 </div>
               </div>
