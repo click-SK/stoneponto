@@ -20,6 +20,9 @@ title{
     }
     button{
         background: $color_prime;
+        &:hover{
+            background: $color_prime; 
+        }
     }
 
 }
