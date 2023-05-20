@@ -974,6 +974,7 @@ const CalculatorPartner = () => {
             setselectedFile(file);
         }
     }
+    //   console.log('currentItem?.goods[0]?.quality',currentItem?.goods[0]?.quality);
 
     
 
@@ -987,7 +988,7 @@ const CalculatorPartner = () => {
                 <div className='calc-item material'>
                     <h3>Материал</h3>
                     <Select
-                    goods={goods}
+                    goods={goodsList}
                     setcurrentItem={setcurrentItem}
                     />
                 </div>
@@ -1041,7 +1042,7 @@ const CalculatorPartner = () => {
                     totalPrice={totalPrice}
                     setTotalPrice={setTotalPrice}
                 />} 
-                {currentItem?.solderingOfGates && 
+                {currentItem?.solderingOfGates &&
                     <div className='soldering'>
                         <div className='soldering_item'>
                             <SelectSec
@@ -1053,7 +1054,7 @@ const CalculatorPartner = () => {
                         </div>
                         <div className='soldering_item'>
                             <SelectSec
-                            item={currentItem?.SolderingPockets}
+                            item={currentItem?.solderingPockets}
                             title={'Пропайка карманов'}
                             totalPrice={totalPrice}
                             setTotalPrice={setTotalPrice}/>
