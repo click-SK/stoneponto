@@ -4,9 +4,9 @@ import '../../style/calculator.scss'
 
 
 
-const SelectSecond = ({item, title}) => {
+const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
 
-    const [selectedOption, setSelectedOption] = useState(null);
+    // const [selectedOption, setSelectedOption] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
   
     
