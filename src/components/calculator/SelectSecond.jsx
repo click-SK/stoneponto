@@ -20,19 +20,22 @@ const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
     //  useEffect(() =>{
     //     setTotalSum(selectedOption?.price)
     //  },[selectedOption])
-    
 
     return (
         <>
         <h3>{title}</h3>
         <div className="custom-select">
             <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
+                {selectedOption?.imageColor && 
+                    <img className='color_img' src={`https://ponto-print.herokuapp.com${selectedOption?.imageColor}`}/>}
                 {selectedOption?.name || item[0]?.name}
             </div>
             {isOpen && (
                 <div className="options">
                     {item.map((el,id) => (
                         <div className="option" key={id} onClick={() => selectItemFunc(el)}>
+                            {el?.imageColor && 
+                            <img className='color_img' src={`https://ponto-print.herokuapp.com${el.imageColor}`}/>}
                             {el.name}
                         </div>
                     ))}

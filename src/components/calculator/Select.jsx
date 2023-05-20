@@ -17,11 +17,8 @@ const Select = ({goods,setcurrentItem}) => {
   const selectItemFunc = (e) => {
     setSelectedOption(e);
     setIsOpen(false);
-    console.log('item',e);
     setcurrentItem(e)
   }
-
-  console.log('goods',goods);
 
   return (
     <div className="custom-select">

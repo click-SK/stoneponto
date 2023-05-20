@@ -144,6 +144,7 @@ textarea{
     border: 1px solid #ccc;
     text-align: left;
     padding: 0 5px;
+    cursor: pointer;
     .selected-option{
         width: 100%;
     }
@@ -220,4 +221,9 @@ textarea{
             background: $color_prime;
         }
     }
+}
+
+.color_img{
+    width: 36px;
+    height: 12px;
 }
