@@ -2,922 +2,14 @@ import React, {useState,useEffect} from 'react';
 import Select from './Select'
 import SelectSec from './SelectSecond'
 import InputsTamplate from '../template/InputsTamplate';
+import ModalPrice from './ModalPrice';
 import '../../style/calculator.scss'
 
 
 const CalculatorPartner = () => {
-    const [goods, setGoods] = useState([
-        {
-          name: 'Выберете материал'
-        },
-        {
-          name:'Банери',
-          goods: [
-            {
-              name: 'Банер 440 гр. Ламинированый',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-                {
-                  name: 'Оставить поля по 5 см',
-                  price: 100,
-                },
-              ],
-              solderingOfGates: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'По периметру',
-                  price: 100,
-                },
-                {
-                  name: 'Слева и справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху и снизу',
-                  price: 100,
-                },
-                {
-                  name: 'Буквой П',
-                  price: 100,
-                },
-                {
-                  name: 'Слева',
-                  price: 100,
-                },
-                {
-                  name: 'Справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху',
-                  price: 100,
-                },
-                {
-                  name: 'Снизу',
-                  price: 100,
-                },
-              ],
-              SolderingPockets: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'По периметру',
-                  price: 100,
-                },
-                {
-                  name: 'Слева и справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху и снизу',
-                  price: 100,
-                },
-                {
-                  name: 'Буквой П',
-                  price: 100,
-                },
-                {
-                  name: 'Слева',
-                  price: 100,
-                },
-                {
-                  name: 'Справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху',
-                  price: 100,
-                },
-                {
-                  name: 'Снизу',
-                  price: 100,
-                },
-              ],
-            },
-            {
-              name: 'Банер 510 гр. литой',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-                {
-                  name: 'Оставить поля по 5 см',
-                  price: 100,
-                },
-              ],
-              solderingOfGates: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'По периметру',
-                  price: 100,
-                },
-                {
-                  name: 'Слева и справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху и снизу',
-                  price: 100,
-                },
-                {
-                  name: 'Буквой П',
-                  price: 100,
-                },
-                {
-                  name: 'Слева',
-                  price: 100,
-                },
-                {
-                  name: 'Справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху',
-                  price: 100,
-                },
-                {
-                  name: 'Снизу',
-                  price: 100,
-                },
-              ],
-              SolderingPockets: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'По периметру',
-                  price: 100,
-                },
-                {
-                  name: 'Слева и справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху и снизу',
-                  price: 100,
-                },
-                {
-                  name: 'Буквой П',
-                  price: 100,
-                },
-                {
-                  name: 'Слева',
-                  price: 100,
-                },
-                {
-                  name: 'Справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху',
-                  price: 100,
-                },
-                {
-                  name: 'Снизу',
-                  price: 100,
-                },
-              ],
-            },
-            {
-              name: 'Просветный банер 440 гр.',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-                {
-                  name: 'Оставить поля по 5 см',
-                  price: 100,
-                },
-              ],
-              solderingOfGates: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'По периметру',
-                  price: 100,
-                },
-                {
-                  name: 'Слева и справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху и снизу',
-                  price: 100,
-                },
-                {
-                  name: 'Буквой П',
-                  price: 100,
-                },
-                {
-                  name: 'Слева',
-                  price: 100,
-                },
-                {
-                  name: 'Справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху',
-                  price: 100,
-                },
-                {
-                  name: 'Снизу',
-                  price: 100,
-                },
-              ],
-              SolderingPockets: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'По периметру',
-                  price: 100,
-                },
-                {
-                  name: 'Слева и справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху и снизу',
-                  price: 100,
-                },
-                {
-                  name: 'Буквой П',
-                  price: 100,
-                },
-                {
-                  name: 'Слева',
-                  price: 100,
-                },
-                {
-                  name: 'Справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху',
-                  price: 100,
-                },
-                {
-                  name: 'Снизу',
-                  price: 100,
-                },
-              ],
-            },
-            {
-              name: 'Сетка банерная 380 гр.',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-                {
-                  name: 'Оставить поля по 5 см',
-                  price: 100,
-                },
-              ],
-              solderingOfGates: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'По периметру',
-                  price: 100,
-                },
-                {
-                  name: 'Слева и справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху и снизу',
-                  price: 100,
-                },
-                {
-                  name: 'Буквой П',
-                  price: 100,
-                },
-                {
-                  name: 'Слева',
-                  price: 100,
-                },
-                {
-                  name: 'Справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху',
-                  price: 100,
-                },
-                {
-                  name: 'Снизу',
-                  price: 100,
-                },
-              ],
-              SolderingPockets: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'По периметру',
-                  price: 100,
-                },
-                {
-                  name: 'Слева и справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху и снизу',
-                  price: 100,
-                },
-                {
-                  name: 'Буквой П',
-                  price: 100,
-                },
-                {
-                  name: 'Слева',
-                  price: 100,
-                },
-                {
-                  name: 'Справа',
-                  price: 100,
-                },
-                {
-                  name: 'Сверху',
-                  price: 100,
-                },
-                {
-                  name: 'Снизу',
-                  price: 100,
-                },
-              ],
-            },
-          ],
-          eyelets: [
-            {
-              name: 'Нет',
-              price: 0,
-            },
-            {
-              name: 'По периметру',
-              price: 100,
-            },
-            {
-              name: 'По углам',
-              price: 100,
-            },
-            {
-              name: 'По меткам',
-              price: 100,
-            },
-            {
-              name: 'Слева и справа',
-              price: 100,
-            },
-            {
-              name: 'Сверху и снизу',
-              price: 100,
-            },
-            {
-              name: 'Буквой П',
-              price: 100,
-            },
-            {
-              name: 'Слева',
-              price: 100,
-            },
-            {
-              name: 'Справа',
-              price: 100,
-            },
-            {
-              name: 'Сверху',
-              price: 100,
-            },
-            {
-              name: 'Снизу',
-              price: 100,
-            },
-          ],
-          eyeletsSizePrice: 100,
-        },
-        {
-          name:'Пленка',
-          goods: [
-            {
-              name: 'Глянцевая пленка',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-                {
-                  name: 'Плотерная',
-                  price: 100,
-                },
-              ],
-              lamination: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Матовая',
-                  price: 100,
-                },
-                {
-                  name: 'Глянцевая',
-                  price: 100,
-                },
-              ],
-              mounting: 500,
-            },
-            {
-              name: 'Матовая пленка',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-                {
-                  name: 'Плотерная',
-                  price: 100,
-                },
-              ],
-              lamination: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Матовая',
-                  price: 100,
-                },
-                {
-                  name: 'Глянцевая',
-                  price: 100,
-                },
-              ],
-              mounting: 500,
-            },
-            {
-              name: 'Прозрачная самоклеющаяся пленка',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-                {
-                  name: 'Плотерная',
-                  price: 100,
-                },
-              ],
-              lamination: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Матовая',
-                  price: 100,
-                },
-                {
-                  name: 'Глянцевая',
-                  price: 100,
-                },
-                {
-                  name: 'Белая',
-                  price: 100,
-                },
-              ]
-            },
-            {
-              name: 'Прозрачная самоклеющаяся пленка',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-              ],
-            },
-            {
-              name: 'Самоклеющая пленка с черным елеевым слоем',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-                {
-                  name: 'Плотерная',
-                  price: 100,
-                },
-              ],
-              lamination: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Матовая',
-                  price: 100,
-                },
-                {
-                  name: 'Глянцевая',
-                  price: 100,
-                },
-              ]
-            },
-            {
-              name: 'Цветная пленка серии Oracal 641',
-              price: 100,
-              color: [
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Плотерная',
-                  price: 100,
-                },
-              ],
-              mounting: 500,
-              stamp: 500,
-            },
-          ],
-        },
-        {
-          name:'Бумага',
-          goods: [
-            {
-              name: 'Бумага сити 150 гр.',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-                {
-                  name:'1440dpi',
-                  price: 300,
-                }
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-              ],
-              lamination: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Глянцевая 1+0',
-                  price: 100,
-                },
-                {
-                  name: 'Матовая 1+0',
-                  price: 100,
-                },
-                {
-                  name: 'Глянцевая 1+1',
-                  price: 100,
-                },
-                {
-                  name: 'Матовая 1+1',
-                  price: 100,
-                },
-              ]
-            },
-            {
-              name: 'Бумага блю бэк 115 гр.',
-              price: 100,
-              quality: [
-                {
-                  name:'Выберете качество',
-                  price: 0,
-                },
-                {
-                  name:'720dpi',
-                  price: 100,
-                },
-                {
-                  name:'1080dpi',
-                  price: 200,
-                },
-              ],
-              cutting: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Под обрез',
-                  price: 100,
-                },
-              ],
-              lamination: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: 'Глянцевая 1+0',
-                  price: 100,
-                },
-                {
-                  name: 'Матовая 1+0',
-                  price: 100,
-                },
-                {
-                  name: 'Глянцевая 1+1',
-                  price: 100,
-                },
-                {
-                  name: 'Матовая 1+1',
-                  price: 100,
-                },
-              ],
-              poster: [
-                {
-                  name: 'Нет',
-                  price: 0,
-                },
-                {
-                  name: '3x4м',
-                  price: 100,
-                },
-                {
-                  name: '3x6м',
-                  price: 100,
-                },
-                {
-                  name: '3x12м',
-                  price: 100,
-                },
-              ]
-            },
-          ],
-        },
-        {
-          name: 'Давальческий материал',
-          price: 1000,
-        },
-        {
-          name: 'Холст',
-          price: 1000,
-          stretchOnTheStretcher: 500,
-        },
-        {
-          name: 'Свертопропускной пластик',
-          price: 1000,
-        },
-        {
-          name: 'Полиман',
-          price: 1000,
-        },
-      ]);
+
     const [goodsList, setGoodsList] = useState ([])
-      
+    const [isOpen, setIsOpen] = useState(false);  
     const [currentItem, setcurrentItem] = useState({});
     const [width, setWitdh] = useState(null)
     const [height, setHeight] = useState(null)
@@ -928,7 +20,7 @@ const CalculatorPartner = () => {
     const [coment, setComent] = useState(null)
     const [delivery, setDelivery] = useState('')
     const [totalPrice, setTotalPrice] = useState(null)
-    const [totalSum, setTotalSum] = useState(null)
+    const [totalSum, setTotalSum] = useState(0)
 
     const [selectedOptionQuality, setSelectedOptionQuality] = useState(null);
     const [selectedOptionCutting, setSelectedOptionCutting] = useState(null);
@@ -937,9 +29,11 @@ const CalculatorPartner = () => {
     const [selectedOptionLamination, setSelectedOptionLamination] = useState(null);
     const [selectedOptionColor, setSelectedOptionColor] = useState(null);
     const [selectedOptionPoster, setSelectedOptionPoster] = useState(null);
-    const [isStump, setIsStump] = useState(false);
+    const [isStamp, setIsStamp] = useState(false);
+    const [isStretch, setIsStretch] = useState(false);
+    const [isMounting, setIsMounting] = useState(false);
    
-    const [descArray, setdescArray] = useState([]);
+    const [descArray, setdescArray] = useState({});
     
     const quadrature = ((Number(width) * Number(height))/1000000)
 
@@ -949,12 +43,60 @@ const CalculatorPartner = () => {
        .then(res => setGoodsList(res))
      },[])
 
+  //    useEffect(() => {
+  //     const arr = [];
+  //     if(selectedOptionQuality) {
+  //       arr.push(`${selectedOptionQuality}`);
+  //     }
+  //     console.log('arr',arr);
+  //     setdescArray(state => [state,...arr]);
+  //  },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
+  //   selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp ])
+     
+  useEffect(() =>{
+      const descriptionObj = {
+        cutting: selectedOptionCutting?.price ? `Порезка: ${selectedOptionCutting?.name}` : '',
+        solderGates:selectedOptionSolderGates?.price ? `Пропайка подворотов: ${selectedOptionSolderGates?.name}` : '',
+        solderPockets:selectedOptionSolderPockets?.price ? `Пропайка карманов: ${selectedOptionSolderPockets?.name}` : '',
+        Lamination:selectedOptionLamination?.price ? `Ламинация: ${selectedOptionLamination?.name}` : '',
+        poster:selectedOptionPoster?.price ? `Постер: ${selectedOptionPoster?.name}` : '',
+        stretch:isStretch ? `Натяжка на подрамник` : '',
+        stamp:isStamp ? `С печатью` : '',
+        mounting:isMounting ? `Намонтаживание` : '',
+      }
+      setdescArray(descriptionObj);
+     },[selectedOptionCutting,isMounting,selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
+     
 
      useEffect(() =>{
-      if(quadrature && count){
-        setTotalSum(state => state + Number(totalPrice))
-      }
-     },[count,totalPrice])
+      const totalSum1 = ((quadrature * selectedOptionQuality?.price || 0) * count) +
+     (selectedOptionCutting?.price || 0) + (selectedOptionSolderGates?.price || 0)+
+     (selectedOptionSolderPockets?.price || 0) + (selectedOptionLamination?.price || 0) +
+     (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0) + (isStretch ? currentItem?.stretchOnTheStretcher : 0) +
+     (isMounting ? currentItem?.mounting: 0);
+
+     setTotalSum(totalSum1)
+     },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
+      selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting])
+
+      useEffect(()=>{
+        setSelectedOptionQuality(null);
+        setSelectedOptionCutting(null);
+        setSelectedOptionSolderGates(null);
+        setSelectedOptionSolderPockets(null);
+        setSelectedOptionLamination(null);
+        setSelectedOptionColor(null);
+        setSelectedOptionPoster(null);
+        setIsStamp(false);
+        setIsStretch(false);
+        setIsMounting(false);
+        setWitdh('');
+        setHeight('');
+        setCount('');
+        setComent('');
+        setDelivery('');
+      },[currentItem])
+
      
     const handleChange = (event) =>{
         const file = event.target.files[0];
@@ -964,21 +106,56 @@ const CalculatorPartner = () => {
         }
     }
 
-    console.log('check',isStump);
+    const handleTotalSum = () =>{
+        // console.log('sum',totalSum)
+        // console.log('price',selectedOptionQuality?.price)
+        // console.log('m2',quadrature)
+        console.log('item',currentItem)
+    }
 
+    const handleStamp = () =>{
+      setIsStamp(state => !state)
+    }
+    const handleStretch = () =>{
+      setIsStretch(state => !state)
+    }
+    const handleMounting = () =>{
+      setIsMounting(state => !state)
+    }
+
+    // Додати люверси + інпут 30 см
+    // перевірити суму та опис                  -- 
+    // додати модалка ціни за метр
+    // змінити стилі
+    // по сабміт створити кінцевий файл
+    // Переробити селект колір, додати пошук  
     return (
       <div className="calc_wrap">
         <title>
           <h2>Загрузка файла</h2>
-          <button className="btn">Цены за 1м2</button>
+          <button className="btn" onClick={() => setIsOpen(!isOpen)}>Цены за 1м2</button>
+          <ModalPrice
+            isOpen = {isOpen}
+            setIsOpen = {setIsOpen}
+            goodsList = {goodsList}
+          />
         </title>
         <div className="wrap_row">
           <div className="calc-item material">
             <h3>Материал</h3>
-            <Select goods={goodsList} setcurrentItem={setcurrentItem} />
+            <Select goods={goodsList} setcurrentItem={setcurrentItem}/>
           </div>
           <div className="calc-item quality">
-            {currentItem?.quality 
+            {currentItem?.color && currentItem?.color != 0 
+            &&
+            <SelectSec
+                item={currentItem?.color}
+                title={"Цвет"}
+                selectedOption={selectedOptionColor}
+                setSelectedOption={setSelectedOptionColor}
+              />
+            }
+            {currentItem?.quality && currentItem?.quality.length != 0 
             &&
             <SelectSec
                 item={currentItem?.quality}
@@ -1029,7 +206,7 @@ const CalculatorPartner = () => {
         </div>
         <div className="wrap_row adding">
           <div className="colum ">
-            {currentItem?.cutting && currentItem?.cutting != 0 && (
+            {currentItem?.cutting && currentItem?.cutting.length != 0 && (
               <SelectSec
                 item={currentItem?.cutting}
                 title={"Порезка"}
@@ -1037,7 +214,16 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionCutting}
               />
             )}
-            {currentItem?.lamination && currentItem?.lamination != 0 && (
+            {currentItem?.goods && currentItem?.goods[0].cutting.length != 0
+            &&
+            <SelectSec
+                item={currentItem?.goods[0]?.cutting}
+                title={"Порезка"}
+                selectedOption={selectedOptionCutting}
+                setSelectedOption={setSelectedOptionCutting}
+              />
+            }
+            {currentItem?.lamination && currentItem?.lamination.length != 0 && (
               <SelectSec
                 item={currentItem?.lamination}
                 title={"Ламинация"}
@@ -1045,7 +231,7 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionLamination}
               />
             )}
-            {currentItem?.poster && currentItem?.poster != 0 && (
+            {currentItem?.poster && currentItem?.poster.length != 0 && (
               <SelectSec
                 item={currentItem?.poster}
                 title={"Постер"}
@@ -1053,10 +239,26 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionPoster}
               />
             )}
-            {currentItem?.stump && (
-              <input type='checkbox' value={isStump}/>
+       
+              {currentItem?.stretchOnTheStretcher && (
+              <div>
+                <h3>Натяжка на подрамник</h3>
+                <input type='checkbox' checked={isStretch} onChange={handleStretch}/>
+              </div>
              )}
-            {currentItem?.solderingOfGates && currentItem?.solderingOfGates != 0 && (
+              {currentItem?.mounting && (
+              <div>
+                <h3>Намонтаживание</h3>
+                <input type='checkbox' checked={isMounting} onChange={handleMounting}/>
+              </div>
+             )}
+              {currentItem?.stamp && (
+              <div>
+                <h3>С печатью</h3>
+                <input type='checkbox' checked={isStamp} onChange={handleStamp}/>
+              </div>
+             )}
+            {currentItem?.solderingOfGates && currentItem?.solderingOfGates.length != 0 && (
               <div className="soldering">
                 <div className="soldering_item">
                   <SelectSec
@@ -1093,7 +295,8 @@ const CalculatorPartner = () => {
             <div className="description">
               {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
               {descArray.length != 0 &&
-                descArray.map((item, idx) => <p key={idx}>{item}</p>)}
+                Object.entries(descArray).filter(([_, value]) => value.name !== '').map(([key, value], idx) => 
+                <p key={idx}>{value}</p>)}
             </div>
           </div>
           <div className="calc-item">
@@ -1121,10 +324,10 @@ const CalculatorPartner = () => {
           <div className="total_sum">
             <h3>
               {" "}
-              Итого:<p>{totalSum || "0 "}</p>грн
+              Итого: <p>{totalSum.toFixed(0)}</p> грн
             </h3>
           </div>
-          <button onClick={() => setDescription("hello")}>submit</button>
+          <button onClick={handleTotalSum}>submit</button>
         </div>
       </div>
     );
