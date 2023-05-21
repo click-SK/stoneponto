@@ -246,12 +246,12 @@
       "price": 100,
       "color": [
         {
-          "image": "image1",
+          "imageColor": "image1",
           "name": "Зеркальне золото",
           "price": 100
         },
         {
-          "image": "image2",
+          "imageColor": "image2",
           "name": "Зеркальне серебро",
           "price": 100
         }
