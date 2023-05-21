@@ -1,13 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 import Test from './components/Test';
+import Header from './components/Header';
+import EditCalculator from './components/Admin/Calculator/EditCalculator';
+import {Routes, Route} from 'react-router-dom';
 import CalculatorPartner from './components/calculator/CalculatorPartner';
-
 
 function App() {
   return (
     <div className="App">
-      <CalculatorPartner/>
+            <Header/>
+      <Routes>
+      <Route path='/' element={<CalculatorPartner/>}/>
+      <Route path='/admin' element={<EditCalculator/>}/>
+      </Routes>
     </div>
   );
 }
