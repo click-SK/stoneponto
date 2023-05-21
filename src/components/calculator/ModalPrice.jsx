@@ -4,11 +4,6 @@ import '../../style/modal.scss'
 
 const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
     
-    console.log(goodsList);
-
-    // goodsList.forEach(element => {
-    //     console.log(element)
-    // });
 
     if (!isOpen) return null;
 

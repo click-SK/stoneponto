@@ -117,6 +117,19 @@ input{
     }
 }
 
+.eyelets_wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  
+    div {
+      margin-right: 0px;
+  
+      &:first-child {
+        margin-right: 10%;
+      }
+    }
+  }
 
 
 textarea{
