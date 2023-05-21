@@ -21,8 +21,10 @@ const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
     //     setTotalSum(selectedOption?.price)
     //  },[selectedOption])
 
+    
+
     return (
-        <>
+        <div style={{width: '100%'}}>
         <h3>{title}</h3>
         <div className="custom-select">
             <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
@@ -42,7 +44,7 @@ const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
                 </div>
             )}
         </div>
-        </>
+        </div>
     );
 };
 
