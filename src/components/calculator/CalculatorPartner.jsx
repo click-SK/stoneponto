@@ -11,24 +11,26 @@ const CalculatorPartner = () => {
     const [goodsList, setGoodsList] = useState ([])
     const [isOpen, setIsOpen] = useState(false);  
     const [currentItem, setcurrentItem] = useState({});
-    const [width, setWitdh] = useState(null)
-    const [height, setHeight] = useState(null)
+    const [width, setWitdh] = useState('')
+    const [height, setHeight] = useState('')
     // const [quadrature, setquadrature] = useState(null)
-    const [count, setCount] = useState(null)
+    const [count, setCount] = useState('')
     const [description, setDescription] = useState('')
     const [selectedFile, setselectedFile] = useState({})
-    const [coment, setComent] = useState(null)
+    const [coment, setComent] = useState('')
     const [delivery, setDelivery] = useState('')
-    const [totalPrice, setTotalPrice] = useState(null)
+    const [totalPrice, setTotalPrice] = useState('')
     const [totalSum, setTotalSum] = useState(0)
 
-    const [selectedOptionQuality, setSelectedOptionQuality] = useState(null);
-    const [selectedOptionCutting, setSelectedOptionCutting] = useState(null);
-    const [selectedOptionSolderGates, setSelectedOptionSolderGates] = useState(null);
-    const [selectedOptionSolderPockets, setSelectedOptionSolderPockets] = useState(null);
-    const [selectedOptionLamination, setSelectedOptionLamination] = useState(null);
-    const [selectedOptionColor, setSelectedOptionColor] = useState(null);
-    const [selectedOptionPoster, setSelectedOptionPoster] = useState(null);
+    const [selectedOptionQuality, setSelectedOptionQuality] = useState('');
+    const [selectedOptionCutting, setSelectedOptionCutting] = useState('');
+    const [selectedOptionSolderGates, setSelectedOptionSolderGates] = useState('');
+    const [selectedOptionSolderPockets, setSelectedOptionSolderPockets] = useState('');
+    const [selectedOptionLamination, setSelectedOptionLamination] = useState('');
+    const [selectedOptionColor, setSelectedOptionColor] = useState('');
+    const [selectedOptionPoster, setSelectedOptionPoster] = useState('');
+    const [selectedOptionEyelets, setSelectedOptionEyelets] = useState('');
+    const [selectedOptionEyeletsValue, setSelectedOptionEyeletsValue] = useState(30);
     const [isStamp, setIsStamp] = useState(false);
     const [isStretch, setIsStretch] = useState(false);
     const [isMounting, setIsMounting] = useState(false);
@@ -43,6 +45,7 @@ const CalculatorPartner = () => {
        .then(res => setGoodsList(res))
      },[])
 
+    //  console.log(goodsList);
   //    useEffect(() => {
   //     const arr = [];
   //     if(selectedOptionQuality) {
@@ -63,9 +66,10 @@ const CalculatorPartner = () => {
         stretch:isStretch ? `Натяжка на подрамник` : '',
         stamp:isStamp ? `С печатью` : '',
         mounting:isMounting ? `Намонтаживание` : '',
+        eyelets: selectedOptionEyelets? `Люверсы: ${selectedOptionEyelets?.name} ${selectedOptionEyeletsValue } см`: '2',
       }
       setdescArray(descriptionObj);
-     },[selectedOptionCutting,isMounting,selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
+     },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
      
 
      useEffect(() =>{
@@ -80,13 +84,13 @@ const CalculatorPartner = () => {
       selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting])
 
       useEffect(()=>{
-        setSelectedOptionQuality(null);
-        setSelectedOptionCutting(null);
-        setSelectedOptionSolderGates(null);
-        setSelectedOptionSolderPockets(null);
-        setSelectedOptionLamination(null);
-        setSelectedOptionColor(null);
-        setSelectedOptionPoster(null);
+        setSelectedOptionQuality('');
+        setSelectedOptionCutting('');
+        setSelectedOptionSolderGates('');
+        setSelectedOptionSolderPockets('');
+        setSelectedOptionLamination('');
+        setSelectedOptionColor('');
+        setSelectedOptionPoster('');
         setIsStamp(false);
         setIsStretch(false);
         setIsMounting(false);
@@ -96,6 +100,27 @@ const CalculatorPartner = () => {
         setComent('');
         setDelivery('');
       },[currentItem])
+
+    const finlObj = {
+      material: currentItem.name,
+      width: width,
+      height:height,
+      count:count,
+      adding:descArray,
+      coment:coment ? coment : '',
+      deliveryt:delivery ? delivery : '',
+      totalSumt:totalSum ? totalSum : '',
+      // quality:selectedOptionQuality ? selectedOptionQuality.name : '',
+      // cuting:selectedOptionCutting ? selectedOptionCutting.name : '',
+      // gates:selectedOptionSolderGates ? selectedOptionSolderGates.name : '',
+      // pockets:selectedOptionSolderPockets ? selectedOptionSolderPockets.name : '',
+      // lamination:selectedOptionLamination ? selectedOptionLamination.name : '',
+      // color:selectedOptionColor ? selectedOptionColor.name : '',
+      // poster:selectedOptionPoster ? selectedOptionPoster.name : '',
+      // eyelets:selectedOptionEyelets ? selectedOptionEyelets.name : '',
+
+    }  
+
 
      
     const handleChange = (event) =>{
@@ -107,10 +132,8 @@ const CalculatorPartner = () => {
     }
 
     const handleTotalSum = () =>{
-        // console.log('sum',totalSum)
-        // console.log('price',selectedOptionQuality?.price)
-        // console.log('m2',quadrature)
-        console.log('item',currentItem)
+
+        console.log( 'final ',finlObj);
     }
 
     const handleStamp = () =>{
@@ -122,6 +145,7 @@ const CalculatorPartner = () => {
     const handleMounting = () =>{
       setIsMounting(state => !state)
     }
+
 
     // Додати люверси + інпут 30 см
     // перевірити суму та опис                  -- 
@@ -206,6 +230,37 @@ const CalculatorPartner = () => {
         </div>
         <div className="wrap_row adding">
           <div className="colum ">
+            {currentItem?.eyelets && currentItem?.eyelets.length != 0 && (
+              
+                <div className='eyelets_wrap'>
+                  <SelectSec
+                  item={currentItem?.eyelets}
+                  title={"Люверсы"}
+                  selectedOption={selectedOptionEyelets}
+                  setSelectedOption={setSelectedOptionEyelets}
+                  />
+                  {selectedOptionEyelets?.name !== 'По углам' ?
+                   
+                  <InputsTamplate
+                    title={"через (cм)"}
+                    type={"text"}
+                    placeholder={"30"}
+                    value={selectedOptionEyeletsValue}
+                    handleCangeInput={setSelectedOptionEyeletsValue}
+                  />
+                  :
+                  <InputsTamplate
+                    title={"через (cм)"}
+                    type={"text"}
+                    placeholder={"30"}
+                    value={selectedOptionEyeletsValue}
+                    handleCangeInput={setSelectedOptionEyeletsValue}
+                    disabled = {true}
+                  />
+                  }
+                </div>
+
+            )}
             {currentItem?.cutting && currentItem?.cutting.length != 0 && (
               <SelectSec
                 item={currentItem?.cutting}
@@ -243,19 +298,19 @@ const CalculatorPartner = () => {
               {currentItem?.stretchOnTheStretcher && (
               <div>
                 <h3>Натяжка на подрамник</h3>
-                <input type='checkbox' checked={isStretch} onChange={handleStretch}/>
+                <input type='checkbox' value={isStretch} onChange={handleStretch}/>
               </div>
              )}
               {currentItem?.mounting && (
               <div>
                 <h3>Намонтаживание</h3>
-                <input type='checkbox' checked={isMounting} onChange={handleMounting}/>
+                <input type='checkbox' value={isMounting} onChange={handleMounting}/>
               </div>
              )}
               {currentItem?.stamp && (
               <div>
                 <h3>С печатью</h3>
-                <input type='checkbox' checked={isStamp} onChange={handleStamp}/>
+                <input type='checkbox' value={isStamp} onChange={handleStamp}/>
               </div>
              )}
             {currentItem?.solderingOfGates && currentItem?.solderingOfGates.length != 0 && (
@@ -279,7 +334,6 @@ const CalculatorPartner = () => {
               </div>
             )}
           </div>
-
           <div className="colum upload">
             <h3>Файл</h3>
             <input
