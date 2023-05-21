@@ -2,13 +2,14 @@ import React, {useState,useEffect} from 'react';
 import Select from './Select'
 import SelectSec from './SelectSecond'
 import InputsTamplate from '../template/InputsTamplate';
+import ModalPrice from './ModalPrice';
 import '../../style/calculator.scss'
 
 
 const CalculatorPartner = () => {
 
     const [goodsList, setGoodsList] = useState ([])
-      
+    const [isOpen, setIsOpen] = useState(false);  
     const [currentItem, setcurrentItem] = useState({});
     const [width, setWitdh] = useState(null)
     const [height, setHeight] = useState(null)
@@ -59,20 +60,24 @@ const CalculatorPartner = () => {
         solderPockets:selectedOptionSolderPockets?.price ? `Пропайка карманов: ${selectedOptionSolderPockets?.name}` : '',
         Lamination:selectedOptionLamination?.price ? `Ламинация: ${selectedOptionLamination?.name}` : '',
         poster:selectedOptionPoster?.price ? `Постер: ${selectedOptionPoster?.name}` : '',
+        stretch:isStretch ? `Натяжка на подрамник` : '',
+        stamp:isStamp ? `С печатью` : '',
+        mounting:isMounting ? `Намонтаживание` : '',
       }
       setdescArray(descriptionObj);
-     },[selectedOptionCutting,selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination])
+     },[selectedOptionCutting,isMounting,selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
      
 
      useEffect(() =>{
       const totalSum1 = ((quadrature * selectedOptionQuality?.price || 0) * count) +
      (selectedOptionCutting?.price || 0) + (selectedOptionSolderGates?.price || 0)+
      (selectedOptionSolderPockets?.price || 0) + (selectedOptionLamination?.price || 0) +
-     (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0);
+     (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0) + (isStretch ? currentItem?.stretchOnTheStretcher : 0) +
+     (isMounting ? currentItem?.mounting: 0);
 
      setTotalSum(totalSum1)
      },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
-      selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality])
+      selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting])
 
       useEffect(()=>{
         setSelectedOptionQuality(null);
@@ -119,17 +124,21 @@ const CalculatorPartner = () => {
     }
 
     // Додати люверси + інпут 30 см
-    // перевірити суму та опис
+    // перевірити суму та опис                  -- 
     // додати модалка ціни за метр
     // змінити стилі
     // по сабміт створити кінцевий файл
-    // Переробити селект колір, додати пошук
-
+    // Переробити селект колір, додати пошук  
     return (
       <div className="calc_wrap">
         <title>
           <h2>Загрузка файла</h2>
-          <button className="btn">Цены за 1м2</button>
+          <button className="btn" onClick={() => setIsOpen(!isOpen)}>Цены за 1м2</button>
+          <ModalPrice
+            isOpen = {isOpen}
+            setIsOpen = {setIsOpen}
+            goodsList = {goodsList}
+          />
         </title>
         <div className="wrap_row">
           <div className="calc-item material">
