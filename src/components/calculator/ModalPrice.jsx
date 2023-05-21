@@ -6,9 +6,9 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
     
     console.log(goodsList);
 
-    goodsList.forEach(element => {
-        console.log(element)
-    });
+    // goodsList.forEach(element => {
+    //     console.log(element)
+    // });
 
     if (!isOpen) return null;
 
@@ -20,90 +20,72 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                     <p>Курс 38 грн</p>
                     <button onClick={() => setIsOpen(!isOpen)}>Close</button>
                 </title>
-                <table>
-                <thead>
-                    <tr>
-                    <th>Матеріал</th>
-                    <th>720</th>
-                    <th>1080</th>
-                    <th>1440</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <div className='table'>
+                <div className='table_head'>
+                        <h2 className='title_name'>Матеріал</h2>
+                        <h2 className='title_price'>720</h2>
+                        <h2 className='title_price'>1080</h2>
+                        <h2 className='title_price'>1440</h2>
+                </div>
+                <div className='table_body'>
                     {goodsList && goodsList.map((item,idx) => (
-                        <tr key={idx}>
-                            <td>
+                        <div className='table_item_row' key={idx}>
+                            <div className='colum_item colum_item_name'>
                                 <div>
                                     {item.name == 'Банери' || item.name == 'Пленка' || item.name == 'Бумага' 
                                     ? 
-                                    <h4 style={{fontWeight:700}}>{item.name}</h4>
+                                    <h4 style={{fontWeight:700}}>{ item.name !== 'Банери' && item.name !== 'Пленка' && item.name !== 'Бумага' && item.name}</h4>
                                     :
-                                    <p>{item.name !== 'Выберете материал' && item.name}</p>
+                                    <p>{item.name !== 'Выберите материал' &&   item.name}</p>
                                     }   
                                 </div>
                                 {item?.goods.length != 0 && item?.goods.map((el,id) => (
-                                <div className="option" key={id}>
-                                    {el.name}
+                                <div className="value_item" key={id}>
+                                    {el.name !== 'Цветная пленка серии Oracal 641' && el.name}
                                 </div>
                         ))}
-                            </td>
-                            {/* <td>Значення 720</td>
-                            <td>Значення 1080</td>
-                            <td>Значення 1440</td> */}
-                            <td>
-                            <div>
-                                    {item.name == 'Банери' || item.name == 'Пленка' || item.name == 'Бумага' 
-                                    ? 
-                                    <h4 style={{fontWeight:700}}>{item.price}</h4>
-                                    :
-                                    <p>{item.price}</p>
-                                    }   
-                                </div>
-                                {item?.goods.length != 0 && item?.goods.map((el,id) => (
-                                <div key={id}>
-                                    {el.quality.map((qa,idx)=>(
-                                        <p>{qa.name == '720dpi'&& qa.price}</p>
+                            </div>
+                            <div className='price_wrap'>
+                            <div className='colum_item colum_item_price  colum_item_price720'>
+                                {item?.goods.length !== 0 && item?.goods.map((el, id) => (
+                                    <div key={id}>
+                                        {el.quality.map((qa, idx) => (
+                                            qa.name === '720dpi' && qa.price && (
+                                            <p key={idx} className='value_item price_value'>{qa.price}</p>
+                                            )
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className='colum_item colum_item_price colum_item_price1080'>
+                                {item?.goods.length !== 0 && item?.goods.map((el, id) => (
+                                    <div key={id}>
+                                        {el.quality.map((qa, idx) => (
+                                            qa.name === '1080dpi' && qa.price && (
+                                            <p key={idx} className='value_item price_value'>{qa.price}</p>
+                                            )
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className='colum_item colum_item_price colum_item_price1440'>
+                                {item?.goods.length !== 0 && item?.goods.map((el, id) => (
+                                        <div key={id}>
+                                            {el.quality.length !== 0 && 
+                                                <div>
+                                                    {el.quality.map((qa, idx) => (
+                                                    qa.name === '1440dpi' && 
+                                                    ( <p key={idx} className='value_item price_value'>{qa.price}</p> )
+
+
+                                                ))}
+                                                </div> 
+                                                }
+                                        </div>
                                     ))}
                                 </div>
-                        ))}
-                            </td>
-                            <td>
-                            <div>
-                                    {item.name == 'Банери' || item.name == 'Пленка' || item.name == 'Бумага' 
-                                    ? 
-                                    <h4 style={{fontWeight:700}}>{item.price}</h4>
-                                    :
-                                    <p>{item.price}</p>
-                                    }   
-                                </div>
-                                {item?.goods.length != 0 && item?.goods.map((el,id) => (
-                                <div key={id}>
-                                    {el.quality.map((qa,idx)=>(
-                                        <p>{qa.name == '1080dpi'&& qa.price}</p>
-                                    ))}
-                                </div>
-                        ))}
-                            </td>
-                            <td>
-                            <div>
-                                    {item.name == 'Банери' || item.name == 'Пленка' || item.name == 'Бумага' 
-                                    ? 
-                                    <h4 style={{fontWeight:700}}>{item.price}</h4>
-                                    :
-                                    <p>{item.price}</p>
-                                    }   
-                                </div>
-                                {item?.goods.length != 0 && item?.goods.map((el,id) => (
-                                <div key={id}>
-                                    {el.quality.map((qa,idx)=>(
-                                        <p>{qa.name == '1440dpi'
-                                        &&
-                                        qa.price ? qa.price : ''}</p>
-                                    ))}
-                                </div>
-                        ))}
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
                     ))}
                     {/* {goodsList && goodsList.map((item,idx) => (
                     <div key={idx}>
@@ -123,8 +105,8 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                     </div>
                 ))} */}
                     {/* Додайте інші рядки тут */}
-                </tbody>
-                </table>
+                </div>
+                </div>
             </div>
         </div>
     );
