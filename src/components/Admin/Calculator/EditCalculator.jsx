@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import EditCalculatorFullTitleBlock from './EditCalculatorFullTitleBlock';
-import EditCalculatorFullData from './EditCalculatorFullData';
 const EditCalculator = () => {
     const [goodsList, setGoodsList] = useState ([]);
     const [isFetch, setIsFetch] = useState(false);
@@ -9,6 +8,8 @@ const EditCalculator = () => {
     const [isPapear, setIsPapear] = useState(false);
     const [isTollingMaterial, setIsTollingMaterial] = useState(false);
     const [isHolst, setIsHolst] = useState(false);
+    const [isLightTransmittingPlastic, setIsLightTransmittingPlastic] = useState(false);
+    const [isPoliman, setIsPoliman] = useState(false);
 
     useEffect(() => {
         fetch('https://ponto-print.herokuapp.com/get-all-calc')
@@ -22,6 +23,9 @@ const EditCalculator = () => {
         setIsPapear(false);
         setIsHolst(false);
         setIsTollingMaterial(false);
+        setIsPoliman(false);
+        setIsLightTransmittingPlastic(false);
+
      }
 
      const closeOpenPlencaFunc = () => {
@@ -30,6 +34,9 @@ const EditCalculator = () => {
         setIsPapear(false);
         setIsHolst(false);
         setIsTollingMaterial(false);
+        setIsPoliman(false);
+        setIsLightTransmittingPlastic(false);
+
      }
 
      const closeOpenPapearFunc = () => {
@@ -38,6 +45,9 @@ const EditCalculator = () => {
         setIsPlenca(false);
         setIsHolst(false);
         setIsTollingMaterial(false);
+        setIsPoliman(false);
+        setIsLightTransmittingPlastic(false);
+
      }
 
      const closeOpenTollingMaterialFunc = () => {
@@ -46,6 +56,9 @@ const EditCalculator = () => {
         setIsBaner(false);
         setIsPlenca(false);
         setIsPapear(false);
+        setIsPoliman(false);
+        setIsLightTransmittingPlastic(false);
+
      }
 
      const closeOpenHolstFunc = () => {
@@ -54,9 +67,31 @@ const EditCalculator = () => {
         setIsBaner(false);
         setIsPlenca(false);
         setIsPapear(false);
+        setIsPoliman(false);
+        setIsLightTransmittingPlastic(false);
      }
 
-     console.log('goodsList.length != 0 && goodsList[5]',goodsList.length != 0 && goodsList[5]);
+     const closeOpenLightTransmittingPlasticFunc = () => {
+      setIsLightTransmittingPlastic(state => !state);
+      setIsHolst(false);
+      setIsTollingMaterial(false)
+      setIsBaner(false);
+      setIsPlenca(false);
+      setIsPapear(false);
+      setIsPoliman(false);
+   }
+
+   const closeOpenPolimanFunc = () => {
+    setIsPoliman(state => !state);
+    setIsLightTransmittingPlastic(false);
+    setIsHolst(false);
+    setIsTollingMaterial(false)
+    setIsBaner(false);
+    setIsPlenca(false);
+    setIsPapear(false);
+ }
+
+     console.log('goodsList.length != 0 && goodsList[6]',goodsList.length != 0 && goodsList[6]);
 
 
     return (
@@ -67,6 +102,8 @@ const EditCalculator = () => {
           <p onClick={closeOpenPapearFunc}>Бумага</p>
           <p onClick={closeOpenTollingMaterialFunc}>Давальческий материал</p>
           <p onClick={closeOpenHolstFunc}>Холст</p>
+          <p onClick={closeOpenLightTransmittingPlasticFunc}>Светопропускной пластик</p>
+          <p onClick={closeOpenPolimanFunc}>Полиман</p>
         </div>
         <div>
           {isBaner && (
@@ -109,6 +146,24 @@ const EditCalculator = () => {
             <EditCalculatorFullTitleBlock
               goods={goodsList.length != 0 && goodsList[5]}
               mainId={goodsList.length != 0 && goodsList[5]._id}
+              setIsFetch={setIsFetch}
+            />
+          )}
+        </div>
+        <div>
+          {isLightTransmittingPlastic && (
+            <EditCalculatorFullTitleBlock
+              goods={goodsList.length != 0 && goodsList[6]}
+              mainId={goodsList.length != 0 && goodsList[6]._id}
+              setIsFetch={setIsFetch}
+            />
+          )}
+        </div>
+        <div>
+          {isPoliman && (
+            <EditCalculatorFullTitleBlock
+              goods={goodsList.length != 0 && goodsList[7]}
+              mainId={goodsList.length != 0 && goodsList[7]._id}
               setIsFetch={setIsFetch}
             />
           )}
