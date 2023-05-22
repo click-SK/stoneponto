@@ -69,14 +69,16 @@ const CalculatorPartner = () => {
         eyelets: selectedOptionEyelets? `Люверсы: ${selectedOptionEyelets?.name} ${selectedOptionEyeletsValue } см`: '',
       }
       setdescArray(descriptionObj);
-     },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
+     },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
+      selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
      
 
      useEffect(() =>{
       const totalSum1 = ((quadrature * selectedOptionQuality?.price || 0) * count) +
      (selectedOptionCutting?.price || 0) + (selectedOptionSolderGates?.price || 0)+
      (selectedOptionSolderPockets?.price || 0) + (selectedOptionLamination?.price || 0) +
-     (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0) + (isStretch ? currentItem?.stretchOnTheStretcher : 0) +
+     (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0) + (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
+
      (isMounting ? currentItem?.mounting: 0);
       
      
@@ -158,7 +160,6 @@ const CalculatorPartner = () => {
     // по сабміт створити кінцевий файл
     // Переробити селект колір, додати пошук 
 
-    console.log('currentItem',currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher);
     return (
       <div className="calc_wrap">
         <title>
