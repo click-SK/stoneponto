@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import Test from './components/Test';
 import Header from './components/Header';
 import EditCalculator from './components/Admin/Calculator/EditCalculator';
 import {Routes, Route} from 'react-router-dom';
