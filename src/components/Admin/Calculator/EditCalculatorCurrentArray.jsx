@@ -1,15 +1,21 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import EditCalculatorCurrentItem from "./EditCalculatorCurrentItem";
 const EditCalculatorCurrentArray = ({ currentArray, mainId, editPath, setIsFetch, goodsIndex }) => {
-    const [isOpen, setIsOpen] = useState(false);
-  console.log("currentArray", currentArray);
-  
-  // Видаляємо перший елемент масиву
-  const arrayWithoutFirstElement = currentArray.slice(1);
+  const [arrayWithoutFirstElement, setArrayWithoutFirstElement] = useState([]);
+
+  useEffect(() => {
+    if(Array.isArray(currentArray)) {
+      const arr = currentArray.slice(1);
+      setArrayWithoutFirstElement(arr);
+    }
+  },[currentArray])
+
+  console.log('currentArray',currentArray);
 
   return (
     <div>
-      {arrayWithoutFirstElement.map((item, idx) => (
+      {arrayWithoutFirstElement.length != 0 && 
+      arrayWithoutFirstElement.map((item, idx) => (
         <EditCalculatorCurrentItem 
         key={item._id}
         item={item}
