@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import EditCalculatorCurrentTitleBlock from "./EditCalculatorCurrentTitleBlock";
-const EditCalculatorTitleBlock = ({ goods, mainId, setIsFetch }) => {
-  console.log("goods", goods);
-  console.log("mainId", mainId);
-  // console.log("goods[1].eyeletsSizePrice", goods[1].eyeletsSizePrice);
-
+const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
+  console.log('mainId',mainId);
   return (
     <div style={{ paddingTop: "30px" }}>
       {goods &&
@@ -12,7 +9,7 @@ const EditCalculatorTitleBlock = ({ goods, mainId, setIsFetch }) => {
             <EditCalculatorCurrentTitleBlock
             key={item._id} 
             arrayGoods={item}
-            additionalParameter={goods?.eyeletsSizePrice}
+            additionalParameter={''}
             mainId={mainId}
             setIsFetch={setIsFetch}
             goodsIndex={idx}
@@ -22,4 +19,4 @@ const EditCalculatorTitleBlock = ({ goods, mainId, setIsFetch }) => {
   );
 };
 
-export default EditCalculatorTitleBlock;
+export default EditCalculatorFullTitleBlock;

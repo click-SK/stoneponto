@@ -1,9 +1,9 @@
 {
     "name": "Холст",
-      "stretchOnTheStretcher":500,
       "goods": [
           {
-              "quality": [
+            "stretchOnTheStretcher":500,
+            "quality": [
           {
             "name": "Выберете качество",
             "price": 0

@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {AiFillEdit} from 'react-icons/ai'
+import {AiFillEdit} from 'react-icons/ai';
 const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsIndex, currentItemIndex}) => {
     const [isEdit, setIsEdit] = useState(false);
     const [newPrice, setNewPrice] = useState(0);
-    console.log('editPath',editPath);
 
     const handleEditButtonSave = () => {
         setIsEdit((isEdit) => !isEdit);
