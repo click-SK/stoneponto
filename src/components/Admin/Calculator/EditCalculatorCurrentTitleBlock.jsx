@@ -35,7 +35,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='http://localhost:4444/update-color'/>
+        editPath='https://ponto-print.herokuapp.com/update-color'/>
         }
         {arrayGoods?.eyelets.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.eyelets} 
@@ -43,7 +43,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='http://localhost:4444/update-eyelets-price'/>
+        editPath='https://ponto-print.herokuapp.com/update-eyelets-price'/>
         }
         {arrayGoods?.lamination.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.lamination} 
@@ -58,7 +58,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='http://localhost:4444/update-poster'/>
+        editPath='https://ponto-print.herokuapp.com/update-poster'/>
         }
         {arrayGoods?.solderingOfGates.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.solderingOfGates} 
@@ -66,7 +66,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='http://localhost:4444/update-soldering-of-gates'/>
+        editPath='https://ponto-print.herokuapp.com/update-soldering-of-gates'/>
         }
         {arrayGoods?.solderingPockets.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.solderingPockets} 
@@ -74,7 +74,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='http://localhost:4444/update-soldering-pockets'/>
+        editPath='https://ponto-print.herokuapp.com/update-soldering-pockets'/>
         }
         {arrayGoods?.cutting.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.cutting} 
@@ -82,7 +82,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='http://localhost:4444/update-cutting'/>
+        editPath='https://ponto-print.herokuapp.com/update-cutting'/>
         }
         {arrayGoods?.mounting && 
         <EditCalculatorAdditionalParameter
@@ -91,7 +91,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         goodsIndex={goodsIndex}
         data={arrayGoods?.mounting}
         setIsFetch={setIsFetch}
-        editPath='http://localhost:4444/update-mounting'/>}
+        editPath='https://ponto-print.herokuapp.com/update-mounting'/>}
         {arrayGoods?.stamp && 
         <EditCalculatorAdditionalParameter
         title={'Печать'}
@@ -99,7 +99,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         goodsIndex={goodsIndex}
         data={arrayGoods?.stamp}
         setIsFetch={setIsFetch}
-        editPath='http://localhost:4444/update-stamp'/>}
+        editPath='https://ponto-print.herokuapp.com/update-stamp'/>}
         </>
       )}
       <br />
@@ -122,7 +122,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='http://localhost:4444/update-cutting'/>
+        editPath='https://ponto-print.herokuapp.com/update-cutting'/>
         }
         {arrayGoods?.stretchOnTheStretcher &&
         <EditCalculatorAdditionalParameter data={arrayGoods?.stretchOnTheStretcher} 
@@ -130,7 +130,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='http://localhost:4444/update-stretch-on-the-stretcher'/>
+        editPath='https://ponto-print.herokuapp.com/update-stretch-on-the-stretcher'/>
         }
         </>
       <br />
