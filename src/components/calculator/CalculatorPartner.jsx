@@ -66,7 +66,7 @@ const CalculatorPartner = () => {
         stretch:isStretch ? `Натяжка на подрамник` : '',
         stamp:isStamp ? `С печатью` : '',
         mounting:isMounting ? `Намонтаживание` : '',
-        eyelets: selectedOptionEyelets? `Люверсы: ${selectedOptionEyelets?.name} ${selectedOptionEyeletsValue } см`: '2',
+        eyelets: selectedOptionEyelets? `Люверсы: ${selectedOptionEyelets?.name} ${selectedOptionEyeletsValue } см`: '',
       }
       setdescArray(descriptionObj);
      },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
@@ -78,6 +78,10 @@ const CalculatorPartner = () => {
      (selectedOptionSolderPockets?.price || 0) + (selectedOptionLamination?.price || 0) +
      (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0) + (isStretch ? currentItem?.stretchOnTheStretcher : 0) +
      (isMounting ? currentItem?.mounting: 0);
+      
+     
+     // Если в заказе, по квадратным метрам больше 20 квадратов, то на общую сумму присваивается скидка -10%. 
+
 
      setTotalSum(totalSum1)
      },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
