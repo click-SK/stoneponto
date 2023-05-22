@@ -157,6 +157,8 @@ const CalculatorPartner = () => {
     // змінити стилі
     // по сабміт створити кінцевий файл
     // Переробити селект колір, додати пошук 
+
+    console.log('currentItem',currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher);
     return (
       <div className="calc_wrap">
         <title>
@@ -299,7 +301,7 @@ const CalculatorPartner = () => {
               />
             )}
        
-              {currentItem?.stretchOnTheStretcher && (
+              {currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher && (
               <div>
                 <h3>Натяжка на подрамник</h3>
                 <input type='checkbox' value={isStretch} onChange={handleStretch}/>
