@@ -1,10 +1,10 @@
 {
-    "name": "Давальческий материал",
+    "name": "TollingMaterial",
       "goods": [
           {
               "quality": [
           {
-            "name": "Выберете качество",
+            "name": "ChooseQuality",
             "price": 0
           },
           {

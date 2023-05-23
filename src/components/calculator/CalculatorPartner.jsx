@@ -3,6 +3,7 @@ import Select from './Select'
 import SelectSec from './SelectSecond'
 import InputsTamplate from '../template/InputsTamplate';
 import ModalPrice from './ModalPrice';
+import { useTranslation } from 'react-i18next';
 import '../../style/calculator.scss'
 
 
@@ -36,6 +37,8 @@ const CalculatorPartner = () => {
     const [isMounting, setIsMounting] = useState(false);
    
     const [descArray, setdescArray] = useState({});
+
+    const { t } = useTranslation();
     
     const quadrature = ((Number(width) * Number(height))/1000000)
 
@@ -181,7 +184,7 @@ const CalculatorPartner = () => {
             &&
             <SelectSec
                 item={currentItem?.color}
-                title={"Цвет"}
+                title={"Color"}
                 selectedOption={selectedOptionColor}
                 setSelectedOption={setSelectedOptionColor}
               />
@@ -190,7 +193,7 @@ const CalculatorPartner = () => {
             &&
             <SelectSec
                 item={currentItem?.quality}
-                title={"Качество"}
+                title={"Quality"}
                 selectedOption={selectedOptionQuality}
                 setSelectedOption={setSelectedOptionQuality}
               />
@@ -199,7 +202,7 @@ const CalculatorPartner = () => {
             &&
             <SelectSec
                 item={currentItem?.goods[0]?.quality}
-                title={"Качество"}
+                title={"Quality"}
                 selectedOption={selectedOptionQuality}
                 setSelectedOption={setSelectedOptionQuality}
               />
@@ -209,7 +212,7 @@ const CalculatorPartner = () => {
         <div className="wrap_row">
           <div className="calc-item input_size">
             <InputsTamplate
-              title={"Ширина"}
+              title={"Width"}
               type={"number"}
               placeholder={"Введите ширину в мм."}
               value={width}
@@ -218,7 +221,7 @@ const CalculatorPartner = () => {
           </div>
           <div className="calc-item input_size">
             <InputsTamplate
-              title={"Высота"}
+              title={"Height"}
               type={"number"}
               placeholder={"Введите высоту в мм."}
               value={height}
@@ -227,7 +230,7 @@ const CalculatorPartner = () => {
           </div>
           <div className="calc-item input_size">
             <InputsTamplate
-              title={"Тираж"}
+              title={"Circulation"}
               type={"number"}
               placeholder={"Введите тираж"}
               value={count}
@@ -242,11 +245,11 @@ const CalculatorPartner = () => {
                 <div className='eyelets_wrap'>
                   <SelectSec
                   item={currentItem?.eyelets}
-                  title={"Люверсы"}
+                  title={"Eyelets"}
                   selectedOption={selectedOptionEyelets}
                   setSelectedOption={setSelectedOptionEyelets}
                   />
-                  {selectedOptionEyelets?.name !== 'По углам' ?
+                  {selectedOptionEyelets?.name !== 'InTheCorners' ?
                    
                   <InputsTamplate
                     title={"через (cм)"}
@@ -271,7 +274,7 @@ const CalculatorPartner = () => {
             {currentItem?.cutting && currentItem?.cutting.length != 0 && (
               <SelectSec
                 item={currentItem?.cutting}
-                title={"Порезка"}
+                title={"Cutting"}
                 selectedOption={selectedOptionCutting}
                 setSelectedOption={setSelectedOptionCutting}
               />
@@ -280,7 +283,7 @@ const CalculatorPartner = () => {
             &&
             <SelectSec
                 item={currentItem?.goods[0]?.cutting}
-                title={"Порезка"}
+                title={"Cutting"}
                 selectedOption={selectedOptionCutting}
                 setSelectedOption={setSelectedOptionCutting}
               />
@@ -288,7 +291,7 @@ const CalculatorPartner = () => {
             {currentItem?.lamination && currentItem?.lamination.length != 0 && (
               <SelectSec
                 item={currentItem?.lamination}
-                title={"Ламинация"}
+                title={"Lamination"}
                 selectedOption={selectedOptionLamination}
                 setSelectedOption={setSelectedOptionLamination}
               />
@@ -296,7 +299,7 @@ const CalculatorPartner = () => {
             {currentItem?.poster && currentItem?.poster.length != 0 && (
               <SelectSec
                 item={currentItem?.poster}
-                title={"Постер"}
+                title={"Poster"}
                 selectedOption={selectedOptionPoster}
                 setSelectedOption={setSelectedOptionPoster}
               />
@@ -304,7 +307,7 @@ const CalculatorPartner = () => {
        
               {currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher && (
               <div>
-                <h3>Натяжка на подрамник</h3>
+                <h3>{t(`${'StretchOnTheStretcher'}`)}</h3>
                 <input type='checkbox' value={isStretch} onChange={handleStretch}/>
               </div>
              )}

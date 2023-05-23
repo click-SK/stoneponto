@@ -1,10 +1,10 @@
 {
-    "name": "Светопропускной пластик",
+    "name": "LightTransmittingPlastic",
       "goods": [
           {
               "quality": [
           {
-            "name": "Выберете качество",
+            "name": "ChooseQuality",
             "price": 0
           },
           {
@@ -14,11 +14,11 @@
         ],
               "cutting": [
           {
-            "name": "Нет",
+            "name": "No",
             "price": 0
           },
           {
-            "name": "Под обрез",
+            "name": "UnderTheCut",
             "price": 100
           }
         ]

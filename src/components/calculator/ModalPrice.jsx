@@ -27,16 +27,16 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                         <div className='table_item_row' key={idx}>
                             <div className='colum_item colum_item_name'>
                                 <div>
-                                    {item.name == 'Банери' || item.name == 'Пленка' || item.name == 'Бумага' 
+                                    {item.name == 'Banners' || item.name == 'Film' || item.name == 'Paper' 
                                     ? 
-                                    <h4 style={{fontWeight:700}}>{ item.name !== 'Банери' && item.name !== 'Пленка' && item.name !== 'Бумага' && item.name}</h4>
+                                    <h4 style={{fontWeight:700}}>{ item.name !== 'Banners' && item.name !== 'Film' && item.name !== 'Paper' && item.name}</h4>
                                     :
-                                    <p>{item.name !== 'Выберите материал' &&   item.name}</p>
+                                    <p>{item.name !== 'SelectMaterial' &&   item.name}</p>
                                     }   
                                 </div>
                                 {item?.goods.length != 0 && item?.goods.map((el,id) => (
                                 <div className="value_item" key={id}>
-                                    {el.name !== 'Цветная пленка серии Oracal 641' && el.name}
+                                    {el.name !== 'Oracal641SeriesColorFilm' && el.name}
                                 </div>
                         ))}
                             </div>

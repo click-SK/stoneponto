@@ -1,11 +1,9 @@
 import React, { useState,useEffect } from 'react';
 import '../../style/calculator.scss'
-
-
-
+import { useTranslation } from 'react-i18next';
 
 const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
-
+    const { t } = useTranslation();
     // selectedOption, setSelectedOption
     // const [selectedOption, setSelectedOption] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -25,12 +23,12 @@ const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
 
     return (
         <div style={{width: '100%'}}>
-        <h3>{title}</h3>
+        <h3>{t(`${title}`)}</h3>
         <div className="custom-select">
             <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
                 {selectedOption?.imageColor && 
                     <img className='color_img' src={`https://ponto-print.herokuapp.com${selectedOption?.imageColor}`}/>}
-                {selectedOption?.name || item[0]?.name}
+                {(selectedOption?.name && t(`${selectedOption?.name}`)) || t(`${item[0]?.name}`)}
             </div>
             {isOpen && (
                 <div className="options">
@@ -38,7 +36,7 @@ const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
                         <div className="option" key={id} onClick={() => selectItemFunc(el)}>
                             {el?.imageColor && 
                             <img className='color_img' src={`https://ponto-print.herokuapp.com${el.imageColor}`}/>}
-                            {el.name}
+                            {t(`${el.name}`)}
                         </div>
                     ))}
                 </div>

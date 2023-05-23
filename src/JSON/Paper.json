@@ -1,12 +1,12 @@
 {
-  "name": "Бумага",
+  "name": "Paper",
   "goods": [
     {
-      "name": "Бумага сити 150 гр.",
+      "name": "SievePaper150Gr",
       "price": 100,
       "quality": [
         {
-          "name": "Выберете качество",
+          "name": "ChooseQuality",
           "price": 0
         },
         {
@@ -24,43 +24,43 @@
       ],
       "cutting": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Под обрез",
+          "name": "UnderTheCut",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Глянцевая 1+0",
+          "name": "Glossy1+0",
           "price": 100
         },
         {
-          "name": "Матовая 1+0",
+          "name": "Matte1+0",
           "price": 100
         },
         {
-          "name": "Глянцевая 1+1",
+          "name": "Glossy1+1",
           "price": 100
         },
         {
-          "name": "Матовая 1+1",
+          "name": "Matte1+1",
           "price": 100
         }
       ]
     },
     {
-      "name": "Бумага блю бэк 115 гр.",
+      "name": "BluebackPaper115Gr",
       "price": 100,
       "quality": [
         {
-          "name": "Выберете качество",
+          "name": "ChooseQuality",
           "price": 0
         },
         {
@@ -74,39 +74,39 @@
       ],
       "cutting": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Под обрез",
+          "name": "UnderTheCut",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Глянцевая 1+0",
+          "name": "Glossy1+0",
           "price": 100
         },
         {
-          "name": "Матовая 1+0",
+          "name": "Matte1+0",
           "price": 100
         },
         {
-          "name": "Глянцевая 1+1",
+          "name": "Glossy1+1",
           "price": 100
         },
         {
-          "name": "Матовая 1+1",
+          "name": "Matte1+1",
           "price": 100
         }
       ],
       "poster": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
