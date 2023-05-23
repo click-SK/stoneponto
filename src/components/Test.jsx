@@ -65,14 +65,14 @@ const Test = () => {
         setLanguage(e);
     };
 
-    useEffect(() => {
-        fetch('http://localhost:4444/get-ua-text')
-        .then((res) => res.json())
-        .then((res) => {
-            setUa(res);
-            setCurrentLang('ua');
-        })
-    },[])
+    // useEffect(() => {
+    //     fetch('http://localhost:4444/get-ua-text')
+    //     .then((res) => res.json())
+    //     .then((res) => {
+    //         setUa(res);
+    //         setCurrentLang('ua');
+    //     })
+    // },[])
 
     const getUaLang = () => {
         fetch('http://localhost:4444/get-ua-text')
