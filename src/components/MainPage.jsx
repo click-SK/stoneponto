@@ -9,9 +9,8 @@ const MainPage = () => {
     const formattedDate = currentDate.toLocaleDateString();
 
     const images = [
-        './img/banner.svg',
-        './img/banner2.png',
-        './img/logo.cvg',
+        // './img/banner1.png',
+        './img/Ресурс 8.svg',
       ];
 
     //   console.log(images);
