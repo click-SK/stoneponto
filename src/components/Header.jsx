@@ -5,12 +5,16 @@ const Header = () => {
   return (
     <div className="header_wraper">
       <div className="contact_login_block">
+        <div className="decor_1"></div>
+        <div className="decor_2"></div>
+        {/* <div className="element_decor">
+          <img className="decor_1" src="./img/elementHeader.svg" alt="" />
+        </div> */}
         <div className="wraper">
           <span className="wrap_item text">+380 50 976 7417</span>
           <span className="wrap_item text">+380 96 626 7481</span>
           <span className="wrap_item text">ponto-print@ukr.net</span>
           <span className="wrap_item"><button className="button_login">Log In</button></span>
-          
         </div>
       </div>
       <div className="nav_logo_wraper">
