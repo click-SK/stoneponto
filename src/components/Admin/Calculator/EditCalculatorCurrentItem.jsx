@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import {AiFillEdit} from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
 const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsIndex, currentItemIndex}) => {
+    const {name} = item;
     const [isEdit, setIsEdit] = useState(false);
     const [newPrice, setNewPrice] = useState(0);
+    const { t } = useTranslation();
 
     const handleEditButtonSave = () => {
         setIsEdit((isEdit) => !isEdit);
@@ -31,10 +34,12 @@ const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsInd
         setNewPrice(item.price);
       };
 
+      console.log('name',name);
+
     return (
         <div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <p>{item.name}</p>
+          <p>{t(`${name}`)}</p>
           <p>{item.price}</p>
         </div>
         <AiFillEdit onClick={handleEditButton}/>

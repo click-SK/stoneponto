@@ -1,13 +1,13 @@
 {
-  "name": "Пленка",
+  "name": "Film",
   "goods": [
     {
-      "name": "Глянцевая пленка",
+      "name": "GlossyFilm",
       "mounting": 500,
       "price": 100,
       "quality": [
         {
-          "name": "Выберете качество",
+          "name": "ChooseQuality",
           "price": 0
         },
         {
@@ -25,40 +25,40 @@
       ],
       "cutting": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Под обрез",
+          "name": "UnderTheCut",
           "price": 100
         },
         {
-          "name": "Плотерная",
+          "name": "Plotter",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Матовая",
+          "name": "Matte",
           "price": 100
         },
         {
-          "name": "Глянцевая",
+          "name": "Glossy",
           "price": 100
         }
       ]
     },
     {
-      "name": "Матовая пленка",
+      "name": "MatteFilm",
       "mounting": 500,
       "price": 100,
       "quality": [
         {
-          "name": "Выберете качество",
+          "name": "ChooseQuality",
           "price": 0
         },
         {
@@ -76,39 +76,39 @@
       ],
       "cutting": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Под обрез",
+          "name": "UnderTheCut",
           "price": 100
         },
         {
-          "name": "Плотерная",
+          "name": "Plotter",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Матовая",
+          "name": "Matte",
           "price": 100
         },
         {
-          "name": "Глянцевая",
+          "name": "Glossy",
           "price": 100
         }
       ]
     },
     {
-      "name": "Прозрачная самоклеющаяся пленка",
+      "name": "TransparentSelfAdhesiveFilm",
       "price": 100,
       "quality": [
         {
-          "name": "Выберете качество",
+          "name": "ChooseQuality",
           "price": 0
         },
         {
@@ -126,43 +126,43 @@
       ],
       "cutting": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Под обрез",
+          "name": "UnderTheCut",
           "price": 100
         },
         {
-          "name": "Плотерная",
+          "name": "Plotter",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Матовая",
+          "name": "Matte",
           "price": 100
         },
         {
-          "name": "Глянцевая",
+          "name": "Glossy",
           "price": 100
         },
         {
-          "name": "Белая",
+          "name": "White",
           "price": 100
         }
       ]
     },
     {
-      "name": "Перфорированая пленка",
+      "name": "PerforatedFilm",
       "price": 100,
       "quality": [
         {
-          "name": "Выберете качество",
+          "name": "ChooseQuality",
           "price": 0
         },
         {
@@ -180,21 +180,21 @@
       ],
       "cutting": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Под обрез",
+          "name": "UnderTheCut",
           "price": 100
         }
       ]
     },
     {
-      "name": "Самоклеющая пленка с черным елеевым слоем",
+      "name": "SelfAdhesiveFilmWithBlackAdhesiveLayer",
       "price": 100,
       "quality": [
         {
-          "name": "Выберете качество",
+          "name": "ChooseQuality",
           "price": 0
         },
         {
@@ -212,35 +212,35 @@
       ],
       "cutting": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Под обрез",
+          "name": "UnderTheCut",
           "price": 100
         },
         {
-          "name": "Плотерная",
+          "name": "Plotter",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Матовая",
+          "name": "Matte",
           "price": 100
         },
         {
-          "name": "Глянцевая",
+          "name": "Glossy",
           "price": 100
         }
       ]
     },
     {
-      "name": "Цветная пленка серии Oracal 641",
+      "name": "Oracal641SeriesColorFilm",
       "mounting": 500,
       "stamp": 500,
       "price": 100,
@@ -258,11 +258,11 @@
       ],
       "cutting": [
         {
-          "name": "Нет",
+          "name": "No",
           "price": 0
         },
         {
-          "name": "Плотерная",
+          "name": "Plotter",
           "price": 100
         }
       ]

@@ -5,7 +5,7 @@ import MainPage from './components/MainPage';
 import EditCalculator from './components/Admin/Calculator/EditCalculator';
 import {Routes, Route} from 'react-router-dom';
 import CalculatorPartner from './components/calculator/CalculatorPartner';
-
+import Test from './components/Test';
 function App() {
   return (
     <div className="App">
@@ -15,6 +15,7 @@ function App() {
       <Route path='/admin' element={<EditCalculator/>}/>
       <Route path='/calculator' element={<CalculatorPartner/>}/>
       </Routes>
+      <Test/>
     </div>
   );
 }
