@@ -50,7 +50,8 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         title={'Ламінація'}
         mainId={mainId}
         setIsFetch={setIsFetch}
-        goodsIndex={goodsIndex}/>
+        goodsIndex={goodsIndex}
+        editPath='https://ponto-print.herokuapp.com/update-lamination'/>
         }
         {arrayGoods?.poster.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.poster} 
