@@ -3,6 +3,7 @@ import Select from './Select'
 import SelectSec from './SelectSecond'
 import InputsTamplate from '../template/InputsTamplate';
 import ModalPrice from './ModalPrice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import '../../style/calculator.scss'
 
@@ -35,8 +36,11 @@ const CalculatorPartner = () => {
     const [isStamp, setIsStamp] = useState(false);
     const [isStretch, setIsStretch] = useState(false);
     const [isMounting, setIsMounting] = useState(false);
-   
     const [descArray, setdescArray] = useState({});
+
+    const {currency} = useSelector((state) => state.currency);
+
+    console.log('currency',currency);
 
     const { t } = useTranslation();
     
@@ -47,6 +51,8 @@ const CalculatorPartner = () => {
        .then(response => response.json())
        .then(res => setGoodsList(res))
      },[])
+
+     console.log('hello');
 
     //  console.log(goodsList);
   //    useEffect(() => {
@@ -77,11 +83,11 @@ const CalculatorPartner = () => {
      
 
      useEffect(() =>{
-      const totalSum1 = ((quadrature * selectedOptionQuality?.price || 0) * count) +
-     (selectedOptionCutting?.price || 0) + (selectedOptionSolderGates?.price || 0)+
-     (selectedOptionSolderPockets?.price || 0) + (selectedOptionLamination?.price || 0) +
-     (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0) + (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
-
+      const totalSum1 = ((quadrature * selectedOptionQuality?.price * currency || 0) * count) +
+     (selectedOptionCutting?.price * currency || 0) + (selectedOptionSolderGates?.price * currency || 0)+
+     (selectedOptionSolderPockets?.price * currency || 0) + (selectedOptionLamination?.price * currency || 0) +
+     (selectedOptionPoster?.price * currency || 0) + (isStamp ? currentItem?.stamp : 0) + 
+     (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
      (isMounting ? currentItem?.mounting: 0);
       
      
