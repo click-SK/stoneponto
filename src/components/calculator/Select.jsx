@@ -15,6 +15,7 @@ const Select = ({goods,setcurrentItem}) => {
   
 
   const selectItemFunc = (e) => {
+    console.log('event',e);
     setSelectedOption(e);
     setIsOpen(false);
     setcurrentItem(e)

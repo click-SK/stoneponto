@@ -117,7 +117,7 @@ const CalculatorPartner = () => {
       },[currentItem])
 
     const finlObj = {
-      material: currentItem.name,
+      material: currentItem?.name,
       width: width,
       height:height,
       count:count,
@@ -169,50 +169,51 @@ const CalculatorPartner = () => {
     // по сабміт створити кінцевий файл
     // Переробити селект колір, додати пошук 
 
+    console.log('currentItem11111',currentItem);
+
     return (
       <div className="calc_wrap">
         <title>
           <h2>Загрузка файла</h2>
-          <button className="btn" onClick={() => setIsOpen(!isOpen)}>Цены за 1м2</button>
+          <button className="btn" onClick={() => setIsOpen(!isOpen)}>
+            Цены за 1м2
+          </button>
           <ModalPrice
-            isOpen = {isOpen}
-            setIsOpen = {setIsOpen}
-            goodsList = {goodsList}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            goodsList={goodsList}
           />
         </title>
         <div className="wrap_row">
           <div className="calc-item material">
             <h3>Материал</h3>
-            <Select goods={goodsList} setcurrentItem={setcurrentItem}/>
+            <Select goods={goodsList} setcurrentItem={setcurrentItem} />
           </div>
           <div className="calc-item quality">
-            {currentItem?.color && currentItem?.color != 0 
-            &&
-            <SelectSec
+            {currentItem?.color && currentItem?.color != 0 && (
+              <SelectSec
                 item={currentItem?.color}
                 title={"Color"}
                 selectedOption={selectedOptionColor}
                 setSelectedOption={setSelectedOptionColor}
               />
-            }
-            {currentItem?.quality && currentItem?.quality.length != 0 
-            &&
-            <SelectSec
+            )}
+            {currentItem?.quality && currentItem?.quality.length != 0 && (
+              <SelectSec
                 item={currentItem?.quality}
                 title={"Quality"}
                 selectedOption={selectedOptionQuality}
                 setSelectedOption={setSelectedOptionQuality}
               />
-            }
-            {currentItem?.goods && currentItem?.goods.length != 0
-            &&
-            <SelectSec
+            )}
+            {currentItem?.goods && currentItem?.goods.length != 0 && (
+              <SelectSec
                 item={currentItem?.goods[0]?.quality}
                 title={"Quality"}
                 selectedOption={selectedOptionQuality}
                 setSelectedOption={setSelectedOptionQuality}
               />
-            }
+            )}
           </div>
         </div>
         <div className="wrap_row">
@@ -247,16 +248,14 @@ const CalculatorPartner = () => {
         <div className="wrap_row adding">
           <div className="colum ">
             {currentItem?.eyelets && currentItem?.eyelets.length != 0 && (
-              
-                <div className='eyelets_wrap'>
-                  <SelectSec
+              <div className="eyelets_wrap">
+                <SelectSec
                   item={currentItem?.eyelets}
                   title={"Eyelets"}
                   selectedOption={selectedOptionEyelets}
                   setSelectedOption={setSelectedOptionEyelets}
-                  />
-                  {selectedOptionEyelets?.name !== 'InTheCorners' ?
-                   
+                />
+                {selectedOptionEyelets?.name !== "InTheCorners" ? (
                   <InputsTamplate
                     title={"через (cм)"}
                     type={"text"}
@@ -264,18 +263,17 @@ const CalculatorPartner = () => {
                     value={selectedOptionEyeletsValue}
                     handleCangeInput={setSelectedOptionEyeletsValue}
                   />
-                  :
+                ) : (
                   <InputsTamplate
                     title={"через (cм)"}
                     type={"text"}
                     placeholder={"30"}
                     value={selectedOptionEyeletsValue}
                     handleCangeInput={setSelectedOptionEyeletsValue}
-                    disabled = {true}
+                    disabled={true}
                   />
-                  }
-                </div>
-
+                )}
+              </div>
             )}
             {currentItem?.cutting && currentItem?.cutting.length != 0 && (
               <SelectSec
@@ -285,15 +283,17 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionCutting}
               />
             )}
-            {currentItem?.goods && currentItem?.goods[0].cutting.length != 0
-            &&
-            <SelectSec
-                item={currentItem?.goods[0]?.cutting}
-                title={"Cutting"}
-                selectedOption={selectedOptionCutting}
-                setSelectedOption={setSelectedOptionCutting}
-              />
-            }
+            {currentItem &&
+              currentItem.goods &&
+              currentItem.goods.length > 0 &&
+              currentItem.goods[0].cutting.length !== 0 && (
+                <SelectSec
+                  item={currentItem.goods[0].cutting}
+                  title={"Cutting"}
+                  selectedOption={selectedOptionCutting}
+                  setSelectedOption={setSelectedOptionCutting}
+                />
+              )}
             {currentItem?.lamination && currentItem?.lamination.length != 0 && (
               <SelectSec
                 item={currentItem?.lamination}
@@ -310,45 +310,55 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionPoster}
               />
             )}
-       
-              {currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher && (
-              <div>
-                <h3>{t(`${'StretchOnTheStretcher'}`)}</h3>
-                <input type='checkbox' value={isStretch} onChange={handleStretch}/>
-              </div>
-             )}
-              {currentItem?.mounting && (
+
+            {currentItem?.goods &&
+              currentItem?.goods[0]?.stretchOnTheStretcher && (
+                <div>
+                  <h3>{t(`${"StretchOnTheStretcher"}`)}</h3>
+                  <input
+                    type="checkbox"
+                    value={isStretch}
+                    onChange={handleStretch}
+                  />
+                </div>
+              )}
+            {currentItem?.mounting && (
               <div>
                 <h3>Намонтаживание</h3>
-                <input type='checkbox' value={isMounting} onChange={handleMounting}/>
-              </div>
-             )}
-              {currentItem?.stamp && (
-              <div>
-                <h3>С печатью</h3>
-                <input type='checkbox' value={isStamp} onChange={handleStamp}/>
-              </div>
-             )}
-            {currentItem?.solderingOfGates && currentItem?.solderingOfGates.length != 0 && (
-              <div className="soldering">
-                <div className="soldering_item">
-                  <SelectSec
-                    item={currentItem?.solderingOfGates}
-                    title={"Пропайка подворотов"}
-                    selectedOption={selectedOptionSolderGates}
-                    setSelectedOption={setSelectedOptionSolderGates}
-                  />
-                </div>
-                <div className="soldering_item">
-                  <SelectSec
-                    item={currentItem?.solderingPockets}
-                    title={"Пропайка карманов"}
-                    selectedOption={selectedOptionSolderPockets}
-                    setSelectedOption={setSelectedOptionSolderPockets}
-                  />
-                </div>
+                <input
+                  type="checkbox"
+                  value={isMounting}
+                  onChange={handleMounting}
+                />
               </div>
             )}
+            {currentItem?.stamp && (
+              <div>
+                <h3>С печатью</h3>
+                <input type="checkbox" value={isStamp} onChange={handleStamp} />
+              </div>
+            )}
+            {currentItem?.solderingOfGates &&
+              currentItem?.solderingOfGates.length != 0 && (
+                <div className="soldering">
+                  <div className="soldering_item">
+                    <SelectSec
+                      item={currentItem?.solderingOfGates}
+                      title={"Пропайка подворотов"}
+                      selectedOption={selectedOptionSolderGates}
+                      setSelectedOption={setSelectedOptionSolderGates}
+                    />
+                  </div>
+                  <div className="soldering_item">
+                    <SelectSec
+                      item={currentItem?.solderingPockets}
+                      title={"Пропайка карманов"}
+                      selectedOption={selectedOptionSolderPockets}
+                      setSelectedOption={setSelectedOptionSolderPockets}
+                    />
+                  </div>
+                </div>
+              )}
           </div>
           <div className="colum upload">
             <h3>Файл</h3>
@@ -365,8 +375,9 @@ const CalculatorPartner = () => {
             <div className="description">
               {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
               {descArray.length != 0 &&
-                Object.entries(descArray).filter(([_, value]) => value.name !== '').map(([key, value], idx) => 
-                <p key={idx}>{value}</p>)}
+                Object.entries(descArray)
+                  .filter(([_, value]) => value.name !== "")
+                  .map(([key, value], idx) => <p key={idx}>{value}</p>)}
             </div>
           </div>
           <div className="calc-item">
