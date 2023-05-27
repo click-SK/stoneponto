@@ -40,8 +40,6 @@ const CalculatorPartner = () => {
 
     const {currency} = useSelector((state) => state.currency);
 
-    console.log('currency',currency);
-
     const { t } = useTranslation();
     
     const quadrature = ((Number(width) * Number(height))/1000000)
@@ -51,8 +49,6 @@ const CalculatorPartner = () => {
        .then(response => response.json())
        .then(res => setGoodsList(res))
      },[])
-
-     console.log('hello');
 
     //  console.log(goodsList);
   //    useEffect(() => {
@@ -148,7 +144,6 @@ const CalculatorPartner = () => {
 
     const handleTotalSum = () =>{
 
-        console.log( 'final ',finlObj);
     }
 
     const handleStamp = () =>{
@@ -168,8 +163,6 @@ const CalculatorPartner = () => {
     // змінити стилі
     // по сабміт створити кінцевий файл
     // Переробити селект колір, додати пошук 
-
-    console.log('currentItem11111',currentItem);
 
     return (
       <div className="calc_wrap">

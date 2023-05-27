@@ -34,8 +34,6 @@ const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsInd
         setNewPrice(item.price);
       };
 
-      console.log('name',name);
-
     return (
         <div>
         <div style={{ display: "flex", justifyContent: "center" }}>

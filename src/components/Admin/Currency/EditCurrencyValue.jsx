@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {AiOutlineDown, AiFillEdit} from 'react-icons/ai'
-const EditCurrencyValue = ({setIsFetch, data}) => {
+const EditCurrencyValue = ({data, setIsFetch}) => {
     const [isEdit, setIsEdit] = useState('');
     const [newvalue, setNewValue] = useState('');
 
     const handleEditButtonSave = () => {
         setIsEdit((state) => !state);
+        setIsFetch((state) => !state);
     
         fetch('http://localhost:4444/upadte-currency', {
           method: 'PATCH',
@@ -16,11 +17,10 @@ const EditCurrencyValue = ({setIsFetch, data}) => {
             value: newvalue
           })
         })
-          .then((res) => res.json())
-          setTimeout(() => {
-            // window.location.reload();
-            setIsFetch(state => !state)
-          },1000)
+        .then((res) => res.json())
+        setTimeout(() => {
+          setIsFetch(state => !state)
+        },1000)
       };
     
       const handleEditButton = () => {

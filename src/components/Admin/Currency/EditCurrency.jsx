@@ -1,27 +1,31 @@
 import React, {useState, useEffect} from 'react';
 import EditCurrencyValue from './EditCurrencyValue';
+import { useDispatch } from 'react-redux';
+import {fetchCurrency} from '../../../store/currency'
 const EditCurrency = () => {
     const [bankCurrency, setBankCurrency] = useState('');
-    const [currentCurrency, setCurrentCurrency] = useState('');
+    const [currentStateCurrency, setCurrentStateCurrency] = useState('');
     const [currentValue, setCurrentValue] = useState('');
-    const [isFetch, setIsFetch] = useState('');
+    const [isFetch, setIsFetch] = useState(false);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         fetch('http://localhost:4444/get-currency')
         .then((res) => res.json())
         .then((cur) => {
-            console.log('cur',cur);
             setBankCurrency(cur[0].banckCurrency);
-            setCurrentCurrency(cur[0].currency);
+            setCurrentStateCurrency(cur[0].currency);
             setCurrentValue(cur[0].value);
+            dispatch(fetchCurrency())
         })
-        console.log('Efect Work');
     },[isFetch])
+
     
     return (
         <div>
             <div>
-                <p>Курс на сайті: {currentCurrency}</p>
+                <p>Курс на сайті: {currentStateCurrency}</p>
             </div>
             <div>
                 <p>Курс банкцівський: {bankCurrency}</p>

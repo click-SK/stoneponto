@@ -1,18 +1,34 @@
 import React,{useState, useEffect} from 'react';
-import '../style/loginForm.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAuth, currentUser } from '../../store/auth';
+import { useNavigate } from "react-router-dom";
+import '../../style/loginForm.scss';
 const LoginForm = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = () => {
-        
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const user = useSelector(currentUser);
+
+    const handleSubmit = async () => {
+        const data = await dispatch(fetchAuth(
+            {
+                email: login,
+                password: password
+            }
+        ));
+      
+          if('token' in data.payload) {
+            window.localStorage.setItem('token', data.payload.token)
+            navigate('/')
+          }
     }
-
-
+    
     return (
         <div className="login_wrap">
             <div className="login_block">
-            <h2 className="login_title">Вхід для адміністрації</h2>
+            <h2 className="login_title">Вхід</h2>
             <div className="input_wrap">
                 <input type='text' 
                 value={login} onChange={(e) => setLogin(e.target.value)}

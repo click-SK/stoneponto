@@ -1,27 +1,55 @@
 import React, {useState} from 'react';
 import EditCalculator from './Calculator/EditCalculator';
 import EditCurrency from './Currency/EditCurrency';
+import AddNewUser from './User/AddNewUser';
+import AllUsers from './User/AllUsers';
 const AdminPanel = () => {
     const [editPrice, setEditPrice] = useState(true);
     const [editCurrency, setEditCurrency] = useState(false);
+    const [editAddNewUser, setEditAddNewUser] = useState(false);
+    const [editAllUsers, setEditAllUsers] = useState(false);
 
     const showPriceFunc = () => {
         setEditPrice(true);
         setEditCurrency(false);
+        setEditAddNewUser(false);
+        setEditAllUsers(false);
     }
 
     const showCurrencyFunc = () => {
         setEditCurrency(true);
         setEditPrice(false);
+        setEditAddNewUser(false);
+        setEditAllUsers(false);
     }
+
+    const showAddNewUser = () => {
+        setEditAddNewUser(true);
+        setEditCurrency(false)
+        setEditPrice(false);
+        setEditAllUsers(false);
+    }
+
+    const showAllUser = () => {
+        setEditAllUsers(true);
+        setEditAddNewUser(false);
+        setEditCurrency(false)
+        setEditPrice(false);
+    }
+
+
     return (
-        <div>
-            <div style={{display:'flex', justifyContent:'space-between'}}>
+        <div style={{width: '100%'}}>
+            <div style={{display:'flex', justifyContent:'space-around', paddingBottom:'50px'}}>
                 <p style={{fontSize: '20px'}} onClick={showPriceFunc}>Ціни на калькулятор</p>
                 <p style={{fontSize: '20px'}} onClick={showCurrencyFunc}>Валюта</p>
+                <p style={{fontSize: '20px'}} onClick={showAddNewUser}>Додати нового користувача</p>
+                <p style={{fontSize: '20px'}} onClick={showAllUser}>Всі користувачі</p>
             </div>
             {editPrice && <EditCalculator/>}
             {editCurrency && <EditCurrency/>}
+            {editAddNewUser && <AddNewUser/>}
+            {editAllUsers && <AllUsers/>}
         </div>
     );
 };
