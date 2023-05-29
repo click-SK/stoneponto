@@ -51,5 +51,10 @@
     "Cutting": "Порезка",
     "Lamination": "Ламинация",
     "Poster": "Постер",
-    "StretchOnTheStretcher": "Натяжка на подрамник"
+    "StretchOnTheStretcher": "Натяжка на подрамник",
+    "Mounting": "Намонтаживание",
+    "WithAStamp": "С печатью",
+    "SolderingPockets": "Пропайка карманов",
+    "SolderingOfGates": "Пропайка подворотов",
+    "New":"новый"
 }

@@ -7,8 +7,6 @@ const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, 
   const [isEdit, setIsEdit] = useState(false);
   const [newPrice, setNewPrice] = useState(0);
 
-  console.log('data',data);
-
   const handleEditButtonSave = () => {
     setIsEdit((isEdit) => !isEdit);
 

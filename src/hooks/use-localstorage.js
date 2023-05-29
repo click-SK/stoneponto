@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
 const useLocalStorage = (key, defaultValue) => {
-    console.log('key',key);
-    console.log('defaultValue',defaultValue);
     const [storedValue, setStoredValue] = useState(() =>{
         try{ 
             const value = localStorage.getItem(key)
@@ -21,7 +19,6 @@ const useLocalStorage = (key, defaultValue) => {
 
     const setValue = (newValue) =>{
         try{ 
-            console.log('newValue',newValue);
             localStorage.setItem(key, JSON.stringify(newValue))
         }catch (error){
             console.log(error)

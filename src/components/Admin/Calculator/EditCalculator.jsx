@@ -91,9 +91,6 @@ const EditCalculator = () => {
     setIsPapear(false);
  }
 
-     console.log('goodsList.length != 0 && goodsList[6]',goodsList.length != 0 && goodsList[6]);
-
-
     return (
       <div>
         <div>

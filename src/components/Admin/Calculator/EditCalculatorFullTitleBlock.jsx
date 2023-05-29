@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditCalculatorCurrentTitleBlock from "./EditCalculatorCurrentTitleBlock";
 const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
-  console.log('mainId',mainId);
+
   return (
     <div style={{ paddingTop: "30px" }}>
       {goods &&

@@ -5,7 +5,7 @@ import EditCalculatorCurrentArray from "./EditCalculatorCurrentArray";
 import { AiOutlineDown } from "react-icons/ai";
 const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, mainId, setIsFetch, goodsIndex }) => {
     const [isOpen, setIsOpen] = useState(false);
-    console.log('arrayGoods?.stretchOnTheStretcher',arrayGoods?.stretchOnTheStretcher);
+    
   return (
     <div>
       {arrayGoods?.name

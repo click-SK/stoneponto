@@ -20,9 +20,6 @@ const Select = ({goods,setcurrentItem}) => {
     setcurrentItem(e)
   }
 
-  console.log('selectedOption?.name',selectedOption?.name);
-  console.log('goods[0]?.name',goods[0]?.name);
-
   return (
     <div className="custom-select">
       <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>

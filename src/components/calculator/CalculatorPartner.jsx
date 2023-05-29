@@ -16,7 +16,7 @@ const CalculatorPartner = () => {
     const [width, setWitdh] = useState('')
     const [height, setHeight] = useState('')
     // const [quadrature, setquadrature] = useState(null)
-    const [count, setCount] = useState('')
+    const [count, setCount] = useState(1)
     const [description, setDescription] = useState('')
     const [selectedFile, setselectedFile] = useState({})
     const [coment, setComent] = useState('')
@@ -40,8 +40,6 @@ const CalculatorPartner = () => {
 
     const {currency} = useSelector((state) => state.currency);
 
-    console.log('currency',currency);
-
     const { t } = useTranslation();
     
     const quadrature = ((Number(width) * Number(height))/1000000)
@@ -51,8 +49,6 @@ const CalculatorPartner = () => {
        .then(response => response.json())
        .then(res => setGoodsList(res))
      },[])
-
-     console.log('hello');
 
     //  console.log(goodsList);
   //    useEffect(() => {
@@ -64,39 +60,85 @@ const CalculatorPartner = () => {
   //     setdescArray(state => [state,...arr]);
   //  },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
   //   selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp ])
-     
+    
+  // useEffect(() =>{
+  //     const descriptionObj = {
+  //       cutting: selectedOptionCutting?.price ? `Порезка: ${selectedOptionCutting?.name}` : '',
+  //       solderGates:selectedOptionSolderGates?.price ? `Пропайка подворотов: ${selectedOptionSolderGates?.name}` : '',
+  //       solderPockets:selectedOptionSolderPockets?.price ? `Пропайка карманов: ${selectedOptionSolderPockets?.name}` : '',
+  //       Lamination:selectedOptionLamination?.price ? `Ламинация: ${selectedOptionLamination?.name}` : '',
+  //       poster:selectedOptionPoster?.price ? `Постер: ${selectedOptionPoster?.name}` : '',
+  //       stretch:isStretch ? `Натяжка на подрамник` : '',
+  //       stamp:isStamp ? `С печатью` : '',
+  //       mounting:isMounting ? `Намонтаживание` : '',
+  //       eyelets: selectedOptionEyelets? `Люверсы: ${selectedOptionEyelets?.name} ${selectedOptionEyeletsValue } см`: '',
+  //     }
+  //     setdescArray(descriptionObj);
+  //    },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
+  //     selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
+
   useEffect(() =>{
-      const descriptionObj = {
-        cutting: selectedOptionCutting?.price ? `Порезка: ${selectedOptionCutting?.name}` : '',
-        solderGates:selectedOptionSolderGates?.price ? `Пропайка подворотов: ${selectedOptionSolderGates?.name}` : '',
-        solderPockets:selectedOptionSolderPockets?.price ? `Пропайка карманов: ${selectedOptionSolderPockets?.name}` : '',
-        Lamination:selectedOptionLamination?.price ? `Ламинация: ${selectedOptionLamination?.name}` : '',
-        poster:selectedOptionPoster?.price ? `Постер: ${selectedOptionPoster?.name}` : '',
-        stretch:isStretch ? `Натяжка на подрамник` : '',
-        stamp:isStamp ? `С печатью` : '',
-        mounting:isMounting ? `Намонтаживание` : '',
-        eyelets: selectedOptionEyelets? `Люверсы: ${selectedOptionEyelets?.name} ${selectedOptionEyeletsValue } см`: '',
-      }
-      setdescArray(descriptionObj);
-     },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
-      selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
+    const descriptionObj = {
+      cutting: {
+        option: selectedOptionCutting?.price ? 'Cutting' : '',
+        name: selectedOptionCutting?.price ? selectedOptionCutting?.name : '',
+      },
+      solderGates: {
+        option: selectedOptionSolderGates?.price ? 'SolderingOfGates' : '',
+        name: selectedOptionSolderGates?.price ? selectedOptionSolderGates?.name : '',
+      },
+      solderPockets: {
+        option: selectedOptionSolderPockets?.price ? 'SolderingPockets' : '',
+        name: selectedOptionSolderPockets?.price ? selectedOptionSolderPockets?.name : '',
+      },
+      Lamination: {
+        option: selectedOptionLamination?.price ? 'Lamination' : '',
+        name: selectedOptionLamination?.price ? selectedOptionLamination?.name : '',
+      },
+      poster: {
+        option: selectedOptionPoster?.price ? 'Poster' : '',
+        name: selectedOptionPoster?.price ? selectedOptionPoster?.name : '',
+      },
+      stretch: {
+        name:  isStretch ? 'StretchOnTheStretcher' : ''
+      },
+      stamp: {
+        name: isStamp ? 'WithAStamp' : ''
+      },
+      mounting: {
+        name:  isMounting ? 'Mounting' : ''
+      },
+      eyelets: {
+        option: selectedOptionEyelets ? 'Eyelets' : '',
+        name: selectedOptionEyelets ? selectedOptionEyelets?.name : '',
+        value: selectedOptionEyelets ? ` ${selectedOptionEyeletsValue} см` : ''
+      } 
+    }
+    setdescArray(descriptionObj);
+   },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
+    selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
      
 
      useEffect(() =>{
-      const totalSum1 = ((quadrature * selectedOptionQuality?.price * currency || 0) * count) +
-     (selectedOptionCutting?.price * currency || 0) + (selectedOptionSolderGates?.price * currency || 0)+
-     (selectedOptionSolderPockets?.price * currency || 0) + (selectedOptionLamination?.price * currency || 0) +
-     (selectedOptionPoster?.price * currency || 0) + (isStamp ? currentItem?.stamp : 0) + 
+      const totalSum1 = (quadrature * selectedOptionQuality?.price * currency.currency || 0) +
+     (selectedOptionCutting?.price * currency.currency || 0) + (selectedOptionSolderGates?.price * currency.currency || 0)+
+     (selectedOptionSolderPockets?.price * currency.currency || 0) + (selectedOptionLamination?.price * currency.currency || 0) +
+     (selectedOptionPoster?.price * currency.currency || 0) + (isStamp ? currentItem?.stamp : 0) + 
      (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
      (isMounting ? currentItem?.mounting: 0);
+
+     console.log('count',count);
       
      
      // Если в заказе, по квадратным метрам больше 20 квадратов, то на общую сумму присваивается скидка -10%. 
 
-
-     setTotalSum(totalSum1)
+     console.log('total sum WORK!!!',totalSum1);
+     console.log('currency',currency.currency);
+     setTotalSum(totalSum1 * count)
      },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
       selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting])
+
+     console.log('totalSum',totalSum);
 
       useEffect(()=>{
         setSelectedOptionQuality('');
@@ -117,7 +159,7 @@ const CalculatorPartner = () => {
       },[currentItem])
 
     const finlObj = {
-      material: currentItem.name,
+      material: currentItem?.name,
       width: width,
       height:height,
       count:count,
@@ -146,9 +188,36 @@ const CalculatorPartner = () => {
         }
     }
 
-    const handleTotalSum = () =>{
+    const handleTotalSum = () => {
 
-        console.log( 'final ',finlObj);
+      fetch("https://ponto-print.herokuapp.com/create-table", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'authorization': window.localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+          file: "File path",
+          fileName: "fileName",
+          material: currentItem.name,
+          quality: selectedOptionQuality.name,
+          width,
+          height,
+          count,
+          sum: totalSum,
+          conditions: descArray,
+          notes: coment,
+          address: delivery,
+          status: {
+            name: 'New',
+            currentStatus: 'new',
+            paid: false
+          }
+        }),
+      }).then((res) => res.json());
+      setTimeout(() => {
+          window.location.reload();
+      }, 1000);
     }
 
     const handleStamp = () =>{
@@ -161,7 +230,6 @@ const CalculatorPartner = () => {
       setIsMounting(state => !state)
     }
 
-
     // Додати люверси + інпут 30 см
     // перевірити суму та опис                  -- 
     // додати модалка ціни за метр              --
@@ -173,46 +241,45 @@ const CalculatorPartner = () => {
       <div className="calc_wrap">
         <title>
           <h2>Загрузка файла</h2>
-          <button className="btn" onClick={() => setIsOpen(!isOpen)}>Цены за 1м2</button>
+          <button className="btn" onClick={() => setIsOpen(!isOpen)}>
+            Цены за 1м2
+          </button>
           <ModalPrice
-            isOpen = {isOpen}
-            setIsOpen = {setIsOpen}
-            goodsList = {goodsList}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            goodsList={goodsList}
           />
         </title>
         <div className="wrap_row">
           <div className="calc-item material">
             <h3>Материал</h3>
-            <Select goods={goodsList} setcurrentItem={setcurrentItem}/>
+            <Select goods={goodsList} setcurrentItem={setcurrentItem} />
           </div>
           <div className="calc-item quality">
-            {currentItem?.color && currentItem?.color != 0 
-            &&
-            <SelectSec
+            {currentItem?.color && currentItem?.color != 0 && (
+              <SelectSec
                 item={currentItem?.color}
                 title={"Color"}
                 selectedOption={selectedOptionColor}
                 setSelectedOption={setSelectedOptionColor}
               />
-            }
-            {currentItem?.quality && currentItem?.quality.length != 0 
-            &&
-            <SelectSec
+            )}
+            {currentItem?.quality && currentItem?.quality.length != 0 && (
+              <SelectSec
                 item={currentItem?.quality}
                 title={"Quality"}
                 selectedOption={selectedOptionQuality}
                 setSelectedOption={setSelectedOptionQuality}
               />
-            }
-            {currentItem?.goods && currentItem?.goods.length != 0
-            &&
-            <SelectSec
+            )}
+            {currentItem?.goods && currentItem?.goods.length != 0 && (
+              <SelectSec
                 item={currentItem?.goods[0]?.quality}
                 title={"Quality"}
                 selectedOption={selectedOptionQuality}
                 setSelectedOption={setSelectedOptionQuality}
               />
-            }
+            )}
           </div>
         </div>
         <div className="wrap_row">
@@ -247,16 +314,14 @@ const CalculatorPartner = () => {
         <div className="wrap_row adding">
           <div className="colum ">
             {currentItem?.eyelets && currentItem?.eyelets.length != 0 && (
-              
-                <div className='eyelets_wrap'>
-                  <SelectSec
+              <div className="eyelets_wrap">
+                <SelectSec
                   item={currentItem?.eyelets}
                   title={"Eyelets"}
                   selectedOption={selectedOptionEyelets}
                   setSelectedOption={setSelectedOptionEyelets}
-                  />
-                  {selectedOptionEyelets?.name !== 'InTheCorners' ?
-                   
+                />
+                {selectedOptionEyelets?.name !== "InTheCorners" ? (
                   <InputsTamplate
                     title={"через (cм)"}
                     type={"text"}
@@ -264,18 +329,17 @@ const CalculatorPartner = () => {
                     value={selectedOptionEyeletsValue}
                     handleCangeInput={setSelectedOptionEyeletsValue}
                   />
-                  :
+                ) : (
                   <InputsTamplate
                     title={"через (cм)"}
                     type={"text"}
                     placeholder={"30"}
                     value={selectedOptionEyeletsValue}
                     handleCangeInput={setSelectedOptionEyeletsValue}
-                    disabled = {true}
+                    disabled={true}
                   />
-                  }
-                </div>
-
+                )}
+              </div>
             )}
             {currentItem?.cutting && currentItem?.cutting.length != 0 && (
               <SelectSec
@@ -285,15 +349,17 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionCutting}
               />
             )}
-            {currentItem?.goods && currentItem?.goods[0].cutting.length != 0
-            &&
-            <SelectSec
-                item={currentItem?.goods[0]?.cutting}
-                title={"Cutting"}
-                selectedOption={selectedOptionCutting}
-                setSelectedOption={setSelectedOptionCutting}
-              />
-            }
+            {currentItem &&
+              currentItem.goods &&
+              currentItem.goods.length > 0 &&
+              currentItem.goods[0].cutting.length !== 0 && (
+                <SelectSec
+                  item={currentItem.goods[0].cutting}
+                  title={"Cutting"}
+                  selectedOption={selectedOptionCutting}
+                  setSelectedOption={setSelectedOptionCutting}
+                />
+              )}
             {currentItem?.lamination && currentItem?.lamination.length != 0 && (
               <SelectSec
                 item={currentItem?.lamination}
@@ -310,45 +376,55 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionPoster}
               />
             )}
-       
-              {currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher && (
-              <div>
-                <h3>{t(`${'StretchOnTheStretcher'}`)}</h3>
-                <input type='checkbox' value={isStretch} onChange={handleStretch}/>
-              </div>
-             )}
-              {currentItem?.mounting && (
+
+            {currentItem?.goods &&
+              currentItem?.goods[0]?.stretchOnTheStretcher && (
+                <div>
+                  <h3>{t(`${"StretchOnTheStretcher"}`)}</h3>
+                  <input
+                    type="checkbox"
+                    value={isStretch}
+                    onChange={handleStretch}
+                  />
+                </div>
+              )}
+            {currentItem?.mounting && (
               <div>
                 <h3>Намонтаживание</h3>
-                <input type='checkbox' value={isMounting} onChange={handleMounting}/>
-              </div>
-             )}
-              {currentItem?.stamp && (
-              <div>
-                <h3>С печатью</h3>
-                <input type='checkbox' value={isStamp} onChange={handleStamp}/>
-              </div>
-             )}
-            {currentItem?.solderingOfGates && currentItem?.solderingOfGates.length != 0 && (
-              <div className="soldering">
-                <div className="soldering_item">
-                  <SelectSec
-                    item={currentItem?.solderingOfGates}
-                    title={"Пропайка подворотов"}
-                    selectedOption={selectedOptionSolderGates}
-                    setSelectedOption={setSelectedOptionSolderGates}
-                  />
-                </div>
-                <div className="soldering_item">
-                  <SelectSec
-                    item={currentItem?.solderingPockets}
-                    title={"Пропайка карманов"}
-                    selectedOption={selectedOptionSolderPockets}
-                    setSelectedOption={setSelectedOptionSolderPockets}
-                  />
-                </div>
+                <input
+                  type="checkbox"
+                  value={isMounting}
+                  onChange={handleMounting}
+                />
               </div>
             )}
+            {currentItem?.stamp && (
+              <div>
+                <h3>С печатью</h3>
+                <input type="checkbox" value={isStamp} onChange={handleStamp} />
+              </div>
+            )}
+            {currentItem?.solderingOfGates &&
+              currentItem?.solderingOfGates.length != 0 && (
+                <div className="soldering">
+                  <div className="soldering_item">
+                    <SelectSec
+                      item={currentItem?.solderingOfGates}
+                      title={"Пропайка подворотов"}
+                      selectedOption={selectedOptionSolderGates}
+                      setSelectedOption={setSelectedOptionSolderGates}
+                    />
+                  </div>
+                  <div className="soldering_item">
+                    <SelectSec
+                      item={currentItem?.solderingPockets}
+                      title={"Пропайка карманов"}
+                      selectedOption={selectedOptionSolderPockets}
+                      setSelectedOption={setSelectedOptionSolderPockets}
+                    />
+                  </div>
+                </div>
+              )}
           </div>
           <div className="colum upload">
             <h3>Файл</h3>
@@ -359,14 +435,26 @@ const CalculatorPartner = () => {
             />
           </div>
         </div>
+        {/* {t(`${title}`)} */}
         <div className="wrap_row">
           <div className="calc-item">
             <h3>Описание</h3>
             <div className="description">
               {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
-              {descArray.length != 0 &&
-                Object.entries(descArray).filter(([_, value]) => value.name !== '').map(([key, value], idx) => 
-                <p key={idx}>{value}</p>)}
+              {/* {descArray.length != 0 &&
+                Object.entries(descArray)
+                  .filter(([_, value]) => value.name !== "")
+                  .map(([key, value], idx) => <p key={idx}>{t(`${value}`)}</p>)} */}
+              {descArray.length !== 0 &&
+                Object.entries(descArray)
+                  .filter(([_, value]) => value.name !== "")
+                  .map(([key, item], idx) => (
+                  <p key={idx}>
+                    {t(`${item?.option}`)}
+                    {t(`${item?.name}`)}
+                    {item?.value}
+                    </p>
+                  ))}
             </div>
           </div>
           <div className="calc-item">

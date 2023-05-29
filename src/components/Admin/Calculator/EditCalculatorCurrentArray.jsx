@@ -10,8 +10,6 @@ const EditCalculatorCurrentArray = ({ currentArray, mainId, editPath, setIsFetch
     }
   },[currentArray])
 
-  console.log('currentArray',currentArray);
-
   return (
     <div>
       {arrayWithoutFirstElement.length != 0 && 
