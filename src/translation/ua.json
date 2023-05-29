@@ -51,5 +51,10 @@
     "Cutting": "Порізка",
     "Lamination": "Ламінація",
     "Poster": "Постер",
-    "StretchOnTheStretcher": "Натяжка на підрамник"
+    "StretchOnTheStretcher": "Натяжка на підрамник",
+    "Mounting": "Намонтування",
+    "WithAStamp": "З печаткою",
+    "SolderingPockets": "Пропаювання кишень",
+    "SolderingOfGates": "Пропаювання підворіт",
+    "New":"новий"
 }

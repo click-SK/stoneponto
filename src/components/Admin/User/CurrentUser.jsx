@@ -12,7 +12,7 @@ const CurrentUser = ({ user, setIsFetch }) => {
         }}
       >
         <p style={{width:'33%'}}>Пошта: {user.email}</p>
-        <p style={{width:'33%'}}>Баланс: {user.balance}</p>
+        <p style={{width:'33%'}}>Баланс: {user.balance.toFixed(0)}</p>
         <div style={{width:'33%'}}>
         <button  
         onClick={() => setIsVisibleEdit(state => !state)}>More</button>

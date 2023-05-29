@@ -14,17 +14,6 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
 
   const handleEditButtonSave = async () => {
     setIsEditValue((isEdit) => !isEdit);
-    // Отримати поточну дату та час
-    let currentDate = new Date();
-
-    // Отримати часовий зсув місцевого часу відносно GMT+0
-    let timezoneOffset = currentDate.getTimezoneOffset();
-
-    // Обчислити зсув від GMT+0 до GMT+3
-    let offset = 3 * 60 + timezoneOffset; // Зсув у хвилинах
-
-    // Обчислити місцевий час за GMT+3
-     let gmtPlus3Time = new Date(currentDate.getTime() + offset * 60 * 1000);
 
     let action = '';
     let historyValue = ''
@@ -48,7 +37,6 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
         userId,
         value: editValue,
         action,
-        date: gmtPlus3Time,
         historyValue
       }),
     }).then((res) => res.json());

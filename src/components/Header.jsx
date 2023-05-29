@@ -13,7 +13,11 @@ const Header = () => {
 
   const clearTokenStorege = () => {
     window.localStorage.removeItem("token");
-    window.location.reload();
+    navigate('/');
+    setTimeout(() => {
+      window.location.reload();
+    },500)
+    console.log('LOGOUT');
   };
 
   return (
@@ -59,7 +63,6 @@ const Header = () => {
                   <p className="link_route">Головна</p>
                 </Link>
                 <Link to="/admin">
-                  {" "}
                   <p className="link_route">Адмін панель</p>
                 </Link>
                 <Link to="/calculator">
@@ -72,9 +75,11 @@ const Header = () => {
                 <Link to="/">
                   <p className="link_route">Головна</p>
                 </Link>
-                <Link to="/admin"> </Link>
                 <Link to="/calculator">
                   <p className="link_route">Калькулятор</p>
+                </Link>
+                <Link to="/my-panel">
+                  <p className="link_route">Мій кабінет</p>
                 </Link>
               </div>
             )}

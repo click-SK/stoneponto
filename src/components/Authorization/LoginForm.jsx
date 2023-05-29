@@ -22,6 +22,7 @@ const LoginForm = () => {
           if('token' in data.payload) {
             window.localStorage.setItem('token', data.payload.token)
             navigate('/')
+            window.location.reload();
           }
     }
     

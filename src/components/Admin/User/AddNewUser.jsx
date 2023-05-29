@@ -6,10 +6,10 @@ const AddNewUser = () => {
     const [name, setName] = useState('');
 
     const handleSubmit = async () => {
-        const response = await fetch('http://localhost:4444/register-user', {
+        const response = await fetch('https://ponto-print.herokuapp.com/register-user', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               email,

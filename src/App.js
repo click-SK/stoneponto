@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import CalculatorPartner from "./components/calculator/CalculatorPartner";
 import LoginForm from "./components/Authorization/LoginForm";
 import FirstRequest from "./components/FirstRequest";
+import UserPanel from "./components/User/UserPanel";
 
 function App() {
   const user = useSelector(currentUser);
@@ -16,32 +17,35 @@ function App() {
     <div className="App">
       <FirstRequest />
       <Header />
-      {user !== null && "isAdmin" in user ? (
-        <>
-          {user?.isAdmin ? (
-            // Admin Route
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/admin" element={<AdminPanel />} />
-              <Route path="/calculator" element={<CalculatorPartner />} />
-              <Route path="/login" element={<LoginForm />} />
-            </Routes>
-          ) : (
-            //Login user Route
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/calculator" element={<CalculatorPartner />} />
-              <Route path="/login" element={<LoginForm />} />
-            </Routes>
-          )}
-        </>
-      ) : (
-        // Not Login user Route
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<LoginForm />} />
-        </Routes>
-      )}
+      <Routes>
+        {user !== null && "isAdmin" in user ? (
+          <>
+            {user?.isAdmin ? (
+              // Admin Route
+              <>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/calculator" element={<CalculatorPartner />} />
+                <Route path="/login" element={<LoginForm />} />
+              </>
+            ) : (
+              //Login user Route
+              <>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/calculator" element={<CalculatorPartner />} />
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/my-panel" element={<UserPanel />} />
+              </>
+            )}
+          </>
+        ) : (
+          // Not Login user Route
+          <>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/login" element={<LoginForm />} />
+          </>
+        )}
+      </Routes>
     </div>
   );
 }

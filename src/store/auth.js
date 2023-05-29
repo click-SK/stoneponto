@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (params) => {
-    const {data} = await fetch('http://localhost:4444/register-user');
+    const {data} = await fetch('https://ponto-print.herokuapp.com/register-user');
     return data
 })
 
 export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ({email, password}) => {
-    const response = await fetch('http://localhost:4444/login-user', {
+    const response = await fetch('https://ponto-print.herokuapp.com/login-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ({email, passw
 })
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-    const response = await fetch('http://localhost:4444/get-me', {
+    const response = await fetch('https://ponto-print.herokuapp.com/get-me', {
         headers: {
             'authorization': window.localStorage.getItem('token')
           },
@@ -31,7 +31,7 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
 })
 
 export const fetchIsAdmin = createAsyncThunk('auth/fetchIsAdmin', async () => {
-    const {data} = await fetch('http://localhost:4444/get-me');
+    const {data} = await fetch('https://ponto-print.herokuapp.com/get-me');
     return data.isadmin
 })
 
