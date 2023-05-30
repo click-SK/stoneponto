@@ -4,12 +4,14 @@ import EditCurrency from './Currency/EditCurrency';
 import AddNewUser from './User/AddNewUser';
 import AllUsers from './User/AllUsers';
 import EditTable from './Table/EditTable';
+import AdminBlog from './Blog/AdminBlog';
 const AdminPanel = () => {
     const [editPrice, setEditPrice] = useState(true);
     const [editCurrency, setEditCurrency] = useState(false);
     const [editAddNewUser, setEditAddNewUser] = useState(false);
     const [editAllUsers, setEditAllUsers] = useState(false);
     const [editTable, setEditTable] = useState(false);
+    const [editBlog, setEditBlog] = useState(false);
 
     const showPriceFunc = () => {
         setEditPrice(true);
@@ -17,6 +19,7 @@ const AdminPanel = () => {
         setEditAddNewUser(false);
         setEditAllUsers(false);
         setEditTable(false);
+        setEditBlog(false);
     }
 
     const showCurrencyFunc = () => {
@@ -25,6 +28,7 @@ const AdminPanel = () => {
         setEditAddNewUser(false);
         setEditAllUsers(false);
         setEditTable(false);
+        setEditBlog(false);
     }
 
     const showAddNewUser = () => {
@@ -33,6 +37,7 @@ const AdminPanel = () => {
         setEditPrice(false);
         setEditAllUsers(false);
         setEditTable(false);
+        setEditBlog(false);
     }
 
     const showAllUser = () => {
@@ -41,6 +46,7 @@ const AdminPanel = () => {
         setEditCurrency(false)
         setEditPrice(false);
         setEditTable(false);
+        setEditBlog(false);
     }
 
     const showTable = () => {
@@ -49,8 +55,17 @@ const AdminPanel = () => {
         setEditAddNewUser(false);
         setEditCurrency(false)
         setEditPrice(false);
+        setEditBlog(false);
     }
 
+    const showBlog = () => {
+        setEditBlog(true);
+        setEditTable(false);
+        setEditAllUsers(false);
+        setEditAddNewUser(false);
+        setEditCurrency(false)
+        setEditPrice(false);
+    }
 
     return (
         <div style={{width: '100%'}}>
@@ -60,12 +75,14 @@ const AdminPanel = () => {
                 <p style={{fontSize: '20px'}} onClick={showAddNewUser}>Додати нового користувача</p>
                 <p style={{fontSize: '20px'}} onClick={showAllUser}>Всі користувачі</p>
                 <p style={{fontSize: '20px'}} onClick={showTable}>Таблиця</p>
+                <p style={{fontSize: '20px'}} onClick={showBlog}>Блог</p>
             </div>
             {editPrice && <EditCalculator/>}
             {editCurrency && <EditCurrency/>}
             {editAddNewUser && <AddNewUser/>}
             {editAllUsers && <AllUsers/>}
             {editTable && <EditTable/>}
+            {editBlog && <AdminBlog/>}
         </div>
     );
 };

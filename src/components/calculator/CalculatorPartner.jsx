@@ -37,6 +37,8 @@ const CalculatorPartner = () => {
     const [isStretch, setIsStretch] = useState(false);
     const [isMounting, setIsMounting] = useState(false);
     const [descArray, setdescArray] = useState({});
+    const [allUsers, setAllUsers] = useState([]);
+    const [currentId, setCurrentId] = useState('');
 
     const {currency} = useSelector((state) => state.currency);
 
@@ -49,6 +51,15 @@ const CalculatorPartner = () => {
        .then(response => response.json())
        .then(res => setGoodsList(res))
      },[])
+
+     useEffect(() => {
+      fetch('https://ponto-print.herokuapp.com/get-all-user')
+     .then(response => response.json())
+     .then(res => {
+      setAllUsers(res)
+      setCurrentId(res[0]._id);
+    })
+   },[])
 
     //  console.log(goodsList);
   //    useEffect(() => {
@@ -175,7 +186,6 @@ const CalculatorPartner = () => {
       // color:selectedOptionColor ? selectedOptionColor.name : '',
       // poster:selectedOptionPoster ? selectedOptionPoster.name : '',
       // eyelets:selectedOptionEyelets ? selectedOptionEyelets.name : '',
-
     }  
 
 
@@ -194,7 +204,6 @@ const CalculatorPartner = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'authorization': window.localStorage.getItem('token')
         },
         body: JSON.stringify({
           file: "File path",
@@ -204,6 +213,7 @@ const CalculatorPartner = () => {
           width,
           height,
           count,
+          userId: currentId,
           sum: totalSum,
           conditions: descArray,
           notes: coment,
@@ -487,6 +497,11 @@ const CalculatorPartner = () => {
           </div>
           <button onClick={handleTotalSum}>submit</button>
         </div>
+        <div>
+            {allUsers.length != 0 && allUsers.map((user) => (
+              <p style={{fontSize: '24px'}} onClick={() => setCurrentId(user._id)} key={user._id}>{user.name}</p>
+            ))}
+          </div>
       </div>
     );
 };
