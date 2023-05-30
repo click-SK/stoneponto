@@ -22,7 +22,7 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
 
     if(editValue > data) {
       action = 'Депозит'
-      historyValue = `+${newValue}`
+      historyValue = `++${newValue}`
     } else {
       action = 'Виведення'
       historyValue = `-${newValue}`

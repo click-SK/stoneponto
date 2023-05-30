@@ -12,7 +12,12 @@ const AdminTableText = ({order, handleDownload}) => {
             <p>{order.date}</p>
           </div>
           <div>
+            {order?.user?.name 
+            ?
             <p>{order.user.name}</p>
+            :
+            <p>Користувача не знайдено</p>
+            }
           </div>
           <div>
             <p>{order.fileName}</p>
