@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 
-const EditCurrentUserSecond = ({data, editPath, title, userId, setIsFetch}) => {
+const EditCurrentUserDetails = ({data, editPath, title, userId, setIsFetch}) => {
     const [editValue, setEditValue] = useState('');
     const [isEditValue, setIsEditValue] = useState(false);
 
@@ -55,4 +55,4 @@ const EditCurrentUserSecond = ({data, editPath, title, userId, setIsFetch}) => {
     );
 };
 
-export default EditCurrentUserSecond;
+export default EditCurrentUserDetails;
