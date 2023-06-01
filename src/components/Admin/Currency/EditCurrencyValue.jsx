@@ -33,20 +33,23 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
     return (
 
             <div className='edit_plus_wrap'>
-                <p>Змінити курс</p> 
+                <p>Змінити курс:</p> 
               <div className='edit_plus_value'>
                 <p>{data}</p>
               </div>
-              <RiFileEditFill onClick={handleEditButton} />
               {isEdit && (
-                <div>
+                <div className='edit_plus_input'>
                   <input
                     value={newvalue}
                     onChange={(e) => setNewValue(e.target.value)}
+                    
                   />
                   <button onClick={handleEditButtonSave}>Save</button>
                 </div>
               )}
+              <RiFileEditFill
+              className={`edit_plus_icon ${isEdit ? 'edit_plus_icon__active' : ''}`}
+              onClick={handleEditButton} />
             </div>
 
     );

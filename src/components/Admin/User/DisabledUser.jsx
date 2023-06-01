@@ -28,12 +28,16 @@ const DisabledUser =  ({user, editPath, setIsFetch, title}) => {
 
       
     return (
-        <div>
+      
+        <div className='details_wrap'>
+          <div className='details_title'>
             <p>{title}</p>
             <input
+            className='input_checkbox'
             type='checkbox'
             checked={statusDisabled}
             onChange={handleEditButtonSave}/>
+          </div>
         </div>
     );
 };
