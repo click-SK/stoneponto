@@ -10,6 +10,7 @@ import CalculatorPartner from "./components/calculator/CalculatorPartner";
 import LoginForm from "./components/Authorization/LoginForm";
 import FirstRequest from "./components/FirstRequest";
 import UserPanel from "./components/User/UserPanel";
+import Blog from "./components/Blog/Blog";
 
 function App() {
   const user = useSelector(currentUser);
@@ -20,10 +21,11 @@ function App() {
       <Routes>
         {user !== null && "isAdmin" in user ? (
           <>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/news" element={<Blog />} />
             {user?.isAdmin ? (
               // Admin Route
               <>
-                <Route path="/" element={<MainPage />} />
                 <Route path="/admin" element={<AdminPanel />} />
                 <Route path="/calculator" element={<CalculatorPartner />} />
                 <Route path="/login" element={<LoginForm />} />
@@ -31,7 +33,6 @@ function App() {
             ) : (
               //Login user Route
               <>
-                <Route path="/" element={<MainPage />} />
                 <Route path="/calculator" element={<CalculatorPartner />} />
                 <Route path="/my-panel" element={<UserPanel />} />
               </>
@@ -40,7 +41,6 @@ function App() {
         ) : (
           // Not Login user Route
           <>
-            <Route path="/" element={<MainPage />} />
             <Route path="/login" element={<LoginForm />} />
           </>
         )}

@@ -68,6 +68,9 @@ const Header = () => {
                 <Link to="/calculator">
                   <p className="link_route">Калькулятор</p>
                 </Link>
+                <Link to="/news">
+                  <p className="link_route">Новини</p>
+                </Link>
               </div>
             ) : (
               //Login user Route
@@ -81,6 +84,9 @@ const Header = () => {
                 <Link to="/my-panel">
                   <p className="link_route">Мій кабінет</p>
                 </Link>
+                <Link to="/news">
+                  <p className="link_route">Новини</p>
+                </Link>
               </div>
             )}
           </>
@@ -90,6 +96,9 @@ const Header = () => {
             <Link to="/">
               <p className="link_route">Головна</p>
             </Link>
+            <Link to="/news">
+                  <p className="link_route">Новини</p>
+                </Link>
           </div>
         )}
       </div>

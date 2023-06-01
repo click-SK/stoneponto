@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 const AdminBlog = () => {
   const [image, setImage] = useState(null);
@@ -8,7 +8,7 @@ const AdminBlog = () => {
   const [descriptionRu, setDescriptionRu] = useState("");
   const [addNew, setAddNew] = useState(false);
 
-  const formData = new FormData();
+  const inputFileRef = useRef(null);
 
   const handleImageChange = (e) => {
     // const file = e.target.files[0];
@@ -16,22 +16,6 @@ const AdminBlog = () => {
   };
 
   console.log('image',image);
-
-//   const createNewPost = () => {
-//     fetch('https://ponto-print.herokuapp.com/create-post', {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         image,
-//         // titleUa,
-//         // titleRu,
-//         // descriptionUa,
-//         // descriptionRu,
-//       }),
-//     });
-//   };
 
 const createNewPost = () => {
     const formData = new FormData();
@@ -65,8 +49,10 @@ const createNewPost = () => {
         <div>
           <p>Створення нового поста</p>
           <p>Виберіть фото</p>
-          <input type="file" name="img" onChange={handleImageChange} />
+          <button onClick={() => inputFileRef.current.click()}>Змінити фото</button>
+          <input type="file" name="img" onChange={handleImageChange} ref={inputFileRef} hidden/>
           <div style={{width: '50%'}}>
+            <img src={image}/>
           <div>
             <p>Заголовок Українською</p>
             <input 

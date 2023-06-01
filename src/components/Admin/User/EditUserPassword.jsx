@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 
 const EditUserPassword = ({ editPath, title, userId, setIsFetch }) => {
-  const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [isEditValue, setIsEditValue] = useState(false);
 
@@ -17,7 +16,6 @@ const EditUserPassword = ({ editPath, title, userId, setIsFetch }) => {
       },
       body: JSON.stringify({
         userId,
-        currentPassword,
         newPassword
       }),
     }).then((res) => res.json());
@@ -53,13 +51,6 @@ const EditUserPassword = ({ editPath, title, userId, setIsFetch }) => {
         </div>
         {isEditValue && (
           <div>
-            <div>
-            <p>Поточний пароль</p>
-            <input 
-            placeholder="Поточний пароль"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)} />
-            </div>
             <div>
             <p>Новий пароль</p>
             <input 
