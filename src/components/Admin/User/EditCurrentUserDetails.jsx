@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
+import {RiFileEditFill} from 'react-icons/ri';
 
 const EditCurrentUserDetails = ({data, editPath, title, userId, setIsFetch}) => {
     const [editValue, setEditValue] = useState('');
@@ -35,7 +36,7 @@ const EditCurrentUserDetails = ({data, editPath, title, userId, setIsFetch}) => 
               <div className='details_title'>
               <p>{title}: {data}</p>
               {isEditValue && (
-                <div>
+                <div className='details_input'>
                   <input
                     value={editValue}
                     onChange={(e) => setEditValue(e.target.value)}
@@ -48,7 +49,7 @@ const EditCurrentUserDetails = ({data, editPath, title, userId, setIsFetch}) => 
               ?
               <AiFillCloseCircle onClick={() => setIsEditValue((state) => !state)} />
               :
-              <AiFillEdit onClick={handleEditButton} />}
+              <RiFileEditFill onClick={handleEditButton} />}
               </div>
               
           </div>

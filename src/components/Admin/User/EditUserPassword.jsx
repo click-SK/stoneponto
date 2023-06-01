@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
+import {RiFileEditFill} from 'react-icons/ri';
 
 const EditUserPassword = ({ editPath, title, userId, setIsFetch }) => {
   const [newPassword, setNewPassword] = useState('');
@@ -36,28 +37,27 @@ const EditUserPassword = ({ editPath, title, userId, setIsFetch }) => {
           <p>
             {title}
           </p>
+          {isEditValue && (
+          <div className="details_input">
+            <input 
+            placeholder="Новий пароль"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)} />
+            <button onClick={handleEditButtonSave}>Зберегти зміни</button>
+          </div>
+        )}
           {isEditValue ? (
             <AiFillCloseCircle
               onClick={() => setIsEditValue((state) => !state)}
             />
           ) : (
-            <AiFillEdit
+            <RiFileEditFill
+            
               onClick={handleEditButton}
             />
           )}
         </div>
-        {isEditValue && (
-          <div>
-            <div>
-            <p>Новий пароль</p>
-            <input 
-            placeholder="Новий пароль"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)} />
-            </div>
-            <button onClick={handleEditButtonSave}>Змінити</button>
-          </div>
-        )}
+       
       </div>
   );
 };
