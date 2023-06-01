@@ -1,0 +1,40 @@
+@import "./globalTamplate.scss";
+
+.edit_curency_wrap{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-top: 20px;
+    min-height: 200px;
+    width: 100%;
+    border: 1px solid #ccc;
+
+}
+
+.edit_curency{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    p{
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+.curency_site{
+    color: $color_prime;
+}
+.curency_nbu{
+    color: rgb(5, 138, 0);
+}
+.curency_plus{
+    color: $color_second;
+}
+
+.edit_plus_wrap{
+    display: flex;
+}
+
+.edit_plus_value{
+
+}
