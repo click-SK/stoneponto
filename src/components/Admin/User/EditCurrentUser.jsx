@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
-import EditCurrentUserSecond from './EditCurrentUserSecond';
+import EditCurrentUserDetails from './EditCurrentUserDetails';
 import EditBalance from './EditBalance';
+import EditUserPassword from './EditUserPassword';
 import Modal from '../../Modal/Modal';
 // import AdminTable from '../../Table/AdminTable';
 const EditCurrentUser = ({user, setIsFetch}) => {
@@ -18,7 +19,7 @@ const EditCurrentUser = ({user, setIsFetch}) => {
 
     return (
       <div style={{ padding: "20px 0px" }}>
-        <EditCurrentUserSecond
+        <EditCurrentUserDetails
           data={user.name}
           userId={user._id}
           editPath={"https://ponto-print.herokuapp.com/update-name"}
@@ -26,7 +27,7 @@ const EditCurrentUser = ({user, setIsFetch}) => {
           setIsFetch={setIsFetch}
         />
 
-        <EditCurrentUserSecond
+        <EditCurrentUserDetails
           data={user.discountValue}
           userId={user._id}
           editPath={"https://ponto-print.herokuapp.com/update-discount"}
@@ -34,7 +35,7 @@ const EditCurrentUser = ({user, setIsFetch}) => {
           setIsFetch={setIsFetch}
         />
 
-        <EditCurrentUserSecond
+        <EditCurrentUserDetails
           data={user.email}
           userId={user._id}
           editPath={""}
@@ -47,6 +48,13 @@ const EditCurrentUser = ({user, setIsFetch}) => {
           userId={user._id}
           editPath={"https://ponto-print.herokuapp.com/update-balance"}
           title="Баланс"
+          setIsFetch={setIsFetch}
+        />
+
+        <EditUserPassword
+          userId={user._id}
+          editPath={"https://ponto-print.herokuapp.com/update-password"}
+          title="Зміна пароля"
           setIsFetch={setIsFetch}
         />
 

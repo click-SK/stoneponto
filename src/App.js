@@ -33,7 +33,6 @@ function App() {
               <>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/calculator" element={<CalculatorPartner />} />
-                <Route path="/login" element={<LoginForm />} />
                 <Route path="/my-panel" element={<UserPanel />} />
               </>
             )}

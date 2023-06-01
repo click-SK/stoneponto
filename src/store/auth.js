@@ -27,6 +27,9 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
           },
     });
     const data = await response.json();
+    // if(!data.loggedIn) {
+    //     window.localStorage.removeItem("token");
+    // }
     return data
 })
 

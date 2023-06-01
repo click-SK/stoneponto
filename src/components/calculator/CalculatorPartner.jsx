@@ -5,13 +5,14 @@ import InputsTamplate from '../template/InputsTamplate';
 import ModalPrice from './ModalPrice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { currentUser } from "../../store/auth";
 import '../../style/calculator.scss'
 
 
 const CalculatorPartner = () => {
-
     const [goodsList, setGoodsList] = useState ([])
-    const [isOpen, setIsOpen] = useState(false);  
+    const [isOpen, setIsOpen] = useState(false);
+    const [isOpenAllusers, setIsOpenAllusers] = useState(false);
     const [currentItem, setcurrentItem] = useState({});
     const [width, setWitdh] = useState('')
     const [height, setHeight] = useState('')
@@ -46,6 +47,9 @@ const CalculatorPartner = () => {
     
     const quadrature = ((Number(width) * Number(height))/1000000)
 
+    const user = useSelector(currentUser);
+    console.log('user',user);
+
     useEffect(() => {
         fetch('https://ponto-print.herokuapp.com/get-all-calc')
        .then(response => response.json())
@@ -56,10 +60,13 @@ const CalculatorPartner = () => {
       fetch('https://ponto-print.herokuapp.com/get-all-user')
      .then(response => response.json())
      .then(res => {
-      setAllUsers(res)
-      setCurrentId(res[0]._id);
+      setAllUsers(res);
+      const newArr = res.filter((item) => user._id == item._id);
+      setCurrentId(newArr[0]._id);
     })
-   },[])
+   },[user])
+
+   console.log('descArray',descArray);
 
     //  console.log(goodsList);
   //    useEffect(() => {
@@ -102,7 +109,7 @@ const CalculatorPartner = () => {
         option: selectedOptionSolderPockets?.price ? 'SolderingPockets' : '',
         name: selectedOptionSolderPockets?.price ? selectedOptionSolderPockets?.name : '',
       },
-      Lamination: {
+      lamination: {
         option: selectedOptionLamination?.price ? 'Lamination' : '',
         name: selectedOptionLamination?.price ? selectedOptionLamination?.name : '',
       },
@@ -198,6 +205,8 @@ const CalculatorPartner = () => {
         }
     }
 
+    console.log('currentIdId',currentId);
+
     const handleTotalSum = () => {
 
       fetch("https://ponto-print.herokuapp.com/create-table", {
@@ -207,7 +216,6 @@ const CalculatorPartner = () => {
         },
         body: JSON.stringify({
           file: "File path",
-          fileName: "fileName",
           material: currentItem.name,
           quality: selectedOptionQuality.name,
           width,
@@ -240,6 +248,8 @@ const CalculatorPartner = () => {
       setIsMounting(state => !state)
     }
 
+    console.log('isOpenAllusers',isOpenAllusers);
+
     // Додати люверси + інпут 30 см
     // перевірити суму та опис                  -- 
     // додати модалка ціни за метр              --
@@ -247,10 +257,38 @@ const CalculatorPartner = () => {
     // по сабміт створити кінцевий файл
     // Переробити селект колір, додати пошук 
 
+    const setCurrentIdFunc = (e) => {
+      setCurrentId(e);
+      setIsOpenAllusers((state) => !state);
+    }
+
     return (
       <div className="calc_wrap">
         <title>
           <h2>Загрузка файла</h2>
+          <div
+            className="selected-option"
+            onClick={() => setIsOpenAllusers((state) => !state)}
+          >
+            Open select
+          </div>
+          <div className="custom-select">
+            
+            {isOpenAllusers && (
+              <div className="options">
+                {allUsers.length != 0 &&
+                  allUsers.map((user) => (
+                    <p
+                      style={{ fontSize: "24px" }}
+                      onClick={() => setCurrentIdFunc(user._id)}
+                      key={user._id}
+                    >
+                      {user.name}
+                    </p>
+                  ))}
+              </div>
+            )}
+          </div>
           <button className="btn" onClick={() => setIsOpen(!isOpen)}>
             Цены за 1м2
           </button>
@@ -459,10 +497,10 @@ const CalculatorPartner = () => {
                 Object.entries(descArray)
                   .filter(([_, value]) => value.name !== "")
                   .map(([key, item], idx) => (
-                  <p key={idx}>
-                    {t(`${item?.option}`)}
-                    {t(`${item?.name}`)}
-                    {item?.value}
+                    <p key={idx}>
+                      {t(`${item?.option}`)}
+                      {t(`${item?.name}`)}
+                      {item?.value}
                     </p>
                   ))}
             </div>
@@ -497,11 +535,7 @@ const CalculatorPartner = () => {
           </div>
           <button onClick={handleTotalSum}>submit</button>
         </div>
-        <div>
-            {allUsers.length != 0 && allUsers.map((user) => (
-              <p style={{fontSize: '24px'}} onClick={() => setCurrentId(user._id)} key={user._id}>{user.name}</p>
-            ))}
-          </div>
+        <div></div>
       </div>
     );
 };
