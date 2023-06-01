@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
+import {RiFileEditFill} from 'react-icons/ri';
 
 const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
   const [editValue, setEditValue] = useState(0);
@@ -22,9 +23,9 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
 
     if(editValue > data) {
       action = 'Депозит'
-      historyValue = `++${newValue}`
+      historyValue = `+${newValue}`
     } else {
-      action = 'Виведення'
+      action = 'Оплата'
       historyValue = `-${newValue}`
     }
 
@@ -58,20 +59,8 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
           <p>
             {title}: {data}
           </p>
-          {isEditValue ? (
-            <AiFillCloseCircle
-              onClick={() => setIsEditValue((state) => !state)}
-              
-            />
-          ) : (
-            <AiFillEdit
-              onClick={handleEditButton}
-              
-            />
-          )}
-        </div>
-        {isEditValue && (
-          <div>
+          {isEditValue && (
+          <div className="details_input_balance">
             <p>Баланс користувача</p>
             <input
               value={editValue}
@@ -80,11 +69,12 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
             />
             <p>Введіть сумму</p>
             <input
+              
               value={newValue}
               onChange={(e) => setNewValue(e.target.value)}
             />
             <p>Виберіть дію:</p>
-            <div >
+            <div className='balance_button' >
               <button
               
                 onClick={() =>
@@ -105,6 +95,20 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
             <button onClick={handleEditButtonSave}>Зберегти зміни</button>
           </div>
         )}
+          {isEditValue ? (
+            <AiFillCloseCircle
+              style={{zIndex: '1001'}}
+              onClick={() => setIsEditValue((state) => !state)}
+              
+            />
+          ) : (
+            <RiFileEditFill
+              onClick={handleEditButton}
+              
+            />
+          )}
+        </div>
+        
       </div>
   );
 };

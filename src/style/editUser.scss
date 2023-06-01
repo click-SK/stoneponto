@@ -55,7 +55,7 @@
 .edit_user_data{
     display: flex;
     flex-direction: row;
-    height: 60%;
+    height: 200px;
     width: 100%;
     padding: 20px;
 }
@@ -73,9 +73,14 @@
 }
 
 .details_wrap{
+    position: relative;
     display: flex;
     justify-content: center;
     width: 80%;
+    svg{
+        width: 20px;
+        height: 20px;
+    }
 }
 
 .details_title{
@@ -84,10 +89,56 @@
     align-items: center;
     width: 100%;
     height: 50px;
+
+}
+
+.details_input{
+    position: absolute;
+    display: flex;
+    width: 90%;
+    align-items: center;
+    button{
+        height: 34px;
+    }
+}
+
+.details_input_balance{
+    position: absolute;
+    left: 0;
+    top: -10px;
+    width: 100%;
+    background: #fff;
+    z-index: 1000;
+    
+    input{
+        width: 80%;
+        margin-bottom: 5px;
+    }
+}
+
+.balance_button{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+    button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        width: 30px;
+        height: 30px;
+        margin-top: 1px;
+        background: red;
+        &:first-child{
+            margin-right: 10px;
+            background: green;
+        }
+    }
 }
 
 .input_checkbox{
     width: 20px;
+    height: 20px;
 }
 
 .close_user{
@@ -99,4 +150,55 @@
     height: 30px;
     right: 1%;
     top: 1%;
+}
+
+.history_wrap{
+    display: flex;
+    width: 100%;
+    height: 310px;
+    background: #fff;
+    flex-direction: column;
+    align-items: center;
+    p{
+        width: 30%;
+        font-size: 16px;
+    }
+}
+
+.history_wrap_header{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ccc;
+
+}
+
+.history_wrap_item{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.history_item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    p{
+        width: 30%;
+        font-size: 16px;
+        height: 20px;
+    }
+}
+
+.deposit{
+    color: green;
+    font-weight: 600;
+}
+.withdrawal{
+    color: red;
+    font-weight: 600;
 }
