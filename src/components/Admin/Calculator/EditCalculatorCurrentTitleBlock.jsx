@@ -3,23 +3,25 @@ import EditCalculatorFullData from "./EditCalculatorFullData";
 import EditCalculatorAdditionalParameter from "./EditCalculatorAdditionalParameter";
 import EditCalculatorCurrentArray from "./EditCalculatorCurrentArray";
 import { AiOutlineDown } from "react-icons/ai";
+
 const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, mainId, setIsFetch, goodsIndex }) => {
     const [isOpen, setIsOpen] = useState(false);
     
   return (
-    <div>
+    <div className="pricing_calc__edit_item">
       {arrayGoods?.name
       ?
       <>
       <div
-        style={{ display: "flex", justifyContent: "center" }}
+        className={`pricing_calc__edit_item_title ${isOpen ? 'pricing_calc__edit_item_title__active' : '' }`}
         onClick={() => setIsOpen((state) => !state)}
       >
         <p>{arrayGoods.name}</p>
         <AiOutlineDown />
       </div>
+      
       {isOpen && (
-        <>
+        <div className="pricing_calc_open_goods">
         {arrayGoods?.quality.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.quality} 
         title={'Якість'}
@@ -101,7 +103,7 @@ const EditCalculatorCurrentTitleBlock = ({ arrayGoods, additionalParameter, main
         data={arrayGoods?.stamp}
         setIsFetch={setIsFetch}
         editPath='https://ponto-print.herokuapp.com/update-stamp'/>}
-        </>
+        </div>
       )}
       <br />
       </>

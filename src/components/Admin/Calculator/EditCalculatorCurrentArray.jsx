@@ -11,7 +11,11 @@ const EditCalculatorCurrentArray = ({ currentArray, mainId, editPath, setIsFetch
   },[currentArray])
 
   return (
-    <div>
+    <div className="goods_edit_wrap">
+      <div className="goods_edit_wrap_header">
+        <p>Назва</p>
+        <p>Ціна</p>
+      </div>
       {arrayWithoutFirstElement.length != 0 && 
       arrayWithoutFirstElement.map((item, idx) => (
         <EditCalculatorCurrentItem 

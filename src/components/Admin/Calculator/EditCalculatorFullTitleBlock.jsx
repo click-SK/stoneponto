@@ -3,7 +3,7 @@ import EditCalculatorCurrentTitleBlock from "./EditCalculatorCurrentTitleBlock";
 const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
 
   return (
-    <div style={{ paddingTop: "30px" }}>
+    <div className="pricing_calc__edit_block">
       {goods &&
         goods?.goods.map((item, idx) => (
             <EditCalculatorCurrentTitleBlock
