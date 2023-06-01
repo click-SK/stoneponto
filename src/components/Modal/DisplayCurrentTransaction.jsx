@@ -9,13 +9,7 @@ const DisplayCurrentTransaction = ({ transaction }) => {
   },[])
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        padding: "20px 0px",
-      }}
-    >
+    <div>
       <p>{transaction.action}</p>
       <p>{transaction.date}</p>
       <p>{withoutDot}</p>

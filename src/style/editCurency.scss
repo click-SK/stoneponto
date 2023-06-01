@@ -3,6 +3,7 @@
 .edit_curency_wrap{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-direction: column;
     margin-top: 20px;
     min-height: 200px;
@@ -14,7 +15,10 @@
 .edit_curency{
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: 80%;
+    height: 50px;
+    align-items: center;
+    border-bottom: 1px solid #22293575;
     p{
         font-size: 20px;
         font-weight: 600;
@@ -33,8 +37,36 @@
 
 .edit_plus_wrap{
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    p{
+        font-size: 20px;
+        margin: 0 5px 0 0 ;
+        min-width: 200px;
+    }
 }
 
 .edit_plus_value{
 
+}
+
+.edit_plus_input{
+    position: absolute;
+    display: flex;
+    right: 20%;
+    top: 16%;
+}
+
+
+.edit_plus_icon{
+    width: 20px;
+    height: 20px;
+    fill: $color_second;
+}
+
+.edit_plus_icon__active{
+    fill: $color_prime;
 }

@@ -3,26 +3,21 @@ import EditCurrentUser from "./EditCurrentUser";
 const CurrentUser = ({ user, setIsFetch }) => {
   const [isVisibleEdit, setIsVisibleEdit] = useState(false);
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          paddingBottom: "10px",
-        }}
-      >
-        <p style={{width:'33%'}}>Пошта: {user.email}</p>
-        <p style={{width:'33%'}}>Баланс: {user.balance.toFixed(0)}</p>
-        <div style={{width:'33%'}}>
-        <button  
-        onClick={() => setIsVisibleEdit(state => !state)}>More</button>
+    <>
+      <div className="user_wrap_item_name">
+        <p>{user.name}</p>
+        <p>Баланс: {user.balance.toFixed(0)}</p>
+        <div>
+        <button
+        onClick={() => setIsVisibleEdit(state => !state)}>Профіль</button>
         </div>
       </div>
-      {isVisibleEdit && 
+      {isVisibleEdit &&   
       <EditCurrentUser 
       user={user}
+      setIsVisibleEdit={setIsVisibleEdit}
       setIsFetch={setIsFetch}/>}
-    </div>
+    </>
   );
 };
 
