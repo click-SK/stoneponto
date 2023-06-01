@@ -1,0 +1,46 @@
+@import "./globalTamplate.scss";
+
+
+.admin_panel{
+    // max-width: 1150px;
+    width: 100%;
+    padding: 0 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // background: red;
+}
+
+.admin_panel__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    padding: 2px;
+    color: $color_text_white;
+    background: $color_second;
+}
+
+.admin_header__item{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+        &:hover{
+            background: $color_prime;
+            color: $color_second;
+            // font-weight: 600;
+        }
+}
+
+.active{
+    background: $color_prime;
+    color: $color_second;
+}
