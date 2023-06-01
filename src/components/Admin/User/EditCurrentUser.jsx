@@ -3,6 +3,7 @@ import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import EditCurrentUserDetails from './EditCurrentUserDetails';
 import EditBalance from './EditBalance';
 import EditUserPassword from './EditUserPassword';
+import DisabledUser from './DisabledUser';
 import Modal from '../../Modal/Modal';
 // import AdminTable from '../../Table/AdminTable';
 const EditCurrentUser = ({user, setIsFetch}) => {
@@ -57,6 +58,12 @@ const EditCurrentUser = ({user, setIsFetch}) => {
           title="Зміна пароля"
           setIsFetch={setIsFetch}
         />
+
+        <DisabledUser
+        user={user}
+        title={'Заблокувати користувача:'}
+        editPath={"https://ponto-print.herokuapp.com/update-user-status"}
+        setIsFetch={setIsFetch}/>
 
         <button className="button_open" onClick={handleOpenModal}>
           Історія транзакцій
