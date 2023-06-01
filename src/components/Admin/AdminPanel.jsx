@@ -5,6 +5,7 @@ import AddNewUser from './User/AddNewUser';
 import AllUsers from './User/AllUsers';
 import EditTable from './Table/EditTable';
 import AdminBlog from './Blog/AdminBlog';
+import '../../style/adminPanel.scss'
 const AdminPanel = () => {
     const [editPrice, setEditPrice] = useState(true);
     const [editCurrency, setEditCurrency] = useState(false);
@@ -67,15 +68,16 @@ const AdminPanel = () => {
         setEditPrice(false);
     }
 
+    
     return (
-        <div style={{width: '100%'}}>
-            <div style={{display:'flex', justifyContent:'space-around', paddingBottom:'50px'}}>
-                <p style={{fontSize: '20px'}} onClick={showPriceFunc}>Ціни на калькулятор</p>
-                <p style={{fontSize: '20px'}} onClick={showCurrencyFunc}>Валюта</p>
-                <p style={{fontSize: '20px'}} onClick={showAddNewUser}>Додати нового користувача</p>
-                <p style={{fontSize: '20px'}} onClick={showAllUser}>Всі користувачі</p>
-                <p style={{fontSize: '20px'}} onClick={showTable}>Таблиця</p>
-                <p style={{fontSize: '20px'}} onClick={showBlog}>Блог</p>
+        <div className='admin_panel'>
+            <div className='admin_panel__header'>
+                <p className={`admin_header__item ${editPrice ? 'active' : ' ' }  `} onClick={showPriceFunc}>Ціни на калькулятор</p>
+                <p className={`admin_header__item ${editCurrency ? 'active' : ' ' }  `} onClick={showCurrencyFunc}>Валюта</p>
+                <p className={`admin_header__item ${editAddNewUser ? 'active' : ' ' }  `} onClick={showAddNewUser}>Додати нового користувача</p>
+                <p className={`admin_header__item ${editAllUsers ? 'active' : ' ' }  `} onClick={showAllUser}>Всі користувачі</p>
+                <p className={`admin_header__item ${editTable ? 'active' : ' ' }  `} onClick={showTable}>Таблиця</p>
+                <p className={`admin_header__item ${editBlog ? 'active' : ' ' }  `} onClick={showBlog}>Блог</p>
             </div>
             {editPrice && <EditCalculator/>}
             {editCurrency && <EditCurrency/>}

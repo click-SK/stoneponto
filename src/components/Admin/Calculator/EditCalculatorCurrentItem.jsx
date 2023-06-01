@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {AiFillEdit} from 'react-icons/ai';
+import {RiFileEditFill} from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsIndex, currentItemIndex}) => {
     const {name} = item;
@@ -35,18 +36,21 @@ const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsInd
       };
 
     return (
-        <div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className='goods_edit_item'>
+        <div className='goods_edit_item_title'>
           <p>{t(`${name}`)}</p>
-          <p>{item.price}</p>
+          <p>{item.price} $</p>
+          {isEdit && 
+          <div className='goods_edit_item_input'>
+              <input value={newPrice} onChange={(e) => setNewPrice(e.target.value)}/>
+              <button onClick={handleEditButtonSave}>Save</button>
+          </div>
+          }
         </div>
-        <AiFillEdit onClick={handleEditButton}/>
-        {isEdit && 
-        <div>
-            <input value={newPrice} onChange={(e) => setNewPrice(e.target.value)}/>
-            <button onClick={handleEditButtonSave}>Save</button>
-        </div>
-        }
+        <RiFileEditFill
+        className={`goods_edit_icon ${isEdit? 'goods_edit_icon_active' : ''}`}
+        onClick={handleEditButton}/>
+
         </div>
     );
 };

@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import EditCalculatorCurrentArray from "./EditCalculatorCurrentArray";
 import { AiOutlineDown } from "react-icons/ai";
 
-const EditCalculatorFullData = ({ currentArray, title, mainId, editPath, setIsFetch, goodsIndex }) => {
+const EditCalculatorFullData = ({ currentArray, title, mainId, editPath, setIsFetch, goodsIndex, }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div>
-      <div>
+      <div className="goods_wrap">
         <div
-          style={{ display: "flex", justifyContent: "center" }}
+          className={`goods_title ${isOpen ? 'goods_title_active' : ''}`}
           onClick={() => setIsOpen((state) => !state)}
         >
           <p>{title}</p>
@@ -23,7 +22,6 @@ const EditCalculatorFullData = ({ currentArray, title, mainId, editPath, setIsFe
           goodsIndex={goodsIndex} />
         )}
       </div>
-    </div>
   );
 };
 

@@ -22,7 +22,7 @@ const Slider = ({ images, interval }) => {
             key={index}
             src={imageUrl}
             alt={`Slide ${index + 1}`}
-            className={`slider-image ${index === currentImage ? 'active' : ''}`}
+            className={`slider-image`}
           />
         ))}
       </div>

@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import EditCalculatorFullTitleBlock from './EditCalculatorFullTitleBlock';
+import '../../../style/editeCalc.scss'
+
 const EditCalculator = () => {
     const [goodsList, setGoodsList] = useState ([]);
     const [isFetch, setIsFetch] = useState(false);
-    const [isBaner, setIsBaner] = useState(false);
+    const [isBaner, setIsBaner] = useState(true);
     const [isPlenca, setIsPlenca] = useState(false);
     const [isPapear, setIsPapear] = useState(false);
     const [isTollingMaterial, setIsTollingMaterial] = useState(false);
@@ -92,17 +94,17 @@ const EditCalculator = () => {
  }
 
     return (
-      <div>
-        <div>
-          <p onClick={closeOpenBanerFunc}>Банери</p>
-          <p onClick={closeOpenPlencaFunc}>Пленка</p>
-          <p onClick={closeOpenPapearFunc}>Бумага</p>
-          <p onClick={closeOpenTollingMaterialFunc}>Давальческий материал</p>
-          <p onClick={closeOpenHolstFunc}>Холст</p>
-          <p onClick={closeOpenLightTransmittingPlasticFunc}>Светопропускной пластик</p>
-          <p onClick={closeOpenPolimanFunc}>Полиман</p>
+      <div className='pricing_calc'>
+        <div className='pricing_calc__categories'>
+          <p className={`categories_item ${isBaner ? 'active_item' : ' '}`} onClick={closeOpenBanerFunc}>Банери</p>
+          <p className={`categories_item ${isPlenca ? 'active_item' : ' '}`}  onClick={closeOpenPlencaFunc}>Пленка</p>
+          <p className={`categories_item ${isPapear ? 'active_item' : ' '}`}  onClick={closeOpenPapearFunc}>Бумага</p>
+          <p className={`categories_item ${isTollingMaterial ? 'active_item' : ' '}`}  onClick={closeOpenTollingMaterialFunc}>Давальческий материал</p>
+          <p className={`categories_item ${isHolst ? 'active_item' : ' '}`}  onClick={closeOpenHolstFunc}>Холст</p>
+          <p className={`categories_item ${isLightTransmittingPlastic ? 'active_item' : ' '}`}  onClick={closeOpenLightTransmittingPlasticFunc}>Светопропускной пластик</p>
+          <p className={`categories_item ${isPoliman ? 'active_item' : ' '}`}  onClick={closeOpenPolimanFunc}>Полиман</p>
         </div>
-        <div>
+        <div  >
           {isBaner && (
             <EditCalculatorFullTitleBlock
               goods={goodsList.length != 0 && goodsList[1]}
