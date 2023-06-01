@@ -38,11 +38,11 @@ const EditCurrency = () => {
                     <p className='curency_plus'>Мій відсоток: {currentValue}</p>
                 </div>
             </div>
-            <div>
+            <>
                 <EditCurrencyValue
                 setIsFetch={setIsFetch}
                 data={currentValue}/>
-            </div>
+            </>
         </div>
     );
 };

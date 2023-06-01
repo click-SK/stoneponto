@@ -53,21 +53,20 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
   };
 
   return (
-    <div style={{ padding: "20px 0px" }}>
-      <div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+      <div className='details_wrap'>
+        <div className='details_title'>
           <p>
             {title}: {data}
           </p>
           {isEditValue ? (
             <AiFillCloseCircle
               onClick={() => setIsEditValue((state) => !state)}
-              style={{ width: "auto", height: "30px" }}
+              
             />
           ) : (
             <AiFillEdit
               onClick={handleEditButton}
-              style={{ width: "auto", height: "30px" }}
+              
             />
           )}
         </div>
@@ -85,9 +84,9 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
               onChange={(e) => setNewValue(e.target.value)}
             />
             <p>Виберіть дію:</p>
-            <div style={{padding: '20px 0px'}}>
+            <div >
               <button
-              style={{margin: '0px 10px'}}
+              
                 onClick={() =>
                   setEditValue((state) => Number(state) + Number(newValue))
                 }
@@ -95,7 +94,7 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
                 +
               </button>
               <button
-              style={{margin: '0px 10px'}}
+              
                 onClick={() =>
                   setEditValue((state) => Number(state) - Number(newValue))
                 }
@@ -107,7 +106,6 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
           </div>
         )}
       </div>
-    </div>
   );
 };
 

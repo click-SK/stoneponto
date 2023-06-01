@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import EditCurrentUserDetails from './EditCurrentUserDetails';
+import DisplayCurrentTransaction from '../../Modal/DisplayCurrentTransaction';
 import EditBalance from './EditBalance';
 import EditUserPassword from './EditUserPassword';
 import DisabledUser from './DisabledUser';
 import Modal from '../../Modal/Modal';
 // import AdminTable from '../../Table/AdminTable';
-const EditCurrentUser = ({user, setIsFetch}) => {
+const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const handleCloseModal = () => {
@@ -19,53 +20,61 @@ const EditCurrentUser = ({user, setIsFetch}) => {
     
 
     return (
-      <div style={{ padding: "20px 0px" }}>
-        <EditCurrentUserDetails
-          data={user.name}
-          userId={user._id}
-          editPath={"https://ponto-print.herokuapp.com/update-name"}
-          title="Імя"
-          setIsFetch={setIsFetch}
-        />
+      <div className='edit_user_item_wrap'>
+        <div className='edit_user_data'>
+          <button 
+          className='close_user' 
+          onClick={() => setIsVisibleEdit(state => !state)}
+          >
+            Х
+          </button>
+          <div className='data_item user_info_edit'>
+            <EditCurrentUserDetails
+              data={user.name}
+              userId={user._id}
+              editPath={"https://ponto-print.herokuapp.com/update-name"}
+              title="Імя"
+              setIsFetch={setIsFetch}
+            />
+            <EditCurrentUserDetails
+            data={user.email}
+            userId={user._id}
+            editPath={""}
+            title="Пошта"
+            setIsFetch={setIsFetch}
+            />
+            <EditUserPassword
+            userId={user._id}
+            editPath={"https://ponto-print.herokuapp.com/update-password"}
+            title="Зміна пароля"
+            setIsFetch={setIsFetch}
+            />
+          </div>
+          <div className='data_item user_info_balance'>
+            <EditBalance
+              data={user.balance.toFixed(0)}
+              userId={user._id}
+              editPath={"https://ponto-print.herokuapp.com/update-balance"}
+              title="Баланс"
+              setIsFetch={setIsFetch}
+            />
+            <EditCurrentUserDetails
+              data={user.discountValue}
+              userId={user._id}
+              editPath={"https://ponto-print.herokuapp.com/update-discount"}
+              title="Знижка"
+              setIsFetch={setIsFetch}
+            />
+            <DisabledUser
+            user={user}
+            title={'Заблокувати користувача:'}
+            editPath={"https://ponto-print.herokuapp.com/update-user-status"}
+            setIsFetch={setIsFetch}/>
+          </div>
+        </div>
 
-        <EditCurrentUserDetails
-          data={user.discountValue}
-          userId={user._id}
-          editPath={"https://ponto-print.herokuapp.com/update-discount"}
-          title="Знижка"
-          setIsFetch={setIsFetch}
-        />
 
-        <EditCurrentUserDetails
-          data={user.email}
-          userId={user._id}
-          editPath={""}
-          title="Пошта"
-          setIsFetch={setIsFetch}
-        />
-
-        <EditBalance
-          data={user.balance.toFixed(0)}
-          userId={user._id}
-          editPath={"https://ponto-print.herokuapp.com/update-balance"}
-          title="Баланс"
-          setIsFetch={setIsFetch}
-        />
-
-        <EditUserPassword
-          userId={user._id}
-          editPath={"https://ponto-print.herokuapp.com/update-password"}
-          title="Зміна пароля"
-          setIsFetch={setIsFetch}
-        />
-
-        <DisabledUser
-        user={user}
-        title={'Заблокувати користувача:'}
-        editPath={"https://ponto-print.herokuapp.com/update-user-status"}
-        setIsFetch={setIsFetch}/>
-
-        <button className="button_open" onClick={handleOpenModal}>
+        <button className="button_open_history" onClick={handleOpenModal}>
           Історія транзакцій
         </button>
 
@@ -74,6 +83,8 @@ const EditCurrentUser = ({user, setIsFetch}) => {
           onClose={handleCloseModal}
           historyData={user.balanceHistory}
         />
+
+
 
         {/* <AdminTable
         allOrders={user.orders}/> */}

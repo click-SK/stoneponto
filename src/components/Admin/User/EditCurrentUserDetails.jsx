@@ -31,27 +31,27 @@ const EditCurrentUserDetails = ({data, editPath, title, userId, setIsFetch}) => 
       };
 
     return (
-        <div style={{padding: '20px 0px'}}>
-            <div>
-            <div style={{ display: "flex", justifyContent: 'space-around' }}>
-            <p>{title}: {data}</p>
-            {isEditValue 
-            ?
-            <AiFillCloseCircle onClick={() => setIsEditValue((state) => !state)} style={{width:'auto', height:'30px'}}/>
-            :
-            <AiFillEdit onClick={handleEditButton} style={{width:'auto', height:'30px'}}/>}
-            </div>
-            {isEditValue && (
-              <div>
-                <input
-                  value={editValue}
-                  onChange={(e) => setEditValue(e.target.value)}
-                />
-                <button onClick={handleEditButtonSave}>Зберегти зміни</button>
+            <div className='details_wrap'>
+              <div className='details_title'>
+              <p>{title}: {data}</p>
+              {isEditValue && (
+                <div>
+                  <input
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value)}
+                  />
+                  <button onClick={handleEditButtonSave}>Зберегти зміни</button>
+                </div>
+              )}
+
+              {isEditValue 
+              ?
+              <AiFillCloseCircle onClick={() => setIsEditValue((state) => !state)} />
+              :
+              <AiFillEdit onClick={handleEditButton} />}
               </div>
-            )}
+              
           </div>
-        </div>
     );
 };
 
