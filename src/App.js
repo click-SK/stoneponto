@@ -19,10 +19,10 @@ function App() {
       <FirstRequest />
       <Header />
       <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/news" element={<Blog />} />
         {user !== null && "isAdmin" in user ? (
           <>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/news" element={<Blog />} />
             {user?.isAdmin ? (
               // Admin Route
               <>
