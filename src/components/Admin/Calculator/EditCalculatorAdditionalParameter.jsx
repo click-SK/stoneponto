@@ -3,8 +3,8 @@ import { AiOutlineDown } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 import {RiFileEditFill} from 'react-icons/ri';
 
-const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, mainId, goodsIndex }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, mainId, goodsIndex, openCloseFunc, isOpen }) => {
+  // const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [newPrice, setNewPrice] = useState(0);
 
@@ -39,7 +39,7 @@ const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, 
       <div className="goods_wrap">
         <div
           className={`goods_title ${isOpen ? 'goods_title_active' : ''}`}
-          onClick={() => setIsOpen((state) => !state)}
+          onClick={openCloseFunc}
         >
           <p>{title}</p>
           <AiOutlineDown />
