@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import EditCurrencyValue from './EditCurrencyValue';
 import { useDispatch } from 'react-redux';
 import {fetchCurrency} from '../../../store/currency'
+import '../../../style/editCurency.scss'
+import {RiFileEditFill} from 'react-icons/ri';
+
 const EditCurrency = () => {
     const [bankCurrency, setBankCurrency] = useState('');
     const [currentStateCurrency, setCurrentStateCurrency] = useState('');
@@ -23,15 +26,17 @@ const EditCurrency = () => {
 
     
     return (
-        <div>
-            <div>
-                <p>Курс на сайті: {currentStateCurrency}</p>
-            </div>
-            <div>
-                <p>Курс банкцівський: {bankCurrency}</p>
-            </div>
-            <div>
-                <p>Мій відсоток: {currentValue}</p>
+        <div className='edit_curency_wrap'>
+            <div className='wrap_item edit_curency '>
+                <div >
+                    <p className='curency_site'>Курс на сайті: {currentStateCurrency}</p>
+                </div>
+                <div>
+                    <p className='curency_nbu'>Курс банкцівський: {bankCurrency}</p>
+                </div>
+                <div>
+                    <p className='curency_plus'>Мій відсоток: {currentValue}</p>
+                </div>
             </div>
             <div>
                 <EditCurrencyValue

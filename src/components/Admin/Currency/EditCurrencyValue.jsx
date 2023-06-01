@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {AiOutlineDown, AiFillEdit} from 'react-icons/ai'
+import {RiFileEditFill} from 'react-icons/ri';
+
 const EditCurrencyValue = ({data, setIsFetch}) => {
     const [isEdit, setIsEdit] = useState('');
     const [newvalue, setNewValue] = useState('');
@@ -29,13 +31,13 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
       };
 
     return (
-        <div>
-        <div>
-            <div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+
+            <div className='edit_plus_wrap'>
+                <p>Змінити курс</p> 
+              <div className='edit_plus_value'>
                 <p>{data}</p>
               </div>
-              <AiFillEdit onClick={handleEditButton} />
+              <RiFileEditFill onClick={handleEditButton} />
               {isEdit && (
                 <div>
                   <input
@@ -46,8 +48,7 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
                 </div>
               )}
             </div>
-        </div>
-      </div>
+
     );
 };
 
