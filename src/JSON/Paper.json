@@ -1,124 +1,152 @@
 {
-  "name": "Paper",
+  "nameUa": "Папір",
+  "nameRu": "Бумага",
   "goods": [
     {
-      "name": "SievePaper150Gr",
+      "nameUa": "Папір сіті 150 гр.",
+      "nameRu": "Бумага сити 150 гр.",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "Glossy1+0",
+          "nameUa": "Глянцева 1+0",
+          "nameRu": "Глянцевая 1+0",
           "price": 100
         },
         {
-          "name": "Matte1+0",
+          "nameUa": "Матова 1+0",
+          "nameRu": "Матовая 1+0",
           "price": 100
         },
         {
-          "name": "Glossy1+1",
+          "nameUa": "Глянцева 1+1",
+          "nameRu": "Глянцевая 1+1",
           "price": 100
         },
         {
-          "name": "Matte1+1",
+          "nameUa": "Матова 1+1",
+          "nameRu": "Матовая 1+1",
           "price": 100
         }
       ]
     },
     {
-      "name": "BluebackPaper115Gr",
+      "nameUa": "Папір блюбек 115 гр.",
+      "nameRu": "Бумага блюбэк 115 гр.",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "Glossy1+0",
+          "nameUa": "Глянцева 1+0",
+          "nameRu": "Глянцевая 1+0",
           "price": 100
         },
         {
-          "name": "Matte1+0",
+          "nameUa": "Матова 1+0",
+          "nameRu": "Матовая 1+0",
           "price": 100
         },
         {
-          "name": "Glossy1+1",
+          "nameUa": "Глянцева 1+1",
+          "nameRu": "Глянцевая 1+1",
           "price": 100
         },
         {
-          "name": "Matte1+1",
+          "nameUa": "Матова 1+1",
+          "nameRu": "Матовая 1+1",
           "price": 100
         }
       ],
       "poster": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "3x4м",
+          "nameUa": "3x4м",
+          "nameRu": "3x4м",
           "price": 100
         },
         {
-          "name": "3x6м",
+          "nameUa": "3x6м",
+          "nameRu": "3x6м",
           "price": 100
         },
         {
-          "name": "3x12м",
+          "nameUa": "3x12м",
+          "nameRu": "3x12м",
           "price": 100
         }
       ]

@@ -1,28 +1,34 @@
 {
-    "name": "Polyman",
+    "nameUa": "Поліман",
+    "nameRu": "Полиман",
       "goods": [
           {
               "quality": [
           {
-            "name": "ChooseQuality",
+            "nameUa": "Виберіть якість",
+            "nameRu": "Выберете качество",
             "price": 0
           },
                           {
-            "name": "720dpi",
+            "nameUa": "720dpi",
+            "nameRu": "720dpi",
             "price": 200
           },
           {
-            "name": "1080dpi",
+            "nameUa": "1080dpi",
+            "nameRu": "1080dpi",
             "price": 300
           }
         ],
               "cutting": [
           {
-            "name": "No",
+            "nameUa": "No",
+            "nameRu": "No",
             "price": 0
           },
           {
-            "name": "UnderTheCut",
+            "nameUa": "Під порізку",
+            "nameRu": "Под обрез",
             "price": 100
           }
         ]

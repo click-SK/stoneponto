@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { currentLanguage } from "../../store/language";
 import {fetchLanguage} from '../../store/language'
 
 const Blog = () => {
