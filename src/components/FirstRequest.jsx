@@ -7,7 +7,9 @@ const FirstRequest = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchAuthMe());
+        if(window.localStorage.getItem('token')) {
+            dispatch(fetchAuthMe());
+        }
         dispatch(fetchCurrency());
         dispatch(fetchLanguage());
     },[])

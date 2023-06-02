@@ -18,12 +18,22 @@ const LoginForm = () => {
                 password: password
             }
         ));
+        if(data.payload.message == 'User disabled') {
+            alert('Вас заблоковано, зверніться до менеджера')
+        }
+
+        if(data.payload.message == 'User not found' || data.payload.message == 'Password not found') {
+            alert('Невірний логін чи пароль')
+        }
       
           if('token' in data.payload) {
             window.localStorage.setItem('token', data.payload.token)
             navigate('/')
             window.location.reload();
           }
+          
+
+          console.log('data',data);
     }
     
     return (
