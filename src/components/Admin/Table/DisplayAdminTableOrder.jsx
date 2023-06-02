@@ -71,9 +71,11 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
     }, 1000);
   };
 
+  console.log('order',order);
+
   return (
     <>
-      {order.status.currentStatus == "new" && (
+      {order?.status?.currentStatus == "new" && (
         <div
           className="table_item table_item_new"
         >
@@ -85,7 +87,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           </div>
         </div>
       )}
-      {order.status.currentStatus == "download" && (
+      {order?.status?.currentStatus == "download" && (
         <div
           className="table_item table_item_download"
         >
@@ -119,7 +121,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           </div>
         </div>
       )}
-      {order.status.currentStatus == "finished" && (
+      {order?.status?.currentStatus == "finished" && (
         <div
           className="table_item table_item_finished"
         >

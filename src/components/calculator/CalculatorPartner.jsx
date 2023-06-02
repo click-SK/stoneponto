@@ -42,6 +42,11 @@ const CalculatorPartner = () => {
     const [allUsers, setAllUsers] = useState([]);
     const [currentId, setCurrentId] = useState('');
     const [currentUserState, setCurrentUserState] = useState('');
+    const [status] = useState({
+      name: 'New',
+      currentStatus: 'new',
+      paid: false
+    });
 
     const {currency} = useSelector((state) => state.currency);
 
@@ -217,14 +222,10 @@ const CalculatorPartner = () => {
       formData.append("count", count);
       formData.append("userId", currentId);
       formData.append("sum", totalSum);
-      formData.append("conditions", descArray);
+      formData.append("conditions", JSON.stringify(descArray));
       formData.append("notes", coment);
       formData.append("address", delivery);
-      formData.append("status", {
-        name: 'New',
-        currentStatus: 'new',
-        paid: false
-      });
+      formData.append("status", JSON.stringify(status));
       fetch("http://localhost:4444/create-table", {
         method: "POST",
         body: formData,
