@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLanguage } from "../../../store/language";
 import EditCalculatorCurrentTitleBlock from "./EditCalculatorCurrentTitleBlock";
 const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
   const [currentName, setCurrentName] = useState(false);
-  console.log('goods',goods);
+  const dispatch = useDispatch();
 
-  console.log('currentName',currentName);
+  const lang = useSelector((state) => state.lang.language);
+
+  useEffect(() => {
+      dispatch(fetchLanguage());
+    }, [lang]);
 
   return (
     <div className="pricing_calc__edit_block">
@@ -17,7 +23,7 @@ const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
             mainId={mainId}
             setIsFetch={setIsFetch}
             goodsIndex={idx}
-            isOpen={currentName == item.name ? true : false}
+            isOpen={currentName == (lang == "Ua" ? item.nameUa : item.nameRu) ? true : false}
             currentName={currentName}
             setCurrentName={setCurrentName}
             />

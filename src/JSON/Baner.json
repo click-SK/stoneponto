@@ -1,634 +1,783 @@
 {
-  "name": "Banners",
+  "nameUa": "Банери",
+  "nameRu": "Банери",
   "goods": [
     {
-      "name": "Banner440GrLaminated",
+      "nameUa": "Банер 440 гр. Ламінований",
+      "nameRu": "Баннер 440 гр. Ламинированный",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "eyelets": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "InTheCorners",
+          "nameUa": "По кутах",
+          "nameRu": "По углам",
           "price": 100
         },
         {
-          "name": "ByTags",
+          "nameUa": "По мітках",
+          "nameRu": "По меткам",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         },
         {
-          "name": "LeaveMarginsOf5Cm",
+          "nameUa": "Залишити поля по 5 см",
+          "nameRu": "Оставить поля по 5 см",
           "price": 100
         }
       ],
       "solderingOfGates": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ],
       "solderingPockets": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ]
     },
     {
-      "name": "Banner510GrCast",
+      "nameUa": "Банер 510 гр. литий",
+      "nameRu": "Баннер 510 гр. литой",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "eyelets": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "InTheCorners",
+          "nameUa": "По кутах",
+          "nameRu": "По углам",
           "price": 100
         },
         {
-          "name": "ByTags",
+          "nameUa": "По мітках",
+          "nameRu": "По меткам",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         },
         {
-          "name": "LeaveMarginsOf5Cm",
+          "nameUa": "Залишити поля по 5 см",
+          "nameRu": "Оставить поля по 5 см",
           "price": 100
         }
       ],
       "solderingOfGates": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ],
       "solderingPockets": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ]
     },
     {
-      "name": "TranslucentBanner440Gr",
+      "nameUa": "Просвітний банер 440 гр.",
+      "nameRu": "Просветный баннер 440 гр.",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "eyelets": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "InTheCorners",
+          "nameUa": "По кутах",
+          "nameRu": "По углам",
           "price": 100
         },
         {
-          "name": "ByTags",
+          "nameUa": "По мітках",
+          "nameRu": "По меткам",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         },
         {
-          "name": "LeaveMarginsOf5Cm",
+          "nameUa": "Залишити поля по 5 см",
+          "nameRu": "Оставить поля по 5 см",
           "price": 100
         }
       ],
       "solderingOfGates": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ],
       "solderingPockets": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ]
     },
     {
-      "name": "GridBanner380Gr",
+      "nameUa": "Сітка банерна 380 гр.",
+      "nameRu": "Сетка баннерная 380 гр.",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "eyelets": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "InTheCorners",
+          "nameUa": "По кутах",
+          "nameRu": "По углам",
           "price": 100
         },
         {
-          "name": "ByTags",
+          "nameUa": "По мітках",
+          "nameRu": "По меткам",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         },
         {
-          "name": "LeaveMarginsOf5Cm",
+          "nameUa": "Залишити поля по 5 см",
+          "nameRu": "Оставить поля по 5 см",
           "price": 100
         }
       ],
       "solderingOfGates": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ],
       "solderingPockets": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "AroundThePerimeter",
+          "nameUa": "По периметру",
+          "nameRu": "По периметру",
           "price": 100
         },
         {
-          "name": "LeftAndRight",
+          "nameUa": "Ліворуч і праворуч",
+          "nameRu": "Слева и справа",
           "price": 100
         },
         {
-          "name": "UpAndDown",
+          "nameUa": "Зверху та знизу",
+          "nameRu": "Сверху и снизу",
           "price": 100
         },
         {
-          "name": "LetterP",
+          "nameUa": "Літерою П",
+          "nameRu": "Буквой П",
           "price": 100
         },
         {
-          "name": "Left",
+          "nameUa": "Ліворуч",
+          "nameRu": "Слева",
           "price": 100
         },
         {
-          "name": "Right",
+          "nameUa": "Праворуч",
+          "nameRu": "Справа",
           "price": 100
         },
         {
-          "name": "Above",
+          "nameUa": "Зверху",
+          "nameRu": "Сверху",
           "price": 100
         },
         {
-          "name": "Bottom",
+          "nameUa": "Знизу",
+          "nameRu": "Снизу",
           "price": 100
         }
       ]

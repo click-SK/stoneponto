@@ -1,4 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLanguage } from "../../../store/language";
 import EditCalculatorFullData from "./EditCalculatorFullData";
 import EditCalculatorAdditionalParameter from "./EditCalculatorAdditionalParameter";
 import EditCalculatorCurrentArray from "./EditCalculatorCurrentArray";
@@ -19,6 +21,14 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
 
     const [isBanerLaminated, setIsBanerLaminated] = useState(false);
     const [isBanerCast, setIsBanerCast] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const lang = useSelector((state) => state.lang.language);
+
+    useEffect(() => {
+        dispatch(fetchLanguage());
+      }, [lang]);
 
     console.log('arrayGoods',arrayGoods);
 
@@ -174,14 +184,14 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
     
   return (
     <div className="pricing_calc__edit_item">
-      {arrayGoods?.name
+      {arrayGoods?.nameUa
       ?
       <>
       <div
         className={`pricing_calc__edit_item_title ${isOpen ? 'pricing_calc__edit_item_title__active' : '' }`}
-        onClick={() => setCurrentName(arrayGoods.name)}
+        onClick={() => setCurrentName((lang == "Ua" ? arrayGoods.nameUa : arrayGoods.nameRu))}
       >
-        <p>{arrayGoods.name}</p>
+        <p>{lang == "Ua" ? arrayGoods.nameUa : arrayGoods.nameRu}</p>
         <AiOutlineDown />
       </div>
       {isOpen && (

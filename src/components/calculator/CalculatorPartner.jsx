@@ -6,6 +6,7 @@ import ModalPrice from './ModalPrice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { currentUser } from "../../store/auth";
+import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
 
 
@@ -40,6 +41,7 @@ const CalculatorPartner = () => {
     const [descArray, setdescArray] = useState({});
     const [allUsers, setAllUsers] = useState([]);
     const [currentId, setCurrentId] = useState('');
+    const [currentUserState, setCurrentUserState] = useState('');
 
     const {currency} = useSelector((state) => state.currency);
 
@@ -48,7 +50,9 @@ const CalculatorPartner = () => {
     const quadrature = ((Number(width) * Number(height))/1000000)
 
     const user = useSelector(currentUser);
-    console.log('user',user);
+    const dispatch = useDispatch();
+
+    const lang = useSelector((state) => state.lang.language);
 
     useEffect(() => {
         fetch('https://ponto-print.herokuapp.com/get-all-calc')
@@ -66,7 +70,9 @@ const CalculatorPartner = () => {
     })
    },[user])
 
-   console.log('descArray',descArray);
+   useEffect(() => {
+    dispatch(fetchLanguage())
+  },[lang])
 
     //  console.log(goodsList);
   //    useEffect(() => {
@@ -98,37 +104,37 @@ const CalculatorPartner = () => {
   useEffect(() =>{
     const descriptionObj = {
       cutting: {
-        option: selectedOptionCutting?.price ? 'Cutting' : '',
-        name: selectedOptionCutting?.price ? selectedOptionCutting?.name : '',
+        option: selectedOptionCutting?.price ? (lang == "Ua" ? 'Порізка: ' : 'Порезка: ') : '',
+        name: selectedOptionCutting?.price ? (lang == "Ua" ? selectedOptionCutting?.nameUa : selectedOptionCutting?.nameRu) : '',
       },
       solderGates: {
-        option: selectedOptionSolderGates?.price ? 'SolderingOfGates' : '',
-        name: selectedOptionSolderGates?.price ? selectedOptionSolderGates?.name : '',
+        option: selectedOptionSolderGates?.price ? (lang == "Ua" ? 'Пропаювання підворіт: ' : 'Пропайка подворотов: ') : '',
+        name: selectedOptionSolderGates?.price ? (lang == "Ua" ? selectedOptionSolderGates?.nameUa : selectedOptionSolderGates?.nameRu) : '',
       },
       solderPockets: {
-        option: selectedOptionSolderPockets?.price ? 'SolderingPockets' : '',
-        name: selectedOptionSolderPockets?.price ? selectedOptionSolderPockets?.name : '',
+        option: selectedOptionSolderPockets?.price ? (lang == "Ua" ? 'Пропаювання кишень: ' : 'Пропайка карманов: ') : '',
+        name: selectedOptionSolderPockets?.price ? (lang == "Ua" ? selectedOptionSolderPockets?.nameUa : selectedOptionSolderPockets?.nameRu) : '',
       },
       lamination: {
-        option: selectedOptionLamination?.price ? 'Lamination' : '',
-        name: selectedOptionLamination?.price ? selectedOptionLamination?.name : '',
+        option: selectedOptionLamination?.price ? (lang == "Ua" ? 'Ламінація: ' : 'Ламинация: ') : '',
+        name: selectedOptionLamination?.price ? (lang == "Ua" ? selectedOptionLamination?.nameUa : selectedOptionLamination?.nameRu) : '',
       },
       poster: {
-        option: selectedOptionPoster?.price ? 'Poster' : '',
-        name: selectedOptionPoster?.price ? selectedOptionPoster?.name : '',
+        option: selectedOptionPoster?.price ? (lang == "Ua" ? 'Постер: ' : 'Постер: ') : '',
+        name: selectedOptionPoster?.price ? (lang == "Ua" ? selectedOptionPoster?.nameUa : selectedOptionPoster?.nameRu) : '',
       },
       stretch: {
-        name:  isStretch ? 'StretchOnTheStretcher' : ''
+        name:  isStretch ? (lang == "Ua" ? 'Натяжка на підрамник: ' : 'Натяжка на подрамник: ') : ''
       },
       stamp: {
-        name: isStamp ? 'WithAStamp' : ''
+        name: isStamp ? (lang == "Ua" ? 'З печаткою: ' : 'С печатью: ') : ''
       },
       mounting: {
-        name:  isMounting ? 'Mounting' : ''
+        name:  isMounting ? (lang == "Ua" ? 'Намонтування: ' : 'Намонтаживание: ') : ''
       },
       eyelets: {
-        option: selectedOptionEyelets ? 'Eyelets' : '',
-        name: selectedOptionEyelets ? selectedOptionEyelets?.name : '',
+        option: selectedOptionEyelets ? (lang == "Ua" ? ' Люверси: ' : ' Люверсы: ') : '',
+        name: selectedOptionEyelets ? (lang == "Ua" ? selectedOptionEyelets?.nameUa : selectedOptionEyelets?.nameRu) : '',
         value: selectedOptionEyelets ? ` ${selectedOptionEyeletsValue} см` : ''
       } 
     }
@@ -144,19 +150,13 @@ const CalculatorPartner = () => {
      (selectedOptionPoster?.price * currency.currency || 0) + (isStamp ? currentItem?.stamp : 0) + 
      (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
      (isMounting ? currentItem?.mounting: 0);
-
-     console.log('count',count);
       
      
      // Если в заказе, по квадратным метрам больше 20 квадратов, то на общую сумму присваивается скидка -10%. 
 
-     console.log('total sum WORK!!!',totalSum1);
-     console.log('currency',currency.currency);
      setTotalSum(totalSum1 * count)
      },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
       selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting])
-
-     console.log('totalSum',totalSum);
 
       useEffect(()=>{
         setSelectedOptionQuality('');
@@ -177,7 +177,7 @@ const CalculatorPartner = () => {
       },[currentItem])
 
     const finlObj = {
-      material: currentItem?.name,
+      material: (lang == "Ua" ? currentItem?.nameUa : currentItem?.nameRu),
       width: width,
       height:height,
       count:count,
@@ -205,33 +205,29 @@ const CalculatorPartner = () => {
         }
     }
 
-    console.log('currentIdId',currentId);
+    console.log('selectedFile',selectedFile);
 
     const handleTotalSum = () => {
-
-      fetch("https://ponto-print.herokuapp.com/create-table", {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("material", (lang == "Ua" ? currentItem?.nameUa : currentItem?.nameRu));
+      formData.append("quality", (lang == "Ua" ? selectedOptionQuality?.nameUa : selectedOptionQuality?.nameRu));
+      formData.append("width", width);
+      formData.append("height", height);
+      formData.append("count", count);
+      formData.append("userId", currentId);
+      formData.append("sum", totalSum);
+      formData.append("conditions", descArray);
+      formData.append("notes", coment);
+      formData.append("address", delivery);
+      formData.append("status", {
+        name: 'New',
+        currentStatus: 'new',
+        paid: false
+      });
+      fetch("http://localhost:4444/create-table", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          file: "File path",
-          material: currentItem.name,
-          quality: selectedOptionQuality.name,
-          width,
-          height,
-          count,
-          userId: currentId,
-          sum: totalSum,
-          conditions: descArray,
-          notes: coment,
-          address: delivery,
-          status: {
-            name: 'New',
-            currentStatus: 'new',
-            paid: false
-          }
-        }),
+        body: formData,
       }).then((res) => res.json());
       setTimeout(() => {
           window.location.reload();
@@ -248,8 +244,6 @@ const CalculatorPartner = () => {
       setIsMounting(state => !state)
     }
 
-    console.log('isOpenAllusers',isOpenAllusers);
-
     // Додати люверси + інпут 30 см
     // перевірити суму та опис                  -- 
     // додати модалка ціни за метр              --
@@ -258,37 +252,41 @@ const CalculatorPartner = () => {
     // Переробити селект колір, додати пошук 
 
     const setCurrentIdFunc = (e) => {
-      setCurrentId(e);
+      setIsOpenAllusers((state) => !state)
+      setCurrentId(e._id);
       setIsOpenAllusers((state) => !state);
+      console.log('e',e.name);
+      setCurrentUserState(e?.name);
     }
+
+    console.log('allUsers',allUsers);
 
     return (
       <div className="calc_wrap">
         <title>
           <h2>Загрузка файла</h2>
-          <div
-            className="selected-option"
-            onClick={() => setIsOpenAllusers((state) => !state)}
-          >
-            Open select
-          </div>
-          <div className="custom-select">
-            
-            {isOpenAllusers && (
-              <div className="options">
-                {allUsers.length != 0 &&
-                  allUsers.map((user) => (
-                    <p
-                      style={{ fontSize: "24px" }}
-                      onClick={() => setCurrentIdFunc(user._id)}
-                      key={user._id}
-                    >
-                      {user.name}
-                    </p>
-                  ))}
-              </div>
-            )}
-          </div>
+          {user && user?.isAdmin && (
+            <div
+              className="custom-select"
+              onClick={() => setIsOpenAllusers((state) => !state)}
+            >
+              {allUsers.length != 0 && (currentUserState || allUsers[0].name)}
+              {isOpenAllusers && (
+                <div className="options">
+                  {allUsers.length != 0 &&
+                    allUsers.map((user) => (
+                      <p
+                        style={{ fontSize: "24px" }}
+                        onClick={() => setCurrentIdFunc(user)}
+                        key={user._id}
+                      >
+                        {user.name}
+                      </p>
+                    ))}
+                </div>
+              )}
+            </div>
+          )}
           <button className="btn" onClick={() => setIsOpen(!isOpen)}>
             Цены за 1м2
           </button>
@@ -369,7 +367,7 @@ const CalculatorPartner = () => {
                   selectedOption={selectedOptionEyelets}
                   setSelectedOption={setSelectedOptionEyelets}
                 />
-                {selectedOptionEyelets?.name !== "InTheCorners" ? (
+                {selectedOptionEyelets?.nameUa !== "По кутах" ? (
                   <InputsTamplate
                     title={"через (cм)"}
                     type={"text"}

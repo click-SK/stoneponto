@@ -1,12 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState,useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLanguage } from "../../../store/language";
 import {AiFillEdit} from 'react-icons/ai';
 import {RiFileEditFill} from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsIndex, currentItemIndex}) => {
-    const {name} = item;
     const [isEdit, setIsEdit] = useState(false);
     const [newPrice, setNewPrice] = useState(0);
     const { t } = useTranslation();
+
+    const dispatch = useDispatch();
+
+    const lang = useSelector((state) => state.lang.language);
+
+    useEffect(() => {
+        dispatch(fetchLanguage());
+      }, [lang]);
 
     const handleEditButtonSave = () => {
         setIsEdit((isEdit) => !isEdit);
@@ -38,7 +47,7 @@ const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsInd
     return (
         <div className='goods_edit_item'>
         <div className='goods_edit_item_title'>
-          <p>{t(`${name}`)}</p>
+          <p>{lang == "Ua" ? item.nameUa : item.nameRu}</p>
           <p>{item.price} $</p>
           {isEdit && 
           <div className='goods_edit_item_input'>

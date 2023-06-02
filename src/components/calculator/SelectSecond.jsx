@@ -1,23 +1,25 @@
 import React, { useState,useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
 import { useTranslation } from 'react-i18next';
 
 const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
     const { t } = useTranslation();
-    // selectedOption, setSelectedOption
-    // const [selectedOption, setSelectedOption] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    const lang = useSelector((state) => state.lang.language);
+
+    useEffect(() => {
+        dispatch(fetchLanguage());
+      }, [lang]);
   
     
       const selectItemFunc = (e) => {
         setSelectedOption(e);
         setIsOpen(false);
     }
-    // console.log(selectedOption?.price);
-
-    //  useEffect(() =>{
-    //     setTotalSum(selectedOption?.price)
-    //  },[selectedOption])
 
     
 
@@ -28,15 +30,15 @@ const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
             <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
                 {selectedOption?.imageColor && 
                     <img className='color_img' src={`https://ponto-print.herokuapp.com${selectedOption?.imageColor}`}/>}
-                {(selectedOption?.name && t(`${selectedOption?.name}`)) || t(`${item[0]?.name}`)}
+                {(selectedOption?.nameUa && lang == "Ua" ? selectedOption.nameUa : selectedOption.nameUa ) || (lang == "Ua" ? item[0]?.nameUa : item[0]?.nameUa)}
             </div>
             {isOpen && (
                 <div className="options">
-                    {item.map((el,id) => (
-                        <div className="option" key={id} onClick={() => selectItemFunc(el)}>
+                    {item.map((el) => (
+                        <div className="option" key={el._id} onClick={() => selectItemFunc(el)}>
                             {el?.imageColor && 
                             <img className='color_img' src={`https://ponto-print.herokuapp.com${el.imageColor}`}/>}
-                            {t(`${el.name}`)}
+                            {lang == "Ua" ? <>{el.nameUa}</> : <>{el.nameRu}</>}
                         </div>
                     ))}
                 </div>

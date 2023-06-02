@@ -1,268 +1,326 @@
 {
-  "name": "Film",
+  "nameUa": "Плівка",
+  "nameRu": "Пленка",
   "goods": [
     {
-      "name": "GlossyFilm",
+      "nameUa": "Глянцева плівка",
+      "nameRu": "Глянцевая пленка",
       "mounting": 500,
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         },
         {
-          "name": "Plotter",
+          "nameUa": "Плоттерна",
+          "nameRu": "Плоттерная",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "Matte",
+          "nameUa": "Матова",
+          "nameRu": "Матовая",
           "price": 100
         },
         {
-          "name": "Glossy",
+          "nameUa": "Глянцева",
+          "nameRu": "Глянцевая",
           "price": 100
         }
       ]
     },
     {
-      "name": "MatteFilm",
+      "nameUa": "Матова плівка",
+      "nameRu": "Матовая пленка",
       "mounting": 500,
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         },
         {
-          "name": "Plotter",
+          "nameUa": "Плоттерна",
+          "nameRu": "Плоттерная",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "Matte",
+          "nameUa": "Матова",
+          "nameRu": "Матовая",
           "price": 100
         },
         {
-          "name": "Glossy",
+          "nameUa": "Глянцева",
+          "nameRu": "Глянцевая",
           "price": 100
         }
       ]
     },
     {
-      "name": "TransparentSelfAdhesiveFilm",
+      "nameUa": "Прозора плівка, що самоклеїться",
+      "nameRu": "Прозрачная самоклеющаяся пленка",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         },
         {
-          "name": "Plotter",
+          "nameUa": "Плоттерна",
+          "nameRu": "Плоттерная",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "Matte",
+          "nameUa": "Матова",
+          "nameRu": "Матовая",
           "price": 100
         },
         {
-          "name": "Glossy",
+          "nameUa": "Глянцева",
+          "nameRu": "Глянцевая",
           "price": 100
         },
         {
-          "name": "White",
+          "nameUa": "Біла",
+          "nameRu": "Белая",
           "price": 100
         }
       ]
     },
     {
-      "name": "PerforatedFilm",
+      "nameUa": "Перфорована плівка",
+      "nameRu": "Перфорированная пленка",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         }
       ]
     },
     {
-      "name": "SelfAdhesiveFilmWithBlackAdhesiveLayer",
+      "nameUa": "Самоклеюча плівка з чорним клейовим шаром",
+      "nameRu": "Самоклеющаяся пленка с черным клеевым слоем",
       "price": 100,
       "quality": [
         {
-          "name": "ChooseQuality",
+          "nameUa": "Виберіть якість",
+          "nameRu": "Выберете качество",
           "price": 0
         },
         {
-          "name": "720dpi",
+          "nameUa": "720dpi",
+          "nameRu": "720dpi",
           "price": 100
         },
         {
-          "name": "1080dpi",
+          "nameUa": "1080dpi",
+          "nameRu": "1080dpi",
           "price": 200
         },
         {
-          "name": "1440dpi",
+          "nameUa": "1440dpi",
+          "nameRu": "1440dpi",
           "price": 300
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "UnderTheCut",
+          "nameUa": "Під порізку",
+          "nameRu": "Под обрез",
           "price": 100
         },
         {
-          "name": "Plotter",
+          "nameUa": "Плоттерна",
+          "nameRu": "Плоттерная",
           "price": 100
         }
       ],
       "lamination": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "Matte",
+          "nameUa": "Матова",
+          "nameRu": "Матовая",
           "price": 100
         },
         {
-          "name": "Glossy",
+          "nameUa": "Глянцева",
+          "nameRu": "Глянцевая",
           "price": 100
         }
       ]
     },
     {
-      "name": "Oracal641SeriesColorFilm",
+      "nameUa": "Кольорова плівка серії Oracal 641",
+      "nameRu": "Цветная пленка серии Oracal 641",
       "mounting": 500,
       "stamp": 500,
       "price": 100,
       "color": [
         {
           "imageColor": "image1",
-          "name": "Зеркальне золото",
+          "nameUa": "Зеркальне золото",
+          "nameRu": "Зеркальне золото",
           "price": 100
         },
         {
           "imageColor": "image2",
-          "name": "Зеркальне серебро",
+          "nameUa": "Зеркальне серебро",
+          "nameRu": "Зеркальне серебро",
           "price": 100
         }
       ],
       "cutting": [
         {
-          "name": "No",
+          "nameUa": "Ні",
+          "nameRu": "Нет",
           "price": 0
         },
         {
-          "name": "Plotter",
+          "nameUa": "Плоттерна",
+          "nameRu": "Плоттерная",
           "price": 100
         }
       ]

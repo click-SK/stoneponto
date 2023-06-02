@@ -1,8 +1,17 @@
 import React, { useState,useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
 import '../../style/modal.scss'
 
 const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
+    const dispatch = useDispatch();
+
+    const lang = useSelector((state) => state.lang.language);
+
+    useEffect(() => {
+      dispatch(fetchLanguage());
+    }, [lang]);
     
 
     if (!isOpen) return null;
@@ -27,16 +36,17 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                         <div className='table_item_row' key={idx}>
                             <div className='colum_item colum_item_name'>
                                 <div>
-                                    {item.name == 'Banners' || item.name == 'Film' || item.name == 'Paper' 
+                                    {item.nameUa == "Банери" || item.nameUa == "Плівка" || item.nameUa == "Папір" 
                                     ? 
-                                    <h4 style={{fontWeight:700}}>{ item.name !== 'Banners' && item.name !== 'Film' && item.name !== 'Paper' && item.name}</h4>
+                                    <h4 style={{fontWeight:700}}>{ item.nameUa !== 'Банери' && item.nameUa !== 'Плівка' && item.nameUa !== 'Папір' && 
+                                    lang == "Ua" ? <>{item.nameUa}</> : <>{item.nameRu}</>}</h4>
                                     :
-                                    <p>{item.name !== 'SelectMaterial' &&   item.name}</p>
+                                    <p>{item.nameUa !== 'Виберіть матеріал' &&   lang == "Ua" ? <>{item.nameUa}</> : <>{item.nameRu}</>}</p>
                                     }   
                                 </div>
                                 {item?.goods.length != 0 && item?.goods.map((el,id) => (
                                 <div className="value_item" key={id}>
-                                    {el.name !== 'Oracal641SeriesColorFilm' && el.name}
+                                    {el.nameUa !== 'Кольорова плівка серії Oracal 641' && lang == "Ua" ? <>{el.nameUa}</> : <>{item.nameRu}</>}
                                 </div>
                         ))}
                             </div>
@@ -45,7 +55,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                 {item?.goods.length !== 0 && item?.goods.map((el, id) => (
                                     <div key={id}>
                                         {el.quality.map((qa, idx) => (
-                                            qa.name === '720dpi' && qa.price && (
+                                            qa.nameUa === '720dpi' && qa.price && (
                                             <p key={idx} className='value_item price_value'>{qa.price}</p>
                                             )
                                         ))}
@@ -56,7 +66,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                 {item?.goods.length !== 0 && item?.goods.map((el, id) => (
                                     <div key={id}>
                                         {el.quality.map((qa, idx) => (
-                                            qa.name === '1080dpi' && qa.price && (
+                                            qa.nameUa === '1080dpi' && qa.price && (
                                             <p key={idx} className='value_item price_value'>{qa.price}</p>
                                             )
                                         ))}
@@ -69,7 +79,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                             {el.quality.length !== 0 && 
                                                 <div>
                                                     {el.quality.map((qa, idx) => (
-                                                    qa.name === '1440dpi' && 
+                                                    qa.nameUa === '1440dpi' && 
                                                     ( <p key={idx} className='value_item price_value'>{qa.price}</p> )
 
 

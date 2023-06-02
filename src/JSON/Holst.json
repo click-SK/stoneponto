@@ -1,25 +1,30 @@
 {
-    "name": "Canvas",
+    "nameUa": "Полотно",
+    "nameRu": "Холст",
       "goods": [
           {
             "stretchOnTheStretcher":500,
             "quality": [
           {
-            "name": "ChooseQuality",
+            "nameUa": "Виберіть якість",
+            "nameRu": "Выберете качество",
             "price": 0
           },
           {
-            "name": "1440dpi",
+            "nameUa": "1440dpi",
+            "nameRu": "1440dpi",
             "price": 300
           }
         ],
               "cutting": [
           {
-            "name": "No",
+            "nameUa": "Ні",
+            "nameRu": "Нет",
             "price": 0
           },
           {
-            "name": "UnderTheCut",
+            "nameUa": "Під порізку",
+            "nameRu": "Под обрез",
             "price": 100
           }
         ]
