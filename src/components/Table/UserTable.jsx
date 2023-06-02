@@ -5,7 +5,7 @@ const UserTable = ({allOrders, currentUser}) => {
 
     return (
         <div>
-        <div style={{borderBottom: '1px solid black', display:'flex',justifyContent:'space-around'}}>
+        <div  className='table_header'>
             <div>
                 <p>Id:</p>
             </div>
