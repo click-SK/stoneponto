@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import AddNewPost from "./AddNewPost";
 import EditPost from "./EditPost";
+import '../../../style/editeBlog.scss'
 const AdminBlog = () => {
   const [addingNewPost, setAddingNewPost] = useState(false);
-  const [editPost, setEditPost] = useState(false);
+  const [editPost, setEditPost] = useState(true);
 
   const addingNewPostFunc = () => {
     setAddingNewPost(true);
@@ -15,10 +16,10 @@ const AdminBlog = () => {
     setAddingNewPost(false);
   }
   return (
-    <div>
-      <div className="admin_panel__header">
-        <p className="admin_header__item" onClick={addingNewPostFunc}>Додати новий пост</p>
-        <p className="admin_header__item" onClick={editPostFunc}>Редагувати пости</p>
+    <div className="admin_panel_blog">
+      <div className="admin_panel_blog_header">
+        <p className={`admin_panel_blog_header__item ${addingNewPost ? 'active_blog_item' : ''}`} onClick={addingNewPostFunc}>Додати новий пост</p>
+        <p className={`admin_panel_blog_header__item ${editPost ? 'active_blog_item' : ''}`} onClick={editPostFunc}>Редагувати пости</p>
       </div>
       {addingNewPost && <AddNewPost />}
       {editPost && <EditPost />}
