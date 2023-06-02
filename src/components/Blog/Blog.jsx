@@ -18,9 +18,7 @@ const Blog = () => {
     dispatch(fetchLanguage())
   },[lang])
 
-  console.log('lang',lang);
 
-  console.log("allPosts", allPosts);
   return (
     <div>
       {allPosts && allPosts.map((post) => (

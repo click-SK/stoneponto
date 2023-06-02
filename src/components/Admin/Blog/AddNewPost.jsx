@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AddNewPost = () => {
   const [image, setImage] = useState(null);
@@ -7,6 +9,12 @@ const AddNewPost = () => {
   const [titleRu, setTitleRu] = useState("");
   const [descriptionUa, setDescriptionUa] = useState("");
   const [descriptionRu, setDescriptionRu] = useState("");
+
+  const toolbarOptions = [
+    [{ 'size': ['small', false, 'large', 'huge'] }], // розмір шрифту
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }], // налаштування заголовків
+    [{ 'color': ['red','white', 'black'] }, { 'background': ['red', 'grey', 'black', 'white'] }], // колір тексту та фону
+  ];
 
   useEffect(() => {
     if (image) {
@@ -25,7 +33,6 @@ const AddNewPost = () => {
     setImage(e.target.files[0]);
   };
 
-  console.log("image", image);
 
   const createNewPost = () => {
     const formData = new FormData();
@@ -55,72 +62,84 @@ const AddNewPost = () => {
     setImage(null);
     setImageSrc(null);
   };
+  const handleContentChangeUa = (value) => {
+    setDescriptionUa(value);
+  };
+  const handleContentChangeRu = (value) => {
+    setDescriptionRu(value);
+  };
 
   return (
-    <div>
-        <div>
-          {!imageSrc && (
-            <button onClick={() => inputFileRef.current.click()}>
-              Вибрати фото
-            </button>
-          )}
-          <input
-            type="file"
-            name="img"
-            onChange={handleImageChange}
-            ref={inputFileRef}
-            hidden
-          />
-          <div style={{ width: "100%" }}>
-            <div
-              style={{ width: "300px", height: "300px", margin: "20px 0px" }}
-            >
-              {imageSrc && (
-                <>
-                  <img
-                    src={imageSrc}
-                    alt="Selected"
-                    style={{ width: "auto", height: "100%" }}
-                  />
-                  <button onClick={removeImage}>Видалити</button>
-                </>
+        <div className="add_post_wrap">
+          <div className="flex_row">
+            <div className="photo_add_wrap">
+              {!imageSrc && (
+                <button onClick={() => inputFileRef.current.click()}>
+                  Вибрати фото
+                </button>
               )}
-            </div>
-            <div>
-              <p>Заголовок Українською</p>
               <input
-                value={titleUa}
-                onChange={(e) => setTitleUa(e.target.value)}
+                type="file"
+                name="img"
+                onChange={handleImageChange}
+                ref={inputFileRef}
+                hidden
               />
+                <div className="photo_add">
+                {imageSrc && (
+                  <>
+                    <img
+                      src={imageSrc}
+                      alt="Selected"
+                    />
+                    <button onClick={removeImage}>Видалити</button>
+                  </>
+                )}
+              </div>
             </div>
-            <div>
-              <p>Заголовок Російською</p>
-              <input
-                value={titleRu}
-                onChange={(e) => setTitleRu(e.target.value)}
-              />
-            </div>
+            <div className="title_wrap">
+              <div className="title_item">
+                <p>Заголовок Українською</p>
+                <input
+                  value={titleUa}
+                  onChange={(e) => setTitleUa(e.target.value)}
+                />
+              </div>
+              <div className="title_item">
+                <p>Заголовок Російською</p>
+                <input
+                  value={titleRu}
+                  onChange={(e) => setTitleRu(e.target.value)}
+                />
+              </div>
           </div>
-
-          <div style={{ width: "100%" }}>
-            <div>
+          </div>
+          <div className="descript_wrap">
+            <div className="descript_item">
               <p>Опис Українською</p>
-              <textarea
+              {/* <textarea
                 value={descriptionUa}
                 onChange={(e) => setDescriptionUa(e.target.value)}
-              />
+              /> */}
+              <ReactQuill
+              className="textarea"
+               value={descriptionUa}
+               onChange={handleContentChangeUa}
+              //  modules={{ toolbar: toolbarOptions }}
+               />
             </div>
-            <div>
+            <div className="descript_item">
               <p>Опис Російською</p>
-              <textarea
-                value={descriptionRu}
-                onChange={(e) => setDescriptionRu(e.target.value)}
-              />
+              <ReactQuill
+              className="textarea"
+               value={descriptionRu}
+               onChange={handleContentChangeRu}
+              //  modules={{ toolbar: toolbarOptions }}
+               />
             </div>
           </div>
           <button onClick={createNewPost}>Створити пост</button>
         </div>
-    </div>
   );
 };
 

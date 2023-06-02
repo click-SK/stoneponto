@@ -14,21 +14,25 @@ const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
 
   return (
     <div className="pricing_calc__edit_block">
-      {goods &&
-        goods?.goods.map((item, idx) => (
-            <EditCalculatorCurrentTitleBlock
-            key={item._id} 
-            arrayGoods={item}
-            additionalParameter={''}
-            mainId={mainId}
-            setIsFetch={setIsFetch}
-            goodsIndex={idx}
-            isOpen={currentName == (lang == "Ua" ? item.nameUa : item.nameRu) ? true : false}
-            currentName={currentName}
-            setCurrentName={setCurrentName}
-            />
-        ))}
-    </div>
+      <div className='aside_list_left'>
+          {goods &&
+            goods?.goods.map((item, idx) => (
+                <EditCalculatorCurrentTitleBlock
+                key={item._id} 
+                arrayGoods={item}
+                additionalParameter={''}
+                mainId={mainId}
+                setIsFetch={setIsFetch}
+                goodsIndex={idx}
+                isOpen={currentName == (lang == "Ua" ? item.nameUa : item.nameRu) ? true : false}
+                currentName={currentName}
+                setCurrentName={setCurrentName}
+                />
+            ))}
+        </div>
+        <div className='aside_list_right'>
+        </div>
+      </div>
   );
 };
 

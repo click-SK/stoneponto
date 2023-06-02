@@ -1,170 +1,202 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
+import {RiFileEditFill} from 'react-icons/ri';
 
-const EditCurrentPost = ({post, editPath, title, setIsFetch}) => {
-    const [editValue, setEditValue] = useState('');
-    const [isEditValue, setIsEditValue] = useState(false);
-    const [image, setImage] = useState(null);
-    const [imageSrc, setImageSrc] = useState(null);
-    const [titleUa, setTitleUa] = useState("");
-    const [titleRu, setTitleRu] = useState("");
-    const [descriptionUa, setDescriptionUa] = useState("");
-    const [descriptionRu, setDescriptionRu] = useState("");
+const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
+  const [editValue, setEditValue] = useState("");
+  const [isEditValue, setIsEditValue] = useState(false);
+  const [image, setImage] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null);
+  const [titleUa, setTitleUa] = useState("");
+  const [titleRu, setTitleRu] = useState("");
+  const [descriptionUa, setDescriptionUa] = useState("");
+  const [descriptionRu, setDescriptionRu] = useState("");
 
-    const inputFileRef = useRef(null);
+  const inputFileRef = useRef(null);
 
-    console.log('post',post);
-
-    console.log('image',image);
-
-    useEffect(() => {
-      if (image) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          setImageSrc(reader.result);
-        };
-        reader.readAsDataURL(image);
-      }
-    }, [image]);
-
-    const handleEditButtonSave = () => {
-        const formData = new FormData();
-        formData.append("blogImage", image);
-        formData.append("titleUa", titleUa);
-        formData.append("titleRu", titleRu);
-        formData.append("descriptionUa", descriptionUa);
-        formData.append("descriptionRu", descriptionRu);
-        formData.append("postId", post._id);
-        setIsEditValue((isEdit) => !isEdit);
-    
-        fetch('https://ponto-print.herokuapp.com/update-post', {
-          method: 'PATCH',
-          body: formData
-        })
-          .then((res) => res.json())
-          setTimeout(() => {
-            // window.location.reload();
-            setIsFetch(state => !state)
-          },1000)
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageSrc(reader.result);
       };
+      reader.readAsDataURL(image);
+    }
+  }, [image]);
 
-    const handleEditButton = () => {
-        setIsEditValue((state) => !state);
-        setTitleUa(post.titleUa)
-        setTitleRu(post.titleRu)
-        setDescriptionUa(post.descriptionUa)
-        setDescriptionRu(post.descriptionRu)
-      };
+  const handleEditButtonSave = () => {
+    const formData = new FormData();
+    formData.append("blogImage", image);
+    formData.append("titleUa", titleUa);
+    formData.append("titleRu", titleRu);
+    formData.append("descriptionUa", descriptionUa);
+    formData.append("descriptionRu", descriptionRu);
+    formData.append("postId", post._id);
+    setIsEditValue((isEdit) => !isEdit);
 
-      const removeImage = () => {
-        setImage(null);
-        setImageSrc(null);
-      };
+    fetch("https://ponto-print.herokuapp.com/update-post", {
+      method: "PATCH",
+      body: formData,
+    }).then((res) => res.json());
+    setTimeout(() => {
+      // window.location.reload();
+      setIsFetch((state) => !state);
+    }, 1000);
+  };
 
-      const handleImageChange = (e) => {
-        // const file = e.target.files[0];
-        setImage(e.target.files[0]);
-      };
+  const handleEditButton = () => {
+    setIsEditValue((state) => !state);
+    setTitleUa(post.titleUa);
+    setTitleRu(post.titleRu);
+    setDescriptionUa(post.descriptionUa);
+    setDescriptionRu(post.descriptionRu);
+  };
 
-      const handleRemovePost = () => {
-        fetch('https://ponto-print.herokuapp.com/remove-post', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            postId: post._id,
-            filename: post.blogImage
-          })
-        })
-        setTimeout(() => {
-          // window.location.reload();
-          setIsFetch(state => !state)
-        },1000)
-      }
+  const removeImage = () => {
+    setImage(null);
+    setImageSrc(null);
+  };
 
-    return (
-        <div style={{padding: '20px 0px'}}>
-            <div>
-            <div style={{ display: "flex", justifyContent: 'space-around' }}>
-            <p>{post.titleUa}</p>
-            {isEditValue 
-            ?
-            <AiFillCloseCircle onClick={() => setIsEditValue((state) => !state)} style={{width:'auto', height:'30px'}}/>
-            :
-            <AiFillEdit onClick={handleEditButton} style={{width:'auto', height:'30px'}}/>}
+  const handleImageChange = (e) => {
+    // const file = e.target.files[0];
+    setImage(e.target.files[0]);
+  };
+
+  const handleRemovePost = () => {
+    fetch("https://ponto-print.herokuapp.com/remove-post", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        postId: post._id,
+        filename: post.blogImage,
+      }),
+    });
+    setTimeout(() => {
+      // window.location.reload();
+      setIsFetch((state) => !state);
+    }, 1000);
+  };
+
+  const handleContentChangeUa = (value) => {
+    setDescriptionUa(value);
+  };
+  const handleContentChangeRu = (value) => {
+    setDescriptionRu(value);
+  };
+
+  return (
+    <div className="blog_item">
+        <div className="item_nema_edit">
+            <div className="img_wrap">
+            {imageSrc ? (
+                  <img
+                    src={imageSrc}
+                    alt="Selected"
+                    
+                  />
+                ) : (
+                  <img
+                    src={`https://ponto-print.herokuapp.com${post.blogImage}`}
+                    alt="Selected"
+                    
+                  />
+                )}
             </div>
-            {isEditValue && (
-        <div>
+          <p>{post.titleUa}</p>
+          {isEditValue ? (
+            <AiFillCloseCircle
+              onClick={() => setIsEditValue((state) => !state)}
+              
+            />
+          ) : (
+            <RiFileEditFill
+              onClick={handleEditButton}
+              
+            />
+          )}
+        </div>
+        {isEditValue && (
+          <div className="edit_curent_post">
+            <div className="post_info">
+            <button onClick={() => inputFileRef.current.click()}>
+              Вибрати фото
+            </button>
 
-          <button onClick={() => inputFileRef.current.click()}>
-            Вибрати фото
-          </button>
-
-        <input
-          type="file"
-          name="img"
-          onChange={handleImageChange}
-          ref={inputFileRef}
-          hidden
-        />
-        <div style={{ width: "100%" }}>
-          <div
-            style={{ width: "300px", height: "300px", margin: "20px 0px" }}
-          >
-            {imageSrc 
-            ?
-            <img
-            src={imageSrc}
-            alt="Selected"
-            style={{ width: "auto", height: "100%" }}
-          />
-            :
-            <img
-            src={`https://ponto-print.herokuapp.com${post.blogImage}`} 
-            alt="Selected"
-            style={{ width: "auto", height: "100%" }}
-          />}
-          </div>
-          <div>
-            <p>Заголовок Українською</p>
             <input
-              value={titleUa}
-              onChange={(e) => setTitleUa(e.target.value)}
+              type="file"
+              name="img"
+              onChange={handleImageChange}
+              ref={inputFileRef}
+              hidden
             />
-          </div>
-          <div>
-            <p>Заголовок Російською</p>
-            <input
-              value={titleRu}
-              onChange={(e) => setTitleRu(e.target.value)}
-            />
-          </div>
-        </div>
+            <div >
+              <div
+                
+              >
+                {imageSrc ? (
+                  <img
+                    className="edit_post_img"
+                    src={imageSrc}
+                    alt="Selected"
+                    
+                  />
+                ) : (
+                  <img
+                    className="edit_post_img"
+                    src={`https://ponto-print.herokuapp.com${post.blogImage}`}
+                    alt="Selected"
+                    
+                  />
+                )}
+              </div>
+              <div>
+                <p>Заголовок Українською</p>
+                <input
+                  value={titleUa}
+                  onChange={(e) => setTitleUa(e.target.value)}
+                />
+              </div>
+              <div>
+                <p>Заголовок Російською</p>
+                <input
+                  value={titleRu}
+                  onChange={(e) => setTitleRu(e.target.value)}
+                />
+              </div>
+            </div>
 
-        <div style={{ width: "100%" }}>
-          <div>
-            <p>Опис Українською</p>
-            <textarea
-              value={descriptionUa}
-              onChange={(e) => setDescriptionUa(e.target.value)}
-            />
+            <div style={{ width: "100%" }}>
+              <div>
+                <p>Опис Українською</p>
+                <ReactQuill
+                className="textarea"
+                value={descriptionUa}
+                onChange={handleContentChangeUa}
+              //  modules={{ toolbar: toolbarOptions }}
+               />
+              </div>
+              <div>
+                <p>Опис Російською</p>
+                <ReactQuill
+                  className="textarea"
+                  value={descriptionRu}
+                  onChange={handleContentChangeRu}
+                  //  modules={{ toolbar: toolbarOptions }}
+               />
+              </div>
+            </div>
+            <button onClick={handleEditButtonSave}>Зберегти зміни</button>
+            <button onClick={handleRemovePost}>Видалити пост</button>
+            {/* <button onClick={setIsEditValue((isEdit) => !isEdit)}>Закрити без змін</button> */}
+            </div>
           </div>
-          <div>
-            <p>Опис Російською</p>
-            <textarea
-              value={descriptionRu}
-              onChange={(e) => setDescriptionRu(e.target.value)}
-            />
-          </div>
-        </div>
-        <button onClick={handleEditButtonSave}>Зберегти зміни</button>
-        <button onClick={handleRemovePost}>Видалити пост</button>
-      </div>
-            )}
-          </div>
-        </div>
-    );
+        )}
+    </div>
+  );
 };
 
 export default EditCurrentPost;
