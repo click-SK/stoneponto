@@ -74,17 +74,32 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
         </div>
 
 
-        <button className="button_open_history" onClick={handleOpenModal}>
+        {/* <button className="button_open_history" onClick={handleOpenModal}>
           Історія транзакцій
-        </button>
+        </button> */}
 
-        <Modal
-          isOpen={modalIsOpen}
+        {/* <Modal
+          isOpen={false}
           onClose={handleCloseModal}
           historyData={user.balanceHistory}
-        />
+        /> */}
 
-
+        
+        <div className='history_wrap'>
+          <div className="history_wrap_header">
+            <p>Дата</p>
+            <p>Операція</p>
+            <p>Сума</p>
+          </div>
+          <div className="history_wrap_item">
+            {user.balanceHistory.map((transaction) => (
+              <DisplayCurrentTransaction 
+              key={transaction._id}
+              transaction={transaction}/>
+            ))}
+          </div>
+        </div>
+        
 
         {/* <AdminTable
         allOrders={user.orders}/> */}
