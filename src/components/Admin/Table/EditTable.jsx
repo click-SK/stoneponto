@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import DisplayAdminTableOrder from './DisplayAdminTableOrder'
+import '../../../style/table.scss'
 const EditTable = () => {
     const [currentOrders, setCurrentOrders] = useState([]);
     const [allOrders, setAllOrders] = useState([]);
@@ -46,16 +47,11 @@ const EditTable = () => {
       setCurrentOrders(newArr);
     }
 
-    console.log('allOrders',allOrders);
 
     return (
-      <div>
+      <div className='table_wrap'>
         <div
-          style={{
-            borderBottom: "1px solid black",
-            display: "flex",
-            justifyContent: "space-around",
-          }}
+        className='table_header'
         >
           <div>
             <p>Id:</p>
@@ -109,13 +105,15 @@ const EditTable = () => {
           </select>
           </div>
         </div>
-        {currentOrders.map((order) => (
-          <DisplayAdminTableOrder
-            key={order.id}
-            order={order}
-            setIsFetch={setIsFetch}
-          />
-        ))}
+        <div className='table_body'>
+          {currentOrders.map((order) => (
+            <DisplayAdminTableOrder
+              key={order.id}
+              order={order}
+              setIsFetch={setIsFetch}
+            />
+          ))}
+        </div>
       </div>
     );
 };

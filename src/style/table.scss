@@ -1,0 +1,47 @@
+@import "./globalTamplate.scss";
+
+.table_wrap{
+    width: 100%;
+}
+.table_header{
+    display: flex;
+    width: 100%;
+}
+
+.table_body{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.table_item{
+    display: flex;
+    padding-top: 5px;
+    justify-content: space-around;
+    min-height: 100px
+}
+
+.table_item_new{
+    background: #d9ecfa;
+}
+
+.table_item_delete{
+    background: #f2dede;
+}
+
+.table_item_finished{
+    background: #dff0d8;
+}
+
+.item_row_info{
+    min-width: 3%;
+    padding: 0 5px;
+}
+.item_id{
+    max-width: 34px;
+}
+.item_date{
+    
+}
+.item_name{
+    
+}

@@ -5,41 +5,39 @@ const AdminTableText = ({ order, handleDownload }) => {
   const { t } = useTranslation();
   return (
     <>
-      <div>
+      <div className="item_row_info item_id">
         <p>{order.id}</p>
       </div>
-      <div>
+      <div className="item_row_info item_date">
         <p>{order.date}</p>
       </div>
-      <div>
+      <div className="item_row_info item_name">
         {order?.user?.name ? (
           <p>{order.user.name}</p>
         ) : (
           <p>Користувача не знайдено</p>
         )}
       </div>
-      <div>
+      <div className="item_row_info item_file">
         <p>{order.fileName}</p>
         <div style={{ padding: "10px 0px" }}>
           <button onClick={handleDownload}>Скачати</button>
         </div>
       </div>
-      <div>
+      <div className="item_row_info item_material">
         <p>{t(`${order.material}`)}</p>
       </div>
-      <div>
+      <div className="item_row_info item_quality">
         <p>{order.quality}</p>
       </div>
-      <div>
+      <div className="item_row_info item_size">
         <p>{order.width}</p>
-      </div>
-      <div>
         <p>{order.height}</p>
       </div>
-      <div>
+      <div className="item_row_info item_sum">
         <p>{order.sum.toFixed(0)}</p>
       </div>
-      <div>
+      <div className="item_row_info item_descript">
         <p>--Опис--</p>
         {order.conditions.lamination?.name && (
           <div style={{ background: "red" }}>

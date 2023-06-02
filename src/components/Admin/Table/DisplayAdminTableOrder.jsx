@@ -75,28 +75,19 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
     <>
       {order.status.currentStatus == "new" && (
         <div
-          style={{
-            borderBottom: "1px solid black",
-            display: "flex",
-            justifyContent: "space-around",
-            background: "#7b87d4",
-          }}
+          className="table_item table_item_new"
         >
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div>
             <p>{t(`${order.status.name}`)}</p>
-            <div style={{ padding: "10px 0px" }}></div>
-            <div style={{ padding: "10px 0px" }}></div>
+            <div></div>
+            <div></div>
           </div>
         </div>
       )}
       {order.status.currentStatus == "download" && (
         <div
-          style={{
-            borderBottom: "1px solid black",
-            display: "flex",
-            justifyContent: "space-around",
-          }}
+          className="table_item table_item_download"
         >
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div>
@@ -118,12 +109,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       )}
       {order.status.currentStatus == "delete" && (
         <div
-          style={{
-            borderBottom: "1px solid black",
-            display: "flex",
-            justifyContent: "space-around",
-            background: "#cc7878",
-          }}
+          className="table_item table_item_delete"
         >
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div>
@@ -135,12 +121,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       )}
       {order.status.currentStatus == "finished" && (
         <div
-          style={{
-            borderBottom: "1px solid black",
-            display: "flex",
-            justifyContent: "space-around",
-            background: "#85c470",
-          }}
+          className="table_item table_item_finished"
         >
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div>
