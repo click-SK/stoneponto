@@ -16,22 +16,41 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       setModalIsOpen(true);
     };
   const { t } = useTranslation();
-  const handleDownload = () => {
-    fetch("https://ponto-print.herokuapp.com/update-status", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        value: "download",
-        name: 'В роботі',
-        tableId: order._id,
-        paid: false,
-      }),
-    }).then((res) => res.json());
-    setTimeout(() => {
-      setIsFetch((state) => !state);
-    }, 1000);
+
+ 
+  const handleDownload = async (order) => {
+    const resonse = await fetch(`http://localhost:4444/download?id=${order._id}`)
+    if(resonse.status == 200) {
+      const blob = await resonse.blob();
+      const dowloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = dowloadUrl;
+      const invalidCharacters = /[<>:"\\/|?*.]/g;
+      console.log('able.fileNam', order.fileName);
+      const cleanedStr = order.fileName.replace(invalidCharacters, '');
+      link.download = cleanedStr;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      await fetch("https://ponto-print.herokuapp.com/update-status", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          value: "download",
+          name: 'В роботі',
+          tableId: order._id,
+          paid: false,
+        }),
+      }).then((res) => res.json());
+      setTimeout(() => {
+        setIsFetch((state) => !state);
+      }, 1000);
+    } else {
+      alert('Помилка при завантаженні')
+    }
   };
 
   const handleDelete = () => {

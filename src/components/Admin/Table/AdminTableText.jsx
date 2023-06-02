@@ -21,7 +21,7 @@ const AdminTableText = ({ order, handleDownload }) => {
       <div className="item_row_info item_file">
         <p>{order.fileName}</p>
         <div style={{ padding: "10px 0px" }}>
-          <button onClick={handleDownload}>Скачати</button>
+          <button onClick={() => handleDownload(order)}>Скачати</button>
         </div>
       </div>
       <div className="item_row_info item_material">
