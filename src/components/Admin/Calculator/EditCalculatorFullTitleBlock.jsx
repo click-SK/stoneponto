@@ -2,8 +2,13 @@ import React, { useState,useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLanguage } from "../../../store/language";
 import EditCalculatorCurrentTitleBlock from "./EditCalculatorCurrentTitleBlock";
+import EditCalculatorRightBlock from './EditCalculatorRightBlock';
 const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
   const [currentName, setCurrentName] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
+
+  console.log('currentItem',currentItem);
+
   const dispatch = useDispatch();
 
   const lang = useSelector((state) => state.lang.language);
@@ -27,10 +32,15 @@ const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
                 isOpen={currentName == (lang == "Ua" ? item.nameUa : item.nameRu) ? true : false}
                 currentName={currentName}
                 setCurrentName={setCurrentName}
+                setCurrentItem={setCurrentItem}
                 />
             ))}
         </div>
         <div className='aside_list_right'>
+          <EditCalculatorRightBlock
+          arrayGoods={currentItem}
+          isOpen={currentName == (lang == "Ua" ? currentItem?.nameUa : currentItem?.nameRu) ? true : false}
+          />
         </div>
       </div>
   );

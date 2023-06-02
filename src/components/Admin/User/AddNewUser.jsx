@@ -23,6 +23,7 @@ const AddNewUser = () => {
           if(data) {
             setEmail('');
             setPassword('');
+            setName('');
             alert('Користувача успішно створено')
           }
     }
