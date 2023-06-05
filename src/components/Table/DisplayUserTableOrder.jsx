@@ -71,12 +71,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
       <>
         {order.status.currentStatus == "new" && (
           <div
-            style={{
-              borderBottom: "1px solid black",
-              display: "flex",
-              justifyContent: "space-around",
-              background: "#7b87d4",
-            }}
+          className="table_item table_item_new"
           >
             <UserTableText order={order} />
             <div>
@@ -89,11 +84,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
         )}
         {order.status.currentStatus == "download" && (
           <div
-            style={{
-              borderBottom: "1px solid black",
-              display: "flex",
-              justifyContent: "space-around",
-            }}
+            className="table_item table_item_download"
           >
             <UserTableText order={order} />
             <div>
@@ -103,12 +94,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
         )}
         {order.status.currentStatus == "delete" && (
           <div
-            style={{
-              borderBottom: "1px solid black",
-              display: "flex",
-              justifyContent: "space-around",
-              background: "#cc7878",
-            }}
+            className="table_item table_item_delete"  
           >
             <UserTableText order={order} />
             <div>
@@ -118,12 +104,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
         )}
         {order.status.currentStatus == "finished" && (
           <div
-            style={{
-              borderBottom: "1px solid black",
-              display: "flex",
-              justifyContent: "space-around",
-              background: "#85c470",
-            }}
+            className="table_item table_item_finished"
           >
             <UserTableText order={order} />
             <div>

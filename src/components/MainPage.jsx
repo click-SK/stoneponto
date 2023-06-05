@@ -70,7 +70,7 @@ const MainPage = () => {
                             
                         </ul>
                     </div>
-                <div className='blog'>
+                {/* <div className='blog'>
                     <h2>новости</h2>
                     <div className='blog_content_wrap'>
                         <div className='blog_item'>
@@ -127,7 +127,7 @@ const MainPage = () => {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
