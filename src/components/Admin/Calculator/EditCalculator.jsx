@@ -16,8 +16,13 @@ const EditCalculator = () => {
     useEffect(() => {
         fetch('https://ponto-print.herokuapp.com/get-all-calc')
        .then(response => response.json())
-       .then(res => setGoodsList(res))
+       .then(res => {
+        setGoodsList(res)
+        console.log('res',res)
+      })
      },[isFetch])
+
+     console.log('goodsList',goodsList);
 
      const closeOpenBanerFunc = () => {
         setIsBaner(state => !state);
@@ -110,6 +115,7 @@ const EditCalculator = () => {
               goods={goodsList.length != 0 && goodsList[1]}
               mainId={goodsList.length != 0 && goodsList[1]._id}
               setIsFetch={setIsFetch}
+              isFetch={isFetch}
             />
           )}
         </div>
@@ -119,6 +125,7 @@ const EditCalculator = () => {
               goods={goodsList.length != 0 && goodsList[2]}
               mainId={goodsList.length != 0 && goodsList[2]._id}
               setIsFetch={setIsFetch}
+              isFetch={isFetch}
             />
           )}
         </div>
@@ -128,6 +135,7 @@ const EditCalculator = () => {
               goods={goodsList.length != 0 && goodsList[3]}
               mainId={goodsList.length != 0 && goodsList[3]._id}
               setIsFetch={setIsFetch}
+              isFetch={isFetch}
             />
           )}
         </div>
@@ -137,6 +145,7 @@ const EditCalculator = () => {
               goods={goodsList.length != 0 && goodsList[4]}
               mainId={goodsList.length != 0 && goodsList[4]._id}
               setIsFetch={setIsFetch}
+              isFetch={isFetch}
             />
           )}
         </div>
@@ -146,6 +155,7 @@ const EditCalculator = () => {
               goods={goodsList.length != 0 && goodsList[5]}
               mainId={goodsList.length != 0 && goodsList[5]._id}
               setIsFetch={setIsFetch}
+              isFetch={isFetch}
             />
           )}
         </div>
@@ -155,6 +165,7 @@ const EditCalculator = () => {
               goods={goodsList.length != 0 && goodsList[6]}
               mainId={goodsList.length != 0 && goodsList[6]._id}
               setIsFetch={setIsFetch}
+              isFetch={isFetch}
             />
           )}
         </div>
@@ -164,6 +175,7 @@ const EditCalculator = () => {
               goods={goodsList.length != 0 && goodsList[7]}
               mainId={goodsList.length != 0 && goodsList[7]._id}
               setIsFetch={setIsFetch}
+              isFetch={isFetch}
             />
           )}
         </div>

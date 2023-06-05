@@ -10,7 +10,6 @@ const EditPost = () => {
         .then((res) => setAllPosts(res))
     },[isFetch])
 
-    console.log('POSTTTTTTTTTT',allPosts);
     return (
         <div className="post_item_wrap">
             {allPosts && allPosts.map((post) => (

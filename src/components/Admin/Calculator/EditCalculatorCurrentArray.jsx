@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import EditCalculatorCurrentItem from "./EditCalculatorCurrentItem";
-const EditCalculatorCurrentArray = ({ currentArray, mainId, editPath, setIsFetch, goodsIndex }) => {
+const EditCalculatorCurrentArray = ({ currentArray, mainId, editPath, setIsFetch, goodsIndex, isFetch }) => {
   const [arrayWithoutFirstElement, setArrayWithoutFirstElement] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,8 @@ const EditCalculatorCurrentArray = ({ currentArray, mainId, editPath, setIsFetch
         editPath={editPath}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        currentItemIndex={idx + 1}/>
+        currentItemIndex={idx + 1}
+        isFetch={isFetch}/>
       ))}
     </div>
   );

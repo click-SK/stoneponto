@@ -90,8 +90,6 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
     }, 1000);
   };
 
-  console.log('order',order);
-
   return (
     <>
       {order?.status?.currentStatus == "new" && (

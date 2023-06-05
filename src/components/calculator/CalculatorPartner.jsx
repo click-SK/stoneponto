@@ -160,9 +160,6 @@ const CalculatorPartner = () => {
      (selectedOptionPoster?.price * currency.currency || 0) + (isStamp ? currentItem?.stamp : 0) + 
      (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
      (isMounting ? currentItem?.mounting: 0);
-
-     console.log('currentDiscount',currentDiscount);
-     console.log('user.discountValue',user.discountValue);
       
      
      // Если в заказе, по квадратным метрам больше 20 квадратов, то на общую сумму присваивается скидка -10%. 
@@ -317,8 +314,6 @@ const CalculatorPartner = () => {
       setCurrentDiscount(e.discountValue)
       console.log('user',e);
     }
-
-    console.log('current user',user);
 
     return (
       <div className="calc_wrap">

@@ -4,7 +4,7 @@ import { fetchLanguage } from "../../../store/language";
 import EditCalculatorFullData from "./EditCalculatorFullData";
 import EditCalculatorAdditionalParameter from "./EditCalculatorAdditionalParameter";
 
-const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, setIsFetch, goodsIndex, isOpen, setCurrentName }) => {
+const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, setIsFetch, goodsIndex, isOpen, setCurrentName, isFetch }) => {
     const [isEyelets, setIsEyelets] = useState(false);
     const [isColor, setIsColor] = useState(false);
     const [isLamination, setIsLamination] = useState(false);
@@ -22,8 +22,6 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
     useEffect(() => {
         dispatch(fetchLanguage());
       }, [lang]);
-
-    console.log('Right arrayGoods',arrayGoods);
 
     const setEyeletsFunc = () => {
       setIsEyelets(true);
@@ -126,6 +124,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
       setIsColor(false);
       setIsEyelets(false);
     }
+
+    console.log('isOpen',isOpen);
     
   return (
     <div className="pricing_calc__edit_item">
@@ -142,7 +142,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         goodsIndex={goodsIndex}
         editPath='https://ponto-print.herokuapp.com/update-color'
         openCloseFunc={setColorFunc}
-        isOpen={isColor}/>
+        isOpen={isColor}
+        isFetch={isFetch}/>
         }
         {arrayGoods?.eyelets.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.eyelets} 
@@ -152,7 +153,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         goodsIndex={goodsIndex}
         editPath='https://ponto-print.herokuapp.com/update-eyelets-price'
         openCloseFunc={setEyeletsFunc}
-        isOpen={isEyelets}/>
+        isOpen={isEyelets}
+        isFetch={isFetch}/>
         }
         {arrayGoods?.lamination.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.lamination} 
@@ -162,7 +164,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         goodsIndex={goodsIndex}
         editPath='https://ponto-print.herokuapp.com/update-lamination'
         openCloseFunc={setLaminationFunc}
-        isOpen={isLamination}/>
+        isOpen={isLamination}
+        isFetch={isFetch}/>
         }
         {arrayGoods?.poster.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.poster} 
@@ -172,7 +175,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         goodsIndex={goodsIndex}
         editPath='https://ponto-print.herokuapp.com/update-poster'
         openCloseFunc={setPosterFunc}
-        isOpen={isPoster}/>
+        isOpen={isPoster}
+        isFetch={isFetch}/>
         }
         {arrayGoods?.solderingOfGates.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.solderingOfGates} 
@@ -182,7 +186,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         goodsIndex={goodsIndex}
         editPath='https://ponto-print.herokuapp.com/update-soldering-of-gates'
         openCloseFunc={setSolderingOfGatesFunc}
-        isOpen={isSolderingOfGates}/>
+        isOpen={isSolderingOfGates}
+        isFetch={isFetch}/>
         }
         {arrayGoods?.solderingPockets.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.solderingPockets} 
@@ -192,7 +197,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         goodsIndex={goodsIndex}
         editPath='https://ponto-print.herokuapp.com/update-soldering-pockets'
         openCloseFunc={setSolderingPocketsFunc}
-        isOpen={isSolderingPockets}/>
+        isOpen={isSolderingPockets}
+        isFetch={isFetch}/>
         }
         {arrayGoods?.cutting.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.cutting} 
@@ -202,7 +208,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         goodsIndex={goodsIndex}
         editPath='https://ponto-print.herokuapp.com/update-cutting'
         openCloseFunc={setCuttingFunc}
-        isOpen={isCutting}/>
+        isOpen={isCutting}
+        isFetch={isFetch}/>
         }
         {arrayGoods?.mounting && 
         <EditCalculatorAdditionalParameter
@@ -213,7 +220,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         setIsFetch={setIsFetch}
         editPath='https://ponto-print.herokuapp.com/update-mounting'
         openCloseFunc={setMountingFunc}
-        isOpen={isMounting}/>}
+        isOpen={isMounting}
+        isFetch={isFetch}/>}
         {arrayGoods?.stamp && 
         <EditCalculatorAdditionalParameter
         title={'Печать'}
@@ -223,7 +231,8 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         setIsFetch={setIsFetch}
         editPath='https://ponto-print.herokuapp.com/update-stamp'
         openCloseFunc={setStampFunc}
-        isOpen={isStamp}/>}
+        isOpen={isStamp}
+        isFetch={isFetch}/>}
         </div>
       )}
       {/* <br />

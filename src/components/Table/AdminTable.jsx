@@ -1,7 +1,6 @@
 import React from 'react';
 import DisplayAdminTableOrder from '../Admin/Table/DisplayAdminTableOrder'
 const AdminTable = ({allOrders}) => {
-    console.log('allOrders',allOrders);
     return (
         <div>
         <div className='table_header'>
