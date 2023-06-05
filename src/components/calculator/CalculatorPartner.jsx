@@ -20,11 +20,15 @@ const CalculatorPartner = () => {
     // const [quadrature, setquadrature] = useState(null)
     const [count, setCount] = useState(1)
     const [description, setDescription] = useState('')
-    const [selectedFile, setselectedFile] = useState({})
+    const [selectedFile, setselectedFile] = useState(null)
     const [coment, setComent] = useState('')
     const [delivery, setDelivery] = useState('')
     const [totalPrice, setTotalPrice] = useState('')
     const [totalSum, setTotalSum] = useState(0)
+    const [validationWidth, setValidationWidth] = useState(false);
+    const [validationHeight, setValidationHeight] = useState(false);
+    const [validationCount, setValidationCount] = useState(false);
+    const [validationFile, setValidationFile] = useState(false);
 
     const [selectedOptionQuality, setSelectedOptionQuality] = useState('');
     const [selectedOptionCutting, setSelectedOptionCutting] = useState('');
@@ -42,6 +46,7 @@ const CalculatorPartner = () => {
     const [allUsers, setAllUsers] = useState([]);
     const [currentId, setCurrentId] = useState('');
     const [currentUserState, setCurrentUserState] = useState('');
+    const [currentDiscount, setCurrentDiscount] = useState('');
     const [status] = useState({
       name: 'New',
       currentStatus: 'new',
@@ -155,13 +160,23 @@ const CalculatorPartner = () => {
      (selectedOptionPoster?.price * currency.currency || 0) + (isStamp ? currentItem?.stamp : 0) + 
      (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
      (isMounting ? currentItem?.mounting: 0);
+
+     console.log('currentDiscount',currentDiscount);
+     console.log('user.discountValue',user.discountValue);
       
      
      // Если в заказе, по квадратным метрам больше 20 квадратов, то на общую сумму присваивается скидка -10%. 
 
-     setTotalSum(totalSum1 * count)
+     const sumAndCount = totalSum1 * count;
+
+     const onlyDiscount = sumAndCount * (user.discountValue || currentDiscount);
+
+     const sumAndDiscount = sumAndCount - onlyDiscount;
+
+     setTotalSum(sumAndDiscount)
+
      },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
-      selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting])
+      selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting,currentDiscount])
 
       useEffect(()=>{
         setSelectedOptionQuality('');
@@ -212,28 +227,69 @@ const CalculatorPartner = () => {
 
     console.log('selectedFile',selectedFile);
 
+    const validationFunc = () => {
+      setValidationWidth(false);
+      setValidationHeight(false);
+      setValidationCount(false);
+      let isValid = true;
+    
+      if (width <= 0) {
+        setValidationWidth(true);
+        isValid = false;
+      }
+    
+      if (height <= 0) {
+        setValidationHeight(true);
+        isValid = false;
+      }
+    
+      if (count <= 0) {
+        setValidationCount(true);
+        isValid = false;
+      }
+
+      if(!selectedFile) {
+        setValidationFile(true);
+        isValid = false;
+      }
+    
+      return isValid;
+    };
+
     const handleTotalSum = () => {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
-      formData.append("material", (lang == "Ua" ? currentItem?.nameUa : currentItem?.nameRu));
-      formData.append("quality", (lang == "Ua" ? selectedOptionQuality?.nameUa : selectedOptionQuality?.nameRu));
-      formData.append("width", width);
-      formData.append("height", height);
-      formData.append("count", count);
-      formData.append("userId", currentId);
-      formData.append("sum", totalSum);
-      formData.append("conditions", JSON.stringify(descArray));
-      formData.append("notes", coment);
-      formData.append("address", delivery);
-      formData.append("status", JSON.stringify(status));
-      fetch("https://ponto-print.herokuapp.com/create-table", {
-        method: "POST",
-        body: formData,
-      }).then((res) => res.json());
-      setTimeout(() => {
+      const isValid = validationFunc();
+    
+      if (isValid) {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+        formData.append(
+          "material",
+          lang === "Ua" ? currentItem?.nameUa : currentItem?.nameRu
+        );
+        formData.append(
+          "quality",
+          lang === "Ua" ? selectedOptionQuality?.nameUa : selectedOptionQuality?.nameRu
+        );
+        formData.append("width", width);
+        formData.append("height", height);
+        formData.append("count", count);
+        formData.append("userId", currentId);
+        formData.append("sum", totalSum);
+        formData.append("conditions", JSON.stringify(descArray));
+        formData.append("notes", coment);
+        formData.append("address", delivery);
+        formData.append("status", JSON.stringify(status));
+    
+        fetch("https://ponto-print.herokuapp.com/create-table", {
+          method: "POST",
+          body: formData,
+        }).then((res) => res.json());
+    
+        setTimeout(() => {
           window.location.reload();
-      }, 1000);
-    }
+        }, 1000);
+      }
+    };
 
     const handleStamp = () =>{
       setIsStamp(state => !state)
@@ -258,9 +314,11 @@ const CalculatorPartner = () => {
       setIsOpenAllusers((state) => !state);
       console.log('e',e.name);
       setCurrentUserState(e?.name);
+      setCurrentDiscount(e.discountValue)
+      console.log('user',e);
     }
 
-    console.log('allUsers',allUsers);
+    console.log('current user',user);
 
     return (
       <div className="calc_wrap">
@@ -338,6 +396,8 @@ const CalculatorPartner = () => {
               value={width}
               handleCangeInput={setWitdh}
             />
+            {validationWidth &&
+            <p style={{color:'red'}}>В поле "Ширина" введено не верное значение или оно пустое</p>}
           </div>
           <div className="calc-item input_size">
             <InputsTamplate
@@ -347,6 +407,8 @@ const CalculatorPartner = () => {
               value={height}
               handleCangeInput={setHeight}
             />
+            {validationHeight &&
+            <p style={{color:'red'}}>В поле "Высота" введено не верное значение или оно пустое</p>}
           </div>
           <div className="calc-item input_size">
             <InputsTamplate
@@ -356,6 +418,8 @@ const CalculatorPartner = () => {
               value={count}
               handleCangeInput={setCount}
             />
+            {validationCount &&
+            <p style={{color:'red'}}>В поле "Тираж" введено не верное значение или оно пустое</p>}
           </div>
         </div>
         <div className="wrap_row adding">
@@ -481,6 +545,8 @@ const CalculatorPartner = () => {
               onChange={handleChange}
             />
           </div>
+          {validationFile &&
+          <p style={{color:'red'}}>Файл не выбран</p>}
         </div>
         {/* {t(`${title}`)} */}
         <div className="wrap_row">
