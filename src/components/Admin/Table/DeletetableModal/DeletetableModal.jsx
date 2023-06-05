@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import "../../../../style/historyTransactionsModal.scss";
+// import "../../../../style/historyTransactionsModal.scss";
 
 const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDelete }) => {
   const [textareaValue, setTextareaValue] = useState("");
@@ -23,7 +23,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
           <AiOutlineClose className="cross" />
         </button>
         <div className="furniture_wrap">
-          <div style={{ display: "flex" }}>
+          <div className="wrap_item">
             <input
               type="radio"
               value="Макет не в размере"
@@ -32,7 +32,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>Макет не в размере</p>
           </div>
-          <div style={{ display: "flex" }}>
+          <div className="wrap_item">
             <input
               type="radio"
               value="Слетели шпифты"
@@ -41,7 +41,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>Слетели шпифты</p>
           </div>
-          <div style={{ display: "flex" }}>
+          <div className="wrap_item" >
             <input
               type="radio"
               value="По желанию заказчика"
@@ -50,7 +50,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>По желанию заказчика</p>
           </div>
-          <div style={{ display: "flex" }}>
+          <div className="wrap_item">
             <input
               type="radio"
               value="Макет в версии Corel выше 16. Версия должна быть 16 или ниже"
@@ -59,7 +59,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>Макет в версии Corel выше 16. Версия должна быть 16 или ниже</p>
           </div>
-          <div style={{ display: "flex" }}>
+          <div className="wrap_item">
             <input
               type="radio"
               value="Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100"
@@ -68,7 +68,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100</p>
           </div>
-          <div style={{ display: "flex" }}>
+          <div className="wrap_item item_textarea">
             <input
               type="radio"
               value=""
@@ -79,14 +79,14 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
               deleteText !== "Макет не в размере"
             }
               onChange={handleOptionChange}
-            />
+            /> Свій варіант
             <textarea
               value={textareaValue}
               onChange={(e) => handleTextareaChange(e.target.value)}
             />
           </div>
         </div>
-        <button onClick={handleDelete}>Видалити</button>
+        <button onClick={handleDelete} style={{marginRight:'5px', backgroundColor:'red'}}>Видалити</button>
         <button onClick={onClose}>Відміна</button>
       </div>
     </div>

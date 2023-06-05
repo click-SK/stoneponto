@@ -8,7 +8,7 @@ const DisplayCurrentTransaction = ({ transaction }) => {
     let trimmedString = transaction.historyValue.split(".")[0];
     setWithoutDot(trimmedString)
   },[])
-  console.log('withoutDot', withoutDot);
+
   return (
       <div className="history_item">
         <p>{transaction.date}</p>

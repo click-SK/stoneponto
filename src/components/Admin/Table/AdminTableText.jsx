@@ -32,6 +32,8 @@ const AdminTableText = ({ order, handleDownload }) => {
       </div>
       <div className="item_row_info item_size">
         <p>{order.width}</p>
+      </div>
+      <div className="item_row_info item_size">
         <p>{order.height}</p>
       </div>
       <div className="item_row_info item_sum">
@@ -52,7 +54,7 @@ const AdminTableText = ({ order, handleDownload }) => {
           </div>
         )}
         {order.conditions.eyelets?.name && (
-          <div style={{ background: "green" }}>
+          <div style={{ background: "#00ff4c"}}>
             <p>{t(`${order.conditions.eyelets?.option}`)}</p>
             <p>{t(`${order.conditions.eyelets?.name}`)}</p>
           </div>
@@ -64,13 +66,13 @@ const AdminTableText = ({ order, handleDownload }) => {
           </div>
         )}
         {order.conditions.solderGates?.name && (
-          <div style={{ background: "blue" }}>
+          <div style={{ background: "blue", color: "white" }}>
             <p>{t(`${order.conditions.solderGates?.option}`)}</p>
             <p>{t(`${order.conditions.solderGates?.name}`)}</p>
           </div>
         )}
         {order.conditions.solderPockets?.name && (
-          <div style={{ background: "blue" }}>
+          <div style={{ background: "blue", color: "white" }}>
             <p>{t(`${order.conditions.solderPockets?.option}`)}</p>
             <p>{t(`${order.conditions.solderPockets?.name}`)}</p>
           </div>

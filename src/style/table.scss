@@ -1,11 +1,42 @@
 @import "./globalTamplate.scss";
 
 .table_wrap{
+    margin-top: 20px;
     width: 100%;
+    border: 1px solid #ccc;
 }
 .table_header{
     display: flex;
     width: 100%;
+    border-bottom: 1px solid #ccc;
+    background: #e8e8ff;
+}
+
+
+.table_header_item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px;
+    height: 40px;
+    border-right: 1px solid #ccc;
+    &:last-child{
+        border-right: 0px solid #ccc; 
+    }
+}
+
+.item_row_info{
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    &:last-child{
+        border-right: 0px solid #ccc; 
+    }
+}
+
+.table_header_id{
+    // max-width: 34px;
+    // min-width: 3%;
 }
 
 .table_body{
@@ -16,7 +47,7 @@
 .table_item{
     display: flex;
     padding-top: 5px;
-    justify-content: space-around;
+    // justify-content: space-around;
     min-height: 100px
 }
 
@@ -32,16 +63,76 @@
     background: #dff0d8;
 }
 
-.item_row_info{
-    min-width: 3%;
-    padding: 0 5px;
+
+.table_header_id, .item_id{
+    width: 34px;
 }
-.item_id{
-    max-width: 34px;
+
+
+.table_header_date, .item_date{
+    width: 120px;
 }
-.item_date{
-    
+
+.table_header_name, .item_name{
+    width: 100px;
 }
-.item_name{
-    
+
+.table_header_file, .item_file{
+    width: 200px;
 }
+
+.table_header_materials, .item_material{
+    width: 100px;
+}
+
+.table_header_quality, .item_quality{
+    width: 100px;
+}
+
+.table_header_width,.table_header_hight, .item_size{
+    width: 50px;
+    // overflow: hidden;
+}
+
+.table_header_sum, .item_sum{
+    width: 100px;
+}
+
+.table_header_descript, .item_descript{
+    width: 185px;
+}
+
+.item_status, .table_header_status{
+    width: 103px;
+}
+
+.table_header_item, .item_row_info{
+    padding: 0 2px;
+}
+
+
+.table_header_name, .table_header_status{
+    select{
+        width: 80%;
+        border-radius: 1px;
+        background: #e8e8ff;
+        padding: 5px;
+
+        option{
+            border-radius: 1px;
+            font-size: 10px;
+            padding: 5px;
+        }
+    }
+}
+
+.table_header_date{
+    input{
+        background: #e8e8ff;
+    }
+}
+
+.item_file{
+    overflow: hidden;
+}
+

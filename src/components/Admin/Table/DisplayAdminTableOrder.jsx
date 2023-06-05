@@ -99,7 +99,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           className="table_item table_item_new"
         >
           <AdminTableText order={order} handleDownload={handleDownload} />
-          <div>
+          <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
             <div></div>
             <div></div>
@@ -111,7 +111,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           className="table_item table_item_download"
         >
           <AdminTableText order={order} handleDownload={handleDownload} />
-          <div>
+          <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
             <div style={{ padding: "10px 0px" }}>
               <button onClick={handleOpenModal}>Видалити</button>
@@ -133,7 +133,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           className="table_item table_item_delete"
         >
           <AdminTableText order={order} handleDownload={handleDownload} />
-          <div>
+          <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
             <div style={{ padding: "10px 0px" }}></div>
             <div style={{ padding: "10px 0px" }}></div>
@@ -145,7 +145,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           className="table_item table_item_finished"
         >
           <AdminTableText order={order} handleDownload={handleDownload} />
-          <div>
+          <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
             <div>{order.status.paid ? "Оплочено" : "Не оплочено"}</div>
             <div style={{ padding: "10px 0px" }}></div>
