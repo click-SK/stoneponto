@@ -27,7 +27,7 @@ const UserPanel = () => {
         setModalIsOpen(true);
       };
 
-      console.log('user.orders',user.orders);
+      console.log('user.orders',user);
 
   return (
     <div style={{ width: "80%" }}>

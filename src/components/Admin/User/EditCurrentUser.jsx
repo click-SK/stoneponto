@@ -5,6 +5,7 @@ import DisplayCurrentTransaction from '../../Modal/DisplayCurrentTransaction';
 import EditBalance from './EditBalance';
 import EditUserPassword from './EditUserPassword';
 import DisabledUser from './DisabledUser';
+import EditDiscount from './EditDiscount';
 import Modal from '../../Modal/Modal';
 // import AdminTable from '../../Table/AdminTable';
 const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
@@ -58,7 +59,7 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
               title="Баланс"
               setIsFetch={setIsFetch}
             />
-            <EditCurrentUserDetails
+            <EditDiscount
               data={user.discountValue}
               userId={user._id}
               editPath={"https://ponto-print.herokuapp.com/update-discount"}

@@ -5,10 +5,12 @@ import { fetchAuthMe } from "../../store/auth";
 import { useTranslation } from 'react-i18next';
 
 const DisplayUserTableOrder = ({order, currentUser}) => {
+  console.log('order',order);
     const { t } = useTranslation();
     const dispatch = useDispatch();
+
     const handleDelete = () => {
-        fetch("https://ponto-print.herokuapp.com/update-status", {
+        fetch("https://ponto-print.herokuapp.com/update-user-table-status", {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -17,9 +19,14 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
             value: "delete",
             name: 'Видалено',
             tableId: order._id,
-            paid: false,
           }),
-        }).then((res) => res.json());
+        }).then((res) => res.json())
+        .then((res) => {
+          console.log('res',res)
+          if(res.message == "Table status worked") {
+            alert('Статус замовлення: в роботі')
+          }
+        })
         setTimeout(() => {
             dispatch(fetchAuthMe());
         }, 1000);

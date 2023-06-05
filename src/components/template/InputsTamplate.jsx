@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useTranslation } from 'react-i18next';
 
 const InputsTamplate = ({handleCangeInput, value, type, placeholder,title, disabled}) => {
