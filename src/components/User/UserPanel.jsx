@@ -27,54 +27,30 @@ const UserPanel = () => {
         setModalIsOpen(true);
       };
 
-      console.log('user.orders',user);
+ 
 
   return (
-    <div style={{ width: "80%" }}>
+    <div >
       <p>Мій кабінет</p>
-      <div style={{ paddingTop: "30px" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            padding: "20px 0px",
-          }}
-        >
-          <p style={{ width: "50%" }}>Пошта</p>
-          <p style={{ width: "50%" }}>{user.email}</p>
+      <div >
+        <div>
+          <p >Пошта</p>
+          <p >{user.email}</p>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            padding: "20px 0px",
-          }}
-        >
-          <p style={{ width: "50%" }}>Імя</p>
-          <p style={{ width: "50%" }}>{user.name}</p>
+        <div >
+          <p >Імя</p>
+          <p >{user.name}</p>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            padding: "20px 0px",
-          }}
-        >
-          <p style={{ width: "50%" }}>Баланс</p>
-          <p style={{ width: "50%" }}>{user.balance.toFixed(0)}</p>
+        <div>
+          <p >Баланс</p>
+          <p >{user.balance.toFixed(0)}</p>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            padding: "20px 0px",
-          }}
-        >
-          <p style={{ width: "50%" }}>Знижка</p>
-          <p style={{ width: "50%" }}>{user.discountValue}</p>
+        <div>
+          <p >Знижка</p>
+          <p >{user.discountValue}</p>
         </div>
 
         <button className="button_open" onClick={handleOpenModal}>
