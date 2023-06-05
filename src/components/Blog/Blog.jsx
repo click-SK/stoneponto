@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {fetchLanguage} from '../../store/language'
+import ReactQuill from 'react-quill';
+import '../../style/blog.scss'
 
 const Blog = () => {
   const [allPosts, setAllPosts] = useState([]);
   const dispatch = useDispatch();
+
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString();
 
   const lang = useSelector((state) => state.lang.language);
   
@@ -20,30 +25,47 @@ const Blog = () => {
 
 
   return (
-    <div>
+    <div className='blog_content_wrap'>
       {allPosts && allPosts.map((post) => (
-        <div key={post._id}
-        style={{display:'flex', flexDirection:'column', alignItems:'center', borderBottom: '1px solid black'}}>
-          <div>
+        <div 
+        key={post._id}
+        className='blog_item'
+        >
+          {/* <div>
             {lang == 'Ua' 
             ?
             <>{post.titleUa}</>
             :
             <>{post.titleRu}</>
             }
-          </div>
-          <div style={{width:'300px', height:'300px', margin: '20px 0px'}}>
+          </div> */}
+          <div className='img_blog_wrap'>
             <img 
             src={`https://ponto-print.herokuapp.com${post.blogImage}`} 
-            style={{width: 'auto', height: '100%'}}/>
+            />
           </div>
-          <div style={{width:'60%',}}>
+          <div className='content_wrap'>
+          <h3 className='title_blog_item'>
           {lang == 'Ua' 
             ?
-            <>{post.descriptionUa}</>
+            <>{post.titleUa}</>
             :
-            <>{post.descriptionRu}</>
+            <>{post.titleRu}</>
             }
+          </h3>
+          <div className='date_item'><span>{formattedDate}</span></div>
+          <div >
+          {lang == 'Ua' 
+            ?
+            <ReactQuill
+            value={post.descriptionUa}
+            />
+            :
+            <ReactQuill
+            value={post.descriptionRu}
+            />
+            }
+          </div>
           </div>
         </div>
       ))}

@@ -35,14 +35,14 @@
     padding-top: 20px;
   }
 
-  .wrap_item{
+  .modal_wrap_item{
     display: flex;
     width: 70%;
     margin: 5px 0;
     input{
       width: 24px;
       margin-right: 5px;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.075);
     }
     p{
       width: 70%;
@@ -58,10 +58,7 @@
     font-size: 11px;
   }
 
-  input{
-    width: 24px;
-    height: 24px;
-  }
+
 
   // .table{
   //   display: flex;

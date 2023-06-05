@@ -23,8 +23,9 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
           <AiOutlineClose className="cross" />
         </button>
         <div className="furniture_wrap">
-          <div className="wrap_item">
+          <div className="modal_wrap_item">
             <input
+              className="wrap_item_input"
               type="radio"
               value="Макет не в размере"
               checked={deleteText === "Макет не в размере"}
@@ -43,6 +44,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
           </div>
           <div className="wrap_item" >
             <input
+              className="wrap_item_input"
               type="radio"
               value="По желанию заказчика"
               checked={deleteText === "По желанию заказчика"}
@@ -52,6 +54,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
           </div>
           <div className="wrap_item">
             <input
+              className="wrap_item_input"
               type="radio"
               value="Макет в версии Corel выше 16. Версия должна быть 16 или ниже"
               checked={deleteText === "Макет в версии Corel выше 16. Версия должна быть 16 или ниже"}
@@ -61,6 +64,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
           </div>
           <div className="wrap_item">
             <input
+              className="wrap_item_input"
               type="radio"
               value="Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100"
               checked={deleteText === "Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100"}
@@ -70,6 +74,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
           </div>
           <div className="wrap_item item_textarea">
             <input
+              className="wrap_item_input"
               type="radio"
               value=""
               checked={deleteText !== "Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100" && 

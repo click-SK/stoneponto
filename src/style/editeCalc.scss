@@ -47,12 +47,18 @@
 
 .pricing_calc__edit_block{
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     align-items: flex-start;
     padding: 10px;
 
 }
+
+.aside_list_left{
+    width: 100%;
+}
+
+// .aside_list_right{
+//     width: 80%;
+// }
 
 .pricing_calc__edit_item{
     display: flex;
