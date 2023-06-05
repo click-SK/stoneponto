@@ -19,7 +19,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
 
  
   const handleDownload = async (order) => {
-    const resonse = await fetch(`http://localhost:4444/download?id=${order._id}`)
+    const resonse = await fetch(`https://ponto-print.herokuapp.com/download?id=${order._id}`)
     if(resonse.status == 200) {
       const blob = await resonse.blob();
       const dowloadUrl = window.URL.createObjectURL(blob);

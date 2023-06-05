@@ -226,7 +226,7 @@ const CalculatorPartner = () => {
       formData.append("notes", coment);
       formData.append("address", delivery);
       formData.append("status", JSON.stringify(status));
-      fetch("http://localhost:4444/create-table", {
+      fetch("https://ponto-print.herokuapp.com/create-table", {
         method: "POST",
         body: formData,
       }).then((res) => res.json());
