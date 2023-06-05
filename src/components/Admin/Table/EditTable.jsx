@@ -53,16 +53,16 @@ const EditTable = () => {
         <div
         className='table_header'
         >
-          <div>
-            <p>Id:</p>
+          <div className='table_header_item table_header_id'>
+            <p>Id</p>
           </div>
-          <div>
-            <p>Дата:</p>
+          <div className='table_header_item table_header_date'>
+            <p>Дата</p>
             <input type='date'
             onChange={(e) => filterDateFunc(e.target.value)}/>
           </div>
-          <div>
-          <p>Користувач:</p>
+          <div className='table_header_item table_header_name'>
+          <p>Користувач</p>
           <select onChange={(e) => filterOnUserFunc(e.target.value)}>
             <option>Всі</option>
             {uniqueUsers.map((user) => (
@@ -72,28 +72,28 @@ const EditTable = () => {
             ))}
           </select>
         </div>
-          <div>
-            <p>Назва файлу:</p>
+          <div className='table_header_item table_header_file'>
+            <p>Назва файлу</p>
           </div>
-          <div>
-            <p>Матеріал:</p>
+          <div className='table_header_item table_header_materials'>
+            <p>Матеріал</p>
           </div>
-          <div>
-            <p>Якість:</p>
+          <div className='table_header_item table_header_quality'>
+            <p>Якість</p>
+          </div >
+          <div className='table_header_item table_header_width'>
+            <p>Ширина</p>
           </div>
-          <div>
-            <p>Ширина:</p>
+          <div className='table_header_item table_header_hight'>
+            <p>Висота</p>
+          </div >
+          <div className='table_header_item table_header_sum'>
+            <p>Сумма</p>
+          </div >
+          <div className='table_header_item table_header_descript'>
+            <p>Умова</p>
           </div>
-          <div>
-            <p>Висота:</p>
-          </div>
-          <div>
-            <p>Сумма:</p>
-          </div>
-          <div>
-            <p>Умова:</p>
-          </div>
-          <div>
+          <div className='table_header_item table_header_status'>
             <p>Статус:</p>
             <select onChange={(e) => filterStatusFunc(e.target.value)}>
             <option>Всі</option>
