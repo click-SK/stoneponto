@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import EditCalculatorCurrentArray from "./EditCalculatorCurrentArray";
 import { AiOutlineDown } from "react-icons/ai";
 
-const EditCalculatorFullData = ({ currentArray, title, mainId, editPath, setIsFetch, goodsIndex, openCloseFunc, isOpen }) => {
+const EditCalculatorFullData = ({ currentArray, title, mainId, editPath, setIsFetch, goodsIndex, openCloseFunc, isOpen, isFetch }) => {
   // const [isOpen, setIsOpen] = useState(false);
   return (
       <div className="goods_wrap">
@@ -19,7 +19,8 @@ const EditCalculatorFullData = ({ currentArray, title, mainId, editPath, setIsFe
           mainId={mainId}
           editPath={editPath}
           setIsFetch={setIsFetch}
-          goodsIndex={goodsIndex} />
+          goodsIndex={goodsIndex}
+          isFetch={isFetch} />
         )}
       </div>
   );

@@ -9,10 +9,6 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
   // const [action, setAction] = useState('');
   // const [historyValue, sethistoryValue] = useState('');
 
-  console.log('editValue',editValue);
-  console.log('newValue',newValue);
-  console.log('editValue',editValue);
-
   const handleEditButtonSave = async () => {
     setIsEditValue((isEdit) => !isEdit);
 

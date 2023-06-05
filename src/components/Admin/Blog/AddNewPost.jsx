@@ -33,9 +33,6 @@ const AddNewPost = () => {
     // const file = e.target.files[0];
     setImage(e.target.files[0]);
   };
-  
-  console.log('image',image);
-  console.log('imageSrc',imageSrc);
 
   const createNewPost = () => {
     const formData = new FormData();

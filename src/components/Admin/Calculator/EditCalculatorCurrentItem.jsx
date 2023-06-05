@@ -4,10 +4,11 @@ import { fetchLanguage } from "../../../store/language";
 import {AiFillEdit} from 'react-icons/ai';
 import {RiFileEditFill} from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
-const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsIndex, currentItemIndex}) => {
+const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsIndex, currentItemIndex, isFetch}) => {
     const [isEdit, setIsEdit] = useState(false);
     const [newPrice, setNewPrice] = useState(0);
     const { t } = useTranslation();
+
 
     const dispatch = useDispatch();
 
