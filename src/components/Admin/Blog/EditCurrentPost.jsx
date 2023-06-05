@@ -89,7 +89,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
   };
 
   return (
-    <div className="blog_item">
+    <div className="edit_blog_item">
         <div className="item_nema_edit">
             <div className="img_wrap">
             {imageSrc ? (
