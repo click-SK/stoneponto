@@ -25,7 +25,7 @@ const AdminTableText = ({ order, handleDownload }) => {
         </div>
       </div>
       <div className="item_row_info item_material">
-        <p>{t(`${order.material}`)}</p>
+        <p>{order.material}</p>
       </div>
       <div className="item_row_info item_quality">
         <p>{order.quality}</p>
@@ -43,53 +43,53 @@ const AdminTableText = ({ order, handleDownload }) => {
         <p>--{t(`Description`)}--</p>
         {order.conditions.lamination?.name && (
           <div style={{ background: "red" }}>
-            <p>{t(`${order.conditions.lamination?.option}`)}</p>
-            <p>{t(`${order.conditions.lamination?.name}`)}</p>
+            <p>{order.conditions.lamination?.option}</p>
+            <p>{order.conditions.lamination?.name}</p>
           </div>
         )}
         {order.conditions.cutting?.name && (
           <div>
-            <p>{t(`${order.conditions.cutting?.option}`)}</p>
-            <p>{t(`${order.conditions.cutting?.name}`)}</p>
+            <p>{order.conditions.cutting?.option}</p>
+            <p>{order.conditions.cutting?.name}</p>
           </div>
         )}
         {order.conditions.eyelets?.name && (
           <div style={{ background: "#00ff4c"}}>
-            <p>{t(`${order.conditions.eyelets?.option}`)}</p>
-            <p>{t(`${order.conditions.eyelets?.name}`)}</p>
+            <p>{order.conditions.eyelets?.option}</p>
+            <p>{order.conditions.eyelets?.name}</p>
           </div>
         )}
         {order.conditions.poster?.name && (
           <div>
-            <p>{t(`${order.conditions.poster?.option}`)}</p>
-            <p>{t(`${order.conditions.poster?.name}`)}</p>
+            <p>{order.conditions.poster?.option}</p>
+            <p>{order.conditions.poster?.name}</p>
           </div>
         )}
         {order.conditions.solderGates?.name && (
           <div style={{ background: "blue", color: "white" }}>
-            <p>{t(`${order.conditions.solderGates?.option}`)}</p>
-            <p>{t(`${order.conditions.solderGates?.name}`)}</p>
+            <p>{order.conditions.solderGates?.option}</p>
+            <p>{order.conditions.solderGates?.name}</p>
           </div>
         )}
         {order.conditions.solderPockets?.name && (
           <div style={{ background: "blue", color: "white" }}>
-            <p>{t(`${order.conditions.solderPockets?.option}`)}</p>
-            <p>{t(`${order.conditions.solderPockets?.name}`)}</p>
+            <p>{order.conditions.solderPockets?.option}</p>
+            <p>{order.conditions.solderPockets?.name}</p>
           </div>
         )}
         {order.conditions.mounting?.name && (
           <div style={{ background: "orange" }}>
-            <p>{t(`${order.conditions.mounting?.name}`)}</p>
+            <p>{order.conditions.mounting?.name}</p>
           </div>
         )}
         {order.conditions.stamp?.name && (
           <div>
-            <p>{t(`${order.conditions.stamp?.name}`)}</p>
+            <p>{order.conditions.stamp?.name}</p>
           </div>
         )}
         {order.conditions.stretch?.name && (
           <div>
-            <p>{t(`${order.conditions.stretch?.name}`)}</p>
+            <p>{order.conditions.stretch?.name}</p>
           </div>
         )}
         {order?.notes != "" && (

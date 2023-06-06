@@ -120,6 +120,15 @@
     "Prices for 1m2": "Ціни за 1м2",
     "Delivery address": "Адреса доставки",
     "Address": "Адреса",
-    "Total": "Разом"
-
+    "Total": "Разом",
+    "File not selected": "Файл не вибран",
+    "Enter the width in mm": "Введіть ширину мм.",
+    "Enter the height in mm": "Введіть висоту мм.",
+    "Enter circulation": "Введіть тираж",
+    "Download the order": "Завантажити замовлення",
+    "Validation width": "У полі 'Ширина' введено неправильне значення або воно порожнє",
+    "Validation height": "У полі 'Висота' введено неправильне значення або воно порожнє",
+    "Validation circulation": "У полі 'Тираж' введено неправильне значення або воно порожнє",
+    "Debt": "Борг",
+    "Prices": "Ціни"
 }

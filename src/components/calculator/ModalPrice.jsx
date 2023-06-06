@@ -1,11 +1,16 @@
 import React, { useState,useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from "react-redux";
+import { currentCurrency } from "../../store/currency";
 import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
 import '../../style/modal.scss'
 
 const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
     const dispatch = useDispatch();
+    const { currency } = useSelector(currentCurrency);
+
+    const { t } = useTranslation();
 
     const lang = useSelector((state) => state.lang.language);
 
@@ -20,13 +25,13 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
         <div className='modal-overlay'>
             <div className='modal'>
                 <title>
-                    <p>Ціни</p>
-                    <p>Курс 38 грн</p>
+                    <p>{t(`Prices`)}</p>
+                    <p>{t(`The course is on the website`)}: {currency?.currency} грн</p>
                     <button onClick={() => setIsOpen(!isOpen)}>Close</button>
                 </title>
                 <div className='table'>
                 <div className='table_head'>
-                        <h2 className='title_name'>Матеріал</h2>
+                        <h2 className='title_name'>{t(`Material`)}</h2>
                         <h2 className='title_price'>720</h2>
                         <h2 className='title_price'>1080</h2>
                         <h2 className='title_price'>1440</h2>

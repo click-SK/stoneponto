@@ -68,7 +68,7 @@ const UserPanel = () => {
         />
 
         <div>
-          <p>Борг: {debt.toFixed(0)}</p>
+          <p>{t(`Debt`)}: {debt.toFixed(0)}</p>
         </div>
 
         <UserTable allOrders={[...user.orders].reverse()} currentUser={user} />
