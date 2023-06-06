@@ -74,7 +74,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
           className="table_item table_item_new"
           >
             <UserTableText order={order} />
-            <div>
+            <div className="item_row_info item_status">
               <p>{t(`${order.status.name}`)}</p>
               <div style={{ padding: "10px 0px" }}>
                 <button onClick={handleDelete}>Видалити</button>
@@ -87,7 +87,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
             className="table_item table_item_download"
           >
             <UserTableText order={order} />
-            <div>
+            <div className="item_row_info item_status">
               <p>{t(`${order.status.name}`)}</p>
             </div>
           </div>
@@ -97,7 +97,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
             className="table_item table_item_delete"  
           >
             <UserTableText order={order} />
-            <div>
+            <div className="item_row_info item_status">
               <p>{t(`${order.status.name}`)}</p>
             </div>
           </div>
@@ -107,7 +107,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
             className="table_item table_item_finished"
           >
             <UserTableText order={order} />
-            <div>
+            <div className="item_row_info item_status">
               <p>{t(`${order.status.name}`)}</p>
               <div style={{ padding: "10px 0px" }}>
                 {!order.status.paid && (

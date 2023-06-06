@@ -7,31 +7,31 @@ const UserTableText = ({ order }) => {
   
   return (
     <>
-      <div>
+      <div className="item_row_info item_id">
         <p>{order.id}</p>
       </div>
-      <div>
+      <div className="item_row_info item_date">
         <p>{order.date}</p>
       </div>
-      <div>
+      <div className="item_row_info item_file">
         <p>{order.fileName}</p>
       </div>
-      <div>
+      <div className="item_row_info item_material">
         <p>{t(`${order.material}`)}</p>
       </div>
-      <div>
+      <div className="item_row_info item_quality">
         <p>{order.quality}</p>
       </div>
-      <div>
+      <div className="item_row_info item_size">
         <p>{order.width}</p>
       </div>
-      <div>
+      <div className="item_row_info item_size">
         <p>{order.height}</p>
       </div>
-      <div>
+      <div className="item_row_info item_sum">
         <p>{order.sum.toFixed(0)}</p>
       </div>
-      <div>
+      <div className="item_row_info item_descript">
         <p>--Опис--</p>
         {order && order.descriptionDelete == "" ? (
           <>
@@ -103,7 +103,7 @@ const UserTableText = ({ order }) => {
         {order?.notes != "" && (
           <div>
             <p>--Доставка--</p>
-            <div>
+            <div style={{ background: "yellow" }}>
               <p>{order.address}</p>
             </div>
           </div>
