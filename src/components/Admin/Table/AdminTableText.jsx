@@ -15,13 +15,13 @@ const AdminTableText = ({ order, handleDownload }) => {
         {order?.user?.name ? (
           <p>{order.user.name}</p>
         ) : (
-          <p>Користувача не знайдено</p>
+          <p>{t(`No user found`)}</p>
         )}
       </div>
       <div className="item_row_info item_file">
         <p>{order.fileName}</p>
         <div style={{ padding: "10px 0px" }}>
-          <button onClick={() => handleDownload(order)}>Скачати</button>
+          <button onClick={() => handleDownload(order)}>{t(`Download`)}</button>
         </div>
       </div>
       <div className="item_row_info item_material">
@@ -40,7 +40,7 @@ const AdminTableText = ({ order, handleDownload }) => {
         <p>{order.sum.toFixed(0)}</p>
       </div>
       <div className="item_row_info item_descript">
-        <p>--Опис--</p>
+        <p>--{t(`Description`)}--</p>
         {order.conditions.lamination?.name && (
           <div style={{ background: "red" }}>
             <p>{t(`${order.conditions.lamination?.option}`)}</p>
@@ -94,7 +94,7 @@ const AdminTableText = ({ order, handleDownload }) => {
         )}
         {order?.notes != "" && (
           <div>
-            <p>--Замітки--</p>
+            <p>--{t(`Notes`)}--</p>
             <div>
               <p>{order.notes}</p>
             </div>
@@ -102,7 +102,7 @@ const AdminTableText = ({ order, handleDownload }) => {
         )}
         {order?.notes != "" && (
           <div>
-            <p>--Доставка--</p>
+            <p>--{t(`Delivery`)}--</p>
             <div style={{ background: "yellow" }}>
               <p>{order.address}</p>
             </div>

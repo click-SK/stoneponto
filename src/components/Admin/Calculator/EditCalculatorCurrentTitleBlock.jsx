@@ -198,7 +198,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         <div className='pricing_calc_open_goods'>
         {arrayGoods?.color.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.color} 
-        title={'Колір'}
+        title={'Color'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -208,7 +208,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.eyelets.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.eyelets} 
-        title={'Люверси'}
+        title={'Eyelets'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -218,7 +218,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.lamination.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.lamination} 
-        title={'Ламінація'}
+        title={'Lamination'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -228,7 +228,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.poster.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.poster} 
-        title={'Постер'}
+        title={'Poster'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -238,7 +238,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.solderingOfGates.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.solderingOfGates} 
-        title={'Пропайка подворотов'}
+        title={'SolderingOfGates'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -248,7 +248,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.solderingPockets.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.solderingPockets} 
-        title={'Пропайка карманов'}
+        title={'SolderingPockets'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -258,7 +258,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.cutting.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.cutting} 
-        title={'Порізка'}
+        title={'Cutting'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -268,7 +268,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.mounting && 
         <EditCalculatorAdditionalParameter
-        title={'Намонтаживание'}
+        title={'Mounting'}
         mainId={mainId}
         goodsIndex={goodsIndex}
         data={arrayGoods?.mounting}
@@ -278,7 +278,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         isOpen={isMounting}/>}
         {arrayGoods?.stamp && 
         <EditCalculatorAdditionalParameter
-        title={'Печать'}
+        title={'WithAStamp'}
         mainId={mainId}
         goodsIndex={goodsIndex}
         data={arrayGoods?.stamp}

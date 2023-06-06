@@ -147,7 +147,7 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
         }
         {arrayGoods?.eyelets.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.eyelets} 
-        title={'Люверси'}
+        title={'Eyelets'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}

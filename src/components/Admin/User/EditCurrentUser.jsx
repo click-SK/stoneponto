@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useTranslation } from 'react-i18next';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import EditCurrentUserDetails from './EditCurrentUserDetails';
 import DisplayCurrentTransaction from '../../Modal/DisplayCurrentTransaction';
@@ -10,6 +11,7 @@ import Modal from '../../Modal/Modal';
 // import AdminTable from '../../Table/AdminTable';
 const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const { t } = useTranslation();
 
     const handleCloseModal = () => {
         setModalIsOpen(false);
@@ -34,20 +36,20 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
               data={user.name}
               userId={user._id}
               editPath={"https://ponto-print.herokuapp.com/update-name"}
-              title="Імя"
+              title={t(`Name`)}
               setIsFetch={setIsFetch}
             />
             <EditCurrentUserDetails
             data={user.email}
             userId={user._id}
             editPath={""}
-            title="Пошта"
+            title={t(`Mail`)}
             setIsFetch={setIsFetch}
             />
             <EditUserPassword
             userId={user._id}
             editPath={"https://ponto-print.herokuapp.com/update-password"}
-            title="Зміна пароля"
+            title={t(`Password change`)}
             setIsFetch={setIsFetch}
             />
           </div>
@@ -56,19 +58,19 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
               data={user.balance.toFixed(0)}
               userId={user._id}
               editPath={"https://ponto-print.herokuapp.com/update-balance"}
-              title="Баланс"
+              title={t(`Balance`)}
               setIsFetch={setIsFetch}
             />
             <EditDiscount
               data={user.discountValue}
               userId={user._id}
               editPath={"https://ponto-print.herokuapp.com/update-discount"}
-              title="Знижка"
+              title={t(`Discount`)}
               setIsFetch={setIsFetch}
             />
             <DisabledUser
             user={user}
-            title={'Заблокувати користувача:'}
+            title={t(`Block user`)}
             editPath={"https://ponto-print.herokuapp.com/update-user-status"}
             setIsFetch={setIsFetch}/>
           </div>
@@ -88,9 +90,9 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
         
         <div className='history_wrap'>
           <div className="history_wrap_header">
-            <p>Дата</p>
-            <p>Операція</p>
-            <p>Сума</p>
+            <p>{t(`Date`)}</p>
+            <p>{t(`Operation`)}</p>
+            <p>{t(`Sum`)}</p>
           </div>
           <div className="history_wrap_item">
             {user.balanceHistory.map((transaction) => (

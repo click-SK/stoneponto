@@ -3,8 +3,8 @@ import Select from './Select'
 import SelectSec from './SelectSecond'
 import InputsTamplate from '../template/InputsTamplate';
 import ModalPrice from './ModalPrice';
-import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { currentUser } from "../../store/auth";
 import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
@@ -53,9 +53,9 @@ const CalculatorPartner = () => {
       paid: false
     });
 
-    const {currency} = useSelector((state) => state.currency);
-
     const { t } = useTranslation();
+
+    const {currency} = useSelector((state) => state.currency);
     
     const quadrature = ((Number(width) * Number(height))/1000000)
 
@@ -318,7 +318,7 @@ const CalculatorPartner = () => {
     return (
       <div className="calc_wrap">
         <title>
-          <h2>Загрузка файла</h2>
+          {/* <h2>Загрузка файла</h2> */}
           {user && user?.isAdmin && (
             <div
               className="custom-select"
@@ -342,7 +342,7 @@ const CalculatorPartner = () => {
             </div>
           )}
           <button className="btn" onClick={() => setIsOpen(!isOpen)}>
-            Цены за 1м2
+          {t(`Prices for 1m2`)}
           </button>
           <ModalPrice
             isOpen={isOpen}
@@ -352,7 +352,7 @@ const CalculatorPartner = () => {
         </title>
         <div className="wrap_row">
           <div className="calc-item material">
-            <h3>Материал</h3>
+            <h3>{t(`Material`)}</h3>
             <Select goods={goodsList} setcurrentItem={setcurrentItem} />
           </div>
           <div className="calc-item quality">
@@ -566,7 +566,7 @@ const CalculatorPartner = () => {
             </div>
           </div>
           <div className="calc-item">
-            <h3>Заметки</h3>
+            <h3>{t(`Notes`)}</h3>
             <textarea
               name="coment"
               id=""
@@ -580,9 +580,9 @@ const CalculatorPartner = () => {
         <div className="wrap_row footer_calc">
           <div className="calc-item delivery">
             <InputsTamplate
-              title={"Адрес доставки"}
+              title={t(`Delivery address`)}
               type={"text"}
-              placeholder={"Адрес"}
+              placeholder={t(`Address`)}
               value={delivery}
               handleCangeInput={setDelivery}
             />
@@ -590,7 +590,7 @@ const CalculatorPartner = () => {
           <div className="total_sum">
             <h3>
               {" "}
-              Итого: <p>{totalSum.toFixed(0)}</p> грн
+              {t(`Total`)}: <p>{totalSum.toFixed(0)}</p> грн
             </h3>
           </div>
           <button onClick={handleTotalSum}>submit</button>

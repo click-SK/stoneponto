@@ -77,7 +77,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
             <div className="item_row_info item_status">
               <p>{t(`${order.status.name}`)}</p>
               <div style={{ padding: "10px 0px" }}>
-                <button onClick={handleDelete}>Видалити</button>
+                <button onClick={handleDelete}>{t(`Remove`)}</button>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
               <p>{t(`${order.status.name}`)}</p>
               <div style={{ padding: "10px 0px" }}>
                 {!order.status.paid && (
-                  <button onClick={handlePay}>Оплатити</button>
+                  <button onClick={handlePay}>{t(`Pay`)}</button>
                 )}
               </div>
             </div>

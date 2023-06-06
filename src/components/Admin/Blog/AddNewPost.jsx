@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -10,6 +11,8 @@ const AddNewPost = () => {
   const [descriptionUa, setDescriptionUa] = useState("");
   const [descriptionRu, setDescriptionRu] = useState("");
   const [inputKey, setInputKey] = useState(0); // Додано стан для key атрибуту
+
+  const { t } = useTranslation();
 
   const toolbarOptions = [
     [{ 'size': ['small', false, 'large', 'huge'] }], // розмір шрифту
@@ -77,7 +80,7 @@ const AddNewPost = () => {
         <div className="photo_add_wrap">
           {!imageSrc && (
             <button onClick={() => inputFileRef.current.click()}>
-              Вибрати фото
+              {t(`Choose a photo`)}
             </button>
           )}
           <input
@@ -92,21 +95,21 @@ const AddNewPost = () => {
             {imageSrc && (
               <>
                 <img src={imageSrc} alt="Selected" />
-                <button onClick={removeImage}>Видалити</button>
+                <button onClick={removeImage}>{t(`Remove`)}</button>
               </>
             )}
           </div>
         </div>
         <div className="title_wrap">
           <div className="title_item">
-            <p>Заголовок Українською</p>
+            <p>{t(`Title in Ukrainian`)}</p>
             <input
               value={titleUa}
               onChange={(e) => setTitleUa(e.target.value)}
             />
           </div>
           <div className="title_item">
-            <p>Заголовок Російською</p>
+            <p>{t(`The title is in Russian`)}</p>
             <input
               value={titleRu}
               onChange={(e) => setTitleRu(e.target.value)}
@@ -116,7 +119,7 @@ const AddNewPost = () => {
       </div>
       <div className="descript_wrap">
         <div className="descript_item">
-          <p>Опис Українською</p>
+          <p>{t(`Description in Ukrainian`)}</p>
           {/* <textarea
                 value={descriptionUa}
                 onChange={(e) => setDescriptionUa(e.target.value)}
@@ -129,7 +132,7 @@ const AddNewPost = () => {
           />
         </div>
         <div className="descript_item">
-          <p>Опис Російською</p>
+          <p>{t(`Description in Russian`)}</p>
           <ReactQuill
             className="textarea"
             value={descriptionRu}
@@ -138,7 +141,7 @@ const AddNewPost = () => {
           />
         </div>
       </div>
-      <button onClick={createNewPost}>Створити пост</button>
+      <button onClick={createNewPost}>{t(`Create a post`)}</button>
     </div>
   );
 };

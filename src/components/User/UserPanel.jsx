@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from "react-redux";
 import { currentUser } from "../../store/auth";
 import Modal from '../Modal/Modal'
@@ -8,6 +9,7 @@ import '../../style/userProfile.scss'
 const UserPanel = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [debt, setDebt] = useState(0)
+    const { t } = useTranslation();
 
     const user = useSelector(currentUser);
 
@@ -32,32 +34,31 @@ const UserPanel = () => {
  
 
   return (
-    
-    <div className='user_profile_wrap'>
-      <p className='user_profile_title'>Мій кабінет</p>
-      <div className='user_profile_information'>
+    <div  className='user_profile_wrap' >
+      <p className='user_profile_title'>{t(`My office`)}</p>
+      <div className='user_profile_information' >
         <div className='user_profile_email'>
-          <p >Пошта</p>
+          <p >{t(`Mail`)}</p>
           <p >{user.email}</p>
         </div>
 
-        <div className='user_profile_name' >
-          <p >Імя</p>
+        <div className='user_profile_name'>
+          <p >{t(`Name`)}</p>
           <p >{user.name}</p>
         </div>
 
         <div className='user_profile_balance'>
-          <p >Баланс</p>
+          <p >{t(`Balance`)}</p>
           <p >{user.balance.toFixed(0)}</p>
         </div>
 
         <div className='user_profile_discount'>
-          <p >Знижка</p>
+          <p >{t(`Discount`)}</p>
           <p >{user.discountValue}</p>
         </div>
 
         <button className="button_open" onClick={handleOpenModal}>
-          Історія транзакцій
+        {t(`Transaction history`)}
         </button>
 
         <Modal

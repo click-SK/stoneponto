@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import EditCalculatorFullTitleBlock from './EditCalculatorFullTitleBlock';
+import { useTranslation } from 'react-i18next';
 import '../../../style/editeCalc.scss'
 
 const EditCalculator = () => {
@@ -12,6 +13,8 @@ const EditCalculator = () => {
     const [isHolst, setIsHolst] = useState(false);
     const [isLightTransmittingPlastic, setIsLightTransmittingPlastic] = useState(false);
     const [isPoliman, setIsPoliman] = useState(false);
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         fetch('https://ponto-print.herokuapp.com/get-all-calc')
@@ -101,13 +104,13 @@ const EditCalculator = () => {
     return (
       <div className='pricing_calc'>
         <div className='pricing_calc__categories'>
-          <p className={`categories_item ${isBaner ? 'active_item' : ' '}`} onClick={closeOpenBanerFunc}>Банери</p>
-          <p className={`categories_item ${isPlenca ? 'active_item' : ' '}`}  onClick={closeOpenPlencaFunc}>Пленка</p>
-          <p className={`categories_item ${isPapear ? 'active_item' : ' '}`}  onClick={closeOpenPapearFunc}>Бумага</p>
-          <p className={`categories_item ${isTollingMaterial ? 'active_item' : ' '}`}  onClick={closeOpenTollingMaterialFunc}>Давальческий материал</p>
-          <p className={`categories_item ${isHolst ? 'active_item' : ' '}`}  onClick={closeOpenHolstFunc}>Холст</p>
-          <p className={`categories_item ${isLightTransmittingPlastic ? 'active_item' : ' '}`}  onClick={closeOpenLightTransmittingPlasticFunc}>Светопропускной пластик</p>
-          <p className={`categories_item ${isPoliman ? 'active_item' : ' '}`}  onClick={closeOpenPolimanFunc}>Полиман</p>
+          <p className={`categories_item ${isBaner ? 'active_item' : ' '}`} onClick={closeOpenBanerFunc}>{t(`Banners`)}</p>
+          <p className={`categories_item ${isPlenca ? 'active_item' : ' '}`}  onClick={closeOpenPlencaFunc}>{t(`Film`)}</p>
+          <p className={`categories_item ${isPapear ? 'active_item' : ' '}`}  onClick={closeOpenPapearFunc}>{t(`Paper`)}</p>
+          <p className={`categories_item ${isTollingMaterial ? 'active_item' : ' '}`}  onClick={closeOpenTollingMaterialFunc}>{t(`TollingMaterial`)}</p>
+          <p className={`categories_item ${isHolst ? 'active_item' : ' '}`}  onClick={closeOpenHolstFunc}>{t(`Canvas`)}</p>
+          <p className={`categories_item ${isLightTransmittingPlastic ? 'active_item' : ' '}`}  onClick={closeOpenLightTransmittingPlasticFunc}>{t(`LightTransmittingPlastic`)}</p>
+          <p className={`categories_item ${isPoliman ? 'active_item' : ' '}`}  onClick={closeOpenPolimanFunc}>{t(`Polyman`)}</p>
         </div>
         <div  >
           {isBaner && (

@@ -1,6 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import DisplayAdminTableOrder from '../Admin/Table/DisplayAdminTableOrder'
 const AdminTable = ({allOrders}) => {
+    const { t } = useTranslation();
     return (
         <div>
         <div className='table_header'>
@@ -8,31 +10,31 @@ const AdminTable = ({allOrders}) => {
                 <p>Id:</p>
             </div>
             <div>
-                <p>Дата:</p>
+                <p>{t(`Date`)}:</p>
             </div>
             <div>
-                <p>Назва файлу:</p>
+                <p>{t(`The name of the file`)}:</p>
             </div>
             <div>
-                <p>Матеріал:</p>
+                <p>{t(`Material`)}:</p>
             </div>
             <div>
-                <p>Якість:</p>
+                <p>{t(`Quality`)}:</p>
             </div>
             <div>
-                <p>Ширина:</p>
+                <p>{t(`Width`)}:</p>
             </div>
             <div>
-                <p>Висота:</p>
+                <p>{t(`Height`)}:</p>
             </div>
             <div>
-                <p>Сумма:</p>
+                <p>{t(`Sum`)}:</p>
             </div>
             <div>
-                <p>Умова:</p>
+                <p>{t(`Condition`)}:</p>
             </div>
             <div>
-                <p>Статус:</p>
+                <p>{t(`Status`)}:</p>
             </div>
         </div>
             {allOrders.map((order) => (

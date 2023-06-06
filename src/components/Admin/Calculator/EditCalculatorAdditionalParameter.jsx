@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { AiOutlineDown } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 import {RiFileEditFill} from 'react-icons/ri';
@@ -7,6 +8,8 @@ const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, 
   // const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [newPrice, setNewPrice] = useState(0);
+  
+  const { t } = useTranslation();
 
   const handleEditButtonSave = () => {
     setIsEdit((isEdit) => !isEdit);
@@ -41,7 +44,7 @@ const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, 
           className={`goods_title ${isOpen ? 'goods_title_active' : ''}`}
           onClick={openCloseFunc}
         >
-          <p>{title}</p>
+          <p>{t(`${title}`)}</p>
           <AiOutlineDown />
         </div>
         {isOpen && (
@@ -52,7 +55,7 @@ const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, 
               <p>Ціна</p>
             </div> */}
             <div className='goods_edit_item_title padding_none margin_none'>
-              <p>{title}</p>
+            <p>{t(`${title}`)}</p>
               <p>{data} $</p>
             
               {isEdit && (
