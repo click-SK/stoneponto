@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import AdminTableText from './AdminTableText'
+import { MdDoneOutline } from "react-icons/md";
+import { MdOutlineDeleteForever } from "react-icons/md";
 import DeletetableModal from "./DeletetableModal/DeletetableModal";
 const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   const [deleteText, setDeleteText] = useState('');
@@ -112,11 +114,24 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
-            <div style={{ padding: "10px 0px" }}>
-              <button onClick={handleOpenModal}>{t(`Remove`)}</button>
+            <div style={{ padding: "10px 0px", display: 'flex', justifyContent:'center' }}>
+              <button 
+              style={{ padding: "5px 8px", background:'#5aad5a', margin:'0 2px' }}
+              onClick={handleFinished}>
+                <MdDoneOutline/></button>
+              <button 
+              style={{ padding: "5px 8px", background:'red', margin:'0 2px'  }}
+              onClick={handleOpenModal}>
+                {/* {t(`Remove`)} */}
+              <MdOutlineDeleteForever/>
+              </button>
+
             </div>
             <div style={{ padding: "10px 0px" }}>
-              <button onClick={handleFinished}>{t(`Done`)}</button>
+              {/* <button 
+              style={{ padding: "5px 8px", background:'#5aad5a' }}
+              onClick={handleFinished}>
+                <MdDoneOutline/></button> */}
             </div>
           </div>
           <DeletetableModal 

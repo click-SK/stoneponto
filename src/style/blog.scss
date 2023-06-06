@@ -114,9 +114,12 @@
         }}
     }
 
-    .ql-toolbar{
-        display: none;
-    }
-    .ql-container.ql-snow {
-        border: 0px;
+
+    .blog_news{
+        .ql-toolbar{
+            display: none;
+        }
+        .ql-container.ql-snow {
+            border: 0px;
+        }
     }
