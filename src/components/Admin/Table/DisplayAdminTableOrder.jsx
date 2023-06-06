@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import AdminTableText from './AdminTableText'
 import DeletetableModal from "./DeletetableModal/DeletetableModal";
-import { useTranslation } from 'react-i18next';
 const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   const [deleteText, setDeleteText] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  
 
   const handleCloseModal = () => {
       setModalIsOpen(false);
@@ -112,10 +113,10 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
             <div style={{ padding: "10px 0px" }}>
-              <button onClick={handleOpenModal}>Видалити</button>
+              <button onClick={handleOpenModal}>{t(`Remove`)}</button>
             </div>
             <div style={{ padding: "10px 0px" }}>
-              <button onClick={handleFinished}>Виконано</button>
+              <button onClick={handleFinished}>{t(`Done`)}</button>
             </div>
           </div>
           <DeletetableModal 

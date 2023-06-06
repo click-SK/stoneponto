@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import { useTranslation } from 'react-i18next';
 const DisabledUser =  ({user, editPath, setIsFetch, title}) => {
     const [isEditValue, setIsEditValue] = useState(false);
     const [statusDisabled,setStatusDisabled] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         setStatusDisabled(user.disabled)
@@ -31,7 +33,7 @@ const DisabledUser =  ({user, editPath, setIsFetch, title}) => {
       
         <div className='details_wrap'>
           <div className='details_title'>
-            <p>{title}</p>
+            <p>{t(`${title}`)}</p>
             <input
             className='input_checkbox'
             type='checkbox'

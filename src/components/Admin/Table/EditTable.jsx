@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import DisplayAdminTableOrder from './DisplayAdminTableOrder';
 import '../../../style/table.scss';
 
@@ -8,6 +9,8 @@ const EditTable = () => {
   const [uniqueUsers, setUniqueUsers] = useState([]);
   const [uniqueStatuses, setUniqueStatuses] = useState([]);
   const [isFetch, setIsFetch] = useState(false);
+
+  const { t } = useTranslation();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
@@ -131,11 +134,11 @@ console.log('currentPage',currentPage);
           <p>Id</p>
         </div>
         <div className="table_header_item table_header_date">
-          <p>Дата</p>
+          <p>{t(`Date`)}</p>
           <input type="date" onChange={(e) => filterDateFunc(e.target.value)} />
         </div>
         <div className="table_header_item table_header_name">
-          <p>Користувач</p>
+          <p>{t(`User`)}</p>
           <select onChange={(e) => filterOnUserFunc(e.target.value)}>
             <option>Всі</option>
             {uniqueUsers.map((user) => (
@@ -146,30 +149,30 @@ console.log('currentPage',currentPage);
           </select>
         </div>
         <div className="table_header_item table_header_file">
-          <p>Назва файлу</p>
+          <p>{t(`The name of the file`)}</p>
         </div>
         <div className="table_header_item table_header_materials">
-          <p>Матеріал</p>
+          <p>{t(`Material`)}</p>
         </div>
         <div className="table_header_item table_header_quality">
-          <p>Якість</p>
+          <p>{t(`Quality`)}</p>
         </div>
         <div className="table_header_item table_header_width">
-          <p>Ширина</p>
+          <p>{t(`Width`)}</p>
         </div>
         <div className="table_header_item table_header_hight">
-          <p>Висота</p>
+          <p>{t(`Height`)}</p>
         </div>
         <div className="table_header_item table_header_sum">
-          <p>Сумма</p>
+          <p>{t(`Sum`)}</p>
         </div>
         <div className="table_header_item table_header_descript">
-          <p>Умова</p>
+          <p>{t(`Condition`)}</p>
         </div>
         <div className="table_header_item table_header_status">
-          <p>Статус:</p>
+          <p>{t(`Status`)}:</p>
           <select onChange={(e) => filterStatusFunc(e.target.value)}>
-            <option>Всі</option>
+            <option>{t(`All`)}</option>
             {uniqueStatuses.map((status) => (
               <option key={status} value={status}>
                 {status}

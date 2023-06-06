@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import { useTranslation } from 'react-i18next';
 import DisplayUserTableOrder from './DisplayUserTableOrder';
 import '../../style/userProfile.scss'
 import '../../style/table.scss'
 const UserTable = ({allOrders, currentUser}) => {
+
+  const { t } = useTranslation();
 
     return (
         <div className='table_wrap'>
@@ -11,31 +14,31 @@ const UserTable = ({allOrders, currentUser}) => {
                 <p>Id:</p>
             </div>
             <div className='table_header_item table_header_date'>
-                <p>Дата:</p>
+                <p>{t(`Date`)}:</p>
             </div>
             <div className='table_header_item table_header_file'>
-                <p>Назва файлу:</p>
+                <p>{t(`The name of the file`)}:</p>
             </div>
             <div className='table_header_item table_header_materials'>
-            <p>Матеріал</p>
+            <p>{t(`Material`)}</p>
           </div>
           <div className='table_header_item table_header_quality'>
-            <p>Якість</p>
+            <p>{t(`Quality`)}</p>
           </div >
           <div className='table_header_item table_header_width'>
-            <p>Ширина</p>
+            <p>{t(`Width`)}</p>
           </div>
           <div className='table_header_item table_header_hight'>
-            <p>Висота</p>
+            <p>{t(`Height`)}</p>
           </div >
           <div className='table_header_item table_header_sum'>
-            <p>Сумма</p>
+            <p>{t(`Sum`)}</p>
           </div >
           <div className='table_header_item table_header_descript'>
-            <p>Умова</p>
+            <p>{t(`Condition`)}</p>
           </div>
             <div className='table_header_item table_header_status'>
-                <p>Статус:</p>
+                <p>{t(`Status`)}:</p>
             </div>
         </div>
             <div className='table_body'>
