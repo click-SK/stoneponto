@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { currentUser } from "../../store/auth";
 import Modal from '../Modal/Modal'
 import UserTable from '../Table/UserTable'
+import '../../style/userProfile.scss'
+
 const UserPanel = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [debt, setDebt] = useState(0)
@@ -32,25 +34,25 @@ const UserPanel = () => {
  
 
   return (
-    <div >
-      <p>{t(`My office`)}</p>
-      <div >
-        <div>
+    <div  className='user_profile_wrap' >
+      <p className='user_profile_title'>{t(`My office`)}</p>
+      <div className='user_profile_information' >
+        <div className='user_profile_email'>
           <p >{t(`Mail`)}</p>
           <p >{user.email}</p>
         </div>
 
-        <div >
+        <div className='user_profile_name'>
           <p >{t(`Name`)}</p>
           <p >{user.name}</p>
         </div>
 
-        <div>
+        <div className='user_profile_balance'>
           <p >{t(`Balance`)}</p>
           <p >{user.balance.toFixed(0)}</p>
         </div>
 
-        <div>
+        <div className='user_profile_discount'>
           <p >{t(`Discount`)}</p>
           <p >{user.discountValue}</p>
         </div>
