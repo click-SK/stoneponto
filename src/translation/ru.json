@@ -120,5 +120,17 @@
     "Prices for 1m2": "Цены за 1м2",
     "Delivery address": "Адрес доставки",
     "Address": "Адрес",
-    "Total": "Итого"
+    "Total": "Итого",
+    "File not selected": "Файл не выбран",
+    "Enter the width in mm": "Введите ширину в мм.",
+    "Enter the height in mm": "Введите высоту в мм.",
+    "Enter circulation": "Введите тираж",
+    "Download the order": "Загрузить заказ",
+    "Validation width": "В поле 'Ширина' введено неверное значение или оно пустое",
+    "Validation height": "В поле 'Высота' введено неверное значение или оно пустое",
+    "Validation circulation": "В поле 'Тираж' введено неверное значение или оно пустое",
+    "Debt": "Долг",
+    "Prices": "Цены"
+
+
 }

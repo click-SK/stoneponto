@@ -17,7 +17,7 @@ const UserTableText = ({ order }) => {
         <p>{order.fileName}</p>
       </div>
       <div>
-        <p>{t(`${order.material}`)}</p>
+        <p>{order.material}</p>
       </div>
       <div>
         <p>{order.quality}</p>
@@ -32,58 +32,58 @@ const UserTableText = ({ order }) => {
         <p>{order.sum.toFixed(0)}</p>
       </div>
       <div>
-        <p>--Опис--</p>
+        <p>--{t(`Description`)}--</p>
         {order && order.descriptionDelete == "" ? (
           <>
             {order.conditions.lamination?.name && (
               <div style={{ background: "red" }}>
-                <p>{t(`${order.conditions.lamination?.option}`)}</p>
-                <p>{t(`${order.conditions.lamination?.name}`)}</p>
+                <p>{order.conditions.lamination?.option}</p>
+                <p>{order.conditions.lamination?.name}</p>
               </div>
             )}
             {order.conditions.cutting?.name && (
               <div>
-                <p>{t(`${order.conditions.cutting?.option}`)}</p>
-                <p>{t(`${order.conditions.cutting?.name}`)}</p>
+                <p>{order.conditions.cutting?.option}</p>
+                <p>{order.conditions.cutting?.name}</p>
               </div>
             )}
             {order.conditions.eyelets?.name && (
               <div style={{ background: "green" }}>
-                <p>{t(`${order.conditions.eyelets?.option}`)}</p>
-                <p>{t(`${order.conditions.eyelets?.name}`)}</p>
+                <p>{order.conditions.eyelets?.option}</p>
+                <p>{order.conditions.eyelets?.name}</p>
               </div>
             )}
             {order.conditions.poster?.name && (
               <div>
-                <p>{t(`${order.conditions.poster?.option}`)}</p>
-                <p>{t(`${order.conditions.poster?.name}`)}</p>
+                <p>{order.conditions.poster?.option}</p>
+                <p>{order.conditions.poster?.name}</p>
               </div>
             )}
             {order.conditions.solderGates?.name && (
               <div style={{ background: "blue" }}>
-                <p>{t(`${order.conditions.solderGates?.option}`)}</p>
-                <p>{t(`${order.conditions.solderGates?.name}`)}</p>
+                <p>{order.conditions.solderGates?.option}</p>
+                <p>{order.conditions.solderGates?.name}</p>
               </div>
             )}
             {order.conditions.solderPockets?.name && (
               <div style={{ background: "blue" }}>
-                <p>{t(`${order.conditions.solderPockets?.option}`)}</p>
-                <p>{t(`${order.conditions.solderPockets?.name}`)}</p>
+                <p>{order.conditions.solderPockets?.option}</p>
+                <p>{order.conditions.solderPockets?.name}</p>
               </div>
             )}
             {order.conditions.mounting?.name && (
               <div style={{ background: "orange" }}>
-                <p>{t(`${order.conditions.mounting?.name}`)}</p>
+                <p>{order.conditions.mounting?.name}</p>
               </div>
             )}
             {order.conditions.stamp?.name && (
               <div>
-                <p>{t(`${order.conditions.stamp?.name}`)}</p>
+                <p>{order.conditions.stamp?.name}</p>
               </div>
             )}
             {order.conditions.stretch?.name && (
               <div>
-                <p>{t(`${order.conditions.stretch?.name}`)}</p>
+                <p>{order.conditions.stretch?.name}</p>
               </div>
             )}
           </>
@@ -94,7 +94,7 @@ const UserTableText = ({ order }) => {
         )}
         {order?.notes != "" && (
           <div>
-            <p>--Замітки--</p>
+            <p>--{t(`Notes`)}--</p>
             <div>
               <p>{order.notes}</p>
             </div>
@@ -102,7 +102,7 @@ const UserTableText = ({ order }) => {
         )}
         {order?.notes != "" && (
           <div>
-            <p>--Доставка--</p>
+            <p>--{t(`Delivery`)}--</p>
             <div>
               <p>{order.address}</p>
             </div>

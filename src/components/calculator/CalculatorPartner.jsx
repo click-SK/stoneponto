@@ -387,34 +387,34 @@ const CalculatorPartner = () => {
             <InputsTamplate
               title={"Width"}
               type={"number"}
-              placeholder={"Введите ширину в мм."}
+              placeholder={"Enter the width in mm"}
               value={width}
               handleCangeInput={setWitdh}
             />
             {validationWidth &&
-            <p style={{color:'red'}}>В поле "Ширина" введено не верное значение или оно пустое</p>}
+            <p style={{color:'red'}}>{t(`Validation width`)}</p>}
           </div>
           <div className="calc-item input_size">
             <InputsTamplate
               title={"Height"}
               type={"number"}
-              placeholder={"Введите высоту в мм."}
+              placeholder={"Enter the height in mm"}
               value={height}
               handleCangeInput={setHeight}
             />
             {validationHeight &&
-            <p style={{color:'red'}}>В поле "Высота" введено не верное значение или оно пустое</p>}
+            <p style={{color:'red'}}>{t(`Validation height`)}</p>}
           </div>
           <div className="calc-item input_size">
             <InputsTamplate
               title={"Circulation"}
               type={"number"}
-              placeholder={"Введите тираж"}
+              placeholder={"Enter circulation"}
               value={count}
               handleCangeInput={setCount}
             />
             {validationCount &&
-            <p style={{color:'red'}}>В поле "Тираж" введено не верное значение или оно пустое</p>}
+            <p style={{color:'red'}}>{t(`Validation circulation`)}</p>}
           </div>
         </div>
         <div className="wrap_row adding">
@@ -486,7 +486,7 @@ const CalculatorPartner = () => {
             {currentItem?.goods &&
               currentItem?.goods[0]?.stretchOnTheStretcher && (
                 <div>
-                  <h3>{t(`${"StretchOnTheStretcher"}`)}</h3>
+                  <h3>{t(`"StretchOnTheStretcher"`)}</h3>
                   <input
                     type="checkbox"
                     value={isStretch}
@@ -496,7 +496,7 @@ const CalculatorPartner = () => {
               )}
             {currentItem?.mounting && (
               <div>
-                <h3>Намонтаживание</h3>
+                <h3>{t(`Mounting`)}</h3>
                 <input
                   type="checkbox"
                   value={isMounting}
@@ -506,7 +506,7 @@ const CalculatorPartner = () => {
             )}
             {currentItem?.stamp && (
               <div>
-                <h3>С печатью</h3>
+                <h3>{t(`WithAStamp`)}</h3>
                 <input type="checkbox" value={isStamp} onChange={handleStamp} />
               </div>
             )}
@@ -516,7 +516,7 @@ const CalculatorPartner = () => {
                   <div className="soldering_item">
                     <SelectSec
                       item={currentItem?.solderingOfGates}
-                      title={"Пропайка подворотов"}
+                      title={"SolderingOfGates"}
                       selectedOption={selectedOptionSolderGates}
                       setSelectedOption={setSelectedOptionSolderGates}
                     />
@@ -524,7 +524,7 @@ const CalculatorPartner = () => {
                   <div className="soldering_item">
                     <SelectSec
                       item={currentItem?.solderingPockets}
-                      title={"Пропайка карманов"}
+                      title={"SolderingPockets"}
                       selectedOption={selectedOptionSolderPockets}
                       setSelectedOption={setSelectedOptionSolderPockets}
                     />
@@ -541,12 +541,12 @@ const CalculatorPartner = () => {
             />
           </div>
           {validationFile &&
-          <p style={{color:'red'}}>Файл не выбран</p>}
+          <p style={{color:'red'}}>{t(`File not selected`)}</p>}
         </div>
         {/* {t(`${title}`)} */}
         <div className="wrap_row">
           <div className="calc-item">
-            <h3>Описание</h3>
+            <h3>{t(`Description`)}</h3>
             <div className="description">
               {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
               {/* {descArray.length != 0 &&
@@ -593,7 +593,7 @@ const CalculatorPartner = () => {
               {t(`Total`)}: <p>{totalSum.toFixed(0)}</p> грн
             </h3>
           </div>
-          <button onClick={handleTotalSum}>submit</button>
+          <button onClick={handleTotalSum}>{t(`Download the order`)}</button>
         </div>
         <div></div>
       </div>
