@@ -34,7 +34,7 @@ const UserPanel = () => {
  
 
   return (
-    <div  className='user_profile_wrap' >
+    <div className='user_profile_wrap' >
       <p className='user_profile_title'>{t(`My office`)}</p>
       <div className='user_profile_information' >
         <div className='user_profile_email'>
