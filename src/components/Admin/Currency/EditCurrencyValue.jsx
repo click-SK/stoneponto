@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import { useTranslation } from 'react-i18next';
 import {AiOutlineDown, AiFillEdit} from 'react-icons/ai'
 import {RiFileEditFill} from 'react-icons/ri';
 
 const EditCurrencyValue = ({data, setIsFetch}) => {
     const [isEdit, setIsEdit] = useState('');
     const [newvalue, setNewValue] = useState('');
+    const { t } = useTranslation();
 
     const handleEditButtonSave = () => {
         setIsEdit((state) => !state);
@@ -33,7 +35,7 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
     return (
 
             <div className='edit_plus_wrap'>
-                <p>Змінити курс:</p> 
+                <p>{t(`Change course`)}:</p> 
               <div className='edit_plus_value'>
                 <p>{data}</p>
               </div>
@@ -44,7 +46,7 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
                     onChange={(e) => setNewValue(e.target.value)}
                     
                   />
-                  <button onClick={handleEditButtonSave}>Save</button>
+                  <button onClick={handleEditButtonSave}>{t(`Save changes`)}</button>
                 </div>
               )}
               <RiFileEditFill

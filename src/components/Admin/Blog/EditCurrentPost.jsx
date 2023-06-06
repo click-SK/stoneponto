@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from 'react-i18next';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
@@ -13,6 +14,8 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
   const [titleRu, setTitleRu] = useState("");
   const [descriptionUa, setDescriptionUa] = useState("");
   const [descriptionRu, setDescriptionRu] = useState("");
+
+  const { t } = useTranslation();
 
   const inputFileRef = useRef(null);
 
@@ -123,7 +126,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
           <div className="edit_curent_post">
             <div className="post_info">
             <button onClick={() => inputFileRef.current.click()}>
-              Вибрати фото
+            {t(`Choose a photo`)}
             </button>
 
             <input
@@ -154,14 +157,14 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                 )}
               </div>
               <div>
-                <p>Заголовок Українською</p>
+                <p>{t(`Title in Ukrainian`)}</p>
                 <input
                   value={titleUa}
                   onChange={(e) => setTitleUa(e.target.value)}
                 />
               </div>
               <div>
-                <p>Заголовок Російською</p>
+                <p>{t(`The title is in Russian`)}</p>
                 <input
                   value={titleRu}
                   onChange={(e) => setTitleRu(e.target.value)}
@@ -171,7 +174,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
 
             <div style={{ width: "100%" }}>
               <div>
-                <p>Опис Українською</p>
+                <p>{t(`Description in Ukrainian`)}</p>
                 <ReactQuill
                 className="textarea"
                 value={descriptionUa}
@@ -180,7 +183,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                />
               </div>
               <div>
-                <p>Опис Російською</p>
+                <p>{t(`Description in Russian`)}</p>
                 <ReactQuill
                   className="textarea"
                   value={descriptionRu}
@@ -189,8 +192,8 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                />
               </div>
             </div>
-            <button onClick={handleEditButtonSave}>Зберегти зміни</button>
-            <button onClick={handleRemovePost}>Видалити пост</button>
+            <button onClick={handleEditButtonSave}>{t(`Save changes`)}</button>
+            <button onClick={handleRemovePost}>{t(`Delete the post`)}</button>
             {/* <button onClick={setIsEditValue((isEdit) => !isEdit)}>Закрити без змін</button> */}
             </div>
           </div>

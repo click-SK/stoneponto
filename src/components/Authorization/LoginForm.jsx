@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuth, currentUser } from '../../store/auth';
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(currentUser);
+    const { t } = useTranslation();
 
     const handleSubmit = async () => {
         const data = await dispatch(fetchAuth(
@@ -43,15 +45,15 @@ const LoginForm = () => {
             <div className="input_wrap">
                 <input type='text' 
                 value={login} onChange={(e) => setLogin(e.target.value)}
-                placeholder='Логін'/>
+                placeholder={t(`Login`)}/>
             </div>
             <div className="input_wrap">
                 <input type='password' 
                 value={password} onChange={(e) => setPassword(e.target.value)} 
-                placeholder='Пароль'/>
+                placeholder={t(`Password`)}/>
             </div>
             <div className="login_button_wrap">
-                <button className="login_button" onClick={handleSubmit}>Увійти</button>
+                <button className="login_button" onClick={handleSubmit}>{t(`Sign in`)}</button>
             </div>
         </div>
         </div>

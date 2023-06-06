@@ -1,5 +1,6 @@
 import React from "react";
 import ChooseLanguage from "./ChooseLanguage";
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from "react-redux";
 import { currentCurrency } from "../store/currency";
 import { currentUser } from "../store/auth";
@@ -10,6 +11,7 @@ const Header = () => {
   const user = useSelector(currentUser);
   const { currency } = useSelector(currentCurrency);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const clearTokenStorege = () => {
     window.localStorage.removeItem("token");
@@ -32,12 +34,12 @@ const Header = () => {
           {!user?.email ? (
             <span className="wrap_item">
               <button>
-                <Link to="/login">Вхід</Link>
+                <Link to="/login">{t(`Exit`)}</Link>
               </button>
             </span>
           ) : (
             <span className="wrap_item" onClick={clearTokenStorege}>
-              <button>Вихід</button>
+              <button>{t(`Entrance`)}</button>
             </span>
           )}
 
@@ -45,7 +47,7 @@ const Header = () => {
             <ChooseLanguage />
           </span>
           <span className="wrap_item text">
-            Курс на сайті: {currency?.currency}
+            {t(`The course is on the website`)}: {currency?.currency}
           </span>
         </div>
       </div>
@@ -60,32 +62,32 @@ const Header = () => {
               // Admin Route
               <div className="navbar">
                 <Link to="/">
-                  <p className="link_route">Головна</p>
+                  <p className="link_route">{t(`Main`)}</p>
                 </Link>
                 <Link to="/admin">
-                  <p className="link_route">Адмін панель</p>
+                  <p className="link_route">{t(`Admin panel`)}</p>
                 </Link>
                 <Link to="/calculator">
-                  <p className="link_route">Калькулятор</p>
+                  <p className="link_route">{t(`Calculator`)}</p>
                 </Link>
                 <Link to="/news">
-                  <p className="link_route">Новини</p>
+                  <p className="link_route">{t(`News`)}</p>
                 </Link>
               </div>
             ) : (
               //Login user Route
               <div className="navbar">
                 <Link to="/">
-                  <p className="link_route">Головна</p>
+                  <p className="link_route">{t(`Main`)}</p>
                 </Link>
                 <Link to="/calculator">
-                  <p className="link_route">Калькулятор</p>
+                  <p className="link_route">{t(`Calculator`)}</p>
                 </Link>
                 <Link to="/my-panel">
-                  <p className="link_route">Мій кабінет</p>
+                  <p className="link_route">{t(`My office`)}</p>
                 </Link>
                 <Link to="/news">
-                  <p className="link_route">Новини</p>
+                  <p className="link_route">{t(`News`)}</p>
                 </Link>
               </div>
             )}
@@ -94,10 +96,10 @@ const Header = () => {
           // Not Login user Route
           <div className="navbar">
             <Link to="/">
-              <p className="link_route">Головна</p>
+              <p className="link_route">{t(`Main`)}</p>
             </Link>
             <Link to="/news">
-                  <p className="link_route">Новини</p>
+                  <p className="link_route">{t(`News`)}</p>
                 </Link>
           </div>
         )}

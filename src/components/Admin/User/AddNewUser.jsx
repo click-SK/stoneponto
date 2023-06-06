@@ -1,9 +1,10 @@
 import React,{useState, useEffect} from 'react';
-
+import { useTranslation } from 'react-i18next';
 const AddNewUser = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const { t } = useTranslation();
 
     const handleSubmit = async () => {
         const response = await fetch('https://ponto-print.herokuapp.com/register-user', {
@@ -35,20 +36,20 @@ const AddNewUser = () => {
             <div className="input_wrap">
                 <input type='text' 
                 value={name} onChange={(e) => setName(e.target.value)} 
-                placeholder='Імя'/>
+                placeholder={t(`Name`)}/>
             </div>
             <div className="input_wrap">
                 <input type='text' 
                 value={email} onChange={(e) => setEmail(e.target.value)}
-                placeholder='Пошта'/>
+                placeholder={t(`Mail`)}/>
             </div>
             <div className="input_wrap">
                 <input type='password' 
                 value={password} onChange={(e) => setPassword(e.target.value)} 
-                placeholder='Пароль'/>
+                placeholder={t(`Password`)}/>
             </div>
             <div className="login_button_wrap">
-                <button className="login_button" onClick={handleSubmit}>Зареєструвати</button>
+                <button className="login_button" onClick={handleSubmit}>{t(`Register`)}</button>
             </div>
         </div>
         </div>

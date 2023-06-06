@@ -5,6 +5,7 @@ import AddNewUser from './User/AddNewUser';
 import AllUsers from './User/AllUsers';
 import EditTable from './Table/EditTable';
 import AdminBlog from './Blog/AdminBlog';
+import { useTranslation } from 'react-i18next';
 import '../../style/adminPanel.scss'
 const AdminPanel = () => {
     const [editPrice, setEditPrice] = useState(true);
@@ -13,6 +14,8 @@ const AdminPanel = () => {
     const [editAllUsers, setEditAllUsers] = useState(false);
     const [editTable, setEditTable] = useState(false);
     const [editBlog, setEditBlog] = useState(false);
+
+    const { t } = useTranslation();
 
     const showPriceFunc = () => {
         setEditPrice(true);
@@ -72,12 +75,12 @@ const AdminPanel = () => {
     return (
         <div className='admin_panel'>
             <div className='admin_panel__header'>
-                <p className={`admin_header__item ${editPrice ? 'active' : ' ' }  `} onClick={showPriceFunc}>Ціни на калькулятор</p>
-                <p className={`admin_header__item ${editCurrency ? 'active' : ' ' }  `} onClick={showCurrencyFunc}>Валюта</p>
-                <p className={`admin_header__item ${editAddNewUser ? 'active' : ' ' }  `} onClick={showAddNewUser}>Додати нового користувача</p>
-                <p className={`admin_header__item ${editAllUsers ? 'active' : ' ' }  `} onClick={showAllUser}>Всі користувачі</p>
-                <p className={`admin_header__item ${editTable ? 'active' : ' ' }  `} onClick={showTable}>Таблиця</p>
-                <p className={`admin_header__item ${editBlog ? 'active' : ' ' }  `} onClick={showBlog}>Блог</p>
+                <p className={`admin_header__item ${editPrice ? 'active' : ' ' }  `} onClick={showPriceFunc}>{t(`CalculatorPrices`)}</p>
+                <p className={`admin_header__item ${editCurrency ? 'active' : ' ' }  `} onClick={showCurrencyFunc}>{t(`Currency`)}</p>
+                <p className={`admin_header__item ${editAddNewUser ? 'active' : ' ' }  `} onClick={showAddNewUser}>{t(`AddANewUser`)}</p>
+                <p className={`admin_header__item ${editAllUsers ? 'active' : ' ' }  `} onClick={showAllUser}>{t(`AllUsers`)}</p>
+                <p className={`admin_header__item ${editTable ? 'active' : ' ' }  `} onClick={showTable}>{t(`Table`)}</p>
+                <p className={`admin_header__item ${editBlog ? 'active' : ' ' }  `} onClick={showBlog}>{t(`Blog`)}</p>
             </div>
             {editPrice && <EditCalculator/>}
             {editCurrency && <EditCurrency/>}

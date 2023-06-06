@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import {RiFileEditFill} from 'react-icons/ri';
 
@@ -6,6 +7,7 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
   const [editValue, setEditValue] = useState(0);
   const [newValue, setNewValue] = useState(0);
   const [isEditValue, setIsEditValue] = useState(false);
+  const { t } = useTranslation();
   // const [action, setAction] = useState('');
   // const [historyValue, sethistoryValue] = useState('');
 
@@ -14,8 +16,6 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
 
     let action = '';
     let historyValue = ''
-    console.log('editValue',editValue);
-    console.log('data',data);
 
     if(editValue > data) {
       action = 'Депозит'
@@ -53,23 +53,23 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
       <div className='details_wrap'>
         <div className='details_title'>
           <p>
-            {title}: {data}
+          {t(`${title}`)}: {data}
           </p>
           {isEditValue && (
           <div className="details_input_balance">
-            <p>Баланс користувача</p>
+            <p>{t(`User balance`)}</p>
             <input
               value={editValue}
               onChange={(e) => setIsEditValue(e.target.value)}
               disabled
             />
-            <p>Введіть сумму</p>
+            <p>{t(`Enter the amount`)}</p>
             <input
               
               value={newValue}
               onChange={(e) => setNewValue(e.target.value)}
             />
-            <p>Виберіть дію:</p>
+            <p>{t(`Select an action`)}:</p>
             <div className='balance_button' >
               <button
               
@@ -88,7 +88,7 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
                 -
               </button>
             </div>
-            <button onClick={handleEditButtonSave}>Зберегти зміни</button>
+            <button onClick={handleEditButtonSave}>{t(`Save changes`)}</button>
           </div>
         )}
           {isEditValue ? (
