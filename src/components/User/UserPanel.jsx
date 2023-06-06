@@ -34,28 +34,38 @@ const UserPanel = () => {
  
 
   return (
-    <div  className='user_profile_wrap' >
+    <div className='user_profile_wrap' >
       <p className='user_profile_title'>{t(`My office`)}</p>
       <div className='user_profile_information' >
-        <div className='user_profile_email'>
-          <p >{t(`Mail`)}</p>
-          <p >{user.email}</p>
-        </div>
+        <div className='user_data'>
+          <div className='name_block'>
+            <div className='user_profile_email'>
+              <p className='key'>{t(`Mail`)}:</p>
+              <p className='value'>{user.email}</p>
+            </div>
 
-        <div className='user_profile_name'>
-          <p >{t(`Name`)}</p>
-          <p >{user.name}</p>
-        </div>
+            <div className='user_profile_name'>
+            <p className='key'>{t(`Name`)}:</p>
+            <p className='value'>{user.name}</p>
+            </div>
 
-        <div className='user_profile_balance'>
-          <p >{t(`Balance`)}</p>
-          <p >{user.balance.toFixed(0)}</p>
-        </div>
+          </div>
+          <div className='balance_block'>
+              <div className='user_profile_balance'>
+                <p>{t(`Balance`)}:</p>
+                <p>{user.balance.toFixed(0)}</p>
+              </div>
 
-        <div className='user_profile_discount'>
-          <p >{t(`Discount`)}</p>
-          <p >{user.discountValue}</p>
-        </div>
+              <div className='user_profile_discount'>
+                <p >{t(`Discount`)}:</p>
+                <p >{user.discountValue}</p>
+              </div>
+              <div className='user_profile_debt'>
+                <p>{t(`Debt`)}:</p> <p>{debt.toFixed(0)}</p>
+              </div>
+            </div>
+          </div>
+          
 
         <button className="button_open" onClick={handleOpenModal}>
         {t(`Transaction history`)}
@@ -67,9 +77,7 @@ const UserPanel = () => {
           historyData={user.balanceHistory}
         />
 
-        <div>
-          <p>{t(`Debt`)}: {debt.toFixed(0)}</p>
-        </div>
+
 
         <UserTable allOrders={[...user.orders].reverse()} currentUser={user} />
       </div>

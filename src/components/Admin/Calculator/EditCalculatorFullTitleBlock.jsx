@@ -30,8 +30,6 @@ const EditCalculatorFullTitleBlock = ({ goods, mainId, setIsFetch }) => {
                 />
             ))}
         </div>
-        <div className='aside_list_right'>
-        </div>
       </div>
   );
 };

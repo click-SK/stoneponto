@@ -7,6 +7,7 @@
 }
 .table_header{
     display: flex;
+    justify-content: space-around;
     width: 100%;
     border-bottom: 1px solid #ccc;
     background: #e8e8ff;
@@ -18,7 +19,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 2px;
+    // margin: 2px;
     height: 40px;
     border-right: 1px solid #ccc;
     &:last-child{
@@ -41,11 +42,12 @@
 
 .table_body{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 .table_item{
     display: flex;
+    justify-content: space-around;
     padding-top: 5px;
     // justify-content: space-around;
     min-height: 100px
@@ -65,45 +67,49 @@
 
 
 .table_header_id, .item_id{
-    width: 34px;
+    width: 3%;
 }
 
 
 .table_header_date, .item_date{
-    width: 120px;
+    width: 10%;
+    min-width: 10%;
+    max-width: 10%;
 }
 
 .table_header_name, .item_name{
-    width: 100px;
+    width: 8%;
+    // min-width: 100px;
 }
 
 .table_header_file, .item_file{
-    width: 200px;
+    width: 20%;
+    max-width: 222px;
 }
 
 .table_header_materials, .item_material{
-    width: 100px;
+    width: 10%;
 }
 
 .table_header_quality, .item_quality{
-    width: 100px;
+    width: 5%;
 }
 
 .table_header_width,.table_header_hight, .item_size{
-    width: 50px;
+    width: 5%;
     // overflow: hidden;
 }
 
 .table_header_sum, .item_sum{
-    width: 100px;
+    width: 8%;
 }
 
 .table_header_descript, .item_descript{
-    width: 185px;
+    width: 18%;
 }
 
 .item_status, .table_header_status{
-    width: 103px;
+    width: 9%;
 }
 
 .table_header_item, .item_row_info{

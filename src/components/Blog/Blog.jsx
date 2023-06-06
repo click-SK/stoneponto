@@ -54,14 +54,16 @@ const Blog = () => {
             }
           </h3>
           <div className='date_item'><span>{formattedDate}</span></div>
-          <div >
+          <div className="blog_news" >
           {lang == 'Ua' 
             ?
             <ReactQuill
+            readOnly={true}
             value={post.descriptionUa}
             />
             :
             <ReactQuill
+            readOnly={true}
             value={post.descriptionRu}
             />
             }

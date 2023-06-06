@@ -321,7 +321,7 @@ const CalculatorPartner = () => {
           {/* <h2>Загрузка файла</h2> */}
           {user && user?.isAdmin && (
             <div
-              className="custom-select"
+              className="custom-select select_user"
               onClick={() => setIsOpenAllusers((state) => !state)}
             >
               {allUsers.length != 0 && (currentUserState || allUsers[0].name)}
@@ -330,7 +330,7 @@ const CalculatorPartner = () => {
                   {allUsers.length != 0 &&
                     allUsers.map((user) => (
                       <p
-                        style={{ fontSize: "24px" }}
+                        
                         onClick={() => setCurrentIdFunc(user)}
                         key={user._id}
                       >
