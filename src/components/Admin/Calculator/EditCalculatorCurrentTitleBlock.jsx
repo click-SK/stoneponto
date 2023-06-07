@@ -216,6 +216,16 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         openCloseFunc={setEyeletsFunc}
         isOpen={isEyelets}/>
         }
+        {arrayGoods?.quality.length != 0 &&
+        <EditCalculatorFullData currentArray={arrayGoods?.quality} 
+        title={'Quality'}
+        mainId={mainId}
+        setIsFetch={setIsFetch}
+        goodsIndex={goodsIndex}
+        editPath='https://ponto-print.herokuapp.com/update-quality'
+        openCloseFunc={setQualityFunc}
+        isOpen={isQuality}/>
+        }
         {arrayGoods?.lamination.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.lamination} 
         title={'Lamination'}
