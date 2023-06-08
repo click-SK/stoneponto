@@ -4,6 +4,9 @@
     margin-top: 20px;
     width: 100%;
     border: 1px solid #ccc;
+    p{
+        font-size: 10px;
+    }
 }
 .table_header{
     display: flex;
@@ -51,6 +54,13 @@
     padding-top: 5px;
     // justify-content: space-around;
     min-height: 100px
+}
+
+.download_file{
+    cursor: pointer;
+    &:hover{
+        color: $color_prime;
+    }
 }
 
 .table_item_new{

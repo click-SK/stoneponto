@@ -298,13 +298,6 @@ const CalculatorPartner = () => {
       setIsMounting(state => !state)
     }
 
-    // Додати люверси + інпут 30 см
-    // перевірити суму та опис                  -- 
-    // додати модалка ціни за метр              --
-    // змінити стилі
-    // по сабміт створити кінцевий файл
-    // Переробити селект колір, додати пошук 
-
     const setCurrentIdFunc = (e) => {
       setIsOpenAllusers((state) => !state)
       setCurrentId(e._id);
@@ -330,7 +323,6 @@ const CalculatorPartner = () => {
                   {allUsers.length != 0 &&
                     allUsers.map((user) => (
                       <p
-                        
                         onClick={() => setCurrentIdFunc(user)}
                         key={user._id}
                       >

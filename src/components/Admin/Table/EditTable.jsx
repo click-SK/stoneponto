@@ -14,7 +14,7 @@ const EditTable = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
-  const itemsPerPage = 5;
+  const itemsPerPage = 50;
 
   useEffect(() => {
     fetch('https://ponto-print.herokuapp.com/get-all-table')
@@ -182,7 +182,7 @@ console.log('currentPage',currentPage);
         </div>
       </div>
       <div className="table_body">
-        {currentItems.reverse().map((order) => (
+        {currentItems.map((order) => (
           <DisplayAdminTableOrder key={order.id} order={order} setIsFetch={setIsFetch} />
         ))}
       </div>

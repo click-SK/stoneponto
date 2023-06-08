@@ -5,7 +5,6 @@ import { fetchAuthMe } from "../../store/auth";
 import { useTranslation } from 'react-i18next';
 
 const DisplayUserTableOrder = ({order, currentUser}) => {
-  console.log('order',order);
     const { t } = useTranslation();
     const dispatch = useDispatch();
 

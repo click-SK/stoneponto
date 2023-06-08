@@ -35,7 +35,7 @@ const LoginForm = () => {
           }
           
 
-          console.log('data',data);
+        
     }
     
     return (
@@ -43,6 +43,7 @@ const LoginForm = () => {
             <div className="login_block">
             <h2 className="login_title">Вхід</h2>
             <div className="input_wrap">
+                
                 <input type='text' 
                 value={login} onChange={(e) => setLogin(e.target.value)}
                 placeholder={t(`Login`)}/>

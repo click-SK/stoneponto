@@ -19,10 +19,14 @@ const AdminTableText = ({ order, handleDownload }) => {
         )}
       </div>
       <div className="item_row_info item_file">
-        <p>{order.fileName}</p>
-        <div style={{ padding: "10px 0px" }}>
+        <p 
+        onClick={() => handleDownload(order)}
+        className="download_file"
+        // style={{cursor:'pointer'}} 
+        >{order.fileName}</p>
+        {/* <div style={{ padding: "10px 0px" }}>
           <button onClick={() => handleDownload(order)}>{t(`Download`)}</button>
-        </div>
+        </div> */}
       </div>
       <div className="item_row_info item_material">
         <p>{order.material}</p>

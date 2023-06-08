@@ -18,6 +18,9 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
       dispatch(fetchLanguage());
     }, [lang]);
     
+    // console.log('currency', );
+
+    console.log('goodsList', goodsList);
 
     if (!isOpen) return null;
 
@@ -46,7 +49,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                     <h4 style={{fontWeight:700}}>{ item.nameUa !== 'Банери' && item.nameUa !== 'Плівка' && item.nameUa !== 'Папір' && 
                                     lang == "Ua" ? <>{item.nameUa}</> : <>{item.nameRu}</>}</h4>
                                     :
-                                    <p>{item.nameUa !== 'Виберіть матеріал' &&   lang == "Ua" ? <>{item.nameUa}</> : <>{item.nameRu}</>}</p>
+                                    <p>{lang == "Ua" ? <>{item.nameUa == 'Виберіть матеріал' ? '' : item.nameUa}</> : <>{item.nameRu == 'Виберіть матеріал' ? '' : item.nameRu}</>}</p>
                                     }   
                                 </div>
                                 {item?.goods.length != 0 && item?.goods.map((el,id) => (
@@ -61,7 +64,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                     <div key={id}>
                                         {el.quality.map((qa, idx) => (
                                             qa.nameUa === '720dpi' && qa.price && (
-                                            <p key={idx} className='value_item price_value'>{qa.price}</p>
+                                            <p key={idx} className='value_item price_value'>{(qa.price * currency?.currency).toFixed(0)} грн</p>
                                             )
                                         ))}
                                     </div>
@@ -72,7 +75,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                     <div key={id}>
                                         {el.quality.map((qa, idx) => (
                                             qa.nameUa === '1080dpi' && qa.price && (
-                                            <p key={idx} className='value_item price_value'>{qa.price}</p>
+                                            <p key={idx} className='value_item price_value'>{(qa.price * currency?.currency).toFixed(0)} грн</p>
                                             )
                                         ))}
                                     </div>
@@ -85,9 +88,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                                 <div>
                                                     {el.quality.map((qa, idx) => (
                                                     qa.nameUa === '1440dpi' && 
-                                                    ( <p key={idx} className='value_item price_value'>{qa.price}</p> )
-
-
+                                                    ( <p key={idx} className='value_item price_value'>{(qa.price * currency?.currency).toFixed(0)} грн</p> )
                                                 ))}
                                                 </div> 
                                                 }

@@ -161,7 +161,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
-            <div>{order.status.paid ? "Оплочено" : "Не оплочено"}</div>
+            <p>{order.status.paid ? "Оплочено" : "Не оплочено"}</p>
             <div style={{ padding: "10px 0px" }}></div>
             <div style={{ padding: "10px 0px" }}></div>
           </div>
