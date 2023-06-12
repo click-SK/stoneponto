@@ -19,7 +19,7 @@ const Header = () => {
     setTimeout(() => {
       window.location.reload();
     },500)
-    console.log('LOGOUT');
+
   };
 
   return (

@@ -29,7 +29,10 @@ const CalculatorPartner = () => {
     const [validationHeight, setValidationHeight] = useState(false);
     const [validationCount, setValidationCount] = useState(false);
     const [validationFile, setValidationFile] = useState(false);
-
+    const [validationCurrentItem, setCurrentItem] = useState(false);
+    const [validationOptionQuality, setOptionQuality] = useState(false);
+    const [validationOptionColor, setOptionColor] = useState(false);
+  
     const [selectedOptionQuality, setSelectedOptionQuality] = useState('');
     const [selectedOptionCutting, setSelectedOptionCutting] = useState('');
     const [selectedOptionSolderGates, setSelectedOptionSolderGates] = useState('');
@@ -84,32 +87,7 @@ const CalculatorPartner = () => {
     dispatch(fetchLanguage())
   },[lang])
 
-    //  console.log(goodsList);
-  //    useEffect(() => {
-  //     const arr = [];
-  //     if(selectedOptionQuality) {
-  //       arr.push(`${selectedOptionQuality}`);
-  //     }
-  //     console.log('arr',arr);
-  //     setdescArray(state => [state,...arr]);
-  //  },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
-  //   selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp ])
     
-  // useEffect(() =>{
-  //     const descriptionObj = {
-  //       cutting: selectedOptionCutting?.price ? `Порезка: ${selectedOptionCutting?.name}` : '',
-  //       solderGates:selectedOptionSolderGates?.price ? `Пропайка подворотов: ${selectedOptionSolderGates?.name}` : '',
-  //       solderPockets:selectedOptionSolderPockets?.price ? `Пропайка карманов: ${selectedOptionSolderPockets?.name}` : '',
-  //       Lamination:selectedOptionLamination?.price ? `Ламинация: ${selectedOptionLamination?.name}` : '',
-  //       poster:selectedOptionPoster?.price ? `Постер: ${selectedOptionPoster?.name}` : '',
-  //       stretch:isStretch ? `Натяжка на подрамник` : '',
-  //       stamp:isStamp ? `С печатью` : '',
-  //       mounting:isMounting ? `Намонтаживание` : '',
-  //       eyelets: selectedOptionEyelets? `Люверсы: ${selectedOptionEyelets?.name} ${selectedOptionEyeletsValue } см`: '',
-  //     }
-  //     setdescArray(descriptionObj);
-  //    },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
-  //     selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
 
   useEffect(() =>{
     const descriptionObj = {
@@ -228,8 +206,25 @@ const CalculatorPartner = () => {
       setValidationWidth(false);
       setValidationHeight(false);
       setValidationCount(false);
+      setCurrentItem(false);
+      setOptionQuality(false);
+      setOptionColor(false);
       let isValid = true;
     
+      // if (currentItem <= 0) {
+      //   setCurrentItem(true);
+      //   isValid = false;
+      // }
+
+      // if (selectedOptionQuality <= 0) {
+      //   setOptionQuality(true);
+      //   isValid = false;
+      // }
+      // if (selectedOptionColor <= 0) {
+      //   setOptionColor(true);
+      //   isValid = false;
+      // }
+
       if (width <= 0) {
         setValidationWidth(true);
         isValid = false;

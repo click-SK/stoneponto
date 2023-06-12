@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 
 const AdminTableText = ({ order, handleDownload }) => {
   const { t } = useTranslation();
+
+ 
   return (
     <>
       <div className="item_row_info item_id">
@@ -39,6 +41,9 @@ const AdminTableText = ({ order, handleDownload }) => {
       </div>
       <div className="item_row_info item_size">
         <p>{order.height}</p>
+      </div>
+      <div className="item_row_info item_size">
+        <p>{order.count}</p>
       </div>
       <div className="item_row_info item_sum">
         <p>{order.sum.toFixed(0)}</p>

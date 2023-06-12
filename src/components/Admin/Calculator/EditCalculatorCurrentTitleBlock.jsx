@@ -30,10 +30,10 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         dispatch(fetchLanguage());
       }, [lang]);
 
-    console.log('arrayGoods',arrayGoods);
+    // console.log('arrayGoods',arrayGoods);
 
-    console.log('isBanerLaminated',isBanerLaminated);
-    console.log('isBanerCast',isBanerCast);
+    // console.log('isBanerLaminated',isBanerLaminated);
+    // console.log('isBanerCast',isBanerCast);
 
     const setQualityFunc = () => {
       setIsQuality(true);
