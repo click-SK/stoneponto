@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import DisplayAdminTableOrder from './DisplayAdminTableOrder';
 import '../../../style/table.scss';
 
+
 const EditTable = () => {
   const [currentOrders, setCurrentOrders] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
@@ -14,7 +15,9 @@ const EditTable = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
-  const itemsPerPage = 5;
+  const itemsPerPage = 50;
+
+
 
   useEffect(() => {
     fetch('https://ponto-print.herokuapp.com/get-all-table')
@@ -73,8 +76,11 @@ const EditTable = () => {
     } else {
       let newArr = allOrders.filter((item) => item.user.name === e);
       setCurrentOrders(newArr);
+      console.log('newArr',newArr);
     }
   };
+
+  console.log('currentOrders', currentOrders);
 
   const filterStatusFunc = (e) => {
     if (e === 'Всі') {
@@ -125,7 +131,7 @@ const renderPageNumbers = () => {
   });
 };
 
-console.log('currentPage',currentPage);
+
 
   return (
     <div className="table_wrap">
@@ -136,6 +142,7 @@ console.log('currentPage',currentPage);
         <div className="table_header_item table_header_date">
           <p>{t(`Date`)}</p>
           <input type="date" onChange={(e) => filterDateFunc(e.target.value)} />
+          
         </div>
         <div className="table_header_item table_header_name">
           <p>{t(`User`)}</p>
@@ -163,6 +170,9 @@ console.log('currentPage',currentPage);
         <div className="table_header_item table_header_hight">
           <p>{t(`Height`)}</p>
         </div>
+        <div className="table_header_item table_header_hight">
+          <p>Тираж</p>
+        </div>
         <div className="table_header_item table_header_sum">
           <p>{t(`Sum`)}</p>
         </div>
@@ -182,7 +192,7 @@ console.log('currentPage',currentPage);
         </div>
       </div>
       <div className="table_body">
-        {currentItems.reverse().map((order) => (
+        {currentOrders.map((order) => (
           <DisplayAdminTableOrder key={order.id} order={order} setIsFetch={setIsFetch} />
         ))}
       </div>

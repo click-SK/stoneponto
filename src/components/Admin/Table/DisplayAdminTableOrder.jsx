@@ -13,7 +13,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       setModalIsOpen(false);
     };
 
-    console.log('deleteText',deleteText);
+  
 
     const handleOpenModal = () => {
       setModalIsOpen(true);
@@ -29,7 +29,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       const link = document.createElement('a');
       link.href = dowloadUrl;
       const invalidCharacters = /[<>:"\\/|?*.]/g;
-      console.log('able.fileNam', order.fileName);
+
       const cleanedStr = order.fileName.replace(invalidCharacters, '');
       link.download = cleanedStr;
       document.body.appendChild(link);
@@ -161,7 +161,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
-            <div>{order.status.paid ? "Оплочено" : "Не оплочено"}</div>
+            <p>{order.status.paid ? "Оплочено" : "Не оплочено"}</p>
             <div style={{ padding: "10px 0px" }}></div>
             <div style={{ padding: "10px 0px" }}></div>
           </div>

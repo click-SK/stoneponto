@@ -21,11 +21,11 @@ const EditCalculator = () => {
        .then(response => response.json())
        .then(res => {
         setGoodsList(res)
-        console.log('res',res)
+        
       })
      },[isFetch])
 
-     console.log('goodsList',goodsList);
+    
 
      const closeOpenBanerFunc = () => {
         setIsBaner(state => !state);

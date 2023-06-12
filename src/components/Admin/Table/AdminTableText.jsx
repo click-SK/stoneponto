@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 
 const AdminTableText = ({ order, handleDownload }) => {
   const { t } = useTranslation();
+
+ 
   return (
     <>
       <div className="item_row_info item_id">
@@ -19,10 +21,14 @@ const AdminTableText = ({ order, handleDownload }) => {
         )}
       </div>
       <div className="item_row_info item_file">
-        <p>{order.fileName}</p>
-        <div style={{ padding: "10px 0px" }}>
+        <p 
+        onClick={() => handleDownload(order)}
+        className="download_file"
+        // style={{cursor:'pointer'}} 
+        >{order.fileName}</p>
+        {/* <div style={{ padding: "10px 0px" }}>
           <button onClick={() => handleDownload(order)}>{t(`Download`)}</button>
-        </div>
+        </div> */}
       </div>
       <div className="item_row_info item_material">
         <p>{order.material}</p>
@@ -35,6 +41,9 @@ const AdminTableText = ({ order, handleDownload }) => {
       </div>
       <div className="item_row_info item_size">
         <p>{order.height}</p>
+      </div>
+      <div className="item_row_info item_size">
+        <p>{order.count}</p>
       </div>
       <div className="item_row_info item_sum">
         <p>{order.sum.toFixed(0)}</p>

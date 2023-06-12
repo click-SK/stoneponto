@@ -52,12 +52,12 @@ const AddNewPost = () => {
       .then((response) => response.json())
       .then((data) => {
         // Обробка відповіді сервера
-        console.log(data);
+
         window.location.reload();
       })
       .catch((error) => {
         // Обробка помилки
-        console.log(error);
+        // console.log();
       });
   };
 

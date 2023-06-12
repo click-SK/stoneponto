@@ -3,9 +3,9 @@ import UserTableText from './UserTableText'
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAuthMe } from "../../store/auth";
 import { useTranslation } from 'react-i18next';
+import { MdDoneOutline } from "react-icons/md";
 
 const DisplayUserTableOrder = ({order, currentUser}) => {
-  console.log('order',order);
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
@@ -109,9 +109,19 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
             <UserTableText order={order} />
             <div className="item_row_info item_status">
               <p>{t(`${order.status.name}`)}</p>
+              <p>{order.status.paid ? "Оплочено" : "Не оплочено"}</p>
               <div style={{ padding: "10px 0px" }}>
                 {!order.status.paid && (
-                  <button onClick={handlePay}>{t(`Pay`)}</button>
+                  <div>
+                    <button
+                    style={{
+                      padding:'5px 10px',
+                      margin:'0 0 5px 0',
+                      background: 'rgb(90, 173, 90)'
+                    }}
+                    onClick={handlePay}>$</button>
+                    <p>{t(`Pay`)}</p>
+                  </div>
                 )}
               </div>
             </div>
