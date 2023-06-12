@@ -16,7 +16,7 @@ const LoginForm = () => {
     const handleSubmit = async () => {
         const data = await dispatch(fetchAuth(
             {
-                email: login,
+                name: login,
                 password: password
             }
         ));

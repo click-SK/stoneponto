@@ -14,7 +14,7 @@ const CalculatorPartner = () => {
     const [goodsList, setGoodsList] = useState ([])
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenAllusers, setIsOpenAllusers] = useState(false);
-    const [currentItem, setcurrentItem] = useState({});
+    const [currentItem, setСurrentItem] = useState({});
     const [width, setWitdh] = useState('')
     const [height, setHeight] = useState('')
     // const [quadrature, setquadrature] = useState(null)
@@ -29,9 +29,9 @@ const CalculatorPartner = () => {
     const [validationHeight, setValidationHeight] = useState(false);
     const [validationCount, setValidationCount] = useState(false);
     const [validationFile, setValidationFile] = useState(false);
-    const [validationCurrentItem, setCurrentItem] = useState(false);
-    const [validationOptionQuality, setOptionQuality] = useState(false);
-    const [validationOptionColor, setOptionColor] = useState(false);
+    const [validationCurrentItem, setValidationCurrentItem] = useState(false);
+    const [validationOptionQuality, seValidationtOptionQuality] = useState(false);
+    const [validationOptionColor, setValidationOptionColor] = useState(false);
   
     const [selectedOptionQuality, setSelectedOptionQuality] = useState('');
     const [selectedOptionCutting, setSelectedOptionCutting] = useState('');
@@ -200,30 +200,37 @@ const CalculatorPartner = () => {
         }
     }
 
-    console.log('selectedFile',selectedFile);
+    console.log('selectedOptionColor',selectedOptionColor);
+    console.log('currentItem',currentItem);
+
+    // useEffect(() => {
+    //   validationFunc();
+    // },[selectedOptionQuality, currentItem, selectedOptionColor, width, height, count, selectedFile])
 
     const validationFunc = () => {
       setValidationWidth(false);
       setValidationHeight(false);
       setValidationCount(false);
-      setCurrentItem(false);
-      setOptionQuality(false);
-      setOptionColor(false);
+      setValidationCurrentItem(false);
+      seValidationtOptionQuality(false);
+      setValidationOptionColor(false);
       let isValid = true;
-    
-      // if (currentItem <= 0) {
-      //   setCurrentItem(true);
-      //   isValid = false;
-      // }
 
-      // if (selectedOptionQuality <= 0) {
-      //   setOptionQuality(true);
-      //   isValid = false;
-      // }
-      // if (selectedOptionColor <= 0) {
-      //   setOptionColor(true);
-      //   isValid = false;
-      // }
+      const isEmptyCurrentItem = JSON.stringify(currentItem) === '{}';
+    
+      if (currentItem?.nameUa == 'Виберіть матеріал' || isEmptyCurrentItem) {
+        setValidationCurrentItem(true);
+        isValid = false;
+      }
+
+      if ((selectedOptionQuality == '' || selectedOptionQuality.nameUa == 'Виберіть якість') && currentItem.nameUa !== 'Кольорова плівка серії Oracal 641') {
+        seValidationtOptionQuality(true);
+        isValid = false;
+      }
+      if (currentItem.nameUa == 'Кольорова плівка серії Oracal 641' && selectedOptionColor == '') {
+        setValidationOptionColor(true);
+        isValid = false;
+      }
 
       if (width <= 0) {
         setValidationWidth(true);
@@ -340,8 +347,11 @@ const CalculatorPartner = () => {
         <div className="wrap_row">
           <div className="calc-item material">
             <h3>{t(`Material`)}</h3>
-            <Select goods={goodsList} setcurrentItem={setcurrentItem} />
+            <Select goods={goodsList} setcurrentItem={setСurrentItem} />
+            {validationCurrentItem &&
+            <p style={{color:'red'}}>{t(`Validation material`)}</p>}
           </div>
+          
           <div className="calc-item quality">
             {currentItem?.color && currentItem?.color != 0 && (
               <SelectSec
@@ -351,6 +361,8 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionColor}
               />
             )}
+            {validationOptionColor &&
+            <p style={{color:'red'}}>{t(`Validation color`)}</p>}
             {currentItem?.quality && currentItem?.quality.length != 0 && (
               <SelectSec
                 item={currentItem?.quality}
@@ -367,6 +379,8 @@ const CalculatorPartner = () => {
                 setSelectedOption={setSelectedOptionQuality}
               />
             )}
+            {validationOptionQuality &&
+            <p style={{color:'red'}}>{t(`Validation quality`)}</p>}
           </div>
         </div>
         <div className="wrap_row">

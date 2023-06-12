@@ -28,10 +28,13 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       const dowloadUrl = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = dowloadUrl;
-      const invalidCharacters = /[<>:"\\/|?*.]/g;
 
-      const cleanedStr = order.fileName.replace(invalidCharacters, '');
-      link.download = cleanedStr;
+      const fileExtension = order.file.split('.').pop();
+      console.log('fileExtension',fileExtension);
+
+      const invalidCharacters = /[<>:"\\/|?*.]/g;
+      var cleanedStr = order.fileName.replace(/\s/g, "").replace(invalidCharacters, "");
+      link.download = cleanedStr + '.' + fileExtension;
       document.body.appendChild(link);
       link.click();
       link.remove();

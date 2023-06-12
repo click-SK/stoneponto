@@ -7,6 +7,72 @@ const UserTable = ({allOrders, currentUser}) => {
 
   const { t } = useTranslation();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalBalance, setTotalBalance] = useState(0);
+  const itemsPerPage = 20;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = allOrders.slice(indexOfFirstItem, indexOfLastItem);
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(allOrders.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const handleNext = () => {
+    if (currentPage < pageNumbers.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const chosePage = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPageNumbers = () => {
+    let renderedPages = [];
+  
+    if (pageNumbers.length <= 5) {
+      renderedPages = pageNumbers;
+    } else {
+      if (currentPage === 2) {
+        renderedPages = [1, currentPage, currentPage + 1, pageNumbers.length];
+      } else if (currentPage <= 3) {
+        renderedPages = [...pageNumbers.slice(0, 4), pageNumbers.length];
+      } else if (currentPage >= pageNumbers.length - 2) {
+        renderedPages = [1, ...pageNumbers.slice(pageNumbers.length - 4)];
+      } else {
+        renderedPages = [1, currentPage - 1, currentPage, currentPage + 1, pageNumbers.length];
+      }
+    }
+  
+    return renderedPages.map((page) => {
+      if (page === '...') {
+        return <p key={page}>{page}</p>;
+      } else {
+        return (
+          <p
+            style={{ padding: '0px 10px', fontSize: '18px', cursor: 'pointer' }}
+            key={page}
+            onClick={() => chosePage(page)}
+            className={`${page == currentPage ? 'bold' : ''}`}
+          >
+            {page}
+          </p>
+        );
+      }
+    });
+  };
+  
+
+
     return (
         <div className='table_wrap'>
         <div  className='table_header'>
@@ -42,12 +108,27 @@ const UserTable = ({allOrders, currentUser}) => {
             </div>
         </div>
             <div className='table_body'>
-                {allOrders.map((order) => (
+                {currentItems.map((order) => (
                     <DisplayUserTableOrder key={order.id}
                     order={order}
                     currentUser={currentUser}/>
                 ))}
             </div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {renderPageNumbers()}
+      </div>
+      <div className="pagination">
+        <button className="btn" onClick={handlePrev} disabled={currentPage === 1}>
+          <img src="/img/left-pagination.svg" alt="Previous" />
+        </button>
+        <button
+          className="btn"
+          onClick={handleNext}
+          disabled={currentPage === pageNumbers.length}
+        >
+          <img src="/img/right-pagination.svg" alt="Next" />
+        </button>
+      </div>
         </div>
     );
 };
