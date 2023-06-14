@@ -5,14 +5,14 @@ export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (param
     return data
 })
 
-export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ({email, password}) => {
+export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ({name, password}) => {
     const response = await fetch('https://ponto-print.herokuapp.com/login-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            email,
+            name,
             password
         }),
       })

@@ -13,9 +13,11 @@ const UserPanel = () => {
 
     const user = useSelector(currentUser);
 
+    console.log(user?.orders);
+
     useEffect(() => {
       const sum = user?.orders.reduce((accumulator, currentObject) => {
-        if (!currentObject.status.paid) {
+        if (!currentObject.status.paid && currentObject.status.currentStatus != 'delete') {
           return accumulator + currentObject.sum;
         }
         return accumulator;

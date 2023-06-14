@@ -15,7 +15,7 @@ const EditTable = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
-  const itemsPerPage = 50;
+  const itemsPerPage = 5;
 
 
 
@@ -40,10 +40,10 @@ const EditTable = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = allOrders.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = currentOrders.slice(indexOfFirstItem, indexOfLastItem);
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(allOrders.length / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(currentOrders.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -192,7 +192,7 @@ const renderPageNumbers = () => {
         </div>
       </div>
       <div className="table_body">
-        {currentOrders.map((order) => (
+        {currentItems.map((order) => (
           <DisplayAdminTableOrder key={order.id} order={order} setIsFetch={setIsFetch} />
         ))}
       </div>
