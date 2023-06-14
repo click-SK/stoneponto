@@ -20,7 +20,7 @@ const AddNewUser = () => {
           }
 
 
-        const response = await fetch('https://ponto-print.herokuapp.com/register-user', {
+        const response = await fetch('https://server-ponto-print.herokuapp.com/register-user', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
