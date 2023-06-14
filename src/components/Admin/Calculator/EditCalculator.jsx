@@ -17,7 +17,7 @@ const EditCalculator = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        fetch('https://ponto-print.herokuapp.com/get-all-calc')
+        fetch('https://server-ponto-print.herokuapp.com/get-all-calc')
        .then(response => response.json())
        .then(res => {
         setGoodsList(res)

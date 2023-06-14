@@ -20,7 +20,7 @@ const EditTable = () => {
 
 
   useEffect(() => {
-    fetch('https://ponto-print.herokuapp.com/get-all-table')
+    fetch('https://server-ponto-print.herokuapp.com/get-all-table')
       .then((res) => res.json())
       .then((res) => {
         setCurrentOrders(res.reverse());

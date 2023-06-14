@@ -5,7 +5,7 @@ const EditPost = () => {
     const [isFetch, setIsFetch] = useState(false);
 
     useEffect(() => {
-        fetch('https://ponto-print.herokuapp.com/get-all-post')
+        fetch('https://server-ponto-print.herokuapp.com/get-all-post')
         .then((res) => res.json())
         .then((res) => setAllPosts(res))
     },[isFetch])

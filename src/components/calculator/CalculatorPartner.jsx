@@ -68,13 +68,13 @@ const CalculatorPartner = () => {
     const lang = useSelector((state) => state.lang.language);
 
     useEffect(() => {
-        fetch('https://ponto-print.herokuapp.com/get-all-calc')
+        fetch('https://server-ponto-print.herokuapp.com/get-all-calc')
        .then(response => response.json())
        .then(res => setGoodsList(res))
      },[])
 
      useEffect(() => {
-      fetch('https://ponto-print.herokuapp.com/get-all-user')
+      fetch('https://server-ponto-print.herokuapp.com/get-all-user')
      .then(response => response.json())
      .then(res => {
       setAllUsers(res);
@@ -279,7 +279,7 @@ const CalculatorPartner = () => {
         formData.append("address", delivery);
         formData.append("status", JSON.stringify(status));
     
-        fetch("https://ponto-print.herokuapp.com/create-table", {
+        fetch("https://server-ponto-print.herokuapp.com/create-table", {
           method: "POST",
           body: formData,
         }).then((res) => res.json());
