@@ -17,7 +17,21 @@ const EditTable = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
+
+
+  const dateTime = new Date(); // Отримати поточну дату та час
+
+const day = dateTime.getDate().toString().padStart(2, '0'); // День з лідируючим нулем
+const month = (dateTime.getMonth() + 1).toString().padStart(2, '0'); // Місяць з лідируючим нулем (у JavaScript місяці починаються з 0)
+const year = dateTime.getFullYear().toString(); // Рік
+const hours = dateTime.getHours().toString().padStart(2, '0'); // Година з лідируючим нулем
+const minutes = dateTime.getMinutes().toString().padStart(2, '0'); // Хвилина з лідируючим нулем
+const seconds = dateTime.getSeconds().toString().padStart(2, '0'); // Секунда з лідируючим нулем
+
+const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds}`; // Форматований рядок дати та часу
+
   const itemsPerPage = 50;
+
 
   useEffect(() => {
     console.log('work');
@@ -147,7 +161,35 @@ const renderPageNumbers = () => {
 //   // Додай більше об'єктів замовлень
 // ];
 
+
+
+
+// const orders = currentItems.map((item) => {
+//   return {
+//     Id: item?.id,
+//     "Дата": item?.date,
+//     "Пользователь": item?.user.name,
+//     'Файл': item?.fileName,
+//     'Материал': item?.material,
+//     'Качество': item?.quality,
+//     'Ширина': item?.width,
+//     'Высота': item?.height,
+//     'Тираж': item?.count,
+//     totalAmount: item?.sum,
+//     'Опис': 'a',
+//     'Cтатус': item?.status?.name,
+//   };
+// });
+
 const orders = currentItems.map((item) => {
+  const conditions = item?.conditions;
+  const description = Object.keys(conditions)
+    .filter((key) => conditions[key].name !== "")
+    .map((key) => `${conditions[key].option} ${conditions[key].name} ${conditions[key]?.value ? `: ${conditions[key]?.value}` : ' ' }`)
+    .join(", ");
+
+    console.log('description', item?.address);
+
   return {
     Id: item?.id,
     "Дата": item?.date,
@@ -159,19 +201,24 @@ const orders = currentItems.map((item) => {
     'Высота': item?.height,
     'Тираж': item?.count,
     totalAmount: item?.sum,
+    'Опис': description + (description ? ` ; ` : '') + item?.address + (item?.address ? ` ; ` : '') + item?.notes,
     'Cтатус': item?.status?.name,
   };
 });
+
+
 
 console.log('currentItems-2222',currentItems);
 
   return (
     <div className="table_wrap">
-            <div>
-      <ExportCSV
-      csvData={orders}
-      fileName={'orders'}
-      />  
+      <div
+      className='btn_exel'
+      >
+        <ExportCSV
+        csvData={orders}
+        fileName={ formattedDateTime }
+        />  
       </div>
 
       <div className="table_header">
