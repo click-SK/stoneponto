@@ -45,7 +45,8 @@ const AddNewPost = () => {
     formData.append("descriptionUa", descriptionUa);
     formData.append("descriptionRu", descriptionRu);
 
-    fetch("http://localhost:4444/create-post", {
+    fetch("https://server-ponto-print.herokuapp.com/create-post", {
+
       method: "POST",
       body: formData,
     })

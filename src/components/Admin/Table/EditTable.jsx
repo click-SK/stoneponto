@@ -31,7 +31,7 @@ const EditTable = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:4444/get-all-table')
+    fetch('https://server-ponto-print.herokuapp.com/get-all-table')
       .then((res) => res.json())
       .then((res) => {
         setCurrentOrders(res.reverse());
@@ -91,7 +91,6 @@ const EditTable = () => {
     }
   };
 
-
   const filterStatusFunc = (e) => {
     if (e === 'Всі') {
       setCurrentOrders(allOrders);
@@ -141,10 +140,39 @@ const renderPageNumbers = () => {
   });
 };
 
+// const orders = [
+//   { orderId: 1, customerName: "John Doe", totalAmount: 100 },
+//   { orderId: 2, customerName: "Jane Smith", totalAmount: 200 },
+//   // Додай більше об'єктів замовлень
+// ];
 
+const orders = currentItems.map((item) => {
+  return {
+    Id: item?.id,
+    "Дата": item?.date,
+    "Пользователь": item?.user.name,
+    'Файл': item?.fileName,
+    'Материал': item?.material,
+    'Качество': item?.quality,
+    'Ширина': item?.width,
+    'Высота': item?.height,
+    'Тираж': item?.count,
+    totalAmount: item?.sum,
+    'Cтатус': item?.status?.name,
+  };
+});
+
+console.log('currentItems-2222',currentItems);
 
   return (
     <div className="table_wrap">
+            <div>
+      <ExportCSV
+      csvData={orders}
+      fileName={'orders'}
+      />  
+      </div>
+
       <div className="table_header">
         <div className="table_header_item table_header_id">
           <p>Id</p>

@@ -35,7 +35,7 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
             <EditCurrentUserDetails
               data={user.name}
               userId={user._id}
-              editPath={"http://localhost:4444/update-name"}
+              editPath={"https://server-ponto-print.herokuapp.com/update-name"}
               title={t(`Name`)}
               setIsFetch={setIsFetch}
             />
@@ -48,7 +48,7 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
             />
             <EditUserPassword
             userId={user._id}
-            editPath={"http://localhost:4444/update-password"}
+            editPath={"https://server-ponto-print.herokuapp.com/update-password"}
             title={t(`Password change`)}
             setIsFetch={setIsFetch}
             />
@@ -57,21 +57,21 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
             <EditBalance
               data={user.balance.toFixed(0)}
               userId={user._id}
-              editPath={"http://localhost:4444/update-balance"}
+              editPath={"https://server-ponto-print.herokuapp.com/update-balance"}
               title={t(`Balance`)}
               setIsFetch={setIsFetch}
             />
             <EditDiscount
               data={user.discountValue}
               userId={user._id}
-              editPath={"http://localhost:4444/update-discount"}
+              editPath={"https://server-ponto-print.herokuapp.com/update-discount"}
               title={t(`Discount`)}
               setIsFetch={setIsFetch}
             />
             <DisabledUser
             user={user}
             title={t(`Block user`)}
-            editPath={"http://localhost:4444/update-user-status"}
+            editPath={"https://server-ponto-print.herokuapp.com/update-user-status"}
             setIsFetch={setIsFetch}/>
           </div>
         </div>

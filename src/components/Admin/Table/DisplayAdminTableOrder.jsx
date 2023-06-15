@@ -22,7 +22,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
 
  
   const handleDownload = async (order) => {
-    const resonse = await fetch(`http://localhost:4444/download?id=${order._id}`)
+    const resonse = await fetch(`https://server-ponto-print.herokuapp.com/download?id=${order._id}`)
     if(resonse.status == 200) {
       const blob = await resonse.blob();
       const dowloadUrl = window.URL.createObjectURL(blob);
@@ -39,7 +39,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       link.click();
       link.remove();
 
-      await fetch("http://localhost:4444/update-status", {
+      await fetch("https://server-ponto-print.herokuapp.com/update-status", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   };
 
   const handleDelete = () => {
-    fetch("http://localhost:4444/update-status", {
+    fetch("https://server-ponto-print.herokuapp.com/update-status", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   };
 
   const handleFinished = () => {
-    fetch("http://localhost:4444/update-status", {
+    fetch("https://server-ponto-print.herokuapp.com/update-status", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
