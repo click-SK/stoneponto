@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import DisplayAdminTableOrder from './DisplayAdminTableOrder';
-import { ExportCSV } from "../../ExelTable/ExportCSV";
+import socket from '../../../socket/socket';
+import {ExportCSV} from '../../ExelTable/ExportCSV'
 import '../../../style/table.scss';
 
 
@@ -16,7 +17,7 @@ const EditTable = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
-  const itemsPerPage = 5;
+
 
   const dateTime = new Date(); // Отримати поточну дату та час
 
@@ -29,8 +30,20 @@ const seconds = dateTime.getSeconds().toString().padStart(2, '0'); // Секун
 
 const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds}`; // Форматований рядок дати та часу
 
+  const itemsPerPage = 50;
 
 
+  useEffect(() => {
+    console.log('work');
+    socket.on('new table',(user) => {
+      console.log('new table',user);
+      setIsFetch(state => !state)
+    });
+    socket.on('update table',(user) => {
+      console.log('update table',user);
+      setIsFetch(state => !state)
+    });
+  }, []);
 
   useEffect(() => {
     fetch('https://server-ponto-print.herokuapp.com/get-all-table')
@@ -40,6 +53,7 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
         setAllOrders(res);
       });
   }, [isFetch]);
+
 
   useEffect(() => {
     if (allOrders.length !== 0) {
@@ -89,11 +103,8 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
     } else {
       let newArr = allOrders.filter((item) => item.user.name === e);
       setCurrentOrders(newArr);
-      console.log('newArr',newArr);
     }
   };
-
-
 
   const filterStatusFunc = (e) => {
     if (e === 'Всі') {

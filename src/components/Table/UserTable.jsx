@@ -1,9 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { fetchAuthMe } from '../../store/auth';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import DisplayUserTableOrder from './DisplayUserTableOrder';
+import socket from '../../socket/socket'
 import '../../style/userProfile.scss'
 import '../../style/table.scss'
 const UserTable = ({allOrders, currentUser}) => {
+  const dispatch = useDispatch();
+  
+  console.log('currentUser',currentUser);
+useEffect(() => {
+  console.log('work');
+  socket.on('new table',({user}) => {
+    console.log('new table1',user);
+    if(currentUser._id == user) {
+      dispatch(fetchAuthMe());
+    }
+  });
+  socket.on('update table',({user}) => {
+    console.log('update table1',user);
+    if(currentUser._id == user) {
+      dispatch(fetchAuthMe());
+    }
+  });
+}, []);
 
   const { t } = useTranslation();
 
