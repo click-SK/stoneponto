@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import DisplayAdminTableOrder from './DisplayAdminTableOrder';
 import socket from '../../../socket/socket';
+import {ExportCSV} from '../../ExelTable/ExportCSV'
 import '../../../style/table.scss';
 
 
@@ -16,7 +17,7 @@ const EditTable = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
-  const itemsPerPage = 5;
+  const itemsPerPage = 50;
 
   useEffect(() => {
     console.log('work');
