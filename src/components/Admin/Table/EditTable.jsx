@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import DisplayAdminTableOrder from './DisplayAdminTableOrder';
+import { ExportCSV } from "../../ExelTable/ExportCSV";
 import '../../../style/table.scss';
 
 
@@ -80,7 +81,7 @@ const EditTable = () => {
     }
   };
 
-  console.log('currentOrders', currentOrders);
+
 
   const filterStatusFunc = (e) => {
     if (e === 'Всі') {
@@ -131,10 +132,39 @@ const renderPageNumbers = () => {
   });
 };
 
+// const orders = [
+//   { orderId: 1, customerName: "John Doe", totalAmount: 100 },
+//   { orderId: 2, customerName: "Jane Smith", totalAmount: 200 },
+//   // Додай більше об'єктів замовлень
+// ];
 
+const orders = currentItems.map((item) => {
+  return {
+    Id: item?.id,
+    "Дата": item?.date,
+    "Пользователь": item?.user.name,
+    'Файл': item?.fileName,
+    'Материал': item?.material,
+    'Качество': item?.quality,
+    'Ширина': item?.width,
+    'Высота': item?.height,
+    'Тираж': item?.count,
+    totalAmount: item?.sum,
+    'Cтатус': item?.status?.name,
+  };
+});
+
+console.log('currentItems-2222',currentItems);
 
   return (
     <div className="table_wrap">
+            <div>
+      <ExportCSV
+      csvData={orders}
+      fileName={'orders'}
+      />  
+      </div>
+
       <div className="table_header">
         <div className="table_header_item table_header_id">
           <p>Id</p>
