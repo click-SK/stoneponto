@@ -10,7 +10,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        fetch("https://ponto-print.herokuapp.com/update-user-table-status", {
+        fetch("http://localhost:4444/update-user-table-status", {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
       const handlePay = async () => {
 
         if(currentUser.balance >=  order.sum) {
-          await fetch("https://ponto-print.herokuapp.com/update-status", {
+          await fetch("http://localhost:4444/update-status", {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
               dispatch(fetchAuthMe());
           }, 2000);
   
-          await fetch('https://ponto-print.herokuapp.com/update-balance', {
+          await fetch('http://localhost:4444/update-balance', {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",

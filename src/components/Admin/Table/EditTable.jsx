@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import DisplayAdminTableOrder from './DisplayAdminTableOrder';
+import socket from '../../../socket/socket';
 import '../../../style/table.scss';
 
 
@@ -17,16 +18,27 @@ const EditTable = () => {
   const [totalBalance, setTotalBalance] = useState(0);
   const itemsPerPage = 5;
 
-
+  useEffect(() => {
+    console.log('work');
+    socket.on('new table',(user) => {
+      console.log('new table',user);
+      setIsFetch(state => !state)
+    });
+    socket.on('update table',(user) => {
+      console.log('update table',user);
+      setIsFetch(state => !state)
+    });
+  }, []);
 
   useEffect(() => {
-    fetch('https://ponto-print.herokuapp.com/get-all-table')
+    fetch('http://localhost:4444/get-all-table')
       .then((res) => res.json())
       .then((res) => {
         setCurrentOrders(res.reverse());
         setAllOrders(res);
       });
   }, [isFetch]);
+
 
   useEffect(() => {
     if (allOrders.length !== 0) {
@@ -76,11 +88,9 @@ const EditTable = () => {
     } else {
       let newArr = allOrders.filter((item) => item.user.name === e);
       setCurrentOrders(newArr);
-      console.log('newArr',newArr);
     }
   };
 
-  console.log('currentOrders', currentOrders);
 
   const filterStatusFunc = (e) => {
     if (e === 'Всі') {

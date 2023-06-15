@@ -39,7 +39,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
     formData.append("postId", post._id);
     setIsEditValue((isEdit) => !isEdit);
 
-    fetch("https://ponto-print.herokuapp.com/update-post", {
+    fetch("http://localhost:4444/update-post", {
       method: "PATCH",
       body: formData,
     }).then((res) => res.json());
@@ -68,7 +68,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
   };
 
   const handleRemovePost = () => {
-    fetch("https://ponto-print.herokuapp.com/remove-post", {
+    fetch("http://localhost:4444/remove-post", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                   />
                 ) : (
                   <img
-                    src={`https://ponto-print.herokuapp.com${post.blogImage}`}
+                    src={`http://localhost:4444${post.blogImage}`}
                     alt="Selected"
                     
                   />
@@ -150,7 +150,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                 ) : (
                   <img
                     className="edit_post_img"
-                    src={`https://ponto-print.herokuapp.com${post.blogImage}`}
+                    src={`http://localhost:4444${post.blogImage}`}
                     alt="Selected"
                     
                   />

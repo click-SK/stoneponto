@@ -12,7 +12,7 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
         setIsEdit((state) => !state);
         setIsFetch((state) => !state);
     
-        fetch('https://ponto-print.herokuapp.com/upadte-currency', {
+        fetch('http://localhost:4444/upadte-currency', {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json'

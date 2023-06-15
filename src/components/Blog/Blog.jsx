@@ -14,7 +14,7 @@ const Blog = () => {
   const lang = useSelector((state) => state.lang.language);
   
   useEffect(() => {
-    fetch("https://ponto-print.herokuapp.com/get-all-post")
+    fetch("http://localhost:4444/get-all-post")
       .then((res) => res.json())
       .then((res) => setAllPosts(res));
   }, []);
@@ -41,7 +41,7 @@ const Blog = () => {
           </div> */}
           <div className='img_blog_wrap'>
             <img 
-            src={`https://ponto-print.herokuapp.com${post.blogImage}`} 
+            src={`http://localhost:4444${post.blogImage}`} 
             />
           </div>
           <div className='content_wrap'>

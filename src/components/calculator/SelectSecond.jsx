@@ -29,7 +29,7 @@ const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
         <div className="custom-select">
             <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
                 {selectedOption?.imageColor && 
-                    <img className='color_img' src={`https://ponto-print.herokuapp.com${selectedOption?.imageColor}`}/>}
+                    <img className='color_img' src={`http://localhost:4444${selectedOption?.imageColor}`}/>}
                 {(selectedOption?.nameUa && lang == "Ua" ? selectedOption.nameUa : selectedOption.nameUa ) || (lang == "Ua" ? item[0]?.nameUa : item[0]?.nameUa)}
             </div>
             {isOpen && (
@@ -37,7 +37,7 @@ const SelectSecond = ({item, title, selectedOption, setSelectedOption}) => {
                     {item.map((el) => (
                         <div className="option" key={el._id} onClick={() => selectItemFunc(el)}>
                             {el?.imageColor && 
-                            <img className='color_img' src={`https://ponto-print.herokuapp.com${el.imageColor}`}/>}
+                            <img className='color_img' src={`http://localhost:4444${el.imageColor}`}/>}
                             {lang == "Ua" ? <>{el.nameUa}</> : <>{el.nameRu}</>}
                         </div>
                     ))}
