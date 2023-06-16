@@ -16,17 +16,17 @@
         {
           "nameUa": "720dpi",
           "nameRu": "720dpi",
-          "price": 100
+          "price": 3.2
         },
         {
           "nameUa": "1080dpi",
           "nameRu": "1080dpi",
-          "price": 200
+          "price": 4
         },
         {
           "nameUa": "1440dpi",
           "nameRu": "1440dpi",
-          "price": 300
+          "price": 4.2
         }
       ],
       "cutting": [
@@ -38,12 +38,12 @@
         {
           "nameUa": "Під порізку",
           "nameRu": "Под обрез",
-          "price": 100
+          "price": 1.5
         },
         {
           "nameUa": "Плоттерна",
           "nameRu": "Плоттерная",
-          "price": 100
+          "price": 1.5
         }
       ],
       "lamination": [
@@ -55,12 +55,12 @@
         {
           "nameUa": "Матова",
           "nameRu": "Матовая",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Глянцева",
           "nameRu": "Глянцевая",
-          "price": 100
+          "price": 3
         }
       ]
     },
@@ -78,17 +78,17 @@
         {
           "nameUa": "720dpi",
           "nameRu": "720dpi",
-          "price": 100
+          "price": 3.2
         },
         {
           "nameUa": "1080dpi",
           "nameRu": "1080dpi",
-          "price": 200
+          "price": 4
         },
         {
           "nameUa": "1440dpi",
           "nameRu": "1440dpi",
-          "price": 300
+          "price": 4.2
         }
       ],
       "cutting": [
@@ -100,12 +100,12 @@
         {
           "nameUa": "Під порізку",
           "nameRu": "Под обрез",
-          "price": 100
+          "price": 1.5
         },
         {
           "nameUa": "Плоттерна",
           "nameRu": "Плоттерная",
-          "price": 100
+          "price": 1.5
         }
       ],
       "lamination": [
@@ -117,12 +117,12 @@
         {
           "nameUa": "Матова",
           "nameRu": "Матовая",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Глянцева",
           "nameRu": "Глянцевая",
-          "price": 100
+          "price": 3
         }
       ]
     },
@@ -139,17 +139,17 @@
         {
           "nameUa": "720dpi",
           "nameRu": "720dpi",
-          "price": 100
+          "price": 3.2
         },
         {
           "nameUa": "1080dpi",
           "nameRu": "1080dpi",
-          "price": 200
+          "price": 4
         },
         {
           "nameUa": "1440dpi",
           "nameRu": "1440dpi",
-          "price": 300
+          "price": 4.2
         }
       ],
       "cutting": [
@@ -161,12 +161,12 @@
         {
           "nameUa": "Під порізку",
           "nameRu": "Под обрез",
-          "price": 100
+          "price": 1.5
         },
         {
           "nameUa": "Плоттерна",
           "nameRu": "Плоттерная",
-          "price": 100
+          "price": 1.5
         }
       ],
       "lamination": [
@@ -178,17 +178,17 @@
         {
           "nameUa": "Матова",
           "nameRu": "Матовая",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Глянцева",
           "nameRu": "Глянцевая",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Біла",
           "nameRu": "Белая",
-          "price": 100
+          "price": 3
         }
       ]
     },
@@ -205,17 +205,12 @@
         {
           "nameUa": "720dpi",
           "nameRu": "720dpi",
-          "price": 100
+          "price": 4.7
         },
         {
           "nameUa": "1080dpi",
           "nameRu": "1080dpi",
-          "price": 200
-        },
-        {
-          "nameUa": "1440dpi",
-          "nameRu": "1440dpi",
-          "price": 300
+          "price": 6
         }
       ],
       "cutting": [
@@ -227,7 +222,7 @@
         {
           "nameUa": "Під порізку",
           "nameRu": "Под обрез",
-          "price": 100
+          "price": 1.5
         }
       ]
     },
@@ -244,17 +239,17 @@
         {
           "nameUa": "720dpi",
           "nameRu": "720dpi",
-          "price": 100
+          "price": 4.3
         },
         {
           "nameUa": "1080dpi",
           "nameRu": "1080dpi",
-          "price": 200
+          "price": 4.7
         },
         {
           "nameUa": "1440dpi",
           "nameRu": "1440dpi",
-          "price": 300
+          "price": 5
         }
       ],
       "cutting": [
@@ -266,12 +261,12 @@
         {
           "nameUa": "Під порізку",
           "nameRu": "Под обрез",
-          "price": 100
+          "price": 1.5
         },
         {
           "nameUa": "Плоттерна",
           "nameRu": "Плоттерная",
-          "price": 100
+          "price": 1.5
         }
       ],
       "lamination": [
@@ -283,12 +278,12 @@
         {
           "nameUa": "Матова",
           "nameRu": "Матовая",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Глянцева",
           "nameRu": "Глянцевая",
-          "price": 100
+          "price": 3
         }
       ]
     },
@@ -300,16 +295,376 @@
       "price": 100,
       "color": [
         {
-          "imageColor": "image1",
+          "imageColor": "/uploads/Зеркальне золото.png",
           "nameUa": "Зеркальне золото",
           "nameRu": "Зеркальне золото",
-          "price": 100
+          "price": 5
         },
         {
-          "imageColor": "image2",
+          "imageColor": "/uploads/Зеркальне серебро.png",
           "nameUa": "Зеркальне серебро",
           "nameRu": "Зеркальне серебро",
-          "price": 100
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/000 - transparent.png",
+          "nameUa": "000 - transparent",
+          "nameRu": "000 - transparent",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/010 - white.png",
+          "nameUa": "010 - white",
+          "nameRu": "010 - white",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/020 - medium-yellow.png",
+          "nameUa": "020 - medium-yellow",
+          "nameRu": "020 -medium-yellow",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/019 - sun-yellow.png",
+          "nameUa": "019 - sun-yellow",
+          "nameRu": "019 - sun-yellow",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/021 - yellow.png",
+          "nameUa": "021 - yellow",
+          "nameRu": "021 - yellow",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/022 - light-yellow.png",
+          "nameUa": "022 - light-yellow",
+          "nameRu": "022 - light-yellow",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/025 - brimstone-yellow.png",
+          "nameUa": "025 - brimstone-yellow",
+          "nameRu": "025 - brimstone-yellow",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/026 - purple-red.png",
+          "nameUa": "026 - purple-red",
+          "nameRu": "026 - purple-red",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/312 - burgundy.png",
+          "nameUa": "312 - burgundy",
+          "nameRu": "312 - burgundy",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/030 - dark red.png",
+          "nameUa": "030 - dark red",
+          "nameRu": "030 - dark red",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/031 - red.png",
+          "nameUa": "031 - red",
+          "nameRu": "031 - red",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/032 - light red.png",
+          "nameUa": "032 - light red",
+          "nameRu": "032 - light red",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/047 - orange red.png",
+          "nameUa": "047 - orange red",
+          "nameRu": "047 - orange red",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/034 - orange.png",
+          "nameUa": "034 - orange",
+          "nameRu": "034 - orange",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/036 - light orange.png",
+          "nameUa": "036 - light orange",
+          "nameRu": "036 - light orange",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/035 - pastel orange.png",
+          "nameUa": "035 - pastel orange",
+          "nameRu": "035 - pastel orange",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/404 - purple.png",
+          "nameUa": "404 - purple",
+          "nameRu": "404 - purple",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/040 - violet.png",
+          "nameUa": "040 - violet",
+          "nameRu": "040 - violet",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/043 - lavender.png",
+          "nameUa": "043 - lavender",
+          "nameRu": "043 - lavender",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/042 - lilac.png",
+          "nameUa": "042 - lilac",
+          "nameRu": "042 - lilac",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/041 - pink.png",
+          "nameUa": "041 - pink",
+          "nameRu": "041 - pink",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/045 - soft pink.png",
+          "nameUa": "045 - soft pink",
+          "nameRu": "045 - soft pink",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/562 - deep sea blue.png",
+          "nameUa": "562 - deep sea blue",
+          "nameRu": "562 - deep sea blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/518 - steel blue.png",
+          "nameUa": "518 - steel blue",
+          "nameRu": "518 - steel blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/050 - dark blue.png",
+          "nameUa": "050 - dark blue",
+          "nameRu": "050 - dark blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/065 - cobalt blue.png",
+          "nameUa": "065 - cobalt blue",
+          "nameRu": "065 - cobalt blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/049 - king blue.png",
+          "nameUa": "049 - king blue",
+          "nameRu": "049 - king blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/086 - brilliant blue.png",
+          "nameUa": "086 - brilliant blue",
+          "nameRu": "086 - brilliant blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/067 - blue.png",
+          "nameUa": "067 - blue",
+          "nameRu": "067 - blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/057 - traffic blue.png",
+          "nameUa": "057 - traffic blue",
+          "nameRu": "057 - traffic blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/051 - gentian blue.png",
+          "nameUa": "051 - gentian blue",
+          "nameRu": "051 - gentian blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/098 - gentian.png",
+          "nameUa": "098 - gentian",
+          "nameRu": "098 - gentian",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/052 - azure blue.png",
+          "nameUa": "052 - azure blue",
+          "nameRu": "052 - azure blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/084 - sky blue.png",
+          "nameUa": "084 - sky blue",
+          "nameRu": "084 - sky blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/053 - light blue.png",
+          "nameUa": "053 - light blue",
+          "nameRu": "053 - light blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/056 - ice blue.png",
+          "nameUa": "056 - ice blue",
+          "nameRu": "056 - ice blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/066 - turquoise blue.png",
+          "nameUa": "066 - turquoise blue",
+          "nameRu": "066 - turquoise blue",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/054 - turquoise.png",
+          "nameUa": "054 - turquoise",
+          "nameRu": "054 - turquoise",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/055 - mint.png",
+          "nameUa": "055 - mint",
+          "nameRu": "055 - mint",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/060 - dark green.png",
+          "nameUa": "060 - dark green",
+          "nameRu": "060 - dark green",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/613 - forest green.png",
+          "nameUa": "613 - forest green",
+          "nameRu": "613 - forest green",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/061 - green.png",
+          "nameUa": "061 - green",
+          "nameRu": "061 - green",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/068 - grass green.png",
+          "nameUa": "068 - grass green",
+          "nameRu": "068 - grass green",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/062 - light green.png",
+          "nameUa": "062 - light green",
+          "nameRu": "062 - light green",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/064 - yellow green.png",
+          "nameUa": "064 - yellow green",
+          "nameRu": "064 - yellow green",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/063 - lime-tree green.png",
+          "nameUa": "063 - lime-tree green",
+          "nameRu": "063 - lime-tree green",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/080 - brown.png",
+          "nameUa": "080 - brown",
+          "nameRu": "080 - brown",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/083 - nut brown.png",
+          "nameUa": "083 - nut brown",
+          "nameRu": "083 - nut brown",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/081 - light brown.png",
+          "nameUa": "081 - light brown",
+          "nameRu": "081 - light brown",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/082 - beige.png",
+          "nameUa": "082 - beige",
+          "nameRu": "082 - beige",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/023 - cream.png",
+          "nameUa": "023 - cream",
+          "nameRu": "023 - cream",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/070 - black.png",
+          "nameUa": "070 - black",
+          "nameRu": "070 - black",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/073 - dark grey.png",
+          "nameUa": "073 - dark grey",
+          "nameRu": "073 - dark grey",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/071 - grey.png",
+          "nameUa": "071 - grey",
+          "nameRu": "071 - grey",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/076 - telegrey.png",
+          "nameUa": "076 - telegrey",
+          "nameRu": "076 - telegrey",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/074 - middle grey.png",
+          "nameUa": "074 - middle grey",
+          "nameRu": "074 - middle grey",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/072 - light grey.png",
+          "nameUa": "072 - light grey",
+          "nameRu": "072 - light grey",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/090 - silver grey.png",
+          "nameUa": "090 - silver grey",
+          "nameRu": "090 - silver grey",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/091 - gold.png",
+          "nameUa": "091 - gold",
+          "nameRu": "091 - gold",
+          "price": 5
+        },
+        {
+          "imageColor": "/uploads/092 - copper.png",
+          "nameUa": "092 - copper",
+          "nameRu": "092 - copper",
+          "price": 5
         }
       ],
       "cutting": [
@@ -321,7 +676,7 @@
         {
           "nameUa": "Плоттерна",
           "nameRu": "Плоттерная",
-          "price": 100
+          "price": 1.5
         }
       ]
     }

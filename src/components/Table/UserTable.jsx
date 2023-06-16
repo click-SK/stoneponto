@@ -2,14 +2,21 @@ import React, {useState, useEffect} from 'react';
 import { fetchAuthMe } from '../../store/auth';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import {useSound} from 'use-sound';
 import DisplayUserTableOrder from './DisplayUserTableOrder';
 import socket from '../../socket/socket'
 import '../../style/userProfile.scss'
 import '../../style/table.scss'
+import sound from './delete.mp3';
 const UserTable = ({allOrders, currentUser}) => {
+  const [isSong, setIsSong] = useState(false);
   const dispatch = useDispatch();
-  
-  console.log('currentUser',currentUser);
+  const [play] = useSound(sound);
+
+  useEffect(() => {
+    play();
+  },[isSong])
+
 useEffect(() => {
   console.log('work');
   socket.on('new table',({user}) => {
@@ -18,9 +25,13 @@ useEffect(() => {
       dispatch(fetchAuthMe());
     }
   });
-  socket.on('update table',({user}) => {
-    console.log('update table1',user);
+  socket.on('update table',({user, status}) => {
+    console.log('update user',user);
+    console.log('update status',status);
     if(currentUser._id == user) {
+      if(status) {
+        setIsSong(true)
+      }
       dispatch(fetchAuthMe());
     }
   });
@@ -96,6 +107,7 @@ useEffect(() => {
 
     return (
         <div className='table_wrap'>
+          <button onClick={play()}>Play</button>
         <div  className='table_header'>
             <div className='table_header_item table_header_id'>
                 <p>Id:</p>

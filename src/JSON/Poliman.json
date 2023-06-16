@@ -12,12 +12,12 @@
                           {
             "nameUa": "720dpi",
             "nameRu": "720dpi",
-            "price": 200
+            "price": 0
           },
           {
             "nameUa": "1080dpi",
             "nameRu": "1080dpi",
-            "price": 300
+            "price": 0
           }
         ],
               "cutting": [
@@ -29,7 +29,7 @@
           {
             "nameUa": "Під порізку",
             "nameRu": "Под обрез",
-            "price": 100
+            "price": 1.5
           }
         ]
           }

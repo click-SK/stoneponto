@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import Select from './Select'
 import SelectSec from './SelectSecond'
 import InputsTamplate from '../template/InputsTamplate';
@@ -55,6 +55,7 @@ const CalculatorPartner = () => {
       currentStatus: 'new',
       paid: false
     });
+    const inputFileRef = useRef(null);
 
     const { t } = useTranslation();
 
@@ -129,29 +130,96 @@ const CalculatorPartner = () => {
     setdescArray(descriptionObj);
    },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
     selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
+
+    const checkedCutting = (name) => {
+      switch(name) {
+        case 'По периметру':
+          return ((width / 1000) + (height/1000)) * 2
+        case 'Ліворуч і праворуч':
+          return  (height/1000) * 2
+        case 'Зверху та знизу':
+          return  (width/1000) * 2
+        case 'Літерою П':
+          return  ((width/2000) + (height/1000)) * 2
+        case 'Ліворуч':
+          return  (height/2000) * 2
+        case 'Праворуч':
+          return  (height/2000) * 2
+        case 'Зверху':
+          return  (width/2000) * 2
+        case 'Знизу':
+          return  (width/2000) * 2
+      }
+    }
+
+    const checkedEyelets = (name) => {
+      switch(name) {
+        case 'По периметру':
+          return ((width / 1000) + (height/1000)) * 2
+        case 'Ліворуч і праворуч':
+          return  (height/1000) * 2
+        case 'Зверху та знизу':
+          return  (width/1000) * 2
+        case 'Літерою П':
+          return  ((width/1000) + ((height/1000)) * 2)
+        case 'Ліворуч':
+          return  (height/1000)
+        case 'Праворуч':
+          return  (height/1000)
+        case 'Зверху':
+          return  (width/1000)
+        case 'Знизу':
+          return  (width/1000)
+        case 'По кутах':
+          return  0
+        case 'По мітках':
+          return  0
+      }
+    }
      
 
      useEffect(() =>{
-      const totalSum1 = (quadrature * selectedOptionQuality?.price * currency.currency || 0) +
-     (selectedOptionCutting?.price * currency.currency || 0) + (selectedOptionSolderGates?.price * currency.currency || 0)+
-     (selectedOptionSolderPockets?.price * currency.currency || 0) + (selectedOptionLamination?.price * currency.currency || 0) +
-     (selectedOptionPoster?.price * currency.currency || 0) + (isStamp ? currentItem?.stamp : 0) + 
+      const linearMeter = ((width / 1000) + (height/1000)) * 2;
+
+      const standartLuvers = linearMeter/0.3;
+
+      const currentLuvers = checkedEyelets(selectedOptionEyelets?.nameUa)/((selectedOptionEyeletsValue) / 100);
+
+      let differenceLuvers = 0;
+      if(currentLuvers > standartLuvers) {
+        differenceLuvers = currentLuvers - standartLuvers;
+      }
+
+      const totalSum1 = 
+     (((differenceLuvers ? selectedOptionEyelets.price * differenceLuvers : 0)) || 0) +
+     ((selectedOptionQuality?.price * quadrature) || 0) +
+     ((selectedOptionCutting?.price) || 0) + 
+     (((selectedOptionSolderGates?.price * checkedCutting(selectedOptionSolderGates?.nameUa))) || 0) +
+     ((selectedOptionSolderPockets?.price * checkedCutting(selectedOptionSolderPockets?.nameUa)) || 0) +
+     ((selectedOptionLamination?.price) || 0) +
+     (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0) + 
      (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
      (isMounting ? currentItem?.mounting: 0);
       
-     
-     // Если в заказе, по квадратным метрам больше 20 квадратов, то на общую сумму присваивается скидка -10%. 
 
-     const sumAndCount = totalSum1 * count;
+     const sumMultiplyCurrency = totalSum1 * currency.currency || 0;
+     const sumAndCount = sumMultiplyCurrency * count;
 
      const onlyDiscount = sumAndCount * (user.discountValue || currentDiscount);
 
-     const sumAndDiscount = sumAndCount - onlyDiscount;
 
-     setTotalSum(sumAndDiscount)
+     const sumAndDiscountUser = sumAndCount - onlyDiscount;
+
+     if(linearMeter >= 20 ) {
+      const discount = sumAndDiscountUser * 0.1;
+      setTotalSum(sumAndDiscountUser - discount)
+     } else {
+      setTotalSum(sumAndDiscountUser)
+     }
 
      },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
-      selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting,currentDiscount])
+      selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting,currentDiscount, 
+      selectedOptionEyelets, selectedOptionEyeletsValue, height, width])
 
       useEffect(()=>{
         setSelectedOptionQuality('');
@@ -192,20 +260,32 @@ const CalculatorPartner = () => {
 
 
      
-    const handleChange = (event) =>{
-        const file = event.target.files[0];
+    // const handleChange = (event) =>{
+    //     const file = event.target.files[0];
 
-        if (file) {
-            setselectedFile(file);
-        }
-    }
+    //     if (file) {
+    //         setselectedFile(file);
+    //     }
+    // }
 
-    console.log('selectedOptionColor',selectedOptionColor);
-    console.log('currentItem',currentItem);
-
-    // useEffect(() => {
-    //   validationFunc();
-    // },[selectedOptionQuality, currentItem, selectedOptionColor, width, height, count, selectedFile])
+    const handleChange = (event) => {
+      const file = event.target.files[0];
+      const allowedExtensions = ['jpg', 'tif', 'rar', 'zip', '7z', 'cdr'];
+      const fileExtension = getFileExtension(file.name);
+    
+      if (allowedExtensions.includes(fileExtension)) {
+        setselectedFile(file);
+      } else {
+        alert('Невірний формат файлу. Файл має бути формату: jpg, tif, rar, zip, 7z, cdr');
+        // Очищення вибраного файлу
+        event.target.value = null;
+        setselectedFile(null);
+      }
+    };
+    
+    const getFileExtension = (filename) => {
+      return filename.slice(filename.lastIndexOf('.') + 1);
+    };
 
     const validationFunc = () => {
       setValidationWidth(false);
@@ -304,10 +384,8 @@ const CalculatorPartner = () => {
       setIsOpenAllusers((state) => !state)
       setCurrentId(e._id);
       setIsOpenAllusers((state) => !state);
-      console.log('e',e.name);
       setCurrentUserState(e?.name);
       setCurrentDiscount(e.discountValue)
-      console.log('user',e);
     }
 
     return (
@@ -431,7 +509,7 @@ const CalculatorPartner = () => {
                 {selectedOptionEyelets?.nameUa !== "По кутах" ? (
                   <InputsTamplate
                     title={"через (cм)"}
-                    type={"text"}
+                    type={"number"}
                     placeholder={"30"}
                     value={selectedOptionEyeletsValue}
                     handleCangeInput={setSelectedOptionEyeletsValue}
@@ -439,7 +517,7 @@ const CalculatorPartner = () => {
                 ) : (
                   <InputsTamplate
                     title={"через (cм)"}
-                    type={"text"}
+                    type={"number"}
                     placeholder={"30"}
                     value={selectedOptionEyeletsValue}
                     handleCangeInput={setSelectedOptionEyeletsValue}
@@ -538,8 +616,15 @@ const CalculatorPartner = () => {
             <input
               type="file"
               accept=".jpg, .tif, .rar, .zip, .7z, .cdr"
+              hidden
               onChange={handleChange}
+              ref={inputFileRef}
             />
+            <button onClick={() => inputFileRef.current.click()}>Завантажити файл</button>
+            <div>
+              {selectedFile &&
+              <p>Файл завантажено</p>}
+            </div>
           </div>
           {validationFile &&
           <p style={{color:'red'}}>{t(`File not selected`)}</p>}
@@ -591,7 +676,7 @@ const CalculatorPartner = () => {
           <div className="total_sum">
             <h3>
               {" "}
-              {t(`Total`)}: <p>{totalSum.toFixed(0)}</p> грн
+              {t(`Total`)}: <p>{isNaN(totalSum.toFixed(0)) ? 0 : totalSum.toFixed(0)}</p> грн
             </h3>
           </div>
           <button onClick={handleTotalSum}>{t(`Download the order`)}</button>
