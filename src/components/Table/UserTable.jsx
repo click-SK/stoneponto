@@ -13,9 +13,9 @@ const UserTable = ({allOrders, currentUser}) => {
   const dispatch = useDispatch();
   const [play] = useSound(sound);
 
-  useEffect(() => {
-    play();
-  },[isSong])
+  // useEffect(() => {
+  //   play();
+  // },[isSong])
 
 useEffect(() => {
   console.log('work');
@@ -107,7 +107,7 @@ useEffect(() => {
 
     return (
         <div className='table_wrap'>
-          <button onClick={play()}>Play</button>
+          {/* <button onClick={play()}>Play</button> */}
         <div  className='table_header'>
             <div className='table_header_item table_header_id'>
                 <p>Id:</p>
