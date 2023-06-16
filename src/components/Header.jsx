@@ -6,6 +6,10 @@ import { currentCurrency } from "../store/currency";
 import { currentUser } from "../store/auth";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {FaTelegramPlane } from 'react-icons/fa';
+import {FaWhatsapp } from 'react-icons/fa';
+import {FaViber } from 'react-icons/fa';
+
 import "../style/header.scss";
 const Header = () => {
   const user = useSelector(currentUser);
@@ -33,7 +37,9 @@ const Header = () => {
           <span className="wrap_item text">ponto-print@ukr.net</span>
           {!user?.email ? (
             <span className="wrap_item">
-              <button>
+              <button
+              
+              >
                 <Link to="/login">{t(`Exit`)}</Link>
               </button>
             </span>
@@ -47,7 +53,12 @@ const Header = () => {
             <ChooseLanguage />
           </span>
           <span className="wrap_item text">
-            {t(`The course is on the website`)}: {currency?.currency}
+            <FaTelegramPlane
+            className="icon_social"/>
+            <FaWhatsapp
+            className="icon_social"/>
+            <FaViber
+            className="icon_social"/>
           </span>
         </div>
       </div>

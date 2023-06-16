@@ -21,7 +21,7 @@ const Test = () => {
     };
 
     return (
-        <div>
+        <div className='lang_change'>
             <button onClick={() => handleLenguageChange('Ua')}>Ua</button>
             <button onClick={() => handleLenguageChange('Ru')}>Ru</button>
         </div>

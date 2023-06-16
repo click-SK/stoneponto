@@ -200,7 +200,7 @@ const orders = currentItems.map((item) => {
     'Ширина': item?.width,
     'Высота': item?.height,
     'Тираж': item?.count,
-    totalAmount: item?.sum,
+    'Сума': item?.sum,
     'Опис': description + (description ? ` ; ` : '') + item?.address + (item?.address ? ` ; ` : '') + item?.notes,
     'Cтатус': item?.status?.name,
   };
