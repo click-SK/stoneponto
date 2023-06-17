@@ -12,12 +12,18 @@ import LoginForm from "./components/Authorization/LoginForm";
 import FirstRequest from "./components/FirstRequest";
 import UserPanel from "./components/User/UserPanel";
 import Blog from "./components/Blog/Blog";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const user = useSelector(currentUser);
+  console.log('user',user);
   return (
     <div className="App">
       <FirstRequest />
+      {
+        user 
+        ? 
+        <>
       <Header />
       <Routes>
       <Route path="/" element={<MainPage />} />
@@ -47,6 +53,10 @@ function App() {
         )}
       </Routes>
       <Footer/>
+        </>
+        :
+        <Loader/>
+      }
     </div>
   );
 }

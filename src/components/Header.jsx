@@ -105,9 +105,9 @@ const Header = () => {
       </div>
       {/* burger icon */}
       <div  className="burger_icon">
-          <label for="check">
+          <label htmlFor="check">
         <input
-        onClick={() => hendlerOpenMenu() }
+        onChange={() => hendlerOpenMenu() }
         type="checkbox" id="check"
         checked={isChaked} />
         <span></span>
