@@ -4,6 +4,7 @@ import { currentUser } from "./store/auth";
 import "./App.css";
 import Header from "./components/Header";
 import MainPage from "./components/MainPage";
+import Footer from "./components/Footer";
 import AdminPanel from "./components/Admin/AdminPanel";
 import { Routes, Route } from "react-router-dom";
 import CalculatorPartner from "./components/calculator/CalculatorPartner";
@@ -45,6 +46,7 @@ function App() {
           </>
         )}
       </Routes>
+      <Footer/>
     </div>
   );
 }

@@ -31,6 +31,10 @@
     }
 }
 
+.icon_social{
+    width: 25px;
+}
+
 .contact_login_block{
     position: absolute;
     top: -10px;
@@ -71,6 +75,7 @@
     }
     button{
         height: 20px;
+        border-bottom: 1px;
     }
     &::before{
         content: "";
@@ -79,7 +84,7 @@
         clip-path: polygon(100% 100%, 82% 94%, 71% 86%, 65% 75%, 61% 65%, 57% 55%, 53% 43%, 47% 33%, 42% 26%, 34% 20%, 27% 15%, 19% 11%, 11% 9%, 3% 6%, 1% 0%, 100% 0%);
         z-index: -99;
         height: 30px;
-        width: 30px;
+        width: 34px;
         left: -30px;
         background: #222935;
     }
@@ -107,6 +112,12 @@
     //     background: $color_second;
     //     z-index: 1;
     // }
+}
+
+.lang_change{
+    display: flex;
+    justify-content: space-around;
+    width: 110px;
 }
 
 .nav_logo_wraper{
