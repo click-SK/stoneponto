@@ -39,8 +39,8 @@ export const fetchIsAdmin = createAsyncThunk('auth/fetchIsAdmin', async () => {
 })
 
 const initialState = {
-    data: null,
-    user: null,
+    data: {},
+    user: {},
     users: null,
     isAdmin: false,
     status: 'loading',

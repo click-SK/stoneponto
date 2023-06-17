@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {fetchLanguage} from '../../store/language'
 import ReactQuill from 'react-quill';
+import Loader from "../Loader/Loader";
 import '../../style/blog.scss'
 
 const Blog = () => {
@@ -26,19 +27,15 @@ const Blog = () => {
 
   return (
     <div className='blog_content_wrap'>
-      {allPosts && allPosts.map((post) => (
+      {!allPosts 
+      ? 
+      <Loader/>
+      :
+      allPosts.map((post) => (
         <div 
         key={post._id}
         className='blog_item'
         >
-          {/* <div>
-            {lang == 'Ua' 
-            ?
-            <>{post.titleUa}</>
-            :
-            <>{post.titleRu}</>
-            }
-          </div> */}
           <div className='img_blog_wrap'>
             <img 
             src={`https://server-ponto-print.herokuapp.com${post.blogImage}`} 
@@ -70,7 +67,8 @@ const Blog = () => {
           </div>
           </div>
         </div>
-      ))}
+      ))
+      }
     </div>
   );
 };
