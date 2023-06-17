@@ -183,9 +183,24 @@
 
 .post_info{
     width: 60%;
+    button{
+        margin-left: 5px;
+    }
 }
 
 .edit_post_img{
     width: 200px;
     height: 200px;
+}
+.textarea{
+    margin-bottom: 10px;
+}
+
+@media (max-width: 780px){
+
+    .post_info{
+        width: 80%;
+    }
+
+
 }

@@ -117,7 +117,9 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
-            <div style={{ padding: "10px 0px", display: 'flex', justifyContent:'center' }}>
+            <div 
+            className="button_wrap"
+             >
               <button 
               style={{ padding: "5px 8px", background:'#5aad5a', margin:'0 2px' }}
               onClick={handleFinished}>

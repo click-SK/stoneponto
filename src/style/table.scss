@@ -32,6 +32,7 @@
 }
 
 .item_row_info{
+    overflow: hidden;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     &:last-child{
@@ -170,5 +171,25 @@
         font-size: 24px;
         padding: 5px 5px;
 
+    }
+}
+
+// style={{ padding: "10px 0px", display: 'flex', justifyContent:'center' }}>
+
+.button_wrap{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+
+}
+
+@media (max-width: 780px){
+
+    .button_wrap{
+        flex-direction: column;
+    }
+
+    .table_header_item{
+        overflow: hidden;
     }
 }

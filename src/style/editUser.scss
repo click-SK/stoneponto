@@ -55,7 +55,7 @@
 .edit_user_data{
     display: flex;
     flex-direction: row;
-    height: 200px;
+    // height: 200px;
     width: 100%;
     padding: 20px;
 }
@@ -201,4 +201,35 @@
 .withdrawal{
     color: red;
     font-weight: 600;
+}
+
+
+
+@media (max-width: 620px){
+    .user_wrap{
+        width: 100%;
+    }
+
+    .user_wrap_item_name{
+        p{
+            min-width: 100px;
+        }
+    }
+    .user_wrap_item_name{
+        flex-direction: column;
+        p{
+            width: 100%;
+            text-align: center;
+            padding: 0 0 5px 0;
+        }
+
+    }
+
+    .edit_user_data{
+        flex-direction: column;
+    }
+
+    .data_item{
+        width: 100%;
+    }
 }
