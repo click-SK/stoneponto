@@ -245,3 +245,34 @@ textarea{
 .select_user{
     max-width: 400px;
 }
+
+.eyelets_wrap{
+    margin-bottom: 5px;
+}
+
+
+@media (max-width: 780px){
+
+    .wrap_row{
+        flex-direction: column;
+    }
+    .calc-item{
+        width: 100%;
+    }
+    .colum {
+        width: 100%;
+        min-height: 100px;
+    }
+    .upload{
+        min-height: 100px;
+        margin: 0;
+        padding: 0 10px;
+    }
+    .footer_calc{
+        button{
+            width: 80%;
+            margin: 10px 0;
+        }
+    }
+
+}

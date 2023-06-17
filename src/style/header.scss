@@ -2,13 +2,13 @@
 
 .header_wraper{
     display: flex;
-    justify-content: space-between;
-    position: relative;
+    justify-content: center;
+    // position: relative;
     height: 150px;
     width: 100%;
+    max-width: 1000px;
+    margin: auto auto;
     align-items: center;
-    padding: 0 20%;
-    margin: 10px 0 0px 0;
     &::before{
         content: '';
         position: absolute;
@@ -22,7 +22,7 @@
     &::after{
         content: '';
         position: absolute;
-        top: 19px;
+        top: 22px;
         left: 0;
         width: 100%;
         height: 3px;
@@ -37,7 +37,7 @@
 
 .contact_login_block{
     position: absolute;
-    top: -10px;
+    top: -7px;
     left: 0;
     display: flex;
     justify-content: center;
@@ -67,12 +67,7 @@
     color: $color_text_white;
     background: $color_second;
     // border-radius: 0 0 10px 10px;
-    .wrap_item{
-        margin: 0 10px;
-        display: flex;
-        align-items: center;
-        z-index: 100;
-    }
+
     button{
         height: 20px;
         border-bottom: 1px;
@@ -97,7 +92,7 @@
         height: 30px;
         width: 30px;
         // left: 0;
-        right: -30px;
+        right: -29px;
         background: $color_second;
         transform: scaleX(-1);
     }
@@ -112,6 +107,12 @@
     //     background: $color_second;
     //     z-index: 1;
     // }
+}
+.wrap_item{
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
 }
 
 .lang_change{
@@ -129,24 +130,279 @@
 
 }
 
+.nav_logo_wraper_burger{
+    display: none;
+}
+
+
+.logo{
+    width: 40%;
+    max-width: 330px;
+    img{
+        width: 100%;
+        max-width: 330px;
+    }
+}
+
+
 .navbar{
  display: flex;
+ width: 60%;
 }
+
+
+
+
 .link_route{
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 18px;
     font-weight: 600;
-    width: 150px;
+    max-width: 150px;
+    width: 100%;
     height: 40px;
-    margin: 0 10px;
+    padding: 0 0.5rem;
+    margin: 0 5px;
     border-radius: 2px;
     transition: all 0.4s ease-in-out;
-    color: $color_text_black;
+    color: #141414;
     &:hover{
         background: $color_second;
         color: $color_text_white;
     }
 }
 
+#closed_anim{
+    display: none;
+}
+
+// burger icon
+
+.burger_icon{
+    position: absolute;
+    display: none;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 1000;
+    label{
+        display:flex;
+         flex-direction:column;
+         width:50px;
+         cursor:pointer;
+       }
+       
+       label span{
+         background: $color_second;
+         border-radius:10px;
+         height:4px;
+         margin: 4px 0;
+         transition: .4s  cubic-bezier(0.68, -0.6, 0.32, 1.6);
+       
+       }
+       
+       
+       span:nth-of-type(1){
+         width:50%;
+         
+       }
+       
+       span:nth-of-type(2){
+         width:100%;
+       }
+       
+       
+       span:nth-of-type(3){
+         width:75%;
+        
+       }
+       
+       
+       input[type="checkbox"]{
+         display:none;
+       }
+       
+       
+       input[type="checkbox"]:checked ~ span:nth-of-type(1){
+         transform-origin:bottom;
+         transform:rotatez(45deg) translate(4px,0px);
+         
+         
+       }
+       
+       
+       input[type="checkbox"]:checked ~ span:nth-of-type(2){
+         
+         transform-origin:top;
+         transform:rotatez(-45deg)
+       }
+       
+       
+       input[type="checkbox"]:checked ~ span:nth-of-type(3){
+         
+         transform-origin:bottom;
+         width:50%;
+         transform: translate(21px,-4px) rotatez(45deg);
+       
+       }
+
+       input[type="checkbox"]:checked ~ span{
+        background: $color_prime;
+       }
+}
+   
+
+
+
+@media (max-width: 801px){
+    .link_route {
+
+        font-size: 16px;
+
+    }
+}
+@media (max-width:781px){
+    .wrap_item{
+        font-size: 12px;
+    }
+}
+@media (max-width: 731px){
+    .link_route {
+
+        font-size: 14px;
+
+    }
+
+    .wrap_item{
+        font-size: 10px;
+    }
+}
+@media (max-width: 677px){
+    .phone_none{
+        display: none;
+    }
+    .burger_icon{
+        display: block;
+        right: 0px;
+        overflow: hidden;
+        width: 100px;
+        height: 37px;
+        // right: -200px;
+        // animation: slideIn 2s forwards;
+        label{
+            position: absolute;
+            right: -200px;
+            animation: slideIn 2s forwards;
+        }
+    }
+
+    @keyframes slideIn {
+        0% {
+          right: -200px; /* Початкова позиція */
+        }
+        50% {
+          right: 50px; /* Позиція в середині анімації */
+        }
+        100% {
+          right: 20px; /* Кінцева позиція */
+        }
+      }
+
+    .navbar{
+        display: none;
+    }
+    .link_route {
+
+        font-size: 14px;
+
+    }
+
+    .nav_logo_wraper_burger{
+        position: fixed;
+        background: #222935;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        flex-direction: column;
+        align-items: center;
+        animation: slideInMenu 2s forwards;
+    }
+
+    .active_menu{
+        display: flex;
+        animation: slideInMenu 1s forwards;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @keyframes slideInMenu {
+        0% {
+          left: 2000px; /* Початкова позиція */
+        }
+        100% {
+         left: 0px; /* Кінцева позиція */
+        }
+      }
+      .not_active_menu{
+        display: flex;
+        animation: slideInNotMenu 0.5s forwards;
+      }
+
+      @keyframes slideInNotMenu {
+        0% {
+          left: 0px; /* Початкова позиція */
+        }
+        100% {
+         left: 2000px; /* Кінцева позиція */
+        }
+      }
+
+      .logo_burger{
+        width: 100%;
+        height: 40px;
+        // margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        background: $color_text_white;
+        img{
+            height: 100%;
+        }
+      }
+
+      .navbar_burger{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 60%;
+        .link_route{
+          color: $color_text_white;
+          min-width: 200px;
+          width: 100%;
+          margin: 0;
+          &:hover{
+            background: $color_prime;
+          }
+        }
+    }
+
+}
+
+@media (max-width: 500px){
+    // .mail_none{
+    //     display: none;
+    // }
+    .social_icon_none{
+        display: none;
+    }
+}
+@media (max-width: 380px){
+    .mail_none{
+        display: none;
+    }
+
+}
