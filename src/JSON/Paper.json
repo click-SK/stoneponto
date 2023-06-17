@@ -15,17 +15,17 @@
         {
           "nameUa": "720dpi",
           "nameRu": "720dpi",
-          "price": 100
+          "price": 1.9
         },
         {
           "nameUa": "1080dpi",
           "nameRu": "1080dpi",
-          "price": 200
+          "price": 2.2
         },
         {
           "nameUa": "1440dpi",
           "nameRu": "1440dpi",
-          "price": 300
+          "price": 3.2
         }
       ],
       "cutting": [
@@ -37,7 +37,7 @@
         {
           "nameUa": "Під порізку",
           "nameRu": "Под обрез",
-          "price": 100
+          "price": 1.5
         }
       ],
       "lamination": [
@@ -49,22 +49,22 @@
         {
           "nameUa": "Глянцева 1+0",
           "nameRu": "Глянцевая 1+0",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Матова 1+0",
           "nameRu": "Матовая 1+0",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Глянцева 1+1",
           "nameRu": "Глянцевая 1+1",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Матова 1+1",
           "nameRu": "Матовая 1+1",
-          "price": 100
+          "price": 3
         }
       ]
     },
@@ -81,12 +81,12 @@
         {
           "nameUa": "720dpi",
           "nameRu": "720dpi",
-          "price": 100
+          "price": 0.9
         },
         {
           "nameUa": "1080dpi",
           "nameRu": "1080dpi",
-          "price": 200
+          "price": 2.3
         }
       ],
       "cutting": [
@@ -98,7 +98,7 @@
         {
           "nameUa": "Під порізку",
           "nameRu": "Под обрез",
-          "price": 100
+          "price": 1.5
         }
       ],
       "lamination": [
@@ -110,22 +110,22 @@
         {
           "nameUa": "Глянцева 1+0",
           "nameRu": "Глянцевая 1+0",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Матова 1+0",
           "nameRu": "Матовая 1+0",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Глянцева 1+1",
           "nameRu": "Глянцевая 1+1",
-          "price": 100
+          "price": 3
         },
         {
           "nameUa": "Матова 1+1",
           "nameRu": "Матовая 1+1",
-          "price": 100
+          "price": 3
         }
       ],
       "poster": [
@@ -137,17 +137,17 @@
         {
           "nameUa": "3x4м",
           "nameRu": "3x4м",
-          "price": 100
+          "price": 8
         },
         {
           "nameUa": "3x6м",
           "nameRu": "3x6м",
-          "price": 100
+          "price": 11
         },
         {
           "nameUa": "3x12м",
           "nameRu": "3x12м",
-          "price": 100
+          "price": 0
         }
       ]
     }

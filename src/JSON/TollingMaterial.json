@@ -12,17 +12,17 @@
           {
             "nameUa": "720dpi",
             "nameRu": "720dpi",
-            "price": 100
+            "price": 0
           },
           {
             "nameUa": "1080dpi",
             "nameRu": "1080dpi",
-            "price": 200
+            "price": 0
           },
           {
             "nameUa": "1440dpi",
             "nameRu": "1440dpi",
-            "price": 300
+            "price": 0
           }
         ]
           }
