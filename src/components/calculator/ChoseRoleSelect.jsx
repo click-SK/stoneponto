@@ -13,31 +13,32 @@ const ChoseRoleSelect = ({user,setIsOpenAllusers,allUsers,currentUserState,isOpe
   const handleClickOutside = (event) => {
     
     if (selectRef.current && !selectRef.current.contains(event.target)) {
-      console.log('event admin',event);
       setIsOpen(false);
     }
   };
 
-  const choseItemFunc = (user) => {
-    setCurrentIdFunc(user);
+  const choseItemFunc = (iten,e) => {
+    setCurrentIdFunc(iten);
     setIsOpen(false);
   }
+
+  console.log('isOpen',isOpen);
 
   return (
     <>
       {user && user?.isAdmin && (
         <div
           className="custom-select select_user"
-          onClick={() => setIsOpenAllusers((state) => !state)}
+          onClick={() => setIsOpen(!isOpen)}
           ref={selectRef}
         >
           {allUsers.length != 0 && (currentUserState || allUsers[0].name)}
-          {isOpenAllusers && (
+          {isOpen && (
             <div className="options">
               {allUsers.length != 0 &&
-                allUsers.map((user) => (
-                  <p onClick={() => choseItemFunc(user)} key={user._id}>
-                    {user.name}
+                allUsers.map((iten) => (
+                  <p onClick={() => choseItemFunc(iten)} key={iten._id}>
+                    {iten.name}
                   </p>
                 ))}
             </div>
