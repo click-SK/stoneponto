@@ -4,6 +4,7 @@ import DisplayAdminTableOrder from './DisplayAdminTableOrder';
 import socket from '../../../socket/socket';
 import {ExportCSV} from '../../ExelTable/ExportCSV'
 import '../../../style/table.scss';
+import Loader from '../../Loader/Loader';
 
 
 const EditTable = () => {
@@ -17,6 +18,8 @@ const EditTable = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
+
+  console.log('allOrders',allOrders);
 
 
   const dateTime = new Date(); // Отримати поточну дату та час
@@ -34,13 +37,13 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
 
 
   useEffect(() => {
-    console.log('work');
+
     socket.on('new table',(user) => {
-      console.log('new table',user);
+
       setIsFetch(state => !state)
     });
     socket.on('update table',(user) => {
-      console.log('update table',user);
+
       setIsFetch(state => !state)
     });
   }, []);
@@ -188,8 +191,6 @@ const orders = currentItems.map((item) => {
     .map((key) => `${conditions[key].option} ${conditions[key].name} ${conditions[key]?.value ? `: ${conditions[key]?.value}` : ' ' }`)
     .join(", ");
 
-    console.log('description', item?.address);
-
   return {
     Id: item?.id,
     "Дата": item?.date,
@@ -206,97 +207,110 @@ const orders = currentItems.map((item) => {
   };
 });
 
-
-
-console.log('currentItems-2222',currentItems);
-
   return (
     <div className="table_wrap">
-      <div
-      className='btn_exel'
-      >
-        <ExportCSV
-        csvData={orders}
-        fileName={ formattedDateTime }
-        />  
-      </div>
+      {allOrders.length != 0 && currentOrders.length != 0 ? (
+        <>
+          <div className="btn_exel">
+            <ExportCSV csvData={orders} fileName={formattedDateTime} />
+          </div>
 
-      <div className="table_header">
-        <div className="table_header_item table_header_id">
-          <p>Id</p>
-        </div>
-        <div className="table_header_item table_header_date">
-          <p>{t(`Date`)}</p>
-          <input type="date" onChange={(e) => filterDateFunc(e.target.value)} />
-          
-        </div>
-        <div className="table_header_item table_header_name">
-          <p>{t(`User`)}</p>
-          <select onChange={(e) => filterOnUserFunc(e.target.value)}>
-            <option>Всі</option>
-            {uniqueUsers.map((user) => (
-              <option key={user} value={user}>
-                {user}
-              </option>
+          <div className="table_header">
+            <div className="table_header_item table_header_id">
+              <p>Id</p>
+            </div>
+            <div className="table_header_item table_header_date">
+              <p>{t(`Date`)}</p>
+              <input
+                type="date"
+                onChange={(e) => filterDateFunc(e.target.value)}
+              />
+            </div>
+            <div className="table_header_item table_header_name">
+              <p>{t(`User`)}</p>
+              <select onChange={(e) => filterOnUserFunc(e.target.value)}>
+                <option>Всі</option>
+                {uniqueUsers.map((user) => (
+                  <option key={user} value={user}>
+                    {user}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="table_header_item table_header_file">
+              <p>{t(`The name of the file`)}</p>
+            </div>
+            <div className="table_header_item table_header_materials">
+              <p>{t(`Material`)}</p>
+            </div>
+            <div className="table_header_item table_header_quality">
+              <p>{t(`Quality`)}</p>
+            </div>
+            <div className="table_header_item table_header_width">
+              <p>{t(`Width`)}</p>
+            </div>
+            <div className="table_header_item table_header_hight">
+              <p>{t(`Height`)}</p>
+            </div>
+            <div className="table_header_item table_header_hight">
+              <p>Тираж</p>
+            </div>
+            <div className="table_header_item table_header_sum">
+              <p>{t(`Sum`)}</p>
+            </div>
+            <div className="table_header_item table_header_descript">
+              <p>{t(`Condition`)}</p>
+            </div>
+            <div className="table_header_item table_header_status">
+              <p>{t(`Status`)}:</p>
+              <select onChange={(e) => filterStatusFunc(e.target.value)}>
+                <option>{t(`All`)}</option>
+                {uniqueStatuses.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="table_body">
+            {currentItems.map((el) => (
+              <DisplayAdminTableOrder
+                key={el.id}
+                order={el}
+                setIsFetch={setIsFetch}
+              />
             ))}
-          </select>
-        </div>
-        <div className="table_header_item table_header_file">
-          <p>{t(`The name of the file`)}</p>
-        </div>
-        <div className="table_header_item table_header_materials">
-          <p>{t(`Material`)}</p>
-        </div>
-        <div className="table_header_item table_header_quality">
-          <p>{t(`Quality`)}</p>
-        </div>
-        <div className="table_header_item table_header_width">
-          <p>{t(`Width`)}</p>
-        </div>
-        <div className="table_header_item table_header_hight">
-          <p>{t(`Height`)}</p>
-        </div>
-        <div className="table_header_item table_header_hight">
-          <p>Тираж</p>
-        </div>
-        <div className="table_header_item table_header_sum">
-          <p>{t(`Sum`)}</p>
-        </div>
-        <div className="table_header_item table_header_descript">
-          <p>{t(`Condition`)}</p>
-        </div>
-        <div className="table_header_item table_header_status">
-          <p>{t(`Status`)}:</p>
-          <select onChange={(e) => filterStatusFunc(e.target.value)}>
-            <option>{t(`All`)}</option>
-            {uniqueStatuses.map((status) => (
-              <option key={status} value={status}>
-                {status}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <div className="table_body">
-        {currentItems.map((order) => (
-          <DisplayAdminTableOrder key={order.id} order={order} setIsFetch={setIsFetch} />
-        ))}
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {renderPageNumbers()}
-      </div>
-      <div className="pagination">
-        <button className="btn" onClick={handlePrev} disabled={currentPage === 1}>
-          <img src="/img/left-pagination.svg" alt="Previous" />
-        </button>
-        <button
-          className="btn"
-          onClick={handleNext}
-          disabled={currentPage === pageNumbers.length}
-        >
-          <img src="/img/right-pagination.svg" alt="Next" />
-        </button>
-      </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {renderPageNumbers()}
+          </div>
+          <div className="pagination">
+            <button
+              className="btn"
+              onClick={handlePrev}
+              disabled={currentPage === 1}
+            >
+              <img src="/img/left-pagination.svg" alt="Previous" />
+            </button>
+            <button
+              className="btn"
+              onClick={handleNext}
+              disabled={currentPage === pageNumbers.length}
+            >
+              <img src="/img/right-pagination.svg" alt="Next" />
+            </button>
+          </div>
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

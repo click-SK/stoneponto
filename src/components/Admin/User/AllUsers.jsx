@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CurrentUser from "./CurrentUser";
 import '../../../style/editUser.scss'
+import Loader from "../../Loader/Loader";
 
 const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -17,16 +18,17 @@ const AllUsers = () => {
 
   return (
     <div className="edit_user_wrap">
-      {allUsers &&
-        allUsers.map((user) => (
-          <div
-          className="user_wrap"
-          key={user._id}>
-            <CurrentUser 
-            user={user}
-            setIsFetch={setIsFetch}/>
-          </div>
-        ))}
+      {allUsers.length != 0 ? (
+        <>
+          {allUsers.map((user) => (
+            <div className="user_wrap" key={user._id}>
+              <CurrentUser user={user} setIsFetch={setIsFetch} />
+            </div>
+          ))}
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

@@ -112,6 +112,9 @@ useEffect(() => {
           <div className="table_header_item table_header_hight">
             <p>{t(`Height`)}</p>
           </div>
+          <div className="table_header_item table_header_hight">
+              <p>Тираж</p>
+            </div>
           <div className="table_header_item table_header_sum">
             <p>{t(`Sum`)}</p>
           </div>

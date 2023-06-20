@@ -133,7 +133,7 @@
     "Validation color": "Выберите цвет",
     "Validation quality": "Выберите качество",
     "Debt": "Долг",
-    "Prices": "Цены"
-
-
+    "Prices": "Цены",
+    "Bilateral": "Двусторонний",
+    "Validation minimal order": "Минимальный заказ от 1.5$"
 }

@@ -20,7 +20,7 @@
     "Banner510GrCast": "Банер 510 гр. литий",
     "TranslucentBanner440Gr": "Просвітний банер 440 гр.",
     "GridBanner380Gr": "Сітка банерна 380 гр.",
-    "Canvas": "Полотно",
+    "Canvas": "Холст",
     "LightTransmittingPlastic": "Світлопропускний пластик",
     "Paper": "Папір",
     "SievePaper150Gr": "Папір сіті 150 гр.",
@@ -133,5 +133,7 @@
     "Validation color": "Виберіть колір",
     "Validation quality": "Виберіть якість",
     "Debt": "Борг",
-    "Prices": "Ціни"
+    "Prices": "Ціни",
+    "Bilateral": "Двосторонній",
+    "Validation minimal order": "Мінімальне замовлення від 1.5$"
 }

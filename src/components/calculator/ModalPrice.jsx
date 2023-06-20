@@ -17,10 +17,6 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
     useEffect(() => {
       dispatch(fetchLanguage());
     }, [lang]);
-    
-    // console.log('currency', );
-
-    console.log('goodsList', goodsList);
 
     if (!isOpen) return null;
 

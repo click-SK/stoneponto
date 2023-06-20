@@ -40,8 +40,6 @@ const AddNewUser = () => {
             alert('Користувача успішно створено')
           }
     }
-    
-    console.log('emailError',emailError);
 
     return (
         <div className="login_wrap">

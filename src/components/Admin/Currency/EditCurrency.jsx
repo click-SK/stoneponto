@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import {fetchCurrency} from '../../../store/currency'
 import '../../../style/editCurency.scss'
 import {RiFileEditFill} from 'react-icons/ri';
+import Loader from '../../Loader/Loader';
 
 const EditCurrency = () => {
     const [bankCurrency, setBankCurrency] = useState('');
@@ -17,8 +18,6 @@ const EditCurrency = () => {
 
     useEffect(() => {
         fetch('https://server-ponto-print.herokuapp.com/get-currency')
-
-        fetch('https://server-ponto-print.herokuapp.com/get-currency')
         .then((res) => res.json())
         .then((cur) => {
             setBankCurrency(cur[0].banckCurrency);
@@ -30,24 +29,32 @@ const EditCurrency = () => {
 
     
     return (
-        <div className='edit_curency_wrap'>
-            <div className='wrap_item edit_curency '>
-                <div >
-                    <p className='curency_site'>{t(`The course is on the website`)}: {currentStateCurrency}</p>
-                </div>
-                <div>
-                    <p className='curency_nbu'>{t(`Banking course`)}: {bankCurrency}</p>
-                </div>
-                <div>
-                    <p className='curency_plus'>{t(`My percentage`)}: {currentValue}</p>
-                </div>
+      <div className="edit_curency_wrap">
+        {bankCurrency && currentStateCurrency && currentValue ? (
+          <>
+            <div className="wrap_item edit_curency ">
+              <div>
+                <p className="curency_site">
+                  {t(`The course is on the website`)}: {currentStateCurrency}
+                </p>
+              </div>
+              <div>
+                <p className="curency_nbu">
+                  {t(`Banking course`)}: {bankCurrency}
+                </p>
+              </div>
+              <div>
+                <p className="curency_plus">
+                  {t(`My percentage`)}: {currentValue}
+                </p>
+              </div>
             </div>
-            <>
-                <EditCurrencyValue
-                setIsFetch={setIsFetch}
-                data={currentValue}/>
-            </>
-        </div>
+            <EditCurrencyValue setIsFetch={setIsFetch} data={currentValue} />
+          </>
+        ) : (
+          <Loader />
+        )}
+      </div>
     );
 };
 

@@ -124,8 +124,6 @@ const EditCalculatorRightBlock = ({ arrayGoods, additionalParameter, mainId, set
       setIsColor(false);
       setIsEyelets(false);
     }
-
-    console.log('isOpen',isOpen);
     
   return (
     <div className="pricing_calc__edit_item">
