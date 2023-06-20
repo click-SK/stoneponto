@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Select from './Select'
 import SelectSec from './SelectSecond'
+import ChoseRoleSelect from './ChoseRoleSelect'
 import InputsTamplate from '../template/InputsTamplate';
 import ModalPrice from './ModalPrice';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +22,7 @@ const CalculatorPartner = () => {
     // const [quadrature, setquadrature] = useState(null)
     const [count, setCount] = useState(1)
     const [selectedFile, setselectedFile] = useState(null);
+    const [selectedFileBoolean, setselectedFileBoolean] = useState(true);
     const [progress, setProgress] = useState(null);
     const [isProgresBar, setIsProgressBar] = useState(false);
     const [totalSizeFile, setTotalSizeFile] = useState(null);
@@ -35,6 +37,7 @@ const CalculatorPartner = () => {
     const [validationCurrentItem, setValidationCurrentItem] = useState(false);
     const [validationOptionQuality, seValidationtOptionQuality] = useState(false);
     const [validationOptionColor, setValidationOptionColor] = useState(false);
+    const [waitingSendOrder, setWaitingSendOrder] = useState(false);
   
     const [selectedOptionQuality, setSelectedOptionQuality] = useState('');
     const [selectedOptionCutting, setSelectedOptionCutting] = useState('');
@@ -294,11 +297,14 @@ const CalculatorPartner = () => {
     
       if (allowedExtensions.includes(fileExtension)) {
         setselectedFile(file);
+        setselectedFileBoolean(false);
+        setValidationFile(false);
       } else {
         alert('Невірний формат файлу. Файл має бути формату: jpg, tif, rar, zip, 7z, cdr');
         // Очищення вибраного файлу
         event.target.value = null;
         setselectedFile(null);
+        setselectedFileBoolean(true);
       }
     };
     
@@ -345,8 +351,9 @@ const CalculatorPartner = () => {
         setValidationCount(true);
         isValid = false;
       }
-
-      if(!selectedFile) {
+      console.log('selectedFile',!!selectedFile);
+      console.log('selectedFileBoolean',selectedFileBoolean);
+      if(selectedFileBoolean ) {
         setValidationFile(true);
         isValid = false;
       }
@@ -356,9 +363,10 @@ const CalculatorPartner = () => {
 
     const handleTotalSum = () => {
       const isValid = validationFunc();
-      setIsProgressBar(true);
     
       if (isValid) {
+        setWaitingSendOrder(true);
+        setIsProgressBar(true);
         const formData = new FormData();
         formData.append("file", selectedFile);
         formData.append(
@@ -489,28 +497,13 @@ const CalculatorPartner = () => {
         {goodsList.length != 0 && allUsers.length != 0 ? (
           <>
             <title>
-              {user && user?.isAdmin && (
-                <div
-                  className="custom-select select_user"
-                  onClick={() => setIsOpenAllusers((state) => !state)}
-                >
-                  {allUsers.length != 0 &&
-                    (currentUserState || allUsers[0].name)}
-                  {isOpenAllusers && (
-                    <div className="options">
-                      {allUsers.length != 0 &&
-                        allUsers.map((user) => (
-                          <p
-                            onClick={() => setCurrentIdFunc(user)}
-                            key={user._id}
-                          >
-                            {user.name}
-                          </p>
-                        ))}
-                    </div>
-                  )}
-                </div>
-              )}
+              <ChoseRoleSelect
+              user={user && user}
+              setIsOpenAllusers={setIsOpenAllusers}
+              allUsers={allUsers}
+              currentUserState={currentUserState}
+              isOpenAllusers={isOpenAllusers}
+              setCurrentIdFunc={setCurrentIdFunc}/>
               <button className="btn" onClick={() => setIsOpen(!isOpen)}>
                 {t(`Prices for 1m2`)}
               </button>
@@ -557,7 +550,7 @@ const CalculatorPartner = () => {
                     setSelectedOption={setSelectedOptionQuality}
                   />
                 )}
-                {validationOptionQuality && (
+                {validationOptionQuality && currentItem?.quality && (
                   <p style={{ color: "red" }}>{t(`Validation quality`)}</p>
                 )}
               </div>
@@ -750,7 +743,7 @@ const CalculatorPartner = () => {
                   <button onClick={() => inputFileRef.current.click()}>
                     Завантажити файл
                   </button>
-                  <div>{selectedFile && <p>Файл вибрано</p>}</div>
+                  <div>{selectedFile && <p>Файл вибрано: {selectedFile.name}</p>}</div>
                   {isProgresBar && (
                     <div>
                       <div
@@ -776,15 +769,16 @@ const CalculatorPartner = () => {
                         </div>
                       </div>
                       <p>
-                        Size: {currentSizeFile}/{totalSizeFile} Мбайт
+                        Завантаження: {currentSizeFile}/{totalSizeFile} Мбайт
                       </p>
                     </div>
                   )}
+                  <div>
+                    {validationFile && (
+                      <p style={{ color: "red" }}>{t(`File not selected`)}</p>
+                    )}
+                  </div>
                 </div>
-                // <Test/>
-              )}
-              {validationFile && (
-                <p style={{ color: "red" }}>{t(`File not selected`)}</p>
               )}
             </div>
             <div className="wrap_row">
@@ -837,7 +831,11 @@ const CalculatorPartner = () => {
                 (user.name != "Admin" && user.name != "undefined")) && (
                 <div>
                   <button onClick={handleTotalSum} disabled={isProgresBar}>
-                    {t(`Download the order`)}
+                    {waitingSendOrder ? (
+                      <p>{t(`Відправка замовлення...`)}</p>
+                    ) : (
+                      <p>{t(`Download the order`)}</p>
+                    )}
                   </button>
                 </div>
               )}
