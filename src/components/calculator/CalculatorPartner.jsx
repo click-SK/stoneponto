@@ -35,7 +35,6 @@ const CalculatorPartner = () => {
     const [validationCurrentItem, setValidationCurrentItem] = useState(false);
     const [validationOptionQuality, seValidationtOptionQuality] = useState(false);
     const [validationOptionColor, setValidationOptionColor] = useState(false);
-    const [validationMinimalSum, setValidationMinimalSum] = useState(false);
   
     const [selectedOptionQuality, setSelectedOptionQuality] = useState('');
     const [selectedOptionCutting, setSelectedOptionCutting] = useState('');
@@ -248,7 +247,12 @@ const CalculatorPartner = () => {
      } else {
       setCurrentDiscountTwentyMeter('')
      }
-     setTotalSum(sumAndCount - onlyDiscount - discountTwentyMeter )
+     const finalSum = sumAndCount - onlyDiscount - discountTwentyMeter;
+     const minimalOrder = 1.5 * currency.currency;
+     if(finalSum < minimalOrder && finalSum != 0) {
+      return setTotalSum(minimalOrder)
+     }
+     setTotalSum(sumAndCount - onlyDiscount - discountTwentyMeter)
 
      },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
       selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting,currentDiscount, 
@@ -344,11 +348,6 @@ const CalculatorPartner = () => {
 
       if(!selectedFile) {
         setValidationFile(true);
-        isValid = false;
-      }
-
-      if(totalSum < 1.5 * currency.currency) {
-        setValidationMinimalSum(true)
         isValid = false;
       }
     
@@ -840,13 +839,6 @@ const CalculatorPartner = () => {
                   <button onClick={handleTotalSum} disabled={isProgresBar}>
                     {t(`Download the order`)}
                   </button>
-                  <div>
-                    {validationMinimalSum && (
-                      <p style={{ color: "red" }}>
-                        {t(`Validation minimal order`)}
-                      </p>
-                    )}
-                  </div>
                 </div>
               )}
             </div>
