@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { currentUser } from "../../store/auth";
 import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
-
+import Loader from "../Loader/Loader";
+import Test from './Test';
 
 const CalculatorPartner = () => {
     const [goodsList, setGoodsList] = useState ([])
@@ -19,11 +20,13 @@ const CalculatorPartner = () => {
     const [height, setHeight] = useState('')
     // const [quadrature, setquadrature] = useState(null)
     const [count, setCount] = useState(1)
-    const [description, setDescription] = useState('')
-    const [selectedFile, setselectedFile] = useState(null)
+    const [selectedFile, setselectedFile] = useState(null);
+    const [progress, setProgress] = useState(null);
+    const [isProgresBar, setIsProgressBar] = useState(false);
+    const [totalSizeFile, setTotalSizeFile] = useState(null);
+    const [currentSizeFile, setCurrentSizeFile] = useState(null);
     const [coment, setComent] = useState('')
     const [delivery, setDelivery] = useState('')
-    const [totalPrice, setTotalPrice] = useState('')
     const [totalSum, setTotalSum] = useState(0)
     const [validationWidth, setValidationWidth] = useState(false);
     const [validationHeight, setValidationHeight] = useState(false);
@@ -32,6 +35,7 @@ const CalculatorPartner = () => {
     const [validationCurrentItem, setValidationCurrentItem] = useState(false);
     const [validationOptionQuality, seValidationtOptionQuality] = useState(false);
     const [validationOptionColor, setValidationOptionColor] = useState(false);
+    const [validationMinimalSum, setValidationMinimalSum] = useState(false);
   
     const [selectedOptionQuality, setSelectedOptionQuality] = useState('');
     const [selectedOptionCutting, setSelectedOptionCutting] = useState('');
@@ -45,11 +49,21 @@ const CalculatorPartner = () => {
     const [isStamp, setIsStamp] = useState(false);
     const [isStretch, setIsStretch] = useState(false);
     const [isMounting, setIsMounting] = useState(false);
+    const [isBilateral, setIsBilateral] = useState(false);
     const [descArray, setdescArray] = useState({});
     const [allUsers, setAllUsers] = useState([]);
     const [currentId, setCurrentId] = useState('');
     const [currentUserState, setCurrentUserState] = useState('');
+    const [choseAnotherUser, setChoseAnotherUser] = useState('');
     const [currentDiscount, setCurrentDiscount] = useState('');
+    const [currentDiscountTwentyMeter, setCurrentDiscountTwentyMeter] = useState('');
+    const [currentPersonalDiscount, setCurrentPersonalDiscount] = useState('');
+    const [currentLuversDisplay, setCurrentLuversDisplay] = useState(0);
+    const [solderGatesDisplay, setSolderGatesDisplay] = useState(0);
+    const [solderPocketsDisplay, setSolderPocketsDisplay] = useState(0);
+    const [cuttingDisplay, setCuttingDisplay] = useState(0);
+    const [stampDisplay, setStampDisplay] = useState(0);
+    const [stretchOnTheStretcherDisplay, setStretchOnTheStretcherDisplay] = useState(0);
     const [status] = useState({
       name: 'New',
       currentStatus: 'new',
@@ -88,7 +102,7 @@ const CalculatorPartner = () => {
     dispatch(fetchLanguage())
   },[lang])
 
-    
+  console.log('progress',progress);
 
   useEffect(() =>{
     const descriptionObj = {
@@ -131,7 +145,7 @@ const CalculatorPartner = () => {
    },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
     selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
 
-    const checkedCutting = (name) => {
+    const checkedSolder = (name) => {
       switch(name) {
         case 'По периметру':
           return ((width / 1000) + (height/1000)) * 2
@@ -176,7 +190,6 @@ const CalculatorPartner = () => {
           return  0
       }
     }
-     
 
      useEffect(() =>{
       const linearMeter = ((width / 1000) + (height/1000)) * 2;
@@ -186,19 +199,38 @@ const CalculatorPartner = () => {
       const currentLuvers = checkedEyelets(selectedOptionEyelets?.nameUa)/((selectedOptionEyeletsValue) / 100);
 
       let differenceLuvers = 0;
+      let currentLuversPrice = 0;
       if(currentLuvers > standartLuvers) {
         differenceLuvers = currentLuvers - standartLuvers;
       }
+      
+      if(differenceLuvers) {
+        currentLuversPrice = selectedOptionEyelets.price * differenceLuvers;
+      }
+      setCurrentLuversDisplay(currentLuversPrice);
+      console.log('quadrature',quadrature);
 
+      const currentSolderGates = ((!isBilateral ? ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) : ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) / 2) || 0);
+      const currentSolderPockets = ((!isBilateral ? ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) : ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) / 2) || 0);
+      const currentCutting = ((selectedOptionCutting?.price * linearMeter) || 0);
+      const currentStamp = (isStamp ? (currentItem?.stamp * linearMeter) : 0)
+      const currentStretchOnTheStretcher = (isStretch ? currentItem?.goods && (quadrature < 0.5 ? (currentItem?.goods[0]?.stretchOnTheStretcherMin * quadrature) : (currentItem?.goods[0]?.stretchOnTheStretcher) * quadrature) : 0);
+      setSolderGatesDisplay(currentSolderGates);
+      setSolderPocketsDisplay(currentSolderPockets);
+      setCuttingDisplay(currentCutting);
+      setStampDisplay(currentStamp);
+      setStretchOnTheStretcherDisplay(currentStretchOnTheStretcher);
       const totalSum1 = 
-     (((differenceLuvers ? selectedOptionEyelets.price * differenceLuvers : 0)) || 0) +
+     ((currentLuversPrice) || 0) +
      ((selectedOptionQuality?.price * quadrature) || 0) +
-     ((selectedOptionCutting?.price) || 0) + 
-     (((selectedOptionSolderGates?.price * checkedCutting(selectedOptionSolderGates?.nameUa))) || 0) +
-     ((selectedOptionSolderPockets?.price * checkedCutting(selectedOptionSolderPockets?.nameUa)) || 0) +
-     ((selectedOptionLamination?.price) || 0) +
-     (selectedOptionPoster?.price || 0) + (isStamp ? currentItem?.stamp : 0) + 
-     (isStretch ? currentItem?.goods && currentItem?.goods[0]?.stretchOnTheStretcher : 0) +
+     ((selectedOptionColor?.price * quadrature) || 0) +
+     ((selectedOptionCutting?.price * linearMeter) || 0) + 
+     (currentSolderGates || 0) +
+     (currentSolderPockets || 0) +
+     (currentCutting) +
+     (selectedOptionPoster?.price || 0) + 
+     (currentStamp) + 
+     (currentStretchOnTheStretcher) +
      (isMounting ? currentItem?.mounting: 0);
       
 
@@ -206,20 +238,21 @@ const CalculatorPartner = () => {
      const sumAndCount = sumMultiplyCurrency * count;
 
      const onlyDiscount = sumAndCount * (user.discountValue || currentDiscount);
+     let discountTwentyMeter = 0;
+     setCurrentPersonalDiscount(onlyDiscount);
+    //  const sumAndDiscountUser = sumAndCount - onlyDiscount;
 
-
-     const sumAndDiscountUser = sumAndCount - onlyDiscount;
-
-     if(linearMeter >= 20 ) {
-      const discount = sumAndDiscountUser * 0.1;
-      setTotalSum(sumAndDiscountUser - discount)
+     if(quadrature >= 20 ) {
+      discountTwentyMeter = sumAndCount * 0.1;
+      setCurrentDiscountTwentyMeter(discountTwentyMeter)
      } else {
-      setTotalSum(sumAndDiscountUser)
+      setCurrentDiscountTwentyMeter('')
      }
+     setTotalSum(sumAndCount - onlyDiscount - discountTwentyMeter )
 
      },[count, selectedOptionCutting, selectedOptionSolderGates,selectedOptionSolderPockets,
       selectedOptionLamination, selectedOptionPoster,selectedOptionColor,isStamp,selectedOptionQuality,isStretch,isMounting,currentDiscount, 
-      selectedOptionEyelets, selectedOptionEyeletsValue, height, width])
+      selectedOptionEyelets, selectedOptionEyeletsValue, height, width, isBilateral])
 
       useEffect(()=>{
         setSelectedOptionQuality('');
@@ -234,7 +267,7 @@ const CalculatorPartner = () => {
         setIsMounting(false);
         setWitdh('');
         setHeight('');
-        setCount('');
+        setCount(1);
         setComent('');
         setDelivery('');
       },[currentItem])
@@ -247,26 +280,8 @@ const CalculatorPartner = () => {
       adding:descArray,
       coment:coment ? coment : '',
       deliveryt:delivery ? delivery : '',
-      totalSumt:totalSum ? totalSum : '',
-      // quality:selectedOptionQuality ? selectedOptionQuality.name : '',
-      // cuting:selectedOptionCutting ? selectedOptionCutting.name : '',
-      // gates:selectedOptionSolderGates ? selectedOptionSolderGates.name : '',
-      // pockets:selectedOptionSolderPockets ? selectedOptionSolderPockets.name : '',
-      // lamination:selectedOptionLamination ? selectedOptionLamination.name : '',
-      // color:selectedOptionColor ? selectedOptionColor.name : '',
-      // poster:selectedOptionPoster ? selectedOptionPoster.name : '',
-      // eyelets:selectedOptionEyelets ? selectedOptionEyelets.name : '',
-    }  
-
-
-     
-    // const handleChange = (event) =>{
-    //     const file = event.target.files[0];
-
-    //     if (file) {
-    //         setselectedFile(file);
-    //     }
-    // }
+      totalSumt:totalSum ? totalSum : ''
+    }
 
     const handleChange = (event) => {
       const file = event.target.files[0];
@@ -331,12 +346,18 @@ const CalculatorPartner = () => {
         setValidationFile(true);
         isValid = false;
       }
+
+      if(totalSum < 1.5 * currency.currency) {
+        setValidationMinimalSum(true)
+        isValid = false;
+      }
     
       return isValid;
     };
 
     const handleTotalSum = () => {
       const isValid = validationFunc();
+      setIsProgressBar(true);
     
       if (isValid) {
         const formData = new FormData();
@@ -347,8 +368,20 @@ const CalculatorPartner = () => {
         );
         formData.append(
           "quality",
-          lang === "Ua" ? selectedOptionQuality?.nameUa : selectedOptionQuality?.nameRu
+          selectedOptionQuality
+            ? lang === "Ua"
+              ? selectedOptionQuality?.nameUa
+              : selectedOptionQuality?.nameRu
+            : lang === "Ua"
+            ? selectedOptionColor?.nameUa
+            : selectedOptionColor?.nameRu
         );
+        if (selectedOptionColor) {
+          formData.append(
+            "color",
+            lang === "Ua" ? selectedOptionColor?.nameUa : selectedOptionColor?.nameRu
+          );
+        }
         formData.append("width", width);
         formData.append("height", height);
         formData.append("count", count);
@@ -359,14 +392,31 @@ const CalculatorPartner = () => {
         formData.append("address", delivery);
         formData.append("status", JSON.stringify(status));
     
-        fetch("https://server-ponto-print.herokuapp.com/create-table", {
-          method: "POST",
-          body: formData,
-        }).then((res) => res.json());
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://server-ponto-print.herokuapp.com/create-table", true);
     
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        xhr.upload.addEventListener("progress", (event) => {
+          const loaded = (event.loaded / (1024 * 1024));
+          const total = (event.total / (1024 * 1024));
+          setTotalSizeFile(total.toFixed(0));
+          setCurrentSizeFile(loaded.toFixed(0));
+          console.log('event.total',event.total);
+          console.log('event.loaded',event.loaded);
+    
+          const calculatedProgress = Math.round((loaded / total) * 100);
+          setProgress(calculatedProgress);
+        });
+    
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            window.location.reload();
+          } else {
+            // Завантаження не вдалось
+            console.error("Upload failed");
+          }
+        };
+    
+        xhr.send(formData);
       }
     };
 
@@ -385,303 +435,426 @@ const CalculatorPartner = () => {
       setCurrentId(e._id);
       setIsOpenAllusers((state) => !state);
       setCurrentUserState(e?.name);
-      setCurrentDiscount(e.discountValue)
+      setCurrentDiscount(e.discountValue);
+      setChoseAnotherUser(e);
+    }
+
+    const displayOrderStory = () => {
+      return (
+        <div className="display_order_story">
+          {!!(selectedOptionQuality?.price * quadrature) &&
+          (' Якість:' + ((selectedOptionQuality?.price * quadrature) * currency.currency).toFixed(0) + ' грн ')
+          }
+          {!!(selectedOptionColor?.price * quadrature) &&
+          (' Колір:' + ((selectedOptionColor?.price * quadrature) * currency.currency).toFixed(0) + ' грн ')
+          }
+          {!!currentLuversDisplay && 
+          ('+ Люверси:' + ((currentLuversDisplay) * currency.currency).toFixed(0) + ' грн ')
+          }
+          {!!cuttingDisplay &&
+          ('+ Порізка:' + ((cuttingDisplay) * currency.currency).toFixed(0) + ' грн ')
+          }
+          {!!solderGatesDisplay &&
+          ('+ Пропаювання підворіт:' + ((solderGatesDisplay) * currency.currency).toFixed(0) + ' грн ')
+          }
+          {!!solderPocketsDisplay &&
+          ('+ Пропаювання кишень:' + ((solderPocketsDisplay) * currency.currency).toFixed(0) + ' грн ')
+          }
+          {!!selectedOptionLamination?.price &&
+          ('+ Ламінація:' + ((selectedOptionLamination?.price) * currency.currency).toFixed(0) + ' грн ')
+          }
+          {!!stampDisplay &&
+          ('+ З печаткою:' + ((stampDisplay) * currency.currency).toFixed(0) + ' грн ')
+          }
+          {!!stretchOnTheStretcherDisplay &&
+          ('+ Натяжка на підрамник:' + (stretchOnTheStretcherDisplay * currency.currency).toFixed(0) + ' грн ')
+          }
+          {isMounting &&
+          ('+ Намонтажування:' + (currentItem?.mounting * currency.currency).toFixed(0) + ' грн ')
+          }
+          {currentDiscountTwentyMeter &&
+          ('- Знижка:' + Number(currentDiscountTwentyMeter).toFixed(0) + ' грн ')
+          }
+          {currentPersonalDiscount != 0 &&
+          ('- Персональна знижка:' + Number(currentPersonalDiscount).toFixed(0) + ' грн ')
+          }
+          {totalSum != 0 &&
+          ('= Итого:' + Number(totalSum).toFixed(0) + ' грн')
+          }
+        </div>
+      )
     }
 
     return (
       <div className="calc_wrap">
-        <title>
-          {/* <h2>Загрузка файла</h2> */}
-          {user && user?.isAdmin && (
-            <div
-              className="custom-select select_user"
-              onClick={() => setIsOpenAllusers((state) => !state)}
-            >
-              {allUsers.length != 0 && (currentUserState || allUsers[0].name)}
-              {isOpenAllusers && (
-                <div className="options">
+        {goodsList.length != 0 && allUsers.length != 0 ? (
+          <>
+            <title>
+              {user && user?.isAdmin && (
+                <div
+                  className="custom-select select_user"
+                  onClick={() => setIsOpenAllusers((state) => !state)}
+                >
                   {allUsers.length != 0 &&
-                    allUsers.map((user) => (
-                      <p
-                        onClick={() => setCurrentIdFunc(user)}
-                        key={user._id}
-                      >
-                        {user.name}
-                      </p>
-                    ))}
+                    (currentUserState || allUsers[0].name)}
+                  {isOpenAllusers && (
+                    <div className="options">
+                      {allUsers.length != 0 &&
+                        allUsers.map((user) => (
+                          <p
+                            onClick={() => setCurrentIdFunc(user)}
+                            key={user._id}
+                          >
+                            {user.name}
+                          </p>
+                        ))}
+                    </div>
+                  )}
                 </div>
               )}
-            </div>
-          )}
-          <button className="btn" onClick={() => setIsOpen(!isOpen)}>
-          {t(`Prices for 1m2`)}
-          </button>
-          <ModalPrice
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            goodsList={goodsList}
-          />
-        </title>
-        <div className="wrap_row">
-          <div className="calc-item material">
-            <h3>{t(`Material`)}</h3>
-            <Select goods={goodsList} setcurrentItem={setСurrentItem} />
-            {validationCurrentItem &&
-            <p style={{color:'red'}}>{t(`Validation material`)}</p>}
-          </div>
-          
-          <div className="calc-item quality">
-            {currentItem?.color && currentItem?.color != 0 && (
-              <SelectSec
-                item={currentItem?.color}
-                title={"Color"}
-                selectedOption={selectedOptionColor}
-                setSelectedOption={setSelectedOptionColor}
+              <button className="btn" onClick={() => setIsOpen(!isOpen)}>
+                {t(`Prices for 1m2`)}
+              </button>
+              <ModalPrice
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                goodsList={goodsList}
               />
-            )}
-            {validationOptionColor &&
-            <p style={{color:'red'}}>{t(`Validation color`)}</p>}
-            {currentItem?.quality && currentItem?.quality.length != 0 && (
-              <SelectSec
-                item={currentItem?.quality}
-                title={"Quality"}
-                selectedOption={selectedOptionQuality}
-                setSelectedOption={setSelectedOptionQuality}
-              />
-            )}
-            {currentItem?.goods && currentItem?.goods.length != 0 && (
-              <SelectSec
-                item={currentItem?.goods[0]?.quality}
-                title={"Quality"}
-                selectedOption={selectedOptionQuality}
-                setSelectedOption={setSelectedOptionQuality}
-              />
-            )}
-            {validationOptionQuality &&
-            <p style={{color:'red'}}>{t(`Validation quality`)}</p>}
-          </div>
-        </div>
-        <div className="wrap_row">
-          <div className="calc-item input_size">
-            <InputsTamplate
-              title={"Width"}
-              type={"number"}
-              placeholder={"Enter the width in mm"}
-              value={width}
-              handleCangeInput={setWitdh}
-            />
-            {validationWidth &&
-            <p style={{color:'red'}}>{t(`Validation width`)}</p>}
-          </div>
-          <div className="calc-item input_size">
-            <InputsTamplate
-              title={"Height"}
-              type={"number"}
-              placeholder={"Enter the height in mm"}
-              value={height}
-              handleCangeInput={setHeight}
-            />
-            {validationHeight &&
-            <p style={{color:'red'}}>{t(`Validation height`)}</p>}
-          </div>
-          <div className="calc-item input_size">
-            <InputsTamplate
-              title={"Circulation"}
-              type={"number"}
-              placeholder={"Enter circulation"}
-              value={count}
-              handleCangeInput={setCount}
-            />
-            {validationCount &&
-            <p style={{color:'red'}}>{t(`Validation circulation`)}</p>}
-          </div>
-        </div>
-        <div className="wrap_row adding">
-          <div className="colum ">
-            {currentItem?.eyelets && currentItem?.eyelets.length != 0 && (
-              <div className="eyelets_wrap">
-                <SelectSec
-                  item={currentItem?.eyelets}
-                  title={"Eyelets"}
-                  selectedOption={selectedOptionEyelets}
-                  setSelectedOption={setSelectedOptionEyelets}
-                />
-                {selectedOptionEyelets?.nameUa !== "По кутах" ? (
-                  <InputsTamplate
-                    title={"через (cм)"}
-                    type={"number"}
-                    placeholder={"30"}
-                    value={selectedOptionEyeletsValue}
-                    handleCangeInput={setSelectedOptionEyeletsValue}
-                  />
-                ) : (
-                  <InputsTamplate
-                    title={"через (cм)"}
-                    type={"number"}
-                    placeholder={"30"}
-                    value={selectedOptionEyeletsValue}
-                    handleCangeInput={setSelectedOptionEyeletsValue}
-                    disabled={true}
-                  />
+            </title>
+            <div className="wrap_row">
+              <div className="calc-item material">
+                <h3>{t(`Material`)}</h3>
+                <Select goods={goodsList} setcurrentItem={setСurrentItem} />
+                {validationCurrentItem && (
+                  <p style={{ color: "red" }}>{t(`Validation material`)}</p>
                 )}
               </div>
-            )}
-            {currentItem?.cutting && currentItem?.cutting.length != 0 && (
-              <SelectSec
-                item={currentItem?.cutting}
-                title={"Cutting"}
-                selectedOption={selectedOptionCutting}
-                setSelectedOption={setSelectedOptionCutting}
-              />
-            )}
-            {currentItem &&
-              currentItem.goods &&
-              currentItem.goods.length > 0 &&
-              currentItem.goods[0].cutting.length !== 0 && (
-                <SelectSec
-                  item={currentItem.goods[0].cutting}
-                  title={"Cutting"}
-                  selectedOption={selectedOptionCutting}
-                  setSelectedOption={setSelectedOptionCutting}
-                />
-              )}
-            {currentItem?.lamination && currentItem?.lamination.length != 0 && (
-              <SelectSec
-                item={currentItem?.lamination}
-                title={"Lamination"}
-                selectedOption={selectedOptionLamination}
-                setSelectedOption={setSelectedOptionLamination}
-              />
-            )}
-            {currentItem?.poster && currentItem?.poster.length != 0 && (
-              <SelectSec
-                item={currentItem?.poster}
-                title={"Poster"}
-                selectedOption={selectedOptionPoster}
-                setSelectedOption={setSelectedOptionPoster}
-              />
-            )}
 
-            {currentItem?.goods &&
-              currentItem?.goods[0]?.stretchOnTheStretcher && (
-                <div>
-                  <h3>{t(`"StretchOnTheStretcher"`)}</h3>
-                  <input
-                    type="checkbox"
-                    value={isStretch}
-                    onChange={handleStretch}
+              <div className="calc-item quality">
+                {currentItem?.color && currentItem?.color != 0 && (
+                  <SelectSec
+                    item={currentItem?.color}
+                    title={"Color"}
+                    selectedOption={selectedOptionColor}
+                    setSelectedOption={setSelectedOptionColor}
                   />
+                )}
+                {validationOptionColor && (
+                  <p style={{ color: "red" }}>{t(`Validation color`)}</p>
+                )}
+                {currentItem?.quality && currentItem?.quality.length != 0 && (
+                  <SelectSec
+                    item={currentItem?.quality}
+                    title={"Quality"}
+                    selectedOption={selectedOptionQuality}
+                    setSelectedOption={setSelectedOptionQuality}
+                  />
+                )}
+                {currentItem?.goods && currentItem?.goods.length != 0 && (
+                  <SelectSec
+                    item={currentItem?.goods[0]?.quality}
+                    title={"Quality"}
+                    selectedOption={selectedOptionQuality}
+                    setSelectedOption={setSelectedOptionQuality}
+                  />
+                )}
+                {validationOptionQuality && (
+                  <p style={{ color: "red" }}>{t(`Validation quality`)}</p>
+                )}
+              </div>
+            </div>
+            <div className="wrap_row">
+              <div className="calc-item input_size">
+                <InputsTamplate
+                  title={"Width"}
+                  type={"number"}
+                  placeholder={"Enter the width in mm"}
+                  value={width}
+                  handleCangeInput={setWitdh}
+                />
+                {validationWidth && (
+                  <p style={{ color: "red" }}>{t(`Validation width`)}</p>
+                )}
+              </div>
+              <div className="calc-item input_size">
+                <InputsTamplate
+                  title={"Height"}
+                  type={"number"}
+                  placeholder={"Enter the height in mm"}
+                  value={height}
+                  handleCangeInput={setHeight}
+                />
+                {validationHeight && (
+                  <p style={{ color: "red" }}>{t(`Validation height`)}</p>
+                )}
+              </div>
+              <div className="calc-item input_size">
+                <InputsTamplate
+                  title={"Circulation"}
+                  type={"number"}
+                  placeholder={"Enter circulation"}
+                  value={count}
+                  handleCangeInput={setCount}
+                />
+                {validationCount && (
+                  <p style={{ color: "red" }}>{t(`Validation circulation`)}</p>
+                )}
+              </div>
+            </div>
+            <div className="wrap_row adding">
+              <div className="colum ">
+                {currentItem?.eyelets && currentItem?.eyelets.length != 0 && (
+                  <div className="eyelets_wrap">
+                    <SelectSec
+                      item={currentItem?.eyelets}
+                      title={"Eyelets"}
+                      selectedOption={selectedOptionEyelets}
+                      setSelectedOption={setSelectedOptionEyelets}
+                    />
+                    {selectedOptionEyelets?.nameUa !== "По кутах" ? (
+                      <InputsTamplate
+                        title={"через (cм)"}
+                        type={"number"}
+                        placeholder={"30"}
+                        value={selectedOptionEyeletsValue}
+                        handleCangeInput={setSelectedOptionEyeletsValue}
+                      />
+                    ) : (
+                      <InputsTamplate
+                        title={"через (cм)"}
+                        type={"number"}
+                        placeholder={"30"}
+                        value={selectedOptionEyeletsValue}
+                        handleCangeInput={setSelectedOptionEyeletsValue}
+                        disabled={true}
+                      />
+                    )}
+                  </div>
+                )}
+                {currentItem?.cutting && currentItem?.cutting.length != 0 && (
+                  <SelectSec
+                    item={currentItem?.cutting}
+                    title={"Cutting"}
+                    selectedOption={selectedOptionCutting}
+                    setSelectedOption={setSelectedOptionCutting}
+                  />
+                )}
+                {currentItem &&
+                  currentItem.goods &&
+                  currentItem.goods.length > 0 &&
+                  currentItem.goods[0].cutting.length !== 0 && (
+                    <SelectSec
+                      item={currentItem.goods[0].cutting}
+                      title={"Cutting"}
+                      selectedOption={selectedOptionCutting}
+                      setSelectedOption={setSelectedOptionCutting}
+                    />
+                  )}
+                {currentItem?.lamination &&
+                  currentItem?.lamination.length != 0 && (
+                    <SelectSec
+                      item={currentItem?.lamination}
+                      title={"Lamination"}
+                      selectedOption={selectedOptionLamination}
+                      setSelectedOption={setSelectedOptionLamination}
+                    />
+                  )}
+                {currentItem?.poster && currentItem?.poster.length != 0 && (
+                  <SelectSec
+                    item={currentItem?.poster}
+                    title={"Poster"}
+                    selectedOption={selectedOptionPoster}
+                    setSelectedOption={setSelectedOptionPoster}
+                  />
+                )}
+
+                {currentItem?.goods &&
+                  currentItem?.goods[0]?.stretchOnTheStretcher && (
+                    <div>
+                      <h3>{t(`StretchOnTheStretcher`)}</h3>
+                      <input
+                        type="checkbox"
+                        value={isStretch}
+                        onChange={handleStretch}
+                      />
+                    </div>
+                  )}
+                {currentItem?.mounting && (
+                  <div>
+                    <h3>{t(`Mounting`)}</h3>
+                    <input
+                      type="checkbox"
+                      value={isMounting}
+                      onChange={handleMounting}
+                    />
+                  </div>
+                )}
+                {currentItem?.stamp && (
+                  <div>
+                    <h3>{t(`WithAStamp`)}</h3>
+                    <input
+                      type="checkbox"
+                      value={isStamp}
+                      onChange={handleStamp}
+                    />
+                  </div>
+                )}
+                <div>
+                  {currentItem &&
+                    (currentItem?.nameUa == "Банер 440 гр. Ламінований" ||
+                      currentItem?.nameUa == "Банер 510 гр. литий" ||
+                      currentItem?.nameUa == "Просвітний банер 440 гр." ||
+                      currentItem?.nameUa == "Сітка банерна 380 гр.") && (
+                      <div>
+                        <h3>{t(`Bilateral`)}</h3>
+                        <input
+                          type="checkbox"
+                          value={isBilateral}
+                          onChange={() => setIsBilateral((state) => !state)}
+                        />
+                      </div>
+                    )}
                 </div>
+                {currentItem?.solderingOfGates &&
+                  currentItem?.solderingOfGates.length != 0 && (
+                    <div className="soldering">
+                      <div className="soldering_item">
+                        <SelectSec
+                          item={currentItem?.solderingOfGates}
+                          title={"SolderingOfGates"}
+                          selectedOption={selectedOptionSolderGates}
+                          setSelectedOption={setSelectedOptionSolderGates}
+                        />
+                      </div>
+                      <div className="soldering_item">
+                        <SelectSec
+                          item={currentItem?.solderingPockets}
+                          title={"SolderingPockets"}
+                          selectedOption={selectedOptionSolderPockets}
+                          setSelectedOption={setSelectedOptionSolderPockets}
+                        />
+                      </div>
+                    </div>
+                  )}
+              </div>
+              {((choseAnotherUser && choseAnotherUser.name != "Admin") ||
+                (user.name != "Admin" && user.name != "undefined")) && (
+                <div className="colum upload">
+                  <h3>Файл</h3>
+                  <input
+                    type="file"
+                    accept=".jpg, .tif, .rar, .zip, .7z, .cdr"
+                    hidden
+                    onChange={handleChange}
+                    ref={inputFileRef}
+                  />
+                  <button onClick={() => inputFileRef.current.click()}>
+                    Завантажити файл
+                  </button>
+                  <div>{selectedFile && <p>Файл вибрано</p>}</div>
+                  {isProgresBar && (
+                    <div>
+                      <div
+                        style={{
+                          minWidth: `${300}px`,
+                          border: "1px solid black",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: `${progress || 0}%`,
+                            height: "20px",
+                            background: `${
+                              progress < 100 ? "#222935" : "green"
+                            }`,
+                            fontWeight: "600",
+                            color: "white",
+                            paddingTop: "2px",
+                          }}
+                        >
+                          {progress || 0}%
+                        </div>
+                      </div>
+                      <p>
+                        Size: {currentSizeFile}/{totalSizeFile} Мбайт
+                      </p>
+                    </div>
+                  )}
+                </div>
+                // <Test/>
               )}
-            {currentItem?.mounting && (
-              <div>
-                <h3>{t(`Mounting`)}</h3>
-                <input
-                  type="checkbox"
-                  value={isMounting}
-                  onChange={handleMounting}
+              {validationFile && (
+                <p style={{ color: "red" }}>{t(`File not selected`)}</p>
+              )}
+            </div>
+            <div className="wrap_row">
+              <div className="calc-item">
+                <h3>{t(`Description`)}</h3>
+                <div className="description">
+                  {descArray.length !== 0 &&
+                    Object.entries(descArray)
+                      .filter(([_, value]) => value.name !== "")
+                      .map(([key, item], idx) => (
+                        <p key={idx}>
+                          {item?.option && t(`${item?.option}`)}
+                          {t(`${item?.name}`)}
+                          {item?.value}
+                        </p>
+                      ))}
+                </div>
+              </div>
+              <div className="calc-item">
+                <h3>{t(`Notes`)}</h3>
+                <textarea
+                  name="coment"
+                  id=""
+                  cols="50"
+                  rows="6"
+                  value={coment}
+                  onChange={(e) => setComent(e.target.value)}
+                ></textarea>
+              </div>
+            </div>
+            <div className="wrap_row footer_calc">
+              <div className="calc-item delivery">
+                <InputsTamplate
+                  title={t(`Delivery address`)}
+                  type={"text"}
+                  placeholder={t(`Address`)}
+                  value={delivery}
+                  handleCangeInput={setDelivery}
                 />
               </div>
-            )}
-            {currentItem?.stamp && (
-              <div>
-                <h3>{t(`WithAStamp`)}</h3>
-                <input type="checkbox" value={isStamp} onChange={handleStamp} />
+              <div className="total_sum">
+                <h3>
+                  {" "}
+                  {t(`Total`)}:{" "}
+                  <p>{isNaN(totalSum.toFixed(0)) ? 0 : totalSum.toFixed(0)}</p>{" "}
+                  грн
+                </h3>
               </div>
-            )}
-            {currentItem?.solderingOfGates &&
-              currentItem?.solderingOfGates.length != 0 && (
-                <div className="soldering">
-                  <div className="soldering_item">
-                    <SelectSec
-                      item={currentItem?.solderingOfGates}
-                      title={"SolderingOfGates"}
-                      selectedOption={selectedOptionSolderGates}
-                      setSelectedOption={setSelectedOptionSolderGates}
-                    />
-                  </div>
-                  <div className="soldering_item">
-                    <SelectSec
-                      item={currentItem?.solderingPockets}
-                      title={"SolderingPockets"}
-                      selectedOption={selectedOptionSolderPockets}
-                      setSelectedOption={setSelectedOptionSolderPockets}
-                    />
+              {((choseAnotherUser && choseAnotherUser.name != "Admin") ||
+                (user.name != "Admin" && user.name != "undefined")) && (
+                <div>
+                  <button onClick={handleTotalSum} disabled={isProgresBar}>
+                    {t(`Download the order`)}
+                  </button>
+                  <div>
+                    {validationMinimalSum && (
+                      <p style={{ color: "red" }}>
+                        {t(`Validation minimal order`)}
+                      </p>
+                    )}
                   </div>
                 </div>
               )}
-          </div>
-          <div className="colum upload">
-            <h3>Файл</h3>
-            <input
-              type="file"
-              accept=".jpg, .tif, .rar, .zip, .7z, .cdr"
-              hidden
-              onChange={handleChange}
-              ref={inputFileRef}
-            />
-            <button onClick={() => inputFileRef.current.click()}>Завантажити файл</button>
-            <div>
-              {selectedFile &&
-              <p>Файл завантажено</p>}
             </div>
-          </div>
-          {validationFile &&
-          <p style={{color:'red'}}>{t(`File not selected`)}</p>}
-        </div>
-        {/* {t(`${title}`)} */}
-        <div className="wrap_row">
-          <div className="calc-item">
-            <h3>{t(`Description`)}</h3>
-            <div className="description">
-              {/* <textarea name="description" id="" cols="50" rows="6" value={description}  disabled></textarea> */}
-              {/* {descArray.length != 0 &&
-                Object.entries(descArray)
-                  .filter(([_, value]) => value.name !== "")
-                  .map(([key, value], idx) => <p key={idx}>{t(`${value}`)}</p>)} */}
-              {descArray.length !== 0 &&
-                Object.entries(descArray)
-                  .filter(([_, value]) => value.name !== "")
-                  .map(([key, item], idx) => (
-                    <p key={idx}>
-                      {t(`${item?.option}`)}
-                      {t(`${item?.name}`)}
-                      {item?.value}
-                    </p>
-                  ))}
-            </div>
-          </div>
-          <div className="calc-item">
-            <h3>{t(`Notes`)}</h3>
-            <textarea
-              name="coment"
-              id=""
-              cols="50"
-              rows="6"
-              value={coment}
-              onChange={(e) => setComent(e.target.value)}
-            ></textarea>
-          </div>
-        </div>
-        <div className="wrap_row footer_calc">
-          <div className="calc-item delivery">
-            <InputsTamplate
-              title={t(`Delivery address`)}
-              type={"text"}
-              placeholder={t(`Address`)}
-              value={delivery}
-              handleCangeInput={setDelivery}
-            />
-          </div>
-          <div className="total_sum">
-            <h3>
-              {" "}
-              {t(`Total`)}: <p>{isNaN(totalSum.toFixed(0)) ? 0 : totalSum.toFixed(0)}</p> грн
-            </h3>
-          </div>
-          <button onClick={handleTotalSum}>{t(`Download the order`)}</button>
-        </div>
-        <div></div>
+            {displayOrderStory()}
+          </>
+        ) : (
+          <Loader />
+        )}
       </div>
     );
 };

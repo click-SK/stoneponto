@@ -5,6 +5,7 @@ import { currentUser } from "../../store/auth";
 import Modal from '../Modal/Modal'
 import UserTable from '../Table/UserTable'
 import '../../style/userProfile.scss'
+import Loader from '../Loader/Loader';
 
 const UserPanel = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -43,12 +44,9 @@ const UserPanel = () => {
         setModalIsOpen(true);
       };
 
-      console.log('user?.balance',user);
- 
-
   return (
     <>
-    {user && 
+    {user ? 
         <div className='user_profile_wrap' >
         <p className='user_profile_title'>{t(`My office`)}</p>
         <div className='user_profile_information' >
@@ -96,7 +94,9 @@ const UserPanel = () => {
   
           <UserTable allOrders={[...user.orders].reverse()} currentUser={user} setIsFetch={setIsFetch}/>
         </div>
-      </div>}
+      </div>
+      :
+      <Loader/>}
     </>
   );
 };

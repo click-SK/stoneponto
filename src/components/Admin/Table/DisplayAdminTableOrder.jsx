@@ -8,36 +8,34 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   const [deleteText, setDeleteText] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   
-
   const handleCloseModal = () => {
       setModalIsOpen(false);
     };
-
-  
 
     const handleOpenModal = () => {
       setModalIsOpen(true);
     };
   const { t } = useTranslation();
 
- 
   const handleDownload = async (order) => {
     const resonse = await fetch(`https://server-ponto-print.herokuapp.com/download?id=${order._id}`)
     if(resonse.status == 200) {
-      const blob = await resonse.blob();
-      const dowloadUrl = window.URL.createObjectURL(blob);
+      console.log('status 200');
+      // const blob = await resonse.blob();
+      // const dowloadUrl = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = dowloadUrl;
+      // link.href = dowloadUrl;
+      link.href = `https://server-ponto-print.herokuapp.com/download?id=${order._id}`;
+      // console.log('dowloadUrl',dowloadUrl);
 
       const fileExtension = order.file.split('.').pop();
-      console.log('fileExtension',fileExtension);
 
       const invalidCharacters = /[<>:"\\/|?*.]/g;
       var cleanedStr = order.fileName.replace(/\s/g, "").replace(invalidCharacters, "");
       link.download = cleanedStr + '.' + fileExtension;
       document.body.appendChild(link);
       link.click();
-      link.remove();
+      // link.remove();
 
       await fetch("https://server-ponto-print.herokuapp.com/update-status", {
         method: "PATCH",
@@ -52,6 +50,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
         }),
       }).then((res) => res.json());
       setTimeout(() => {
+        console.log('The end promise');
         setIsFetch((state) => !state);
       }, 1000);
     } else {
@@ -127,16 +126,11 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
               <button 
               style={{ padding: "5px 8px", background:'red', margin:'0 2px'  }}
               onClick={handleOpenModal}>
-                {/* {t(`Remove`)} */}
               <MdOutlineDeleteForever/>
               </button>
 
             </div>
             <div style={{ padding: "10px 0px" }}>
-              {/* <button 
-              style={{ padding: "5px 8px", background:'#5aad5a' }}
-              onClick={handleFinished}>
-                <MdDoneOutline/></button> */}
             </div>
           </div>
           <DeletetableModal 

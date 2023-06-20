@@ -16,7 +16,6 @@ import Loader from "./components/Loader/Loader";
 
 function App() {
   const user = useSelector(currentUser);
-  console.log('user',user);
   return (
     <div className="App">
       <FirstRequest />

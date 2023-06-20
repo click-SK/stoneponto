@@ -5,6 +5,7 @@
     max-width: 1140px;
     border: 1px solid #ccc;
     width: 100%;
+    min-height: 500px;
 }
 
 title{
@@ -230,7 +231,6 @@ textarea{
     button{
         background-color: $color_second;
         width: 200px;
-        height: 32px;
         &:hover{
             background: $color_prime;
         }
@@ -248,6 +248,13 @@ textarea{
 
 .eyelets_wrap{
     margin-bottom: 5px;
+}
+
+.display_order_story {
+    margin: 50px 0px;
+    text-align: start;
+    padding-left: 10px;
+    font-weight: 600;
 }
 
 

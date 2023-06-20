@@ -18,6 +18,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
     const [isMounting, setIsMounting] = useState(false);
     const [isStamp, setIsStamp] = useState(false);
     const [isStretchOnTheStretcher, setIsStretchOnTheStretcher] = useState(false);
+    const [isStretchOnTheStretcherMin, setIsStretchOnTheStretcherMin] = useState(false);
 
     const [isBanerLaminated, setIsBanerLaminated] = useState(false);
     const [isBanerCast, setIsBanerCast] = useState(false);
@@ -30,13 +31,8 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         dispatch(fetchLanguage());
       }, [lang]);
 
-    // console.log('arrayGoods',arrayGoods);
-
-    // console.log('isBanerLaminated',isBanerLaminated);
-    // console.log('isBanerCast',isBanerCast);
-
     const setQualityFunc = () => {
-      setIsQuality(true);
+      setIsQuality(state => ! state);
       setIsEyelets(false);
       setIsColor(false);
       setIsLamination(false);
@@ -47,10 +43,11 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsMounting(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
 
     const setEyeletsFunc = () => {
-      setIsEyelets(true);
+      setIsEyelets(state => ! state);
       setIsQuality(false);
       setIsColor(false);
       setIsLamination(false);
@@ -61,10 +58,11 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsMounting(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
 
     const setColorFunc = () => {
-      setIsColor(true);
+      setIsColor(state => ! state);
       setIsEyelets(false);
       setIsQuality(false);
       setIsLamination(false);
@@ -75,10 +73,11 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsMounting(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
 
     const setLaminationFunc = () => {
-      setIsLamination(true);
+      setIsLamination(state => ! state);
       setIsColor(false);
       setIsEyelets(false);
       setIsQuality(false);
@@ -89,9 +88,10 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsMounting(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
     const setPosterFunc = () => {
-      setIsPoster(true);
+      setIsPoster(state => ! state);
       setIsLamination(false);
       setIsColor(false);
       setIsEyelets(false);
@@ -102,9 +102,10 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsMounting(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
     const setSolderingOfGatesFunc = () => {
-      setIsSolderingOfGates(true);
+      setIsSolderingOfGates(state => ! state);
       setIsPoster(false);
       setIsLamination(false);
       setIsColor(false);
@@ -115,9 +116,10 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsMounting(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
     const setSolderingPocketsFunc = () => {
-      setIsSolderingPockets(true);
+      setIsSolderingPockets(state => ! state);
       setIsSolderingOfGates(false);
       setIsPoster(false);
       setIsLamination(false);
@@ -128,9 +130,10 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsMounting(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
     const setCuttingFunc = () => {
-      setIsCutting(true);
+      setIsCutting(state => ! state);
       setIsSolderingPockets(false);
       setIsSolderingOfGates(false);
       setIsPoster(false);
@@ -141,9 +144,10 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsMounting(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
     const setMountingFunc = () => {
-      setIsMounting(true);
+      setIsMounting(state => ! state);
       setIsCutting(false);
       setIsSolderingPockets(false);
       setIsSolderingOfGates(false);
@@ -154,9 +158,10 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsQuality(false);
       setIsStamp(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
     const setStampFunc = () => {
-      setIsStamp(true);
+      setIsStamp(state => ! state);
       setIsMounting(false);
       setIsCutting(false);
       setIsSolderingPockets(false);
@@ -167,9 +172,25 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsEyelets(false);
       setIsQuality(false);
       setIsStretchOnTheStretcher(false);
+      setIsStretchOnTheStretcherMin(false);
     }
     const setStretchOnTheStretcherFunc = () => {
-      setIsStretchOnTheStretcher(true);
+      setIsStretchOnTheStretcher(state => ! state);
+      setIsStamp(false);
+      setIsMounting(false);
+      setIsCutting(false);
+      setIsSolderingPockets(false);
+      setIsSolderingOfGates(false);
+      setIsPoster(false);
+      setIsLamination(false);
+      setIsColor(false);
+      setIsEyelets(false);
+      setIsQuality(false);
+      setIsStretchOnTheStretcherMin(false);
+    }
+    const setStretchOnTheStretcherFuncMin = () => {
+      setIsStretchOnTheStretcherMin(state => ! state);
+      setIsStretchOnTheStretcher(false);
       setIsStamp(false);
       setIsMounting(false);
       setIsCutting(false);
@@ -325,13 +346,23 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.stretchOnTheStretcher &&
         <EditCalculatorAdditionalParameter data={arrayGoods?.stretchOnTheStretcher} 
-        title={'Натяжка на подрамник'}
+        title={'Натяжка на подрамник стандартна ціна'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
         editPath='https://server-ponto-print.herokuapp.com/update-stretch-on-the-stretcher'
         openCloseFunc={setStretchOnTheStretcherFunc}
         isOpen={isStretchOnTheStretcher}/>
+        }
+        {arrayGoods?.stretchOnTheStretcherMin &&
+        <EditCalculatorAdditionalParameter data={arrayGoods?.stretchOnTheStretcherMin} 
+        title={'Натяжка на подрамник мінімальна ціна'}
+        mainId={mainId}
+        setIsFetch={setIsFetch}
+        goodsIndex={goodsIndex}
+        editPath='https://server-ponto-print.herokuapp.com/update-stretch-on-the-stretcher-min'
+        openCloseFunc={setStretchOnTheStretcherFuncMin}
+        isOpen={isStretchOnTheStretcherMin}/>
         }
         </>
       <br />

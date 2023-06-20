@@ -5,11 +5,8 @@ import { useTranslation } from "react-i18next";
 const AdminTableText = ({ order, handleDownload }) => {
   const { t } = useTranslation();
 
-
- 
   return (
     <>
-
       <div className="item_row_info item_id">
         <p>{order.id}</p>
       </div>
@@ -27,11 +24,7 @@ const AdminTableText = ({ order, handleDownload }) => {
         <p 
         onClick={() => handleDownload(order)}
         className="download_file"
-        // style={{cursor:'pointer'}} 
         >{order.fileName}</p>
-        {/* <div style={{ padding: "10px 0px" }}>
-          <button onClick={() => handleDownload(order)}>{t(`Download`)}</button>
-        </div> */}
       </div>
       <div className="item_row_info item_material">
         <p>{order.material}</p>
@@ -112,7 +105,7 @@ const AdminTableText = ({ order, handleDownload }) => {
             </div>
           </div>
         )}
-        {order?.notes != "" && (
+        {order?.address != "" && (
           <div>
             <p>--{t(`Delivery`)}--</p>
             <div style={{ background: "yellow" }}>

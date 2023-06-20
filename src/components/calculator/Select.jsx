@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLanguage } from "../../store/language";
 const Select = ({ goods, setcurrentItem }) => {
@@ -7,14 +7,23 @@ const Select = ({ goods, setcurrentItem }) => {
   const dispatch = useDispatch();
 
   const lang = useSelector((state) => state.lang.language);
+  const selectRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchLanguage());
   }, [lang]);
 
-  const handleSelectOption = (option) => {
-    setSelectedOption(option);
-    setIsOpen(false);
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (selectRef.current && !selectRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
   };
 
   const selectItemFunc = (e) => {
@@ -24,7 +33,7 @@ const Select = ({ goods, setcurrentItem }) => {
   };
 
   return (
-    <div className="custom-select">
+    <div className="custom-select" id="select-first" ref={selectRef}>
       <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
         {(selectedOption?.nameUa && selectedOption?.nameUa) || goods[0]?.nameUa}
       </div>

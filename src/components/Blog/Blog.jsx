@@ -26,49 +26,37 @@ const Blog = () => {
 
 
   return (
-    <div className='blog_content_wrap'>
-      {!allPosts 
-      ? 
-      <Loader/>
-      :
-      allPosts.map((post) => (
-        <div 
-        key={post._id}
-        className='blog_item'
-        >
-          <div className='img_blog_wrap'>
-            <img 
-            src={`https://server-ponto-print.herokuapp.com${post.blogImage}`} 
-            />
+    <div className="blog_content_wrap">
+      {allPosts.length != 0 ? (
+        <>
+          {allPosts.map((post) => (
+          <div key={post._id} className="blog_item">
+            <div className="img_blog_wrap">
+              <img
+                src={`https://server-ponto-print.herokuapp.com${post.blogImage}`}
+              />
+            </div>
+            <div className="content_wrap">
+              <h3 className="title_blog_item">
+                {lang == "Ua" ? <>{post.titleUa}</> : <>{post.titleRu}</>}
+              </h3>
+              <div className="date_item">
+                <span>{formattedDate}</span>
+              </div>
+              <div className="blog_news">
+                {lang == "Ua" ? (
+                  <ReactQuill readOnly={true} value={post.descriptionUa} />
+                ) : (
+                  <ReactQuill readOnly={true} value={post.descriptionRu} />
+                )}
+              </div>
+            </div>
           </div>
-          <div className='content_wrap'>
-          <h3 className='title_blog_item'>
-          {lang == 'Ua' 
-            ?
-            <>{post.titleUa}</>
-            :
-            <>{post.titleRu}</>
-            }
-          </h3>
-          <div className='date_item'><span>{formattedDate}</span></div>
-          <div className="blog_news" >
-          {lang == 'Ua' 
-            ?
-            <ReactQuill
-            readOnly={true}
-            value={post.descriptionUa}
-            />
-            :
-            <ReactQuill
-            readOnly={true}
-            value={post.descriptionRu}
-            />
-            }
-          </div>
-          </div>
-        </div>
-      ))
-      }
+          ))}
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
