@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Select from './Select'
 import SelectSec from './SelectSecond'
 import ChoseRoleSelect from './ChoseRoleSelect'
+import ProgressBar from './ProgressBar'
 import InputsTamplate from '../template/InputsTamplate';
 import ModalPrice from './ModalPrice';
 import { useTranslation } from 'react-i18next';
@@ -744,35 +745,7 @@ const CalculatorPartner = () => {
                     Завантажити файл
                   </button>
                   <div>{selectedFile && <p>Файл вибрано: {selectedFile.name}</p>}</div>
-                  {isProgresBar && (
-                    <div>
-                      <div
-                        style={{
-                          minWidth: `${300}px`,
-                          border: "1px solid black",
-                          borderRadius: "5px",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: `${progress || 0}%`,
-                            height: "20px",
-                            background: `${
-                              progress < 100 ? "#222935" : "green"
-                            }`,
-                            fontWeight: "600",
-                            color: "white",
-                            paddingTop: "2px",
-                          }}
-                        >
-                          {progress || 0}%
-                        </div>
-                      </div>
-                      <p>
-                        Завантаження: {currentSizeFile}/{totalSizeFile} Мбайт
-                      </p>
-                    </div>
-                  )}
+                  <ProgressBar isProgresBar={isProgresBar} currentSizeFile={currentSizeFile} totalSizeFile={totalSizeFile} progress={progress}/>
                   <div>
                     {validationFile && (
                       <p style={{ color: "red" }}>{t(`File not selected`)}</p>
