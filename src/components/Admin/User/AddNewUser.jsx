@@ -62,7 +62,7 @@ const AddNewUser = () => {
                 placeholder={t(`Mail`)}/>
                 <p
                 className={`error_massage_none ${emailError == 'Невірний формат електронної адреси' ? 'error_massage' : '' }`}
-                >Невірний формат електронної адреси</p>
+                >{t(`Wrong email address format`)}</p>
             </div>
             <div className="input_wrap">
                 <p>{t(`Password`)}</p>

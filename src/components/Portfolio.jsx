@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import { useTranslation } from 'react-i18next';
 import '../style/mainPage.scss'
 
 const Portfolio = () => {
     const [mainImg, setMainImg] = useState('./img/portfolio/5ffe0397-fcb9-4935-9884-d41493d61b64.jpg')
+
+    const { t } = useTranslation();
 
     const imgArr = [
         {
@@ -41,10 +44,7 @@ const Portfolio = () => {
 
     return (
         <div className='portfolio'>
-                <h2>Наші роботи</h2>
-                {/* <div className='portfolio_main_img'>
-                    <img src={mainImg} alt={mainImg} />    
-                </div>  */}
+                <h2>{t(`Our works`)}</h2>
                 <div className='img_wrap_work'>
                     {imgArr.map((item,idx) => (
                         <img 

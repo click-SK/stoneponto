@@ -17,7 +17,7 @@ const Blog = () => {
   useEffect(() => {
     fetch("https://server-ponto-print.herokuapp.com/get-all-post")
       .then((res) => res.json())
-      .then((res) => setAllPosts(res));
+      .then((res) => setAllPosts(res.reverse()));
   }, []);
 
   useEffect(() => {

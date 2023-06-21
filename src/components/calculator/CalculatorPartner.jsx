@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Select from './Select'
 import SelectSec from './SelectSecond'
+import SelectedColor from "./SelectedColor";
 import ChoseRoleSelect from './ChoseRoleSelect'
 import ProgressBar from './ProgressBar'
 import InputsTamplate from '../template/InputsTamplate';
@@ -11,7 +12,6 @@ import { currentUser } from "../../store/auth";
 import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
 import Loader from "../Loader/Loader";
-import Test from './Test';
 
 const CalculatorPartner = () => {
     const [goodsList, setGoodsList] = useState ([])
@@ -105,8 +105,6 @@ const CalculatorPartner = () => {
     dispatch(fetchLanguage())
   },[lang])
 
-  console.log('progress',progress);
-
   useEffect(() =>{
     const descriptionObj = {
       cutting: {
@@ -139,9 +137,9 @@ const CalculatorPartner = () => {
         name:  isMounting ? (lang == "Ua" ? 'Намонтування: ' : 'Намонтаживание: ') : ''
       },
       eyelets: {
-        option: selectedOptionEyelets ? (lang == "Ua" ? ' Люверси: ' : ' Люверсы: ') : '',
-        name: selectedOptionEyelets ? (lang == "Ua" ? selectedOptionEyelets?.nameUa : selectedOptionEyelets?.nameRu) : '',
-        value: selectedOptionEyelets ? ` ${selectedOptionEyeletsValue} см` : ''
+        option: selectedOptionEyelets?.price  ? (lang == "Ua" ? ' Люверси: ' : ' Люверсы: ') : '',
+        name: selectedOptionEyelets?.price  ? (lang == "Ua" ? selectedOptionEyelets?.nameUa : selectedOptionEyelets?.nameRu) : '',
+        value: selectedOptionEyelets?.price  ? ` ${selectedOptionEyeletsValue} см` : ''
       } 
     }
     setdescArray(descriptionObj);
@@ -211,7 +209,6 @@ const CalculatorPartner = () => {
         currentLuversPrice = selectedOptionEyelets.price * differenceLuvers;
       }
       setCurrentLuversDisplay(currentLuversPrice);
-      console.log('quadrature',quadrature);
 
       const currentSolderGates = ((!isBilateral ? ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) : ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) / 2) || 0);
       const currentSolderPockets = ((!isBilateral ? ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) : ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) / 2) || 0);
@@ -223,19 +220,18 @@ const CalculatorPartner = () => {
       setCuttingDisplay(currentCutting);
       setStampDisplay(currentStamp);
       setStretchOnTheStretcherDisplay(currentStretchOnTheStretcher);
+
       const totalSum1 = 
      ((currentLuversPrice) || 0) +
      ((selectedOptionQuality?.price * quadrature) || 0) +
      ((selectedOptionColor?.price * quadrature) || 0) +
-     ((selectedOptionCutting?.price * linearMeter) || 0) + 
      (currentSolderGates || 0) +
      (currentSolderPockets || 0) +
      (currentCutting) +
      (selectedOptionPoster?.price || 0) + 
      (currentStamp) + 
      (currentStretchOnTheStretcher) +
-     (isMounting ? currentItem?.mounting: 0);
-      
+     (isMounting ? currentItem?.mounting: 0);  
 
      const sumMultiplyCurrency = totalSum1 * currency.currency || 0;
      const sumAndCount = sumMultiplyCurrency * count;
@@ -352,8 +348,7 @@ const CalculatorPartner = () => {
         setValidationCount(true);
         isValid = false;
       }
-      console.log('selectedFile',!!selectedFile);
-      console.log('selectedFileBoolean',selectedFileBoolean);
+
       if(selectedFileBoolean ) {
         setValidationFile(true);
         isValid = false;
@@ -408,8 +403,6 @@ const CalculatorPartner = () => {
           const total = (event.total / (1024 * 1024));
           setTotalSizeFile(total.toFixed(0));
           setCurrentSizeFile(loaded.toFixed(0));
-          console.log('event.total',event.total);
-          console.log('event.loaded',event.loaded);
     
           const calculatedProgress = Math.round((loaded / total) * 100);
           setProgress(calculatedProgress);
@@ -448,50 +441,78 @@ const CalculatorPartner = () => {
     }
 
     const displayOrderStory = () => {
+      const orderItems = [];
+    
+      if (selectedOptionQuality?.price * quadrature) {
+        orderItems.push(`${t(`Printing`)} ${((selectedOptionQuality?.price * quadrature) * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (selectedOptionColor?.price * quadrature) {
+        orderItems.push(`${t(`Color`)} ${((selectedOptionColor?.price * quadrature) * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (currentLuversDisplay) {
+        orderItems.push(`${t(`Eyelets`)} ${(currentLuversDisplay * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (cuttingDisplay) {
+        orderItems.push(`${t(`Cutting`)} ${(cuttingDisplay * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (solderGatesDisplay) {
+        orderItems.push(`${t(`SolderingOfGates`)} ${(solderGatesDisplay * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (solderPocketsDisplay) {
+        orderItems.push(`${t(`SolderingPockets`)} ${(solderPocketsDisplay * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (selectedOptionLamination?.price) {
+        orderItems.push(`${t(`Lamination`)} ${(selectedOptionLamination?.price * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (stampDisplay) {
+        orderItems.push(`${t(`WithAStamp`)} ${(stampDisplay * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (stretchOnTheStretcherDisplay) {
+        orderItems.push(`${t(`StretchOnTheStretcher`)} ${(stretchOnTheStretcherDisplay * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (isMounting) {
+        orderItems.push(`${t(`Mounting`)} ${(currentItem?.mounting * currency.currency).toFixed(0)} грн`);
+      }
+    
+      if (currentDiscountTwentyMeter) {
+        orderItems.push(`- ${t(`Discount`)} ${Number(currentDiscountTwentyMeter).toFixed(0)} грн`);
+      }
+    
+      if (currentPersonalDiscount !== 0) {
+        orderItems.push(`- ${t(`Personal Discount`)} ${Number(currentPersonalDiscount).toFixed(0)} грн`);
+      }
+    
+      if (count && totalSum !== 0) {
+        orderItems.push(`x ${count} ${t(`Circulation`)}`);
+      }
+    
+      if (totalSum !== 0) {
+        orderItems.push(`= ${t(`Total`)} ${Number(totalSum).toFixed(0)} грн`);
+      }
+    
       return (
         <div className="display_order_story">
-          {!!(selectedOptionQuality?.price * quadrature) &&
-          (' Якість:' + ((selectedOptionQuality?.price * quadrature) * currency.currency).toFixed(0) + ' грн ')
-          }
-          {!!(selectedOptionColor?.price * quadrature) &&
-          (' Колір:' + ((selectedOptionColor?.price * quadrature) * currency.currency).toFixed(0) + ' грн ')
-          }
-          {!!currentLuversDisplay && 
-          ('+ Люверси:' + ((currentLuversDisplay) * currency.currency).toFixed(0) + ' грн ')
-          }
-          {!!cuttingDisplay &&
-          ('+ Порізка:' + ((cuttingDisplay) * currency.currency).toFixed(0) + ' грн ')
-          }
-          {!!solderGatesDisplay &&
-          ('+ Пропаювання підворіт:' + ((solderGatesDisplay) * currency.currency).toFixed(0) + ' грн ')
-          }
-          {!!solderPocketsDisplay &&
-          ('+ Пропаювання кишень:' + ((solderPocketsDisplay) * currency.currency).toFixed(0) + ' грн ')
-          }
-          {!!selectedOptionLamination?.price &&
-          ('+ Ламінація:' + ((selectedOptionLamination?.price) * currency.currency).toFixed(0) + ' грн ')
-          }
-          {!!stampDisplay &&
-          ('+ З печаткою:' + ((stampDisplay) * currency.currency).toFixed(0) + ' грн ')
-          }
-          {!!stretchOnTheStretcherDisplay &&
-          ('+ Натяжка на підрамник:' + (stretchOnTheStretcherDisplay * currency.currency).toFixed(0) + ' грн ')
-          }
-          {isMounting &&
-          ('+ Намонтажування:' + (currentItem?.mounting * currency.currency).toFixed(0) + ' грн ')
-          }
-          {currentDiscountTwentyMeter &&
-          ('- Знижка:' + Number(currentDiscountTwentyMeter).toFixed(0) + ' грн ')
-          }
-          {currentPersonalDiscount != 0 &&
-          ('- Персональна знижка:' + Number(currentPersonalDiscount).toFixed(0) + ' грн ')
-          }
-          {totalSum != 0 &&
-          ('= Итого:' + Number(totalSum).toFixed(0) + ' грн')
-          }
+          {orderItems.map((item, index) => {
+            if (index === 0) {
+              return item;
+            } else if (item.startsWith("-") || item.startsWith("=") || item.startsWith("x")) {
+              return ` ${item}`;
+            } else {
+              return ` + ${item}`;
+            }
+          })}
         </div>
-      )
-    }
+      );
+    };
 
     return (
       <div className="calc_wrap">
@@ -525,7 +546,7 @@ const CalculatorPartner = () => {
 
               <div className="calc-item quality">
                 {currentItem?.color && currentItem?.color != 0 && (
-                  <SelectSec
+                  <SelectedColor
                     item={currentItem?.color}
                     title={"Color"}
                     selectedOption={selectedOptionColor}
@@ -805,7 +826,7 @@ const CalculatorPartner = () => {
                 <div>
                   <button onClick={handleTotalSum} disabled={isProgresBar}>
                     {waitingSendOrder ? (
-                      <p>{t(`Відправка замовлення...`)}</p>
+                      <p>{t(`Sending the order`)}</p>
                     ) : (
                       <p>{t(`Download the order`)}</p>
                     )}

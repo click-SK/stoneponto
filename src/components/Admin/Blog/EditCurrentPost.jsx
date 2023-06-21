@@ -44,7 +44,6 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
       body: formData,
     }).then((res) => res.json());
     setTimeout(() => {
-      // window.location.reload();
       setIsFetch((state) => !state);
     }, 1000);
   };
@@ -63,7 +62,6 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
   };
 
   const handleImageChange = (e) => {
-    // const file = e.target.files[0];
     setImage(e.target.files[0]);
   };
 
@@ -79,7 +77,6 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
       }),
     });
     setTimeout(() => {
-      // window.location.reload();
       setIsFetch((state) => !state);
     }, 1000);
   };
@@ -125,9 +122,11 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
         {isEditValue && (
           <div className="edit_curent_post">
             <div className="post_info">
-            <button onClick={() => inputFileRef.current.click()}>
+              <div style={{paddingBottom: '10px'}}>
+              <button onClick={() => inputFileRef.current.click()}>
             {t(`Choose a photo`)}
             </button>
+              </div>
 
             <input
               type="file"
@@ -179,7 +178,6 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                 className="textarea"
                 value={descriptionUa}
                 onChange={handleContentChangeUa}
-              //  modules={{ toolbar: toolbarOptions }}
                />
               </div>
               <div>
@@ -188,13 +186,12 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                   className="textarea"
                   value={descriptionRu}
                   onChange={handleContentChangeRu}
-                  //  modules={{ toolbar: toolbarOptions }}
                />
               </div>
             </div>
             <button onClick={handleEditButtonSave}>{t(`Save changes`)}</button>
             <button onClick={handleRemovePost}>{t(`Delete the post`)}</button>
-            {/* <button onClick={setIsEditValue((isEdit) => !isEdit)}>Закрити без змін</button> */}
+            <button onClick={() => setIsEditValue(false)}>{t(`Close`)}</button>
             </div>
           </div>
         )}

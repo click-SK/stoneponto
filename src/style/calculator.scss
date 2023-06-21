@@ -172,6 +172,8 @@ textarea{
         left: 0;
         top: 0;
         z-index: 1000;
+        max-height: 350px;
+        overflow-y: auto;
         
         .option{
             padding-left: 15px;
@@ -188,6 +190,10 @@ textarea{
             }  
         }
     }
+}
+.option_color {
+    display: flex;
+    align-items: center;
 }
 
 
