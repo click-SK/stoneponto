@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useTranslation } from 'react-i18next';
-import {AiOutlineDown, AiFillEdit} from 'react-icons/ai'
+import {AiFillEdit, AiFillCloseCircle} from 'react-icons/ai';
 import {RiFileEditFill} from 'react-icons/ri';
 
 const EditCurrencyValue = ({data, setIsFetch}) => {
@@ -49,9 +49,16 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
                   <button onClick={handleEditButtonSave}>{t(`Save changes`)}</button>
                 </div>
               )}
-              <RiFileEditFill
-              className={`edit_plus_icon ${isEdit ? 'edit_plus_icon__active' : ''}`}
-              onClick={handleEditButton} />
+        {!isEdit 
+        ?
+        <RiFileEditFill
+        className={`goods_edit_icon ${isEdit? 'goods_edit_icon_active' : ''}`}
+        onClick={handleEditButton}/>
+        :
+        <AiFillCloseCircle
+        className={`goods_edit_icon ${isEdit? 'goods_edit_icon_active' : ''}`}
+        onClick={handleEditButton}/>
+        }
             </div>
 
     );

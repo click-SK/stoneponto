@@ -76,18 +76,6 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
           </div>
         </div>
 
-
-        {/* <button className="button_open_history" onClick={handleOpenModal}>
-          Історія транзакцій
-        </button> */}
-
-        {/* <Modal
-          isOpen={false}
-          onClose={handleCloseModal}
-          historyData={user.balanceHistory}
-        /> */}
-
-        
         <div className='history_wrap'>
           <div className="history_wrap_header">
             <p>{t(`Date`)}</p>
@@ -102,10 +90,7 @@ const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
             ))}
           </div>
         </div>
-        
 
-        {/* <AdminTable
-        allOrders={user.orders}/> */}
       </div>
     );
 };

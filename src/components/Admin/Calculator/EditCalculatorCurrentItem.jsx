@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLanguage } from "../../../store/language";
-import {AiFillEdit} from 'react-icons/ai';
+import { AiFillCloseCircle} from 'react-icons/ai';
 import {RiFileEditFill} from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsIndex, currentItemIndex, isFetch}) => {
@@ -35,7 +35,6 @@ const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsInd
         })
           .then((res) => res.json())
           setTimeout(() => {
-            // window.location.reload();
             setIsFetch(state => !state)
           },1000)
       }
@@ -57,9 +56,16 @@ const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsInd
           </div>
           }
         </div>
+        {!isEdit 
+        ?
         <RiFileEditFill
         className={`goods_edit_icon ${isEdit? 'goods_edit_icon_active' : ''}`}
         onClick={handleEditButton}/>
+        :
+        <AiFillCloseCircle
+        className={`goods_edit_icon ${isEdit? 'goods_edit_icon_active' : ''}`}
+        onClick={handleEditButton}/>
+        }
 
         </div>
     );

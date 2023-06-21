@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Select from './Select'
 import SelectSec from './SelectSecond'
+import SelectedColor from "./SelectedColor";
 import ChoseRoleSelect from './ChoseRoleSelect'
 import ProgressBar from './ProgressBar'
 import InputsTamplate from '../template/InputsTamplate';
@@ -439,109 +440,63 @@ const CalculatorPartner = () => {
       setChoseAnotherUser(e);
     }
 
-    // const displayOrderStory = () => {
-    //   return (
-    //     <div className="display_order_story">
-    //       {!!(selectedOptionQuality?.price * quadrature) &&
-    //       (' Друк:' + ((selectedOptionQuality?.price * quadrature) * currency.currency).toFixed(0) + ' грн ')
-    //       }
-    //       {!!(selectedOptionColor?.price * quadrature) &&
-    //       (' Колір:' + ((selectedOptionColor?.price * quadrature) * currency.currency).toFixed(0) + ' грн ')
-    //       }
-
-    //       {!!currentLuversDisplay && 
-    //       ('+ Люверси:' + ((currentLuversDisplay) * currency.currency).toFixed(0) + ' грн ')
-    //       }
-
-    //       {!!cuttingDisplay &&
-    //       ('+ Порізка:' + ((cuttingDisplay) * currency.currency).toFixed(0) + ' грн ')
-    //       }
-
-    //       {!!solderGatesDisplay &&
-    //       ('+ Пропаювання підворіт:' + ((solderGatesDisplay) * currency.currency).toFixed(0) + ' грн ')
-    //       }
-    //       {!!solderPocketsDisplay &&
-    //       ('+ Пропаювання кишень:' + ((solderPocketsDisplay) * currency.currency).toFixed(0) + ' грн ')
-    //       }
-    //       {!!selectedOptionLamination?.price &&
-    //       ('+ Ламінація:' + ((selectedOptionLamination?.price) * currency.currency).toFixed(0) + ' грн ')
-    //       }
-    //       {!!stampDisplay &&
-    //       ('+ З печаткою:' + ((stampDisplay) * currency.currency).toFixed(0) + ' грн ')
-    //       }
-    //       {!!stretchOnTheStretcherDisplay &&
-    //       ('+ Натяжка на підрамник:' + (stretchOnTheStretcherDisplay * currency.currency).toFixed(0) + ' грн ')
-    //       }
-    //       {isMounting &&
-    //       ('+ Намонтажування:' + (currentItem?.mounting * currency.currency).toFixed(0) + ' грн ')
-    //       }
-    //       {currentDiscountTwentyMeter &&
-    //       ('- Знижка:' + Number(currentDiscountTwentyMeter).toFixed(0) + ' грн ')
-    //       }
-    //       {currentPersonalDiscount != 0 &&
-    //       ('- Персональна знижка:' + Number(currentPersonalDiscount).toFixed(0) + ' грн ')
-    //       }
-    //       {totalSum != 0 &&
-    //       ('= Итого:' + Number(totalSum).toFixed(0) + ' грн')
-    //       }
-    //     </div>
-    //   )
-    // }
-
     const displayOrderStory = () => {
       const orderItems = [];
     
       if (selectedOptionQuality?.price * quadrature) {
-        orderItems.push(`Друк ${((selectedOptionQuality?.price * quadrature) * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`Printing`)} ${((selectedOptionQuality?.price * quadrature) * currency.currency).toFixed(0)} грн`);
       }
     
       if (selectedOptionColor?.price * quadrature) {
-        orderItems.push(`Колір ${((selectedOptionColor?.price * quadrature) * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`Color`)} ${((selectedOptionColor?.price * quadrature) * currency.currency).toFixed(0)} грн`);
       }
     
       if (currentLuversDisplay) {
-        // orderItems.push(`Люверси ${currentLuversDisplay * currency.currency.toFixed(0)} грн`);
-        orderItems.push(`Люверси ${(currentLuversDisplay * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`Eyelets`)} ${(currentLuversDisplay * currency.currency).toFixed(0)} грн`);
       }
     
       if (cuttingDisplay) {
-        orderItems.push(`Порізка ${(cuttingDisplay * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`Cutting`)} ${(cuttingDisplay * currency.currency).toFixed(0)} грн`);
       }
     
       if (solderGatesDisplay) {
-        orderItems.push(`Пропаювання підворіт ${(solderGatesDisplay * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`SolderingOfGates`)} ${(solderGatesDisplay * currency.currency).toFixed(0)} грн`);
       }
     
       if (solderPocketsDisplay) {
-        orderItems.push(`Пропаювання кишень ${(solderPocketsDisplay * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`SolderingPockets`)} ${(solderPocketsDisplay * currency.currency).toFixed(0)} грн`);
       }
     
       if (selectedOptionLamination?.price) {
-        orderItems.push(`Ламінація ${(selectedOptionLamination?.price * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`Lamination`)} ${(selectedOptionLamination?.price * currency.currency).toFixed(0)} грн`);
       }
     
       if (stampDisplay) {
-        orderItems.push(`З печаткою ${(stampDisplay * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`WithAStamp`)} ${(stampDisplay * currency.currency).toFixed(0)} грн`);
       }
     
       if (stretchOnTheStretcherDisplay) {
-        orderItems.push(`Натяжка на підрамник ${(stretchOnTheStretcherDisplay * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`StretchOnTheStretcher`)} ${(stretchOnTheStretcherDisplay * currency.currency).toFixed(0)} грн`);
       }
     
       if (isMounting) {
-        orderItems.push(`Намонтажування ${(currentItem?.mounting * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`Mounting`)} ${(currentItem?.mounting * currency.currency).toFixed(0)} грн`);
       }
     
       if (currentDiscountTwentyMeter) {
-        orderItems.push(`- Знижка ${Number(currentDiscountTwentyMeter).toFixed(0)} грн`);
+        orderItems.push(`- ${t(`Discount`)} ${Number(currentDiscountTwentyMeter).toFixed(0)} грн`);
       }
     
       if (currentPersonalDiscount !== 0) {
-        orderItems.push(`- Персональна знижка ${Number(currentPersonalDiscount).toFixed(0)} грн`);
+        orderItems.push(`- ${t(`Personal Discount`)} ${Number(currentPersonalDiscount).toFixed(0)} грн`);
+      }
+    
+      if (count && totalSum !== 0) {
+        orderItems.push(`x ${count} ${t(`Circulation`)}`);
       }
     
       if (totalSum !== 0) {
-        orderItems.push(`= Итого ${Number(totalSum).toFixed(0)} грн`);
+        orderItems.push(`= ${t(`Total`)} ${Number(totalSum).toFixed(0)} грн`);
       }
     
       return (
@@ -549,7 +504,7 @@ const CalculatorPartner = () => {
           {orderItems.map((item, index) => {
             if (index === 0) {
               return item;
-            } else if (item.startsWith("-") || item.startsWith("=")) {
+            } else if (item.startsWith("-") || item.startsWith("=") || item.startsWith("x")) {
               return ` ${item}`;
             } else {
               return ` + ${item}`;
@@ -558,9 +513,6 @@ const CalculatorPartner = () => {
         </div>
       );
     };
-
-    console.log('selectedOptionEyelets',selectedOptionEyelets);
-    console.log('selectedOptionCutting',selectedOptionCutting);
 
     return (
       <div className="calc_wrap">
@@ -594,7 +546,7 @@ const CalculatorPartner = () => {
 
               <div className="calc-item quality">
                 {currentItem?.color && currentItem?.color != 0 && (
-                  <SelectSec
+                  <SelectedColor
                     item={currentItem?.color}
                     title={"Color"}
                     selectedOption={selectedOptionColor}
@@ -874,7 +826,7 @@ const CalculatorPartner = () => {
                 <div>
                   <button onClick={handleTotalSum} disabled={isProgresBar}>
                     {waitingSendOrder ? (
-                      <p>{t(`Відправка замовлення...`)}</p>
+                      <p>{t(`Sending the order`)}</p>
                     ) : (
                       <p>{t(`Download the order`)}</p>
                     )}

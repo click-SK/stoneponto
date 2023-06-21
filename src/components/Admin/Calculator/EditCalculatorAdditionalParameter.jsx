@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { AiOutlineDown } from "react-icons/ai";
-import { AiFillEdit } from "react-icons/ai";
 import {RiFileEditFill} from 'react-icons/ri';
-
 const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, mainId, goodsIndex, openCloseFunc, isOpen }) => {
-  // const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [newPrice, setNewPrice] = useState(0);
   
@@ -27,7 +24,6 @@ const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, 
     })
       .then((res) => res.json())
       setTimeout(() => {
-        // window.location.reload();
         setIsFetch(state => !state)
       },1000)
   };
@@ -50,10 +46,7 @@ const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, 
         {isOpen && (
           <div className="goods_edit_wrap margin_none" >
             <div className='goods_edit_item flex-column'>
-            {/* <div className="goods_edit_wrap_header ">
-              <p>Назва</p>
-              <p>Ціна</p>
-            </div> */}
+
             <div className='goods_edit_item_title padding_none margin_none'>
             <p>{t(`${title}`)}</p>
               <p>{data} $</p>
