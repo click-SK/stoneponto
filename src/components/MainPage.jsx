@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import '../style/mainPage.scss'
 import Slide from './Slide/Slide';
+import Portfolio from './Portfolio';
 import {BsBackspace } from 'react-icons/bs';
 
 const MainPage = () => {
@@ -95,7 +96,7 @@ const MainPage = () => {
                             className='services_item'
                             
                             > 
-                            <img className='img_services' src="./img/services/pic1.png"
+                            <img className='img_services' src="./img/services/pic1.jpg"
                             onClick={() => hendlerOpenDesint()} alt="" />
                              <p className='services_name' >ДИЗАЙН</p>
                              {isOpenDesing &&
@@ -108,7 +109,7 @@ const MainPage = () => {
                                  /> Назад </div>
                                  <h3>ДИЗАЙН</h3>   
                                  <div className='img_wraper'>
-                                    <img src="./img/services/pic1.png" alt="" />
+                                    <img src="./img/services/pic1.jpg" alt="" />
                                  </div>
                                 <p>Наша типография широкоформатной печати и наружной рекламы Express-Print предоставляет полный цикл услуг. И первое это разработка дизайна. Это может быть разработка фирменного стиля, логотипа или же обычное объявление о продаже недвижимости. Все это мы нарисуем, учитывая ваши пожелания, сделаем несколько образцов, покажем вам для утверждения и подготовим для широкоформатной печати. Наши дизайнеры уже знают как подготовить макет к печати в нашей типографии.</p>
                                 <p>Стоимость дизайнерских услуг от 300 грн. В зависимости от сложности, сроков, и количества изображений. Обычно дизайн баннера или пленки делается в течении дня.</p>
@@ -121,7 +122,7 @@ const MainPage = () => {
                                 <img
                                 className='img_services'
                                 onClick={() => hendlerOpenPrint()}
-                                src="./img/services/pic2.png" alt="" />
+                                src="./img/services/pic2.jpg" alt="" />
                                 <p className='services_name' >Широкоформатная печать</p>
                                 {isOpenPrint &&
                                 <div className='modal_services'>
@@ -133,7 +134,7 @@ const MainPage = () => {
                                  /> Назад </div>
                                 <h3>Широкоформатная печать</h3>   
                                 <div className='img_wraper'>
-                                    <img src="./img/services/pic2.png" alt="" />
+                                    <img src="./img/services/pic2.jpg" alt="" />
                                  </div>
                                  <div className='modal_services_info'>
                                     <p>Широкоформатная печать – это печать больших форматов на разных материалах. Формат А3(297х420мм) можно напечатать на лазерном принтере в любом центре полиграфических услуг. Если вам надо что то больше этого размера, то это уже широкоформатная печать.
@@ -158,7 +159,7 @@ const MainPage = () => {
                             > <img 
                             className='img_services'
                             onClick={() => hendlerOpenLamin()}
-                            src="./img/services/pic3.png" alt="" />
+                            src="./img/services/pic3.jpg" alt="" />
                              <p className='services_name' >Ламинирование</p>
                              {isOpenLamin &&
                                 <div className='modal_services'>
@@ -170,7 +171,7 @@ const MainPage = () => {
                                  /> Назад </div>
                                  <h3>Широкоформатная печать</h3>   
                                  <div className='img_wraper'>
-                                    <img src="./img/services/pic3.png" alt="" />
+                                    <img src="./img/services/pic3.jpg" alt="" />
                                  </div>
                                 <p>Это услуга по покрытию отпечатанного материала защитной прозрачной или непрозрачной пленкой. Производится эта услуга на промышленном ламинаторе шириной 1,6 метра. Чаще всего мы ламинируем отпечатанную самоклеящуюся пленку для защиты от царапин или выгорания. Но так же можем заламинировать и бумагу. Кроме того, мы изготавливаем широкоформатную печать для поклейки на стекло изнутри помещения. Таким образом с улицы будет видна ваша реклама, а фактически пленка будет наклеена внутри помещения.
                                 </p>
@@ -183,7 +184,7 @@ const MainPage = () => {
                             > <img 
                             className='img_services'
                             onClick={() => hendlerOpenPlotter()}
-                            src="./img/services/pic4.png" alt="" />
+                            src="./img/services/pic4.jpg" alt="" />
                              <p className='services_name' >Плоттерная порезка</p>
                              {isOpenPlotter &&
                                 <div className='modal_services'>
@@ -195,7 +196,7 @@ const MainPage = () => {
                                  /> Назад </div>
                                  <h3>Плоттерная порезка</h3>   
                                  <div className='img_wraper'>
-                                    <img src="./img/services/pic4.png" alt="" />
+                                    <img src="./img/services/pic4.jpg" alt="" />
                                  </div>
                                 <p>Широкоформатная типография Express-Print изготавливает фигурные наклейки и стикерпаки любого размера. Печать наклеек на интерьерном принтере с последующей подрезкой пленки. Это красиво и удобно для маркировки вашей продукции. Кроме того наш плоттер может фигурно порезать даже заламинированную пленку. 
                                 </p>
@@ -207,7 +208,7 @@ const MainPage = () => {
                             > <img 
                             className='img_services'
                             onClick={() => hendlerOpenGates()}
-                            src="./img/services/pic6.png" alt="" /> 
+                            src="./img/services/pic6.jpg" alt="" /> 
                             <p className='services_name' >Проварка подворотов и набивка люверсов</p>
                             {isOpenGates &&
                                 <div className='modal_services'>
@@ -219,7 +220,7 @@ const MainPage = () => {
                                  /> Назад </div>
                                     <h3>Проварка подворотов и набивка люверсов</h3>   
                                 <div className='img_wraper'>
-                                    <img src="./img/services/pic6.png" alt="" />
+                                    <img src="./img/services/pic6..jpg" alt="" />
                                  </div>
                                  <div>
                                     <p>Широкоформатная типография Express-Print производит полный цикл постпечатной обработки. </p>
@@ -235,7 +236,7 @@ const MainPage = () => {
                             > <img
                             className='img_services'
                             onClick={() => hendlerOpenAdversting()}
-                             src="./img/services/pic7.png" alt="" />
+                             src="./img/services/pic7.jpg" alt="" />
                              <p className='services_name' >Изготовление Наружной рекламы</p>
                              {isOpenAdversting &&
                                 <div className='modal_services'>
@@ -247,7 +248,7 @@ const MainPage = () => {
                                  /> Назад </div>
                                     <h3>Изготовление Наружной рекламы</h3>   
                                 <div className='img_wraper'>
-                                    <img src="./img/services/pic7.png" alt="" />
+                                    <img src="./img/services/pic7.jpg" alt="" />
                                  </div>
                                  <div>
                                     <p>Мы изготавливаем любой вид наружной и внутренней рекламы. Это могут быть разнообразные стенды, уголки покупателя, акриловые подставки под товар, настенные рекламные конструкции (лого компании на ресепшене). На улице – это могут быть вывески, световые короба, фреймлайты, объёмные буквы. Все может быть с диодной подстветкой или без нее. Поклейка самоклеющейся пленки на окна, натяжка баннера на рекламную конструкцию. Для замеров и просчетов на место выезжают наши специалисты. Так же наши специалисты демонтируют старую рекламу, пленку, баннера, а потом повесят, приклеют, натянут вашу новую рекламу. Все в кратчайшие сроки, качественно и на высоком профессиональном уровне.</p>
@@ -291,6 +292,7 @@ const MainPage = () => {
                             
                         </ul>
                     </div>
+                    <Portfolio/>                  
             </div>
         </div>
     );

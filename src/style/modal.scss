@@ -59,15 +59,22 @@
   }
 
   .colum_item_name{
-    width: 400px;
+    width: 100%;
     text-align: left;
+    padding-left: 46px;
+    p{
+      width: 400px;
+    }
+    .price_value{
+      width: 100px;
+    }
   }
 
   .price_wrap{
     display: flex;
     flex-direction: row;
-    // align-items: flex-end;
-    // padding-top: 20px;
+    width: 43%;
+    justify-content: flex-start;
   }
 
   .colum_item_price{
@@ -94,4 +101,15 @@
     width: 400px;
     text-align: left;
     padding: 10px 0 0 10px;
+  }
+
+
+  .value_item{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .modal_table{
+    width: 100%;
   }
