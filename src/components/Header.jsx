@@ -94,12 +94,18 @@ const Header = () => {
             <ChooseLanguage />
           </span>
           <span className="wrap_item text social_icon_none">
-            <FaTelegramPlane
-            className="icon_social"/>
-            <FaWhatsapp
-            className="icon_social"/>
-            <FaViber
-            className="icon_social"/>
+            {/* <FaTelegramPlane
+            className="icon_social"/> */}
+            <a href="viber://chat?number=380966267481">
+              <FaViber
+              className="icon_social"/>
+          
+            </a> 
+            <a href="https://api.whatsapp.com/send?phone=380966267481">
+              <FaWhatsapp
+              className="icon_social"/>
+          
+            </a> 
           </span>
         </div>
       </div>

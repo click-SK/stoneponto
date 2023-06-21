@@ -39,7 +39,7 @@
   padding: 0%;
   margin: 0;
   border: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 *,
 *::before,
@@ -54,7 +54,7 @@
 }
 a:focus,
 a:active {
-  outline: non;
+  outline: none; 
 }
 nav,
 footer,
@@ -113,7 +113,7 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: 400;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 a {
@@ -128,7 +128,7 @@ input, textarea {
 
   .App {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Open Sans", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;

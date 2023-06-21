@@ -160,6 +160,9 @@
                 border-radius: 10px;
                 box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.185);
                 cursor: pointer;
+                height: 190px;
+                max-width: 190px;
+                object-fit: cover;
             }
 
             .services_name{
@@ -196,8 +199,8 @@
   
   .img_wraper{ 
     position: relative;
-    width: 100%;
-    height: 300px;
+    // width: 100%;
+    // height: 300px;
     overflow: hidden;
     img {
         width: 100%;
@@ -518,6 +521,73 @@
 //         height: 5px;
 //       background-color:#f8f8f8;
 //     }
+
+.portfolio{
+    display: flex;
+    padding: 40px 0 20px 0;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+    background: $color_prime;
+    .portfolio_main_img{
+        width: 70%;
+        max-width: 600px;
+        // max-height: 600px;
+        object-fit: cover;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.185);
+        margin: 50px 0;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+    }
+    .img_wrap_work{
+        display: flex;
+        flex-wrap: wrap;
+        width: 80%;
+        gap: 20px;
+        // margin-top: 1vh;
+        img{
+            flex: 33% 1;
+            min-width: 300px;
+            max-height: 300px;
+            object-fit: cover;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.185);
+        }
+    }
+
+    h2{
+        position: relative;
+        margin-bottom: 10px;
+        font-size: 40px;
+        color: $color_text_white;
+        margin: 40px 0;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-family: 'Roboto', sans-serif;
+        &::after{
+            content: '';
+            position: absolute;
+            top: -17px;
+            left: -30px;
+            width: 50%;
+            height: 6px;
+            border-radius: 3px;
+            background: $color_text_white ;
+        }
+        &::before{
+            content: '';
+            position: absolute;
+            bottom: -17px;
+            right: -30px;
+            width: 50%;
+            height: 6px;
+            border-radius: 3px;
+            background: $color_text_white;
+        }
+    }
+}
     
 @media (max-width: 1200px){
     .banner_wrap{
