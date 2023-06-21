@@ -41,19 +41,22 @@
         max-width: 1200px;
         flex-direction: row;
         flex-wrap: wrap;
+        gap: 40px;
         justify-content: space-around;
         min-height: 600px;
     }
     
     .blog_item{
         display: flex;
-        align-items: flex-start;
+        flex: 35% 1;
+        // align-items: flex-start;
         flex-direction: column;
-        margin: 10px 0 30px 0;
+        // margin: 10px 0 30px 0;
         border-radius: 10px;
         border: 1px solid #22293573;
         position: relative;
         max-width: 500px;
+        min-width: 400px;
         overflow: hidden;
         transition: all 0.4s ease-in-out;
         
@@ -70,9 +73,11 @@
             position: relative;
             img{
                 position: absolute;
+                object-fit: none;
                 left: 0;
-                top: -33%;
+                // top: -33%;
                 width: 100%;
+                min-height: 252px;
             }
         }
 
@@ -122,5 +127,15 @@
         }
         .ql-container.ql-snow {
             border: 0px;
+        }
+    }
+
+    // /blog_item
+
+
+    @media (max-width: 550px){
+        .blog_item{
+            min-width: 80%;
+            max-width: 80%;
         }
     }
