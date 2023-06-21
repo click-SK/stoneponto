@@ -3,9 +3,9 @@
 .admin_panel_blog{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 100%;
     padding: 20px;
+    min-height: 600px;
 }
 .admin_panel_blog_header{
     display: flex;

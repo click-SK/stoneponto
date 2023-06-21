@@ -45,9 +45,9 @@ const UserPanel = () => {
       };
 
   return (
-    <>
+    <div className='user_profile_wrap'>
     {user ? 
-        <div className='user_profile_wrap' >
+        <div>
         <p className='user_profile_title'>{t(`My office`)}</p>
         <div className='user_profile_information' >
           <div className='user_data'>
@@ -97,7 +97,7 @@ const UserPanel = () => {
       </div>
       :
       <Loader/>}
-    </>
+    </div>
   );
 };
 
