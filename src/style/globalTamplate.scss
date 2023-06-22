@@ -20,6 +20,8 @@ $color_text_black: #141414;
     -o-transition: all 0.4s ease-in-out;
     -ms-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
+    display: flex;
+    align-items: center;
 }
 
 %button_prime_hover{
