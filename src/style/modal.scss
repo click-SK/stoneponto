@@ -113,3 +113,31 @@
   .modal_table{
     width: 100%;
   }
+
+  .for_layouts{
+    margin-top: 15px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    h2{
+      font-weight: 800;
+      position: relative;
+      padding: 0 20px;
+    }
+
+  }
+
+  .for_layouts_list_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 5px;
+    border: 1px solid #eee;
+    margin: 20px 10px 0;
+    padding: 10px;
+    li{
+      text-align: left;
+      line-height: 1.5;
+
+    }
+  }

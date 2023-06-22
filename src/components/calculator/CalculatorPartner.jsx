@@ -6,6 +6,7 @@ import ChoseRoleSelect from './ChoseRoleSelect'
 import ProgressBar from './ProgressBar'
 import InputsTamplate from '../template/InputsTamplate';
 import ModalPrice from './ModalPrice';
+import ForLayouts from "./ForLayouts";
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentUser } from "../../store/auth";
@@ -16,6 +17,7 @@ import Loader from "../Loader/Loader";
 const CalculatorPartner = () => {
     const [goodsList, setGoodsList] = useState ([])
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenLayoust, setIsOpenLayoust] = useState(false);
     const [isOpenAllusers, setIsOpenAllusers] = useState(false);
     const [currentItem, setСurrentItem] = useState({});
     const [width, setWitdh] = useState('')
@@ -526,7 +528,17 @@ const CalculatorPartner = () => {
               currentUserState={currentUserState}
               isOpenAllusers={isOpenAllusers}
               setCurrentIdFunc={setCurrentIdFunc}/>
-              <button className="btn" onClick={() => setIsOpen(!isOpen)}>
+              <div>
+              <button className="btn" onClick={() => setIsOpenLayoust(!isOpenLayoust)}>
+                  ТРЕБОВАНИЯ К МАКЕТАМ
+              </button>
+              <ForLayouts
+                isOpen={isOpenLayoust}
+                setIsOpen={setIsOpenLayoust}
+              />
+              <button 
+              style={{margin: '0 0 0 10px'}}
+              className="btn" onClick={() => setIsOpen(!isOpen)}>
                 {t(`Prices for 1m2`)}
               </button>
               <ModalPrice
@@ -534,6 +546,8 @@ const CalculatorPartner = () => {
                 setIsOpen={setIsOpen}
                 goodsList={goodsList}
               />
+
+              </div>
             </title>
             <div className="wrap_row">
               <div className="calc-item material">
