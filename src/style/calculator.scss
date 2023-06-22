@@ -263,6 +263,56 @@ textarea{
     font-weight: 600;
 }
 
+// modal dell //
+.modal_dell_order{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    max-width: 500px;
+    margin-top: 10px;
+    input{
+        width: 11px;
+        height: 11px;
+
+    }
+    p{
+        text-align: left;
+        width: 100%;
+    }
+}
+.item_textarea{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+
+    height: 70px;
+    .check{
+        display: flex;
+        align-items: center;
+        width: 20%;
+        height: 100%;
+        gap: 20px;
+    }
+    textarea{
+        height: 100%;
+        width: 80%;
+    }
+
+}
+
+.furniture_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button_wraper_dell{
+    display: flex;
+    margin-top: 50px;
+}
+
 
 @media (max-width: 780px){
 

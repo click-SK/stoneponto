@@ -129,11 +129,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    position: absolute;
+    left: 18%;
     padding: 0 5px;
+    position: absolute;
     top: 30px;
-    left: 20%;
+    right: 1%;
     width: 80%;
+    // max-width: 1200px;
+
 }
 
 .goods_wrap{
@@ -174,7 +177,7 @@
     padding-top: 20px;
     margin: 0 5px;
     background: #e5eefd;
-    width: 95%;
+    width: 99.7%;
     left: 0;  
     z-index: 1000;
     max-height: 450px;
@@ -259,7 +262,25 @@
 
 
 
-@media (max-width: 1000px){
+@media (max-width: 1305px){
+    .pricing_calc_open_goods{
+        left: 21%;
+        width: 77%;
+    }
+}
+@media (max-width: 1165px){
+    .pricing_calc_open_goods{
+        left: 21%;
+    }
+}
+@media (max-width: 1115px){
+    .pricing_calc_open_goods{
+
+        left: 23%;
+        width: 76%;
+    }
+}
+@media (max-width: 1001px){
 
 
     .pricing_calc__categories{
@@ -279,6 +300,24 @@
     .pricing_calc{
         height: 100%;
     }
+    .pricing_calc_open_goods{
+        left: 25%;
+        width: 72%;
+    }
+}
+@media (max-width: 920px){
+
+    .pricing_calc_open_goods{
+        left: 27%;
+        width: 72%;
+    }
+}
+@media (max-width: 850px){
+
+    .pricing_calc_open_goods{
+        left: 29%;
+        width: 70%;
+    }
 }
 @media (max-width: 780px){
 
@@ -289,6 +328,12 @@
     .pricing_calc__edit_item_title{
         max-width: 100%;
         width: 100%;
+    }
+
+    .pricing_calc_open_goods{
+        position: relative;
+        width: 100%;
+        left: 0;
     }
 }
 @media (max-width: 600px){
