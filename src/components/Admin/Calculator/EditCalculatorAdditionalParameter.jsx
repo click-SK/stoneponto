@@ -57,7 +57,7 @@ const EditCalculatorAdditionalParameter = ({ title, data, editPath, setIsFetch, 
                   value={newPrice}
                   onChange={(e) => setNewPrice(e.target.value)}
                 />
-                <button onClick={handleEditButtonSave}>Save</button>
+                <button onClick={handleEditButtonSave}>{t(`Save`)}</button>
               </div>
             )}
             <RiFileEditFill 

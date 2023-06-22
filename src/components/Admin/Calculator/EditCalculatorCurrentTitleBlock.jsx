@@ -326,7 +326,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         <>
         {arrayGoods?.quality.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.quality} 
-        title={'Якість'}
+        title={'Quality'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -336,7 +336,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.cutting.length != 0 &&
         <EditCalculatorFullData currentArray={arrayGoods?.cutting} 
-        title={'Порізка'}
+        title={'Cutting'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
@@ -346,7 +346,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         }
         {arrayGoods?.stretchOnTheStretcher &&
         <EditCalculatorAdditionalParameter data={arrayGoods?.stretchOnTheStretcher} 
-        title={'Натяжка на подрамник стандартна ціна'}
+        title={'Tension on the stretcher standard price'}
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}

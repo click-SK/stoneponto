@@ -52,7 +52,7 @@ const EditCalculatorCurrentItem = ({item, mainId, editPath, setIsFetch, goodsInd
           {isEdit && 
           <div className='goods_edit_item_input'>
               <input value={newPrice} onChange={(e) => setNewPrice(e.target.value)}/>
-              <button onClick={handleEditButtonSave}>Save</button>
+              <button onClick={handleEditButtonSave}>{t(`Save`)}</button>
           </div>
           }
         </div>

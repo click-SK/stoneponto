@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useTranslation } from 'react-i18next';
 // import "../../../../style/historyTransactionsModal.scss";
 
 const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDelete }) => {
   const [textareaValue, setTextareaValue] = useState("");
+
+  const { t } = useTranslation();
 
   const handleOptionChange = (event) => {
     setDeleteText(event.target.value);
@@ -31,7 +34,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
               checked={deleteText === "Макет не в размере"}
               onChange={handleOptionChange}
             />
-            <p>Макет не в размере</p>
+            <p>{t(`Layout not in size`)}</p>
           </div>
           <div className="wrap_item">
             <input
@@ -40,7 +43,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
               checked={deleteText === "Слетели шпифты"}
               onChange={handleOptionChange}
             />
-            <p>Слетели шпифты</p>
+            <p>{t(`Flew fonts`)}</p>
           </div>
           <div className="wrap_item" >
             <input
@@ -50,7 +53,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
               checked={deleteText === "По желанию заказчика"}
               onChange={handleOptionChange}
             />
-            <p>По желанию заказчика</p>
+            <p>{t(`At the request of the custome`)}</p>
           </div>
           <div className="wrap_item">
             <input
@@ -60,7 +63,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
               checked={deleteText === "Макет в версии Corel выше 16. Версия должна быть 16 или ниже"}
               onChange={handleOptionChange}
             />
-            <p>Макет в версии Corel выше 16. Версия должна быть 16 или ниже</p>
+            <p>{t(`Layout in Corel version above 16. Version must be 16 or below`)}</p>
           </div>
           <div className="wrap_item">
             <input
@@ -70,7 +73,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
               checked={deleteText === "Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100"}
               onChange={handleOptionChange}
             />
-            <p>Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100</p>
+            <p>{t(`The black color in the layout is not composite or too composite. Black should be 60,60,60,100`)}</p>
           </div>
           <div className="wrap_item item_textarea">
             <input
@@ -84,7 +87,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
               deleteText !== "Макет не в размере"
             }
               onChange={handleOptionChange}
-            /> Свій варіант
+            /> {t(`Your option`)}
             <textarea
               value={textareaValue}
               onChange={(e) => handleTextareaChange(e.target.value)}

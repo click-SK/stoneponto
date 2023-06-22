@@ -763,9 +763,9 @@ const CalculatorPartner = () => {
                     ref={inputFileRef}
                   />
                   <button onClick={() => inputFileRef.current.click()}>
-                    Завантажити файл
+                  {t(`Download the file`)}
                   </button>
-                  <div>{selectedFile && <p>Файл вибрано: {selectedFile.name}</p>}</div>
+                  <div>{selectedFile && <p>{t(`File selected`)}: {selectedFile.name}</p>}</div>
                   <ProgressBar isProgresBar={isProgresBar} currentSizeFile={currentSizeFile} totalSizeFile={totalSizeFile} progress={progress}/>
                   <div>
                     {validationFile && (

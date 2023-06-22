@@ -51,7 +51,7 @@ const AddNewUser = () => {
                 placeholder={t(`Name`)}/>
             </div>
             <div className="input_wrap">
-                <p>{t(`Mail`)} </p>
+                <p>{t(`Mail`)}</p>
                 <input type='text' 
                 className={emailError == 'Невірний формат електронної адреси' ? 'error_email' : '' }
                 value={email} onChange={(e) => 
