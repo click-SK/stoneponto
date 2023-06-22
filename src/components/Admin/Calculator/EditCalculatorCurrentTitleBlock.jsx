@@ -32,7 +32,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       }, [lang]);
 
     const setQualityFunc = () => {
-      setIsQuality(state => ! state);
+      setIsQuality(state => !state);
       setIsEyelets(false);
       setIsColor(false);
       setIsLamination(false);
@@ -47,7 +47,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
     }
 
     const setEyeletsFunc = () => {
-      setIsEyelets(state => ! state);
+      setIsEyelets(state => !state);
       setIsQuality(false);
       setIsColor(false);
       setIsLamination(false);
@@ -62,7 +62,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
     }
 
     const setColorFunc = () => {
-      setIsColor(state => ! state);
+      setIsColor(state => !state);
       setIsEyelets(false);
       setIsQuality(false);
       setIsLamination(false);
@@ -77,7 +77,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
     }
 
     const setLaminationFunc = () => {
-      setIsLamination(state => ! state);
+      setIsLamination(state => !state);
       setIsColor(false);
       setIsEyelets(false);
       setIsQuality(false);
@@ -91,7 +91,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsStretchOnTheStretcherMin(false);
     }
     const setPosterFunc = () => {
-      setIsPoster(state => ! state);
+      setIsPoster(state => !state);
       setIsLamination(false);
       setIsColor(false);
       setIsEyelets(false);
@@ -105,7 +105,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsStretchOnTheStretcherMin(false);
     }
     const setSolderingOfGatesFunc = () => {
-      setIsSolderingOfGates(state => ! state);
+      setIsSolderingOfGates(state => !state);
       setIsPoster(false);
       setIsLamination(false);
       setIsColor(false);
@@ -119,7 +119,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsStretchOnTheStretcherMin(false);
     }
     const setSolderingPocketsFunc = () => {
-      setIsSolderingPockets(state => ! state);
+      setIsSolderingPockets(state => !state);
       setIsSolderingOfGates(false);
       setIsPoster(false);
       setIsLamination(false);
@@ -133,7 +133,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsStretchOnTheStretcherMin(false);
     }
     const setCuttingFunc = () => {
-      setIsCutting(state => ! state);
+      setIsCutting(state => !state);
       setIsSolderingPockets(false);
       setIsSolderingOfGates(false);
       setIsPoster(false);
@@ -147,7 +147,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsStretchOnTheStretcherMin(false);
     }
     const setMountingFunc = () => {
-      setIsMounting(state => ! state);
+      setIsMounting(state => !state);
       setIsCutting(false);
       setIsSolderingPockets(false);
       setIsSolderingOfGates(false);
@@ -161,7 +161,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsStretchOnTheStretcherMin(false);
     }
     const setStampFunc = () => {
-      setIsStamp(state => ! state);
+      setIsStamp(state => !state);
       setIsMounting(false);
       setIsCutting(false);
       setIsSolderingPockets(false);
@@ -175,7 +175,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsStretchOnTheStretcherMin(false);
     }
     const setStretchOnTheStretcherFunc = () => {
-      setIsStretchOnTheStretcher(state => ! state);
+      setIsStretchOnTheStretcher(state => !state);
       setIsStamp(false);
       setIsMounting(false);
       setIsCutting(false);
@@ -189,7 +189,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
       setIsStretchOnTheStretcherMin(false);
     }
     const setStretchOnTheStretcherFuncMin = () => {
-      setIsStretchOnTheStretcherMin(state => ! state);
+      setIsStretchOnTheStretcherMin(state => !state);
       setIsStretchOnTheStretcher(false);
       setIsStamp(false);
       setIsMounting(false);
