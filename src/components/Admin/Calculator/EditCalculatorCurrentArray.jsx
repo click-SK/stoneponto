@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import EditCalculatorCurrentItem from "./EditCalculatorCurrentItem";
+import { useTranslation } from 'react-i18next';
 const EditCalculatorCurrentArray = ({ currentArray, mainId, editPath, setIsFetch, goodsIndex, isFetch }) => {
   const [arrayWithoutFirstElement, setArrayWithoutFirstElement] = useState([]);
-
+  const { t } = useTranslation();
   useEffect(() => {
     if(Array.isArray(currentArray)) {
       const arr = currentArray.slice(1);
@@ -13,8 +14,8 @@ const EditCalculatorCurrentArray = ({ currentArray, mainId, editPath, setIsFetch
   return (
     <div className="goods_edit_wrap">
       <div className="goods_edit_wrap_header">
-        <p>Назва</p>
-        <p>Ціна</p>
+        <p>{t(`Title`)}</p>
+        <p>{t(`Price`)}</p>
       </div>
       {arrayWithoutFirstElement.length != 0 && 
       arrayWithoutFirstElement.map((item, idx) => (
