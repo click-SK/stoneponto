@@ -26,7 +26,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                 <title>
                     <p>{t(`Prices`)}</p>
                     <p>{t(`The course is on the website`)}: {currency?.currency} грн</p>
-                    <button onClick={() => setIsOpen(!isOpen)}>Close</button>
+                    <button onClick={() => setIsOpen(!isOpen)}>{t(`Close`)}</button>
                 </title>
                 <div className='table'>
                 <div className='table_head'>
