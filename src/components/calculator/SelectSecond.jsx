@@ -25,7 +25,6 @@ const SelectSecond = ({ item, title, selectedOption, setSelectedOption }) => {
   const handleClickOutside = (event) => {
     
     if (selectRef.current && !selectRef.current.contains(event.target)) {
-      console.log('event',event);
       setIsOpen(false);
     }
   };

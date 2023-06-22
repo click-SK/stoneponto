@@ -23,76 +23,75 @@ const ForLayouts = ({isOpen, setIsOpen, goodsList}) => {
         <div className='modal-overlay'>
             <div className='modal'>
                 <title>
-                    <p> ТРЕБОВАНИЯ К МАКЕТАМ</p>
-                    <button onClick={() => setIsOpen(!isOpen)}>Close</button>
+                    <p>{t(`REQUIREMENTS FOR LAYOUTS`)}</p>
+                    <button onClick={() => setIsOpen(!isOpen)}>{t(`Close`)}</button>
                 </title>
                 <div className='table'>
                 <div className='table_head for_layouts'>
-                        <h2 className='title_name '>Форматы файлов:</h2>
+                        <h2 className='title_name '>{t(`File formats`)}:</h2>
                         
                 </div>
                 <div className='table_body modal_table'>
                         <ul className='for_layouts_list_wrap'>
                             <li>• .tiff</li>
-                            <li>• .psd (Photoshop до версии CS3 включительно)</li>
+                            <li>• .psd ({t(`Photoshop up to and including CS3`)})</li>
                             <li>• .jpg</li>
-                            <li>• .cdr (Corel DRAW до 13 версии включительно)</li>
-                            <li>Макеты должны быть выполнены в размере 1:1, ( если в масштабе - указать масштаб)</li>
-                            <li>К макету желательно прилагать дополнительный файл в формате .jpeg для просмотра.</li>
+                            <li>• .cdr ({t(`CorelDRAW up to version 13 inclusive`)})</li>
+                            <li>{t(`Layouts must be made in the size of 1:1, (if in scale - indicate the scale)`)}</li>
+                            <li>{t(`It is desirable to attach an additional .jpeg file to the layout for viewing`)}</li>
                         </ul>
                 </div>
                 <div className='table_head for_layouts'>
-                        <h2 className='title_name '>Требования к растровым файлам:</h2>
+                        <h2 className='title_name '>{t(`Raster file requirements`)}:</h2>
                         
                 </div>
                 <div className='table_body modal_table'>
                         <ul className='for_layouts_list_wrap'>
-                            <li>• цветовая модель CMYK;</li>
-                            <li>• все слои должны быть сведены в единственный слой – Background, без дополнительных альфа-каналов (Channels), путей (Paths) и с LZW компрессией;</li>
-                            <li>• оптимальный объем файла- до 150 Мб;</li>
-                            <li>• .cdr (Corel DRAW до 13 версии включительно)</li>
-                            <li>-для печати обычным качеством 720dpi 50-100 dpi;</li>
-                            <li>-для печати изображений интерьерным качеством 1440dpi 150-300 dpi;</li>
-                            <li>• если предоставляете файлы в формате .psd со слоями для возможного дополнительного редактирования, то шрифтовые слои должны быть растрированы.</li>
+                            <li>• {t(`CMYK color model`)};</li>
+                            <li>• {t(`all layers must be merged into a single layer`)};</li>
+                            <li>• {t(`optimal file size - up to 150 MB`)};</li>
+                            <li>• .cdr ({t(`CorelDRAW up to version 13 inclusive`)})</li>
+                            <li>-{t(`for normal quality printing 720dpi 50-100 dpi`)};</li>
+                            <li>-{t(`for printing images with interior quality 1440dpi 150-300 dpi`)};</li>
+                            <li>• {t(`if you provide files in .psd format`)}</li>
                         </ul>
                 </div>
                 </div>
                 <div className='table_head for_layouts'>
-                        <h2 className='title_name '>Требования к векторным файлам:</h2>
+                        <h2 className='title_name '>{t(`Requirements for vector files`)}:</h2>
                         
                 </div>
                 <div className='table_body modal_table'>
                         <ul className='for_layouts_list_wrap'>
-                            <li>• цветовая модель CMYK;</li>
-                            <li>• одно изображение на печать — один файл (без страниц);</li>
-                            <li>• все шрифтовые объекты должны быть переведены в кривые;</li>
-                            <li>• макет не должен содержать видимые или невидимые объекты, выходящие за размер печати;</li>
-                            <li>• по границе запечатываемого изображения должна быть рамка (а не только установка формата документа)</li>
-                            <li>• все контуры (обводки) толщиной более 2мм необходимо перевести (конвертировать) в объекты (особенно в шрифтах);</li>
-                            <li>• если представляете макет 1:10, то проследите, чтобы в контурах (обводках) была установлена опция –Scale with image (масштабировать с изображением);</li>
-                            <li>• эффекты в файлах Corel Draw должны быть растрированы, т.к. нерастрированные эффекты и тени могут привести к некорректной печати и искажению изображения.</li>
-                            <li>Важно:</li>
-                            <li>• если в макете повышенные требования к отдельным (индексированным) цветам, то необходимо указать цвет по Panton Process , а также его процентное соотношение в модели CMYK;</li>
-                            <li>• черный цвет должен быть составным ( например: C60,M60,Y60, K100), в противном случае цвет получится темно серым, а не черным, это относится и к производным цветам с процентным содержание черной краски;</li>
-                            <li>• если по краям файла есть белые (светлые) поля - сделайте обводку черного цвета в 1пиксель;</li>
-                            <li>• избегайте большого масштабирования Bit-map-вых вставок в векторных программах - это отражается на качестве изображения;</li>
-                            <li>• разрешение печати и разрешение самого файла - разные понятия;</li>
-                            <li>• перед тем, как отправить макет, проверьте его изображение в программе Photoshop, чтобы убедиться в правильном отображении информации;</li>
-                            <li>• для достижения высокой степени совпадения по цвету при печати многоцветных и сложных изображений, рекомендуется прикреплять к макету цветовой профиль.</li>
+                            <li>• {t(`CMYK color model`)};</li>
+                            <li>• {t(`one image to print - one file (without pages)`)};</li>
+                            <li>• {t(`all font objects must be converted to curves`)};</li>
+                            <li>• {t(`the layout should not contain visible or invisible objects that go beyond the print size`)};</li>
+                            <li>• {t(`there should be a frame along the border of the printed image`)};</li>
+                            <li>• {t(`all contours (strokes) with a thickness of more than 2mm`)};</li>
+                            <li>• {t(`if you imagine a 1:10 layout`)};</li>
+                            <li>• {t(`effects in Corel Draw files must be rasterized`)}</li>
+                            <li>{t(`Important`)}:</li>
+                            <li>• {t(`if the layout has increased requirements for individual (indexed) colors`)};</li>
+                            <li>• {t(`black color must be composite (eg: C60,M60,Y60, K100)`)};</li>
+                            <li>• {t(`if there are white (light) fields around the edges of the file - make a black stroke of 1 pixel`)};</li>
+                            <li>• {t(`avoid large bit-map-out scaling`)};</li>
+                            <li>• {t(`print resolution and file resolution are different concepts`)};</li>
+                            <li>• {t(`before sending layout`)};</li>
+                            <li>• {t(`to achieve a high degree of matching`)}</li>
                         </ul>
                 
                 </div>
                 <div className='table_head for_layouts'>
-                        <h2 className='title_name '>При подготовке файлов следует учитывать:</h2>
+                        <h2 className='title_name '>{t(`When preparing files, consider`)}:</h2>
                         
                 </div>
                 <div className='table_body modal_table'>
                         <ul className='for_layouts_list_wrap'>
-                            <li>Обратите внимание на то, что если вы импортируете растровые картинки в Corel, то не следует вставлять файлы в модели RGB. Только файлы с цветовой моделью CMYK. Иначе при экспорте Corel сам сделает цветоделение в модель CMYK с непредсказуемым результатом. Поэтому перед тем, как помещать растровую картинку в макет, обработайте ее и внесите изменения в Photoshop. Не используйте эффекты прозрачности, тени и прочие эффекты в векторных файлах - они моделируются программой Corel в цветовом пространстве RGB и тоже будут некорректно экспортироваться.</li>
+                            <li>{t(`Pay attantion`)}</li>
                         </ul>
                         <ul className='for_layouts_list_wrap'>
-                            <li>Предоставление макетов для полноцветной широкоформатной печати в растровом формате TIFF является лучшей гарантией от неожиданных изменений в файле в процессе печати. При подготовке файла в формате TIFF необходимо свести все слои в один слой Background и удалить все дополнительные каналы и пути, которые создавались в процессе работы над макетом.
-                                Разрешение файлов должно быть оптимальным. Недостаточное разрешение файла приведет к тому, что будут заметны пиксели при изготовлении рекламных щитов, границы линий будут зубчатыми. Избыточное разрешение файлов значительно увеличит работу над файлом и его обработку, но качество отпечатка при этом не изменится. Для больших брандмауэров, которые устанавливаются на высоте и зрительно воспринимаются с большого расстояния можно снижать разрешение до 18-20 dpi. Если пиксели и видны с близкого расстояния, то при удалении на 10-20 метров они становятся неразличимыми. Немаловажным является качество и разрешение исходных картинок, которые вы помещаете в ваш макет для изготовления наружной рекламы. Необходимо учитывать, что то изображение, которое вы рассматриваете в формате А4, не всегда выглядит также в формате 6х3 м и более.</li>
+                            <li>{t(`Provision of layouts for full color wide format printing`)}</li>
                         </ul>
                 
                 </div>
