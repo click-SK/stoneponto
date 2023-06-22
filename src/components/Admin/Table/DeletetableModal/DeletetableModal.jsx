@@ -26,7 +26,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
           <AiOutlineClose className="cross" />
         </button>
         <div className="furniture_wrap">
-          <div className="modal_wrap_item">
+          <div className="wrap_item modal_dell_order">
             <input
               className="wrap_item_input"
               type="radio"
@@ -36,7 +36,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>{t(`Layout not in size`)}</p>
           </div>
-          <div className="wrap_item">
+          <div className="wrap_item modal_dell_order">
             <input
               type="radio"
               value="Слетели шпифты"
@@ -45,7 +45,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>{t(`Flew fonts`)}</p>
           </div>
-          <div className="wrap_item" >
+          <div className="wrap_item modal_dell_order" >
             <input
               className="wrap_item_input"
               type="radio"
@@ -55,7 +55,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>{t(`At the request of the custome`)}</p>
           </div>
-          <div className="wrap_item">
+          <div className="wrap_item modal_dell_order">
             <input
               className="wrap_item_input"
               type="radio"
@@ -65,7 +65,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>{t(`Layout in Corel version above 16. Version must be 16 or below`)}</p>
           </div>
-          <div className="wrap_item">
+          <div className="wrap_item modal_dell_order">
             <input
               className="wrap_item_input"
               type="radio"
@@ -75,27 +75,31 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
             />
             <p>{t(`The black color in the layout is not composite or too composite. Black should be 60,60,60,100`)}</p>
           </div>
-          <div className="wrap_item item_textarea">
-            <input
-              className="wrap_item_input"
-              type="radio"
-              value=""
-              checked={deleteText !== "Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100" && 
-              deleteText !== "Макет в версии Corel выше 16. Версия должна быть 16 или ниже" &&
-              deleteText !== "По желанию заказчика" &&
-              deleteText !== "Слетели шпифты" &&
-              deleteText !== "Макет не в размере"
-            }
-              onChange={handleOptionChange}
-            /> {t(`Your option`)}
+          <div className="wrap_item item_textarea modal_dell_order">
+            <div className="check">
+              <input
+                className="wrap_item_input"
+                type="radio"
+                value=""
+                checked={deleteText !== "Черный цвет в макете не композитный или чересчур композитный. Черный должен быть 60,60,60,100" && 
+                deleteText !== "Макет в версии Corel выше 16. Версия должна быть 16 или ниже" &&
+                deleteText !== "По желанию заказчика" &&
+                deleteText !== "Слетели шпифты" &&
+                deleteText !== "Макет не в размере"
+              }
+                onChange={handleOptionChange}
+              /> {t(`Your option`)}
+            </div>
             <textarea
               value={textareaValue}
               onChange={(e) => handleTextareaChange(e.target.value)}
             />
           </div>
+          <div className="button_wraper_dell">
+            <button onClick={handleDelete} style={{marginRight:'5px', backgroundColor:'red'}}>Видалити</button>
+            <button onClick={onClose}>Відміна</button>
+          </div>
         </div>
-        <button onClick={handleDelete} style={{marginRight:'5px', backgroundColor:'red'}}>Видалити</button>
-        <button onClick={onClose}>Відміна</button>
       </div>
     </div>
   );
