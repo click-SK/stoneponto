@@ -528,7 +528,7 @@ const CalculatorPartner = () => {
               currentUserState={currentUserState}
               isOpenAllusers={isOpenAllusers}
               setCurrentIdFunc={setCurrentIdFunc}/>
-              <div>
+              <div style={{display:'flex'}}>
               <button className="btn" onClick={() => setIsOpenLayoust(!isOpenLayoust)}>
                   ТРЕБОВАНИЯ К МАКЕТАМ
               </button>
