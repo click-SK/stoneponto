@@ -159,7 +159,7 @@
     }
 }
 .goods_title_active{
-    background: #e5eefd;
+    border-bottom: 1px solid #000000;
     p{
         font-weight: 600;
     }
@@ -176,7 +176,7 @@
     position: absolute;
     padding-top: 20px;
     margin: 0 5px;
-    background: #e5eefd;
+    background: white;
     width: 99.7%;
     left: 0;  
     z-index: 1000;

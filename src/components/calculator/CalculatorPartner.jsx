@@ -68,6 +68,7 @@ const CalculatorPartner = () => {
     const [solderPocketsDisplay, setSolderPocketsDisplay] = useState(0);
     const [cuttingDisplay, setCuttingDisplay] = useState(0);
     const [stampDisplay, setStampDisplay] = useState(0);
+    const [laminationDisplay, setLaminationDisplay] = useState(0);
     const [stretchOnTheStretcherDisplay, setStretchOnTheStretcherDisplay] = useState(0);
     const [status] = useState({
       name: 'New',
@@ -110,8 +111,8 @@ const CalculatorPartner = () => {
   useEffect(() =>{
     const descriptionObj = {
       cutting: {
-        option: selectedOptionCutting?.price ? (lang == "Ua" ? 'Порізка: ' : 'Порезка: ') : '',
-        name: selectedOptionCutting?.price ? (lang == "Ua" ? selectedOptionCutting?.nameUa : selectedOptionCutting?.nameRu) : '',
+        option: (selectedOptionCutting && selectedOptionCutting.nameUa != 'Ні') ? (lang == "Ua" ? 'Порізка: ' : 'Порезка: ') : '',
+        name: (selectedOptionCutting && selectedOptionCutting.nameUa != 'Ні') ? (lang == "Ua" ? selectedOptionCutting?.nameUa : selectedOptionCutting?.nameRu) : '',
       },
       solderGates: {
         option: selectedOptionSolderGates?.price ? (lang == "Ua" ? 'Пропаювання підворіт: ' : 'Пропайка подворотов: ') : '',
@@ -217,16 +218,20 @@ const CalculatorPartner = () => {
       const currentCutting = ((selectedOptionCutting?.price * linearMeter) || 0);
       const currentStamp = (isStamp ? (currentItem?.stamp * linearMeter) : 0)
       const currentStretchOnTheStretcher = (isStretch ? currentItem?.goods && (quadrature < 0.5 ? (currentItem?.goods[0]?.stretchOnTheStretcherMin * quadrature) : (currentItem?.goods[0]?.stretchOnTheStretcher) * quadrature) : 0);
+      const currentLamination = ((selectedOptionLamination?.price * quadrature) || 0)
       setSolderGatesDisplay(currentSolderGates);
       setSolderPocketsDisplay(currentSolderPockets);
+      console.log('currentCutting',currentCutting);
       setCuttingDisplay(currentCutting);
       setStampDisplay(currentStamp);
       setStretchOnTheStretcherDisplay(currentStretchOnTheStretcher);
+      setLaminationDisplay(currentLamination);
 
       const totalSum1 = 
      ((currentLuversPrice) || 0) +
      ((selectedOptionQuality?.price * quadrature) || 0) +
      ((selectedOptionColor?.price * quadrature) || 0) +
+     (currentLamination) +
      (currentSolderGates || 0) +
      (currentSolderPockets || 0) +
      (currentCutting) +
@@ -291,7 +296,7 @@ const CalculatorPartner = () => {
 
     const handleChange = (event) => {
       const file = event.target.files[0];
-      const allowedExtensions = ['jpg', 'tif', 'rar', 'zip', '7z', 'cdr'];
+      const allowedExtensions = ['jpg', 'tiff','tif', 'rar', 'zip', '7z', 'cdr'];
       const fileExtension = getFileExtension(file.name);
     
       if (allowedExtensions.includes(fileExtension)) {
@@ -299,7 +304,7 @@ const CalculatorPartner = () => {
         setselectedFileBoolean(false);
         setValidationFile(false);
       } else {
-        alert('Невірний формат файлу. Файл має бути формату: jpg, tif, rar, zip, 7z, cdr');
+        alert('Невірний формат файлу. Файл має бути формату: jpg, tiff, tif, rar, zip, 7z, cdr');
         // Очищення вибраного файлу
         event.target.value = null;
         setselectedFile(null);
@@ -470,7 +475,7 @@ const CalculatorPartner = () => {
       }
     
       if (selectedOptionLamination?.price) {
-        orderItems.push(`${t(`Lamination`)} ${(selectedOptionLamination?.price * currency.currency).toFixed(0)} грн`);
+        orderItems.push(`${t(`Lamination`)} ${(laminationDisplay * currency.currency).toFixed(0)} грн`);
       }
     
       if (stampDisplay) {
@@ -771,12 +776,12 @@ const CalculatorPartner = () => {
                   <h3>Файл</h3>
                   <input
                     type="file"
-                    accept=".jpg, .tif, .rar, .zip, .7z, .cdr"
+                    accept=".jpg, .tiff, .tif, .rar, .zip, .7z, .cdr"
                     hidden
                     onChange={handleChange}
                     ref={inputFileRef}
                   />
-                  <button onClick={() => inputFileRef.current.click()}>
+                  <button onClick={() => inputFileRef.current.click()} disabled={isProgresBar}>
                   {t(`Download the file`)}
                   </button>
                   <div>{selectedFile && <p>{t(`File selected`)}: {selectedFile.name}</p>}</div>

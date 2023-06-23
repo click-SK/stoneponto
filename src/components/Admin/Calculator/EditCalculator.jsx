@@ -33,9 +33,7 @@ const EditCalculator = () => {
         setIsPapear(false);
         setIsHolst(false);
         setIsTollingMaterial(false);
-    
         setIsLightTransmittingPlastic(false);
-
      }
 
      const closeOpenPlencaFunc = () => {
@@ -44,9 +42,7 @@ const EditCalculator = () => {
         setIsPapear(false);
         setIsHolst(false);
         setIsTollingMaterial(false);
-    
         setIsLightTransmittingPlastic(false);
-
      }
 
      const closeOpenPapearFunc = () => {
@@ -55,9 +51,7 @@ const EditCalculator = () => {
         setIsPlenca(false);
         setIsHolst(false);
         setIsTollingMaterial(false);
-    
         setIsLightTransmittingPlastic(false);
-
      }
 
      const closeOpenTollingMaterialFunc = () => {
@@ -66,9 +60,7 @@ const EditCalculator = () => {
         setIsBaner(false);
         setIsPlenca(false);
         setIsPapear(false);
-    
         setIsLightTransmittingPlastic(false);
-
      }
 
      const closeOpenHolstFunc = () => {
@@ -77,7 +69,6 @@ const EditCalculator = () => {
         setIsBaner(false);
         setIsPlenca(false);
         setIsPapear(false);
-    
         setIsLightTransmittingPlastic(false);
      }
 
