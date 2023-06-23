@@ -40,7 +40,7 @@ const SelectSecond = ({ item, title, selectedOption, setSelectedOption }) => {
       <div className="custom-select">
         <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
           {selectedOption?.imageColor && <img className="color_img" src={`https://server-ponto-print.herokuapp.com${selectedOption?.imageColor}`} />}
-          {(selectedOption?.nameUa && lang === 'Ua' ? selectedOption.nameUa : selectedOption.nameUa) || (lang === 'Ua' ? item[0]?.nameUa : item[0]?.nameUa)}
+          {(selectedOption?.nameUa && lang === 'Ua' ? selectedOption.nameUa : selectedOption.nameRu) || (lang === 'Ua' ? item[0]?.nameUa : item[0]?.nameUa)}
         </div>
         {isOpen && (
           <div className="options">

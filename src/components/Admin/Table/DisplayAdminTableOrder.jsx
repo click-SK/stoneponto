@@ -95,6 +95,8 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
     }, 1000);
   };
 
+  console.log('order',order);
+
   return (
     <>
       {order?.status?.currentStatus == "new" && (
@@ -104,12 +106,24 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
-            <div></div>
-            <div></div>
+            <div 
+            className="button_wrap"
+             >
+              <button 
+              style={{ padding: "5px 8px", background:'#5aad5a', margin:'0 2px' }}
+              onClick={handleFinished}>
+                <MdDoneOutline/></button>
+              <button 
+              style={{ padding: "5px 8px", background:'red', margin:'0 2px'  }}
+              onClick={handleOpenModal}>
+              <MdOutlineDeleteForever/>
+              </button>
+
+            </div>
           </div>
         </div>
       )}
-      {order?.status?.currentStatus == "download" && (
+      {(order?.status?.currentStatus == "download" || order?.status?.currentStatus == "new") && (
         <div
           className="table_item table_item_download"
         >

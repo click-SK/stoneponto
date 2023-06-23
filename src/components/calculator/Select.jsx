@@ -35,7 +35,7 @@ const Select = ({ goods, setcurrentItem }) => {
   return (
     <div className="custom-select" id="select-first" ref={selectRef}>
       <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
-        {(selectedOption?.nameUa && selectedOption?.nameUa) || goods[0]?.nameUa}
+        {(selectedOption?.nameUa && (lang == "Ua" ? selectedOption?.nameUa : selectedOption?.nameRu)) || (lang == "Ua" ? goods[0]?.nameUa : goods[0]?.nameRu)}
       </div>
       {isOpen && (
         <div className="options">
