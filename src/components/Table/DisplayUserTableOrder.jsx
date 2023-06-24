@@ -59,7 +59,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
             body: JSON.stringify({
               userId: currentUser._id,
               value: currentUser.balance - order.sum,
-              action: 'Виведення',
+              action: 'Оплата замовлення',
               historyValue: `-${order.sum}`
             }),
           }).then((res) => res.json());

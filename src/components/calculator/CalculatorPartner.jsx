@@ -77,6 +77,8 @@ const CalculatorPartner = () => {
     });
     const inputFileRef = useRef(null);
 
+    console.log('currentItem',currentItem);
+
     const { t } = useTranslation();
 
     const {currency} = useSelector((state) => state.currency);
@@ -149,6 +151,8 @@ const CalculatorPartner = () => {
    },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
     selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
 
+    console.log('descArray',descArray);
+
     const checkedSolder = (name) => {
       switch(name) {
         case 'По периметру':
@@ -200,7 +204,8 @@ const CalculatorPartner = () => {
 
       const standartLuvers = linearMeter/0.3;
 
-      const currentLuvers = checkedEyelets(selectedOptionEyelets?.nameUa)/((selectedOptionEyeletsValue) / 100);
+      const currentLuvers = 
+      (selectedOptionEyelets?.nameUa)/((selectedOptionEyeletsValue) / 100);
 
       let differenceLuvers = 0;
       let currentLuversPrice = 0;
@@ -215,13 +220,12 @@ const CalculatorPartner = () => {
 
       const currentSolderGates = ((!isBilateral ? ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) : ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) / 2) || 0);
       const currentSolderPockets = ((!isBilateral ? ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) : ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) / 2) || 0);
-      const currentCutting = ((selectedOptionCutting?.price * linearMeter) || 0);
-      const currentStamp = (isStamp ? (currentItem?.stamp * linearMeter) : 0)
+      const currentCutting = ((selectedOptionCutting?.nameUa == 'Плоттерна' ? (selectedOptionCutting?.price * quadrature) : (selectedOptionCutting?.price * linearMeter)) || 0);
+      const currentStamp = ((isStamp ? (currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (currentItem?.stamp * ((1) + ((Number(1000) * (Number(height) + 100))/1000000))) : (currentItem?.stamp * linearMeter)) : 0))
       const currentStretchOnTheStretcher = (isStretch ? currentItem?.goods && (quadrature < 0.5 ? (currentItem?.goods[0]?.stretchOnTheStretcherMin * quadrature) : (currentItem?.goods[0]?.stretchOnTheStretcher) * quadrature) : 0);
       const currentLamination = ((selectedOptionLamination?.price * quadrature) || 0)
       setSolderGatesDisplay(currentSolderGates);
       setSolderPocketsDisplay(currentSolderPockets);
-      console.log('currentCutting',currentCutting);
       setCuttingDisplay(currentCutting);
       setStampDisplay(currentStamp);
       setStretchOnTheStretcherDisplay(currentStretchOnTheStretcher);
@@ -230,7 +234,7 @@ const CalculatorPartner = () => {
       const totalSum1 = 
      ((currentLuversPrice) || 0) +
      ((selectedOptionQuality?.price * quadrature) || 0) +
-     ((selectedOptionColor?.price * quadrature) || 0) +
+     ((selectedOptionColor?.price * ((Number(1000) * (Number(height) + 100))/1000000)) || 0) +
      (currentLamination) +
      (currentSolderGates || 0) +
      (currentSolderPockets || 0) +
@@ -248,7 +252,7 @@ const CalculatorPartner = () => {
      setCurrentPersonalDiscount(onlyDiscount);
     //  const sumAndDiscountUser = sumAndCount - onlyDiscount;
 
-     if(quadrature >= 20 ) {
+     if(quadrature >= 20 || quadrature * count >= 20 ) {
       discountTwentyMeter = sumAndCount * 0.1;
       setCurrentDiscountTwentyMeter(discountTwentyMeter)
      } else {
@@ -281,6 +285,7 @@ const CalculatorPartner = () => {
         setCount(1);
         setComent('');
         setDelivery('');
+        setSelectedOptionEyelets('');
       },[currentItem])
 
     const finlObj = {
@@ -447,6 +452,8 @@ const CalculatorPartner = () => {
       setChoseAnotherUser(e);
     }
 
+    console.log('selectedOptionColor',selectedOptionColor);
+
     const displayOrderStory = () => {
       const orderItems = [];
     
@@ -454,8 +461,8 @@ const CalculatorPartner = () => {
         orderItems.push(`${t(`Printing`)} ${((selectedOptionQuality?.price * quadrature) * currency.currency).toFixed(0)} грн`);
       }
     
-      if (selectedOptionColor?.price * quadrature) {
-        orderItems.push(`${t(`Color`)} ${((selectedOptionColor?.price * quadrature) * currency.currency).toFixed(0)} грн`);
+      if (selectedOptionColor?.price * ((Number(1000) * (Number(height) + 100))/1000000)) {
+        orderItems.push(`${t(`Color`)} ${(((selectedOptionColor?.price * ((Number(1000) * (Number(height) + 100))/1000000)) * currency.currency) || 0).toFixed(0)} грн`);
       }
     
       if (currentLuversDisplay) {
@@ -520,38 +527,44 @@ const CalculatorPartner = () => {
         </div>
       );
     };
-
+    
+    console.log('selectedOptionPoster',selectedOptionPoster);
     return (
       <div className="calc_wrap">
         {goodsList.length != 0 && allUsers.length != 0 ? (
           <>
             <title>
               <ChoseRoleSelect
-              user={user && user}
-              setIsOpenAllusers={setIsOpenAllusers}
-              allUsers={allUsers}
-              currentUserState={currentUserState}
-              isOpenAllusers={isOpenAllusers}
-              setCurrentIdFunc={setCurrentIdFunc}/>
-              <div style={{display:'flex'}}>
-              <button className="btn" onClick={() => setIsOpenLayoust(!isOpenLayoust)}>
-                  ТРЕБОВАНИЯ К МАКЕТАМ
-              </button>
-              <ForLayouts
-                isOpen={isOpenLayoust}
-                setIsOpen={setIsOpenLayoust}
+                user={user && user}
+                setIsOpenAllusers={setIsOpenAllusers}
+                allUsers={allUsers}
+                currentUserState={currentUserState}
+                isOpenAllusers={isOpenAllusers}
+                setCurrentIdFunc={setCurrentIdFunc}
               />
-              <button 
-              style={{margin: '0 0 0 10px'}}
-              className="btn" onClick={() => setIsOpen(!isOpen)}>
-                {t(`Prices for 1m2`)}
-              </button>
-              <ModalPrice
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                goodsList={goodsList}
-              />
-
+              <div style={{ display: "flex" }}>
+                <button
+                  className="btn"
+                  onClick={() => setIsOpenLayoust(!isOpenLayoust)}
+                >
+                  {t(`REQUIREMENTS FOR LAYOUTS`)}
+                </button>
+                <ForLayouts
+                  isOpen={isOpenLayoust}
+                  setIsOpen={setIsOpenLayoust}
+                />
+                <button
+                  style={{ margin: "0 0 0 10px" }}
+                  className="btn"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {t(`Prices for 1m2`)}
+                </button>
+                <ModalPrice
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  goodsList={goodsList}
+                />
               </div>
             </title>
             <div className="wrap_row">
@@ -597,30 +610,60 @@ const CalculatorPartner = () => {
               </div>
             </div>
             <div className="wrap_row">
-              <div className="calc-item input_size">
-                <InputsTamplate
-                  title={"Width"}
-                  type={"number"}
-                  placeholder={"Enter the width in mm"}
-                  value={width}
-                  handleCangeInput={setWitdh}
-                />
-                {validationWidth && (
-                  <p style={{ color: "red" }}>{t(`Validation width`)}</p>
-                )}
-              </div>
-              <div className="calc-item input_size">
-                <InputsTamplate
-                  title={"Height"}
-                  type={"number"}
-                  placeholder={"Enter the height in mm"}
-                  value={height}
-                  handleCangeInput={setHeight}
-                />
-                {validationHeight && (
-                  <p style={{ color: "red" }}>{t(`Validation height`)}</p>
-                )}
-              </div>
+              {currentItem &&
+              currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (
+                <>
+                  <div className="calc-item input_size">
+                    <InputsTamplate
+                      title={"Width"}
+                      type={"number"}
+                      placeholder={"Enter the width in mm"}
+                      value={1000}
+                      handleCangeInput={setWitdh}
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="calc-item input_size">
+                    <InputsTamplate
+                      title={"Height"}
+                      type={"number"}
+                      placeholder={"Enter the height in mm"}
+                      value={height}
+                      handleCangeInput={setHeight}
+                    />
+                    {validationHeight && (
+                      <p style={{ color: "red" }}>{t(`Validation height`)}</p>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="calc-item input_size">
+                    <InputsTamplate
+                      title={"Width"}
+                      type={"number"}
+                      placeholder={"Enter the width in mm"}
+                      value={width}
+                      handleCangeInput={setWitdh}
+                    />
+                    {validationWidth && (
+                      <p style={{ color: "red" }}>{t(`Validation width`)}</p>
+                    )}
+                  </div>
+                  <div className="calc-item input_size">
+                    <InputsTamplate
+                      title={"Height"}
+                      type={"number"}
+                      placeholder={"Enter the height in mm"}
+                      value={height}
+                      handleCangeInput={setHeight}
+                    />
+                    {validationHeight && (
+                      <p style={{ color: "red" }}>{t(`Validation height`)}</p>
+                    )}
+                  </div>
+                </>
+              )}
               <div className="calc-item input_size">
                 <InputsTamplate
                   title={"Circulation"}
@@ -736,7 +779,6 @@ const CalculatorPartner = () => {
                   {currentItem &&
                     (currentItem?.nameUa == "Банер 440 гр. Ламінований" ||
                       currentItem?.nameUa == "Банер 510 гр. литий" ||
-                      currentItem?.nameUa == "Просвітний банер 440 гр." ||
                       currentItem?.nameUa == "Сітка банерна 380 гр.") && (
                       <div>
                         <h3>{t(`Bilateral`)}</h3>
@@ -781,11 +823,25 @@ const CalculatorPartner = () => {
                     onChange={handleChange}
                     ref={inputFileRef}
                   />
-                  <button onClick={() => inputFileRef.current.click()} disabled={isProgresBar}>
-                  {t(`Download the file`)}
+                  <button
+                    onClick={() => inputFileRef.current.click()}
+                    disabled={isProgresBar}
+                  >
+                    {t(`Download the file`)}
                   </button>
-                  <div>{selectedFile && <p>{t(`File selected`)}: {selectedFile.name}</p>}</div>
-                  <ProgressBar isProgresBar={isProgresBar} currentSizeFile={currentSizeFile} totalSizeFile={totalSizeFile} progress={progress}/>
+                  <div>
+                    {selectedFile && (
+                      <p>
+                        {t(`File selected`)}: {selectedFile.name}
+                      </p>
+                    )}
+                  </div>
+                  <ProgressBar
+                    isProgresBar={isProgresBar}
+                    currentSizeFile={currentSizeFile}
+                    totalSizeFile={totalSizeFile}
+                    progress={progress}
+                  />
                   <div>
                     {validationFile && (
                       <p style={{ color: "red" }}>{t(`File not selected`)}</p>

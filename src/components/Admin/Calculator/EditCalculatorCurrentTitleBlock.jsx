@@ -31,6 +31,8 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         dispatch(fetchLanguage());
       }, [lang]);
 
+      console.log('isPoster',isPoster);
+
     const setQualityFunc = () => {
       setIsQuality(state => !state);
       setIsEyelets(false);

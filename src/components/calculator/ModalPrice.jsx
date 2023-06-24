@@ -42,7 +42,8 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                 <div>
                                     {item.nameUa == "Банери" || item.nameUa == "Плівка" || item.nameUa == "Папір" 
                                     ? 
-                                    <h4 style={{fontWeight:700}}>{ item.nameUa !== 'Банери' && item.nameUa !== 'Плівка' && item.nameUa !== 'Папір' && 
+                                    <h4 style={{fontWeight:700}}>
+                                    {  
                                     lang == "Ua" ? <>{item.nameUa}</> : <>{item.nameRu}</>}</h4>
                                     :
                                     <p>{lang == "Ua" ? <>{item.nameUa == 'Виберіть матеріал' ? '' : item.nameUa}</> : <>{item.nameRu == 'Виберіть матеріал' ? '' : item.nameRu}</>}</p>
@@ -50,7 +51,7 @@ const ModalPrice = ({isOpen, setIsOpen, goodsList}) => {
                                 </div>
                                 {item?.goods.length != 0 && item?.goods.map((el,id) => (
                                 <div className="value_item" key={id}>
-                                    <p> {el.nameUa !== 'Кольорова плівка серії Oracal 641' && lang == "Ua" ? <>{el.nameUa}</> : <>{item.nameRu}</>}</p>
+                                    <p> {el.nameUa !== 'Кольорова плівка серії Oracal 641' && lang == "Ua" ? <>{el.nameUa}</> : <>{el.nameRu}</>}</p>
                                     <div className='price_wrap'>
                                         {el.quality.map((qa, idx) => (
                                                 qa.nameUa === '720dpi' && qa.price && (

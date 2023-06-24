@@ -17,26 +17,63 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
     };
   const { t } = useTranslation();
 
+  // const handleDownload = async (order) => {
+  //   const resonse = await fetch(`https://server-ponto-print.herokuapp.com/download?id=${order._id}`)
+  //   if(resonse.status == 200) {
+  //     console.log('status 200');
+  //     const link = document.createElement('a');
+  //     link.href = `https://server-ponto-print.herokuapp.com/download?id=${order._id}`;
+
+  //     const fileExtension = order.file.split('.').pop();
+  //     const testName = 'order_example'
+  //     const invalidCharacters = /[<>:"\\/|?*.]/g;
+  //     var cleanedStr = order.fileName.replace(/\s/g, "").replace(invalidCharacters, "");
+  //     link.download = testName;
+  //     console.log('cleanedStr',cleanedStr);
+  //     console.log('fileExtension',fileExtension);
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     // link.remove();
+
+  //     await fetch("https://server-ponto-print.herokuapp.com/update-status", {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         value: "download",
+  //         name: 'В роботі',
+  //         tableId: order._id,
+  //         paid: false,
+  //       }),
+  //     }).then((res) => res.json());
+  //     setTimeout(() => {
+  //       console.log('The end promise');
+  //       setIsFetch((state) => !state);
+  //     }, 1000);
+  //   } else {
+  //     alert('Помилка при завантаженні')
+  //   }
+  // };
+
   const handleDownload = async (order) => {
     const resonse = await fetch(`https://server-ponto-print.herokuapp.com/download?id=${order._id}`)
-    if(resonse.status == 200) {
+    if (resonse.status == 200) {
       console.log('status 200');
-      // const blob = await resonse.blob();
-      // const dowloadUrl = window.URL.createObjectURL(blob);
+      const blob = await resonse.blob();
       const link = document.createElement('a');
-      // link.href = dowloadUrl;
-      link.href = `https://server-ponto-print.herokuapp.com/download?id=${order._id}`;
-      // console.log('dowloadUrl',dowloadUrl);
-
+      link.href = URL.createObjectURL(blob);
+  
       const fileExtension = order.file.split('.').pop();
-
       const invalidCharacters = /[<>:"\\/|?*.]/g;
       var cleanedStr = order.fileName.replace(/\s/g, "").replace(invalidCharacters, "");
       link.download = cleanedStr + '.' + fileExtension;
+      console.log('cleanedStr', cleanedStr);
+      console.log('fileExtension', fileExtension);
       document.body.appendChild(link);
       link.click();
       // link.remove();
-
+  
       await fetch("https://server-ponto-print.herokuapp.com/update-status", {
         method: "PATCH",
         headers: {
@@ -104,12 +141,24 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
-            <div></div>
-            <div></div>
+            <div 
+            className="button_wrap"
+             >
+              <button 
+              style={{ padding: "5px 8px", background:'#5aad5a', margin:'0 2px' }}
+              onClick={handleFinished}>
+                <MdDoneOutline/></button>
+              <button 
+              style={{ padding: "5px 8px", background:'red', margin:'0 2px'  }}
+              onClick={handleOpenModal}>
+              <MdOutlineDeleteForever/>
+              </button>
+
+            </div>
           </div>
         </div>
       )}
-      {order?.status?.currentStatus == "download" && (
+      {(order?.status?.currentStatus == "download" || order?.status?.currentStatus == "new") && (
         <div
           className="table_item table_item_download"
         >
