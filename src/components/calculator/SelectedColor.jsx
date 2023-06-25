@@ -54,7 +54,7 @@ const SelectedColor = ({ item, title, selectedOption, setSelectedOption, }) => {
         <div className="selected-option option_color" onClick={() => setIsOpen(!isOpen)}>
           <div style={{display:'flex', paddingRight:'5px'}}>
           {selectedOption?.imageColor && 
-          <img className="color_img" src={`https://server-ponto-print.herokuapp.com${selectedOption?.imageColor}`} />
+          <img className="color_img" src={`http://server.ponto-print.com.ua:4444${selectedOption?.imageColor}`} />
           }
           </div>
           <p style={{paddingLeft:'5px'}}> 
@@ -66,7 +66,7 @@ const SelectedColor = ({ item, title, selectedOption, setSelectedOption, }) => {
             {item.map((el) => (
               <div className="option option_color" key={el._id} onClick={() => selectItemFunc(el)}>
                 <div style={{display:'flex', paddingRight:'5px'}}>
-                {el?.imageColor && <img className="color_img" src={`https://server-ponto-print.herokuapp.com${el.imageColor}`} />}
+                {el?.imageColor && <img className="color_img" src={`http://server.ponto-print.com.ua:4444${el.imageColor}`} />}
                 </div>
                 <p style={{paddingLeft:'5px'}}>
                 {lang === 'Ua' ? <>{el.nameUa}</> : <>{el.nameRu}</>}

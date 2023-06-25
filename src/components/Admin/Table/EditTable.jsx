@@ -49,7 +49,7 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
   }, []);
 
   useEffect(() => {
-    fetch('https://server-ponto-print.herokuapp.com/get-all-table')
+    fetch('http://server.ponto-print.com.ua:4444/get-all-table')
       .then((res) => res.json())
       .then((res) => {
         setCurrentOrders(res.reverse());

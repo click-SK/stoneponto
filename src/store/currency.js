@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchCurrency = createAsyncThunk(
   'data/fetchCurrency',
   async () => {
-    const response = await fetch('https://server-ponto-print.herokuapp.com/get-currency');
+    const response = await fetch('http://server.ponto-print.com.ua:4444/get-currency');
     const data = await response.json();
     return data[0] || null;
   }

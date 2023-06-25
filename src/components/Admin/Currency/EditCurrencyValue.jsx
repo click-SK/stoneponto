@@ -12,7 +12,7 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
         setIsEdit((state) => !state);
         setIsFetch((state) => !state);
     
-        fetch('https://server-ponto-print.herokuapp.com/update-currency', {
+        fetch('http://server.ponto-print.com.ua:4444/update-currency', {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json'

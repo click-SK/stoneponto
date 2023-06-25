@@ -17,7 +17,7 @@ const EditCurrency = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch('https://server-ponto-print.herokuapp.com/get-currency')
+        fetch('http://server.ponto-print.com.ua:4444/get-currency')
         .then((res) => res.json())
         .then((cur) => {
             setBankCurrency(cur[0].banckCurrency);

@@ -225,7 +225,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-color'
+        editPath='http://server.ponto-print.com.ua:4444/update-color'
         openCloseFunc={setColorFunc}
         isOpen={isColor}/>
         }
@@ -235,7 +235,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-eyelets-price'
+        editPath='http://server.ponto-print.com.ua:4444/update-eyelets-price'
         openCloseFunc={setEyeletsFunc}
         isOpen={isEyelets}/>
         }
@@ -245,7 +245,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-quality'
+        editPath='http://server.ponto-print.com.ua:4444/update-quality'
         openCloseFunc={setQualityFunc}
         isOpen={isQuality}/>
         }
@@ -255,7 +255,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-lamination'
+        editPath='http://server.ponto-print.com.ua:4444/update-lamination'
         openCloseFunc={setLaminationFunc}
         isOpen={isLamination}/>
         }
@@ -265,7 +265,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-poster'
+        editPath='http://server.ponto-print.com.ua:4444/update-poster'
         openCloseFunc={setPosterFunc}
         isOpen={isPoster}/>
         }
@@ -275,7 +275,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-soldering-of-gates'
+        editPath='http://server.ponto-print.com.ua:4444/update-soldering-of-gates'
         openCloseFunc={setSolderingOfGatesFunc}
         isOpen={isSolderingOfGates}/>
         }
@@ -285,7 +285,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-soldering-pockets'
+        editPath='http://server.ponto-print.com.ua:4444/update-soldering-pockets'
         openCloseFunc={setSolderingPocketsFunc}
         isOpen={isSolderingPockets}/>
         }
@@ -295,7 +295,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-cutting'
+        editPath='http://server.ponto-print.com.ua:4444/update-cutting'
         openCloseFunc={setCuttingFunc}
         isOpen={isCutting}/>
         }
@@ -306,7 +306,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         goodsIndex={goodsIndex}
         data={arrayGoods?.mounting}
         setIsFetch={setIsFetch}
-        editPath='https://server-ponto-print.herokuapp.com/update-mounting'
+        editPath='http://server.ponto-print.com.ua:4444/update-mounting'
         openCloseFunc={setMountingFunc}
         isOpen={isMounting}/>}
         {arrayGoods?.stamp && 
@@ -316,7 +316,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         goodsIndex={goodsIndex}
         data={arrayGoods?.stamp}
         setIsFetch={setIsFetch}
-        editPath='https://server-ponto-print.herokuapp.com/update-stamp'
+        editPath='http://server.ponto-print.com.ua:4444/update-stamp'
         openCloseFunc={setStampFunc}
         isOpen={isStamp}/>}
         </div>
@@ -332,7 +332,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-quality'
+        editPath='http://server.ponto-print.com.ua:4444/update-quality'
         openCloseFunc={setQualityFunc}
         isOpen={isQuality}/>
         }
@@ -342,7 +342,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-cutting'
+        editPath='http://server.ponto-print.com.ua:4444/update-cutting'
         openCloseFunc={setCuttingFunc}
         isOpen={isCutting}/>
         }
@@ -352,7 +352,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-stretch-on-the-stretcher'
+        editPath='http://server.ponto-print.com.ua:4444/update-stretch-on-the-stretcher'
         openCloseFunc={setStretchOnTheStretcherFunc}
         isOpen={isStretchOnTheStretcher}/>
         }
@@ -362,7 +362,7 @@ const EditCalculatorFullTitleBlock = ({ arrayGoods, additionalParameter, mainId,
         mainId={mainId}
         setIsFetch={setIsFetch}
         goodsIndex={goodsIndex}
-        editPath='https://server-ponto-print.herokuapp.com/update-stretch-on-the-stretcher-min'
+        editPath='http://server.ponto-print.com.ua:4444/update-stretch-on-the-stretcher-min'
         openCloseFunc={setStretchOnTheStretcherFuncMin}
         isOpen={isStretchOnTheStretcherMin}/>
         }
