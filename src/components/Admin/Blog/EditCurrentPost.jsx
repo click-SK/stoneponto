@@ -39,7 +39,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
     formData.append("postId", post._id);
     setIsEditValue((isEdit) => !isEdit);
 
-    fetch("http://server.ponto-print.com.ua:4444/update-post", {
+    fetch("http://91.206.30.132:4444/update-post", {
       method: "PATCH",
       body: formData,
     }).then((res) => res.json());
@@ -66,7 +66,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
   };
 
   const handleRemovePost = () => {
-    fetch("http://server.ponto-print.com.ua:4444/remove-post", {
+    fetch("http://91.206.30.132:4444/remove-post", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                   />
                 ) : (
                   <img
-                    src={`http://server.ponto-print.com.ua:4444${post.blogImage}`}
+                    src={`http://91.206.30.132:4444${post.blogImage}`}
                     alt="Selected"
                     
                   />
@@ -149,7 +149,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                 ) : (
                   <img
                     className="edit_post_img"
-                    src={`http://server.ponto-print.com.ua:4444${post.blogImage}`}
+                    src={`http://91.206.30.132:4444${post.blogImage}`}
                     alt="Selected"
                     
                   />

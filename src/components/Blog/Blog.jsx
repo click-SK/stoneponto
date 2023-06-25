@@ -15,7 +15,7 @@ const Blog = () => {
   const lang = useSelector((state) => state.lang.language);
   
   useEffect(() => {
-    fetch("http://server.ponto-print.com.ua:4444/get-all-post")
+    fetch("http://91.206.30.132:4444/get-all-post")
       .then((res) => res.json())
       .then((res) => setAllPosts(res.reverse()));
   }, []);
@@ -33,7 +33,7 @@ const Blog = () => {
           <div key={post._id} className="blog_item">
             <div className="img_blog_wrap">
               <img
-                src={`http://server.ponto-print.com.ua:4444${post.blogImage}`}
+                src={`http://91.206.30.132:4444${post.blogImage}`}
               />
             </div>
             <div className="content_wrap">

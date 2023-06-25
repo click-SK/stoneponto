@@ -6,7 +6,7 @@ const EditPost = () => {
     const [isFetch, setIsFetch] = useState(false);
 
     useEffect(() => {
-        fetch('http://server.ponto-print.com.ua:4444/get-all-post')
+        fetch('http://91.206.30.132:4444/get-all-post')
         .then((res) => res.json())
         .then((res) => setAllPosts(res))
     },[isFetch])

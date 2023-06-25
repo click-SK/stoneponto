@@ -91,13 +91,13 @@ const CalculatorPartner = () => {
     const lang = useSelector((state) => state.lang.language);
 
     useEffect(() => {
-        fetch('http://server.ponto-print.com.ua:4444/get-all-calc')
+        fetch('http://91.206.30.132:4444/get-all-calc')
        .then(response => response.json())
        .then(res => setGoodsList(res))
      },[])
 
      useEffect(() => {
-      fetch('http://server.ponto-print.com.ua:4444/get-all-user')
+      fetch('http://91.206.30.132:4444/get-all-user')
      .then(response => response.json())
      .then(res => {
       setAllUsers(res);
@@ -408,7 +408,7 @@ const CalculatorPartner = () => {
         formData.append("status", JSON.stringify(status));
     
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://server.ponto-print.com.ua:4444/create-table", true);
+        xhr.open("POST", "http://91.206.30.132:4444/create-table", true);
     
         xhr.upload.addEventListener("progress", (event) => {
           const loaded = (event.loaded / (1024 * 1024));
