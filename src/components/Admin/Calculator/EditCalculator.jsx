@@ -17,7 +17,7 @@ const EditCalculator = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        fetch('http://server.ponto-print.com.ua:4444/get-all-calc')
+        fetch('http://91.206.30.132:4444/get-all-calc')
        .then(response => response.json())
        .then(res => {
         setGoodsList(res)

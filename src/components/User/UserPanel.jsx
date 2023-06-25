@@ -17,7 +17,7 @@ const UserPanel = () => {
     // const user = useSelector(currentUser);
 
     useEffect(() => {
-      fetch('http://server.ponto-print.com.ua:4444/get-me',{
+      fetch('http://91.206.30.132:4444/get-me',{
         headers: {
           'authorization': window.localStorage.getItem('token')
         },

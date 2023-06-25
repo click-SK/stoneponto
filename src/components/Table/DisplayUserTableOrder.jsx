@@ -10,7 +10,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        fetch("http://server.ponto-print.com.ua:4444/update-user-table-status", {
+        fetch("http://91.206.30.132:4444/update-user-table-status", {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
       const handlePay = async () => {
 
         if(currentUser.balance >=  order.sum) {
-          await fetch("http://server.ponto-print.com.ua:4444/update-status", {
+          await fetch("http://91.206.30.132:4444/update-status", {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
               dispatch(fetchAuthMe());
           }, 2000);
   
-          await fetch('http://server.ponto-print.com.ua:4444/update-balance', {
+          await fetch('http://91.206.30.132:4444/update-balance', {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",

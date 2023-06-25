@@ -17,7 +17,7 @@ const EditCurrency = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch('http://server.ponto-print.com.ua:4444/get-currency')
+        fetch('http://91.206.30.132:4444/get-currency')
         .then((res) => res.json())
         .then((cur) => {
             setBankCurrency(cur[0].banckCurrency);

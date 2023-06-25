@@ -18,16 +18,16 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   const { t } = useTranslation();
 
   const handleDownload = async (order) => {
-    const resonse = await fetch(`http://server.ponto-print.com.ua:4444/download?id=${order._id}`)
+    const resonse = await fetch(`http://91.206.30.132:4444/download?id=${order._id}`)
     if(resonse.status == 200) {
       console.log('status 200');
       const link = document.createElement('a');
-      link.href = `http://server.ponto-print.com.ua:4444/download?id=${order._id}`;
+      link.href = `http://91.206.30.132:4444/download?id=${order._id}`;
       document.body.appendChild(link);
       link.click();
       // link.remove();
 
-      await fetch("http://server.ponto-print.com.ua:4444/update-status", {
+      await fetch("http://91.206.30.132:4444/update-status", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   };
 
   // const handleDownload = async (order) => {
-  //   const resonse = await fetch(`http://server.ponto-print.com.ua:4444/download?id=${order._id}`)
+  //   const resonse = await fetch(`http://91.206.30.132:4444/download?id=${order._id}`)
   //   if (resonse.status == 200) {
   //     console.log('status 200');
   //     const blob = await resonse.blob();
@@ -66,7 +66,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   //     link.click();
   //     // link.remove();
   
-  //     await fetch("http://server.ponto-print.com.ua:4444/update-status", {
+  //     await fetch("http://91.206.30.132:4444/update-status", {
   //       method: "PATCH",
   //       headers: {
   //         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   // };
 
   const handleDelete = () => {
-    fetch("http://server.ponto-print.com.ua:4444/update-status", {
+    fetch("http://91.206.30.132:4444/update-status", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   };
 
   const handleFinished = () => {
-    fetch("http://server.ponto-print.com.ua:4444/update-status", {
+    fetch("http://91.206.30.132:4444/update-status", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

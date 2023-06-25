@@ -49,7 +49,7 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
   }, []);
 
   useEffect(() => {
-    fetch('http://server.ponto-print.com.ua:4444/get-all-table')
+    fetch('http://91.206.30.132:4444/get-all-table')
       .then((res) => res.json())
       .then((res) => {
         setCurrentOrders(res.reverse());
