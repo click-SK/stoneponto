@@ -17,7 +17,7 @@ const UserPanel = () => {
     // const user = useSelector(currentUser);
 
     useEffect(() => {
-      fetch('https://server-ponto-print.herokuapp.com/get-me',{
+      fetch('http://server.ponto-print.com.ua:4444/get-me',{
         headers: {
           'authorization': window.localStorage.getItem('token')
         },

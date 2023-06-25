@@ -39,14 +39,14 @@ const SelectSecond = ({ item, title, selectedOption, setSelectedOption }) => {
       <h3>{t(`${title}`)}</h3>
       <div className="custom-select">
         <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
-          {selectedOption?.imageColor && <img className="color_img" src={`https://server-ponto-print.herokuapp.com${selectedOption?.imageColor}`} />}
+          {selectedOption?.imageColor && <img className="color_img" src={`http://server.ponto-print.com.ua:4444${selectedOption?.imageColor}`} />}
           {(selectedOption?.nameUa && lang === 'Ua' ? selectedOption.nameUa : selectedOption.nameRu) || (lang === 'Ua' ? item[0]?.nameUa : item[0]?.nameUa)}
         </div>
         {isOpen && (
           <div className="options">
             {item.map((el) => (
               <div className="option" key={el._id} onClick={() => selectItemFunc(el)}>
-                {el?.imageColor && <img className="color_img" src={`https://server-ponto-print.herokuapp.com${el.imageColor}`} />}
+                {el?.imageColor && <img className="color_img" src={`http://server.ponto-print.com.ua:4444${el.imageColor}`} />}
                 {lang === 'Ua' ? <>{el.nameUa}</> : <>{el.nameRu}</>}
               </div>
             ))}

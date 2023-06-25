@@ -7,7 +7,7 @@ const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [isFetch, setIsFetch] = useState(false);
   useEffect(() => {
-    fetch("https://server-ponto-print.herokuapp.com/get-all-user")
+    fetch("http://server.ponto-print.com.ua:4444/get-all-user")
       .then((res) => res.json())
       .then((res) => {
         const arr = res.slice(1);
