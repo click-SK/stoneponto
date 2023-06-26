@@ -6,17 +6,16 @@ import Header from "./components/Header";
 import MainPage from "./components/MainPage";
 import Footer from "./components/Footer";
 import AdminPanel from "./components/Admin/AdminPanel";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import CalculatorPartner from "./components/calculator/CalculatorPartner";
 import LoginForm from "./components/Authorization/LoginForm";
 import FirstRequest from "./components/FirstRequest";
 import UserPanel from "./components/User/UserPanel";
 import Blog from "./components/Blog/Blog";
 import Loader from "./components/Loader/Loader";
-
+import Page404 from "./components/Page404";
 function App() {
   const user = useSelector(currentUser);
-  
   return (
     <div className="App">
       <FirstRequest />
@@ -26,8 +25,8 @@ function App() {
         <>
       <Header />
       <Routes>
+      <Route path="*" element={<Page404 />} />
       <Route path="/" element={<MainPage />} />
-      <Route path="*" element={<MainPage />} />
       <Route path="/news" element={<Blog />} />
         {user !== null && "isAdmin" in user ? (
           <>

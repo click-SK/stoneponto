@@ -233,6 +233,8 @@
     "In raster files, all layers must be flattened into a single layer":"В растровых файлах все слои должны быть сведены в единственный слой - Background, без дополнительных альфа-каналов (Channels), путей (Paths) и с LZW компрессией",
     "For more information, read the Layout Requirements section":"Для дополнительных сведений читайте раздел «Требования к макетам»",
     "ATTENTION! When uploading filenames":"ВНИМАНИЕ! При загрузке имена файлов переименовываются в соответствии с выбранными вами параметрами печати. Мы не видим названия ваших файлов. Всю сопроводительную информацию пишите в поле «Заметки»",
-    "The main":"На главную"
+    "The main":"На главную",
+    "This page does not exist":"Страница не найдена"
+
 
 }
