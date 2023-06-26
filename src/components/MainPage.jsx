@@ -4,6 +4,8 @@ import Slide from "./Slide/Slide";
 import Portfolio from "./Portfolio";
 import { BsBackspace } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLanguage } from "../store/language";
 
 const MainPage = () => {
   const [isOpenDesing, setIsOpenDesing] = useState(false);
@@ -14,6 +16,7 @@ const MainPage = () => {
   const [isOpenAdversting, setIsAdversting] = useState(false);
 
   const { t } = useTranslation();
+  const lang = useSelector((state) => state.lang.language);
 
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString();
@@ -79,8 +82,12 @@ const MainPage = () => {
     <div className="main_wraper">
       <div className="body_wrap">
         <div className="banner_wrap">
+          {lang == "Ua" 
+          ? 
           <img src="./img/Ресурс 8UA.svg" alt="" />
-          {/* <img src="./img/Ресурс 8RU.svg" alt="" /> */}
+          : 
+          <img src="./img/Ресурс 8RU.svg" alt="" />
+          }
         </div>
         {/* <div className="description_block">
           <h1>{t(`About`)}</h1>
@@ -104,7 +111,7 @@ const MainPage = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> На головну{" "}
+                    <BsBackspace className="back_img" /> {t(`The main`)}{" "}
                   </div>
                   <h3>ДИЗАЙН</h3>
                   <div className="nav_services_wraper">

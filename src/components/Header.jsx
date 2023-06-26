@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import {FaTelegramPlane } from 'react-icons/fa';
 import {FaWhatsapp } from 'react-icons/fa';
 import {FaViber } from 'react-icons/fa';
-
 import "../style/header.scss";
 
 
@@ -22,6 +21,7 @@ const Header = () => {
 
 
   const user = useSelector(currentUser);
+
   const { currency } = useSelector(currentCurrency);
   const navigate = useNavigate();
   const { t } = useTranslation();

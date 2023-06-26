@@ -78,8 +78,6 @@ const CalculatorPartner = () => {
     });
     const inputFileRef = useRef(null);
 
-    console.log('currentItem',currentItem);
-
     const { t } = useTranslation();
 
     const {currency} = useSelector((state) => state.currency);
@@ -150,13 +148,13 @@ const CalculatorPartner = () => {
         name: selectedOptionPoster?.price ? (lang == "Ua" ? selectedOptionPoster?.nameUa : selectedOptionPoster?.nameRu) : '',
       },
       stretch: {
-        name:  isStretch ? (lang == "Ua" ? 'Натяжка на підрамник: ' : 'Натяжка на подрамник: ') : ''
+        name:  isStretch ? (lang == "Ua" ? 'Натяжка на підрамник ' : 'Натяжка на подрамник ') : ''
       },
       stamp: {
-        name: isStamp ? (lang == "Ua" ? 'З печаткою: ' : 'С печатью: ') : ''
+        name: isStamp ? (lang == "Ua" ? 'З печаткою ' : 'С печатью ') : ''
       },
       mounting: {
-        name:  isMounting ? (lang == "Ua" ? 'Намонтування: ' : 'Намонтаживание: ') : ''
+        name:  isMounting ? (lang == "Ua" ? 'Намонтування ' : 'Намонтаживание ') : ''
       },
       eyelets: {
         option: selectedOptionEyelets?.price  ? (lang == "Ua" ? ' Люверси: ' : ' Люверсы: ') : '',
@@ -169,7 +167,7 @@ const CalculatorPartner = () => {
     }
     setdescArray(descriptionObj);
    },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
-    selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch,isBilateral])
+    selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch,isBilateral,isStamp])
 
     const checkedSolder = (name) => {
       switch(name) {
@@ -192,17 +190,23 @@ const CalculatorPartner = () => {
       }
     }
 
+    console.log('isBilateral',isBilateral);
+    console.log('descArray',descArray);
+
      useEffect(() =>{
       const linearMeter = ((width / 1000) + (height/1000)) * 2;
 
       const standartLuvers = linearMeter/0.3;
-
+      console.log('selectedOptionEyelets?.price',selectedOptionEyelets?.price);
       const currentLuvers = 
-      (selectedOptionEyelets?.nameUa)/((selectedOptionEyeletsValue) / 100);
+      (linearMeter)/((selectedOptionEyeletsValue) / 100);
 
       let differenceLuvers = 0;
       let currentLuversPrice = 0;
+      console.log('currentLuvers',currentLuvers);
+      console.log('standartLuvers',standartLuvers);
       if(currentLuvers > standartLuvers) {
+        console.log('Work!!');
         differenceLuvers = currentLuvers - standartLuvers;
       }
       
@@ -448,8 +452,6 @@ const CalculatorPartner = () => {
       setChoseAnotherUser(e);
     }
 
-    console.log('selectedOptionColor',selectedOptionColor);
-
     const displayOrderStory = () => {
       const orderItems = [];
     
@@ -461,6 +463,9 @@ const CalculatorPartner = () => {
         orderItems.push(`${t(`Color`)} ${(((selectedOptionColor?.price * ((Number(1000) * (Number(height) + 100))/1000000)) * currency.currency) || 0).toFixed(0)} грн`);
       }
     
+      if (selectedOptionPoster?.price) {
+        orderItems.push(`${t(`Постер`)} ${(selectedOptionPoster?.price * currency.currency).toFixed(0)} грн`);
+      }
       if (currentLuversDisplay) {
         orderItems.push(`${t(`Eyelets`)} ${(currentLuversDisplay * currency.currency).toFixed(0)} грн`);
       }
@@ -524,20 +529,19 @@ const CalculatorPartner = () => {
       );
     };
     
-    console.log('selectedOptionPoster',selectedOptionPoster);
     return (
       <>
-        <div style={{width: '100%', display:'flex',justifyContent:'center'}}>
-          <div style={{maxWidth:'80%', textAlign: 'start'}}>
+        <div style={{ display:'flex',justifyContent:'center', maxWidth:'1140px'}}>
+          <div style={{textAlign: 'start'}}>
           <p style={{color:'red', fontSize:'14px', paddingBottom: '5px'}}>Напоминание</p>
           <ul style={{color:'#222935', fontSize:'14px', lineHeight:'18px',}}>
-            <li>-Файлы должны быть в цветовой модели CMYK</li>
-            <li>-Файлы должны быть в размере в маштабе 1:1</li>
-            <li>-В векторных файлов должны быть покривлены шрифты</li>
-            <li>-В растровых файлах все слои должны быть сведены в единственный слой - Background, без дополнительных альфа-каналов (Channels), путей (Paths) и с LZW компрессией</li>
-            <li>-Для дополнительных сведений читайте раздел «Требования к макетам»</li>
+            <li>-{t(`Files must be in the CMYK color model`)}</li>
+            <li>-{t(`Files must be 1:1 in size`)}</li>
+            <li>-{t(`Vector files must have curved fonts`)}</li>
+            <li>-{t(`In raster files, all layers must be flattened into a single layer`)}</li>
+            <li>-{t(`For more information, read the Layout Requirements section`)}</li>
           </ul>
-          <p style={{color:'red', fontSize:'14px', padding:'10px 0px', lineHeight:'18px'}}>ВНИМАНИЕ! При загрузке имена файлов переименовываются в соответствии с выбранными вами параметрами печати. Мы не видим названия ваших файлов. Всю сопроводительную информацию пишите в поле «Заметки»</p>
+          <p style={{color:'red', fontSize:'14px', padding:'10px 0px', lineHeight:'18px'}}>{t(`ATTENTION! When uploading filenames`)}</p>
         </div>
           </div>
             <div className="calc_wrap">
@@ -655,6 +659,7 @@ const CalculatorPartner = () => {
                       placeholder={"Enter the width in mm"}
                       value={width}
                       handleCangeInput={setWitdh}
+                      disabled={isPosterDisabled}
                     />
                     {validationWidth && (
                       <p style={{ color: "red" }}>{t(`Validation width`)}</p>
@@ -667,6 +672,7 @@ const CalculatorPartner = () => {
                       placeholder={"Enter the height in mm"}
                       value={height}
                       handleCangeInput={setHeight}
+                      disabled={isPosterDisabled}
                     />
                     {validationHeight && (
                       <p style={{ color: "red" }}>{t(`Validation height`)}</p>
