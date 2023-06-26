@@ -79,7 +79,7 @@ const MainPage = () => {
     <div className="main_wraper">
       <div className="body_wrap">
         <div className="banner_wrap">
-          <img src="./img/Ресурс 8.svg" alt="" />
+          <img src="./img/Ресурс 8RU.svg" alt="" />
         </div>
         {/* <div className="description_block">
           <h1>{t(`About`)}</h1>
