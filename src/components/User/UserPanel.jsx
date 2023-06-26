@@ -48,19 +48,6 @@ const UserPanel = () => {
     <div className='user_profile_wrap'>
     {user ? 
         <div>
-          <div style={{width: '100%', display:'flex',justifyContent:'center'}}>
-          <div style={{maxWidth:'600px', textAlign: 'start'}}>
-          <p style={{color:'red', fontSize:'14px', paddingBottom: '5px'}}>Напоминание</p>
-          <ul style={{color:'#222935', fontSize:'14px', lineHeight:'18px',}}>
-            <li>-Файлы должны быть в цветовой модели CMYK</li>
-            <li>-Файлы должны быть в размере в маштабе 1:1</li>
-            <li>-В векторных файлов должны быть покривлены шрифты</li>
-            <li>-В растровых файлах все слои должны быть сведены в единственный слой - Background, без дополнительных альфа-каналов (Channels), путей (Paths) и с LZW компрессией</li>
-            <li>-Для дополнительных сведений читайте раздел «Требования к макетам»</li>
-          </ul>
-          <p style={{color:'red', fontSize:'14px', paddingTop:'10px', lineHeight:'18px'}}>ВНИМАНИЕ! При загрузке имена файлов переименовываются в соответствии с выбранными вами параметрами печати. Мы не видим названия ваших файлов. Всю сопроводительную информацию пишите в поле «Заметки»</p>
-        </div>
-          </div>
         <div className='user_profile_information' >
           <div className='user_data'>
             <div className='name_block'>

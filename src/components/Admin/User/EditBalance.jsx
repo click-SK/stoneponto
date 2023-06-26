@@ -21,7 +21,7 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
       action = 'Депозит'
       historyValue = `+${newValue}`
     } else {
-      action = 'Оплата'
+      action = 'Оплата замовлення'
       historyValue = `-${newValue}`
     }
 
