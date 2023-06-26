@@ -103,7 +103,7 @@ const MainPage = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> На головну{" "}
+                    <BsBackspace className="back_img" /> {t(`The main`)}{" "}
                   </div>
                   <h3>ДИЗАЙН</h3>
                   <div className="nav_services_wraper">

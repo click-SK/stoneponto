@@ -535,13 +535,13 @@ const CalculatorPartner = () => {
           <div style={{textAlign: 'start'}}>
           <p style={{color:'red', fontSize:'14px', paddingBottom: '5px'}}>Напоминание</p>
           <ul style={{color:'#222935', fontSize:'14px', lineHeight:'18px',}}>
-            <li>-Файлы должны быть в цветовой модели CMYK</li>
-            <li>-Файлы должны быть в размере в маштабе 1:1</li>
-            <li>-В векторных файлов должны быть покривлены шрифты</li>
-            <li>-В растровых файлах все слои должны быть сведены в единственный слой - Background, без дополнительных альфа-каналов (Channels), путей (Paths) и с LZW компрессией</li>
-            <li>-Для дополнительных сведений читайте раздел «Требования к макетам»</li>
+            <li>-{t(`Files must be in the CMYK color model`)}</li>
+            <li>-{t(`Files must be 1:1 in size`)}</li>
+            <li>-{t(`Vector files must have curved fonts`)}</li>
+            <li>-{t(`In raster files, all layers must be flattened into a single layer`)}</li>
+            <li>-{t(`For more information, read the Layout Requirements section`)}</li>
           </ul>
-          <p style={{color:'red', fontSize:'14px', padding:'10px 0px', lineHeight:'18px'}}>ВНИМАНИЕ! При загрузке имена файлов переименовываются в соответствии с выбранными вами параметрами печати. Мы не видим названия ваших файлов. Всю сопроводительную информацию пишите в поле «Заметки»</p>
+          <p style={{color:'red', fontSize:'14px', padding:'10px 0px', lineHeight:'18px'}}>{t(`ATTENTION! When uploading filenames`)}</p>
         </div>
           </div>
             <div className="calc_wrap">
