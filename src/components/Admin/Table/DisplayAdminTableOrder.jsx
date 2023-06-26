@@ -171,7 +171,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
               </button>
 
             </div>
-            <div style={{ padding: "10px 0px" }}>
+            <div>
             </div>
           </div>
           <DeletetableModal 
@@ -189,8 +189,8 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <AdminTableText order={order} handleDownload={handleDownload} />
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
-            <div style={{ padding: "10px 0px" }}></div>
-            <div style={{ padding: "10px 0px" }}></div>
+            <div ></div>
+            <div ></div>
           </div>
         </div>
       )}
@@ -202,8 +202,8 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
           <div className="item_row_info item_status">
             <p>{t(`${order.status.name}`)}</p>
             <p>{order.status.paid ? "Оплочено" : "Не оплочено"}</p>
-            <div style={{ padding: "10px 0px" }}></div>
-            <div style={{ padding: "10px 0px" }}></div>
+            <div ></div>
+            <div ></div>
           </div>
         </div>
       )}

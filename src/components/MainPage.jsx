@@ -81,10 +81,10 @@ const MainPage = () => {
         <div className="banner_wrap">
           <img src="./img/Ресурс 8.svg" alt="" />
         </div>
-        <div className="description_block">
+        {/* <div className="description_block">
           <h1>{t(`About`)}</h1>
           <p>{t(`We are Ponto-print`)}</p>
-        </div>
+        </div> */}
         <div className="services">
           <h2>{t(`Description of services`)}</h2>
           <ul className="services_list">
@@ -103,15 +103,16 @@ const MainPage = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> Назад{" "}
+                    <BsBackspace className="back_img" /> На головну{" "}
                   </div>
                   <h3>ДИЗАЙН</h3>
-                  <div className="img_wraper">
-                    <img
-                      style={{ borderRadius: "8px" }}
-                      src="./img/services/pic1.jpg"
-                      alt=""
-                    />
+                  <div className="nav_services_wraper">
+                      <button onClick={() => hendlerOpenDesint()} >ДИЗАЙН</button>
+                      <button onClick={() => hendlerOpenPrint()}>{t(`Large format printing`)}</button>
+                      <button onClick={() => hendlerOpenLamin()}>{t(`Lamination`)}</button>
+                      <button onClick={() => hendlerOpenPlotter()}>{t(`Plotter cutting`)}</button>
+                      <button onClick={() => hendlerOpenGates()}>{t(`Welding of gates and stuffing of eyelets`)}</button>
+                      <button onClick={() => hendlerOpenAdversting()}>{t(`Production of outdoor advertising`)}</button>
                   </div>
                   <div className="modal_services_text_wrapper">
                     <p>{t(`Our printing house`)}</p>
@@ -137,11 +138,16 @@ const MainPage = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> Назад{" "}
+                    <BsBackspace className="back_img" /> На головну{" "}
                   </div>
                   <h3>{t(`Large format printing`)}</h3>
-                  <div className="img_wraper">
-                    <img src="./img/services/pic2.jpg" alt="" />
+                  <div className="nav_services_wraper">
+                      <button onClick={() => hendlerOpenDesint()} >ДИЗАЙН</button>
+                      <button onClick={() => hendlerOpenPrint()}>{t(`Large format printing`)}</button>
+                      <button onClick={() => hendlerOpenLamin()}>{t(`Lamination`)}</button>
+                      <button onClick={() => hendlerOpenPlotter()}>{t(`Plotter cutting`)}</button>
+                      <button onClick={() => hendlerOpenGates()}>{t(`Welding of gates and stuffing of eyelets`)}</button>
+                      <button onClick={() => hendlerOpenAdversting()}>{t(`Production of outdoor advertising`)}</button>
                   </div>
                   <div className="modal_services_info modal_services_text_wrapper">
                     <p>{t(`Large format printing description`)}</p>
@@ -174,11 +180,16 @@ const MainPage = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> Назад{" "}
+                    <BsBackspace className="back_img" /> На головну{" "}
                   </div>
                   <h3>{t(`Large format printing`)}</h3>
-                  <div className="img_wraper">
-                    <img src="./img/services/pic3.jpg" alt="" />
+                  <div className="nav_services_wraper">
+                      <button onClick={() => hendlerOpenDesint()} >ДИЗАЙН</button>
+                      <button onClick={() => hendlerOpenPrint()}>{t(`Large format printing`)}</button>
+                      <button onClick={() => hendlerOpenLamin()}>{t(`Lamination`)}</button>
+                      <button onClick={() => hendlerOpenPlotter()}>{t(`Plotter cutting`)}</button>
+                      <button onClick={() => hendlerOpenGates()}>{t(`Welding of gates and stuffing of eyelets`)}</button>
+                      <button onClick={() => hendlerOpenAdversting()}>{t(`Production of outdoor advertising`)}</button>
                   </div>
                   <div className="modal_services_text_wrapper">
                   <p>{t(`Lamination service`)}</p>
@@ -202,11 +213,16 @@ const MainPage = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> Назад{" "}
+                    <BsBackspace className="back_img" /> На головну{" "}
                   </div>
                   <h3>{t(`Plotter cutting`)}</h3>
-                  <div className="img_wraper">
-                    <img src="./img/services/pic4.jpg" alt="" />
+                  <div className="nav_services_wraper">
+                      <button onClick={() => hendlerOpenDesint()} >ДИЗАЙН</button>
+                      <button onClick={() => hendlerOpenPrint()}>{t(`Large format printing`)}</button>
+                      <button onClick={() => hendlerOpenLamin()}>{t(`Lamination`)}</button>
+                      <button onClick={() => hendlerOpenPlotter()}>{t(`Plotter cutting`)}</button>
+                      <button onClick={() => hendlerOpenGates()}>{t(`Welding of gates and stuffing of eyelets`)}</button>
+                      <button onClick={() => hendlerOpenAdversting()}>{t(`Production of outdoor advertising`)}</button>
                   </div>
                   <div className="modal_services_text_wrapper">
                   <p>{t(`The Ponto-print large-format printing`)} </p>
@@ -232,11 +248,16 @@ const MainPage = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> Назад{" "}
+                    <BsBackspace className="back_img" /> На головну{" "}
                   </div>
                   <h3>{t(`Welding of gates and stuffing of eyelets`)}</h3>
-                  <div className="img_wraper">
-                    <img src="./img/services/pic6..jpg" alt="" />
+                  <div className="nav_services_wraper">
+                      <button onClick={() => hendlerOpenDesint()} >ДИЗАЙН</button>
+                      <button onClick={() => hendlerOpenPrint()}>{t(`Large format printing`)}</button>
+                      <button onClick={() => hendlerOpenLamin()}>{t(`Lamination`)}</button>
+                      <button onClick={() => hendlerOpenPlotter()}>{t(`Plotter cutting`)}</button>
+                      <button onClick={() => hendlerOpenGates()}>{t(`Welding of gates and stuffing of eyelets`)}</button>
+                      <button onClick={() => hendlerOpenAdversting()}>{t(`Production of outdoor advertising`)}</button>
                   </div>
                   <div className="modal_services_text_wrapper">
                     <p>
@@ -273,11 +294,16 @@ const MainPage = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> Назад{" "}
+                    <BsBackspace className="back_img" /> На головну{" "}
                   </div>
                   <h3>{t(`Production of outdoor advertising`)}</h3>
-                  <div className="img_wraper">
-                    <img src="./img/services/pic7.jpg" alt="" />
+                  <div className="nav_services_wraper">
+                      <button onClick={() => hendlerOpenDesint()} >ДИЗАЙН</button>
+                      <button onClick={() => hendlerOpenPrint()}>{t(`Large format printing`)}</button>
+                      <button onClick={() => hendlerOpenLamin()}>{t(`Lamination`)}</button>
+                      <button onClick={() => hendlerOpenPlotter()}>{t(`Plotter cutting`)}</button>
+                      <button onClick={() => hendlerOpenGates()}>{t(`Welding of gates and stuffing of eyelets`)}</button>
+                      <button onClick={() => hendlerOpenAdversting()}>{t(`Production of outdoor advertising`)}</button>
                   </div>
                   <div className="modal_services_text_wrapper">
                     <p>
@@ -289,6 +315,10 @@ const MainPage = () => {
               )}
             </li>
           </ul>
+        </div>
+        <div className="description_block">
+          <h1>{t(`About`)}</h1>
+          <p>{t(`We are Ponto-print`)}</p>
         </div>
         <div className="faq">
           <h2>{t(`Questions and answers`)}</h2>
@@ -337,7 +367,7 @@ const MainPage = () => {
             </li>
           </ul>
         </div>
-        <Portfolio />
+        {/* <Portfolio /> */}
       </div>
     </div>
   );

@@ -210,16 +210,24 @@ const Header = () => {
                   //Login user Route
                   <div className="navbar_burger">
                     <Link to="/">
-                      <p className="link_route_">{t(`Main`)}</p>
+                      <p 
+                      onClick={() => hendlerMenuClose() }
+                      className="link_route">{t(`Main`)}</p>
                     </Link>
                     <Link to="/calculator">
-                      <p className="link_route">{t(`Calculator`)}</p>
+                      <p
+                      onClick={() => hendlerMenuClose() }
+                       className="link_route">{t(`Calculator`)}</p>
                     </Link>
                     <Link to="/my-panel">
-                      <p className="link_route">{t(`My office`)}</p>
+                      <p
+                      onClick={() => hendlerMenuClose() }
+                       className="link_route">{t(`My office`)}</p>
                     </Link>
                     <Link to="/news">
-                      <p className="link_route">{t(`News`)}</p>
+                      <p
+                      onClick={() => hendlerMenuClose() }
+                       className="link_route">{t(`News`)}</p>
                     </Link>
                   </div>
                 )}
@@ -228,10 +236,14 @@ const Header = () => {
               // Not Login user Route
               <div className="navbar_burger">
                 <Link to="/">
-                  <p className="link_route">{t(`Main`)}</p>
+                  <p
+                  onClick={() => hendlerMenuClose() }
+                   className="link_route">{t(`Main`)}</p>
                 </Link>
                 <Link to="/news">
-                      <p className="link_route">{t(`News`)}</p>
+                      <p 
+                      onClick={() => hendlerMenuClose() }
+                      className="link_route">{t(`News`)}</p>
                     </Link>
               </div>
             )}

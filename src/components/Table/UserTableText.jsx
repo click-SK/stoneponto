@@ -52,7 +52,7 @@ const UserTableText = ({ order }) => {
               </div>
             )}
             {order.conditions.eyelets?.name && (
-              <div style={{ background: "green" }}>
+              <div style={{ background: "green", color:'#fff' }}>
                 <p>{order.conditions.eyelets?.option}</p>
                 <p>{order.conditions.eyelets?.name}</p>
               </div>
@@ -64,19 +64,19 @@ const UserTableText = ({ order }) => {
               </div>
             )}
             {order.conditions.solderGates?.name && (
-              <div style={{ background: "blue" }}>
+              <div style={{ background: "blue", color:'#fff'}}>
                 <p>{order.conditions.solderGates?.option}</p>
                 <p>{order.conditions.solderGates?.name}</p>
               </div>
             )}
             {order.conditions.solderPockets?.name && (
-              <div style={{ background: "blue" }}>
+              <div style={{ background: "blue", color:'#fff' }}>
                 <p>{order.conditions.solderPockets?.option}</p>
                 <p>{order.conditions.solderPockets?.name}</p>
               </div>
             )}
             {order.conditions.mounting?.name && (
-              <div style={{ background: "orange" }}>
+              <div style={{ background: "#ff4d00" }}>
                 <p>{order.conditions.mounting?.name}</p>
               </div>
             )}
