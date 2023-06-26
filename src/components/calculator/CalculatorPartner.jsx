@@ -28,6 +28,7 @@ const CalculatorPartner = () => {
     const [selectedFileBoolean, setselectedFileBoolean] = useState(true);
     const [progress, setProgress] = useState(null);
     const [isProgresBar, setIsProgressBar] = useState(false);
+    const [isPosterDisabled, setIsPosterDisabled] = useState(false);
     const [totalSizeFile, setTotalSizeFile] = useState(null);
     const [currentSizeFile, setCurrentSizeFile] = useState(null);
     const [coment, setComent] = useState('')
@@ -110,6 +111,22 @@ const CalculatorPartner = () => {
     dispatch(fetchLanguage())
   },[lang])
 
+  useEffect(() => {
+    if(selectedOptionPoster.nameUa == '3x4м') {
+      setWitdh(3000);
+      setHeight(4000);
+      setIsPosterDisabled(true);
+    } else if(selectedOptionPoster.nameUa == '3x6м') {
+      setWitdh(3000);
+      setHeight(6000);
+      setIsPosterDisabled(true);
+    } else if(selectedOptionPoster.nameUa == '3x12м') {
+      setWitdh(3000);
+      setHeight(12000);
+      setIsPosterDisabled(true);
+    }
+  },[selectedOptionPoster])
+
   useEffect(() =>{
     const descriptionObj = {
       cutting: {
@@ -145,13 +162,14 @@ const CalculatorPartner = () => {
         option: selectedOptionEyelets?.price  ? (lang == "Ua" ? ' Люверси: ' : ' Люверсы: ') : '',
         name: selectedOptionEyelets?.price  ? (lang == "Ua" ? selectedOptionEyelets?.nameUa : selectedOptionEyelets?.nameRu) : '',
         value: selectedOptionEyelets?.price  ? ` ${selectedOptionEyeletsValue} см` : ''
-      } 
+      },
+      bilateral: {
+        name: isBilateral  ? (lang == "Ua" ? ' Двосторонній' : ' Двусторонний') : '',
+      }
     }
     setdescArray(descriptionObj);
    },[selectedOptionCutting,isMounting,selectedOptionEyelets,selectedOptionEyeletsValue,
-    selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch])
-
-    console.log('descArray',descArray);
+    selectedOptionSolderPockets,selectedOptionSolderGates,selectedOptionPoster,selectedOptionLamination,isStretch,isBilateral])
 
     const checkedSolder = (name) => {
       switch(name) {
@@ -171,31 +189,6 @@ const CalculatorPartner = () => {
           return  (width/2000) * 2
         case 'Знизу':
           return  (width/2000) * 2
-      }
-    }
-
-    const checkedEyelets = (name) => {
-      switch(name) {
-        case 'По периметру':
-          return ((width / 1000) + (height/1000)) * 2
-        case 'Ліворуч і праворуч':
-          return  (height/1000) * 2
-        case 'Зверху та знизу':
-          return  (width/1000) * 2
-        case 'Літерою П':
-          return  ((width/1000) + ((height/1000)) * 2)
-        case 'Ліворуч':
-          return  (height/1000)
-        case 'Праворуч':
-          return  (height/1000)
-        case 'Зверху':
-          return  (width/1000)
-        case 'Знизу':
-          return  (width/1000)
-        case 'По кутах':
-          return  0
-        case 'По мітках':
-          return  0
       }
     }
 
@@ -220,7 +213,9 @@ const CalculatorPartner = () => {
 
       const currentSolderGates = ((!isBilateral ? ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) : ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) / 2) || 0);
       const currentSolderPockets = ((!isBilateral ? ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) : ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) / 2) || 0);
-      const currentCutting = ((selectedOptionCutting?.nameUa == 'Плоттерна' ? (selectedOptionCutting?.price * quadrature) : (selectedOptionCutting?.price * linearMeter)) || 0);
+      const currentCutting = ((selectedOptionCutting?.nameUa == 'Плоттерна' ? 
+      (currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (selectedOptionCutting?.price * ((Number(1000) * Number(height))/1000000)) : (selectedOptionCutting?.price * quadrature)) : 
+      (selectedOptionCutting?.price * linearMeter)) || 0);
       const currentStamp = ((isStamp ? (currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (currentItem?.stamp * ((1) + ((Number(1000) * (Number(height) + 100))/1000000))) : (currentItem?.stamp * linearMeter)) : 0))
       const currentStretchOnTheStretcher = (isStretch ? currentItem?.goods && (quadrature < 0.5 ? (currentItem?.goods[0]?.stretchOnTheStretcherMin * quadrature) : (currentItem?.goods[0]?.stretchOnTheStretcher) * quadrature) : 0);
       const currentLamination = ((selectedOptionLamination?.price * quadrature) || 0)
@@ -233,7 +228,7 @@ const CalculatorPartner = () => {
 
       const totalSum1 = 
      ((currentLuversPrice) || 0) +
-     ((selectedOptionQuality?.price * quadrature) || 0) +
+     (isPosterDisabled ? 0 : ((selectedOptionQuality?.price * quadrature) || 0)) +
      ((selectedOptionColor?.price * ((Number(1000) * (Number(height) + 100))/1000000)) || 0) +
      (currentLamination) +
      (currentSolderGates || 0) +
@@ -242,7 +237,7 @@ const CalculatorPartner = () => {
      (selectedOptionPoster?.price || 0) + 
      (currentStamp) + 
      (currentStretchOnTheStretcher) +
-     (isMounting ? currentItem?.mounting: 0);  
+     (isMounting ? currentItem?.mounting: 0);
 
      const sumMultiplyCurrency = totalSum1 * currency.currency || 0;
      const sumAndCount = sumMultiplyCurrency * count;
@@ -286,6 +281,7 @@ const CalculatorPartner = () => {
         setComent('');
         setDelivery('');
         setSelectedOptionEyelets('');
+        setIsPosterDisabled(false);
       },[currentItem])
 
     const finlObj = {
@@ -457,7 +453,7 @@ const CalculatorPartner = () => {
     const displayOrderStory = () => {
       const orderItems = [];
     
-      if (selectedOptionQuality?.price * quadrature) {
+      if (isPosterDisabled ? 0 : selectedOptionQuality?.price * quadrature) {
         orderItems.push(`${t(`Printing`)} ${((selectedOptionQuality?.price * quadrature) * currency.currency).toFixed(0)} грн`);
       }
     
@@ -530,7 +526,21 @@ const CalculatorPartner = () => {
     
     console.log('selectedOptionPoster',selectedOptionPoster);
     return (
-      <div className="calc_wrap">
+      <>
+              <div style={{width: '100%', display:'flex',justifyContent:'center'}}>
+          <div style={{maxWidth:'600px', textAlign: 'start'}}>
+          <p style={{color:'red', fontSize:'14px', paddingBottom: '5px'}}>Напоминание</p>
+          <ul style={{color:'#222935', fontSize:'14px', lineHeight:'18px',}}>
+            <li>-Файлы должны быть в цветовой модели CMYK</li>
+            <li>-Файлы должны быть в размере в маштабе 1:1</li>
+            <li>-В векторных файлов должны быть покривлены шрифты</li>
+            <li>-В растровых файлах все слои должны быть сведены в единственный слой - Background, без дополнительных альфа-каналов (Channels), путей (Paths) и с LZW компрессией</li>
+            <li>-Для дополнительных сведений читайте раздел «Требования к макетам»</li>
+          </ul>
+          <p style={{color:'red', fontSize:'14px', paddingTop:'10px', lineHeight:'18px'}}>ВНИМАНИЕ! При загрузке имена файлов переименовываются в соответствии с выбранными вами параметрами печати. Мы не видим названия ваших файлов. Всю сопроводительную информацию пишите в поле «Заметки»</p>
+        </div>
+          </div>
+            <div className="calc_wrap">
         {goodsList.length != 0 && allUsers.length != 0 ? (
           <>
             <title>
@@ -915,6 +925,7 @@ const CalculatorPartner = () => {
           <Loader />
         )}
       </div>
+      </>
     );
 };
 
