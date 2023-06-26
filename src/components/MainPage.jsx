@@ -83,7 +83,7 @@ const MainPage = () => {
         </div>
         <div className="description_block">
           <h1>{t(`About`)}</h1>
-          <p>{t(`We are Express-Print`)}</p>
+          <p>{t(`We are Ponto-print`)}</p>
         </div>
         <div className="services">
           <h2>{t(`Description of services`)}</h2>
@@ -209,7 +209,7 @@ const MainPage = () => {
                     <img src="./img/services/pic4.jpg" alt="" />
                   </div>
                   <div className="modal_services_text_wrapper">
-                  <p>{t(`The Express-Print large-format printing`)} </p>
+                  <p>{t(`The Ponto-print large-format printing`)} </p>
                   </div>
                 </div>
               )}
@@ -241,7 +241,7 @@ const MainPage = () => {
                   <div className="modal_services_text_wrapper">
                     <p>
                       {t(
-                        `The Express-Print large-format printing house produces a full cycle of post-print processing`
+                        `The Ponto-print large-format printing house produces a full cycle of post-print processing`
                       )}
                     </p>
                     <p>{t(`For banners`)}</p>

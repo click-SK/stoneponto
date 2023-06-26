@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { currentUser } from "./store/auth";
 import "./App.css";
@@ -16,6 +16,7 @@ import Loader from "./components/Loader/Loader";
 
 function App() {
   const user = useSelector(currentUser);
+  
   return (
     <div className="App">
       <FirstRequest />
@@ -26,6 +27,7 @@ function App() {
       <Header />
       <Routes>
       <Route path="/" element={<MainPage />} />
+      <Route path="*" element={<MainPage />} />
       <Route path="/news" element={<Blog />} />
         {user !== null && "isAdmin" in user ? (
           <>
