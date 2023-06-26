@@ -63,10 +63,10 @@
     text-align: left;
     padding-left: 46px;
     p{
-      width: 400px;
+      width: 50%;
     }
     .price_value{
-      width: 100px;
+      width: 34%;
     }
   }
 
@@ -86,6 +86,8 @@
   .table_head{
     display: flex;
     flex-direction: row;
+    width: 100%;
+    padding-left: 46px;
     h2{
         display: block;
         color: $color_text_black;
@@ -93,14 +95,14 @@
   }
 
   .title_price{
-    width: 100px;
-    padding: 10px 0 0 ;
+    width: 15%;
+    // padding: 10px 0 0 ;
   }
 
   .title_name{
-    width: 400px;
+    width: 51%;
     text-align: left;
-    padding: 10px 0 0 10px;
+    // /* padding: 10px 0 0 10px;
   }
 
 
@@ -141,3 +143,28 @@
 
     }
   }
+
+  @media (max-width: 550px){
+    .colum_item_name {
+      padding-left: 0;
+  }
+  .table_head {
+    padding-left: 0;
+  }
+
+}
+  @media (max-width: 410px){
+    .colum_item_name {
+      p {
+      font-size: 12px;
+    }
+  }
+    .table_head {
+      h2 {
+        font-size: 12px;
+    }
+  }
+
+  
+
+}

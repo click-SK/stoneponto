@@ -42,7 +42,7 @@
 
 .description_block{
     display: flex;
-    background: $color_second;
+    background: $color_prime;
     // background: $color_prime;
     flex-direction: column;
     justify-content: center;
@@ -108,7 +108,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 400px;
-    background: $color_prime;
+    background: $color_second;
 
 
     h2{
@@ -195,7 +195,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9999;
     overflow-y: auto;
-    background: #ff6c3a;
+    background: #222935;
   }
   
   .img_wraper{ 
@@ -218,6 +218,8 @@
     text-align: center;
     font-size: 26px;
     margin-bottom: 10px;
+    color: $color_text_white;
+    padding-top: 25px;
   }
   p {
     font-size: 14px;
@@ -245,7 +247,13 @@
     }
 
 }
-
+    .nav_services_wraper{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        gap: 5px;
+    }
 
   .close_modal_services{
     position: absolute;
@@ -254,15 +262,17 @@
     text-transform: uppercase;
     top: 23px;
     left: 24px;
+    color: $color_text_white;
     .back_img{
         margin-right: 5px;
+        color: $color_text_white;
     }
-    &:hover{
-        color: $color_prime;
-        .back_img{
-            color: $color_prime;
-        }
-    }
+    // &:hover{
+    //     color: $color_prime;
+    //     .back_img{
+    //         color: $color_prime;
+    //     }
+    // }
   }
 
   .modal_services_text_wrapper {
