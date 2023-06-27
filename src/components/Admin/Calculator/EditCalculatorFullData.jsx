@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { AiOutlineDown } from "react-icons/ai";
 
 const EditCalculatorFullData = ({ currentArray, title, mainId, editPath, setIsFetch, goodsIndex, openCloseFunc, isOpen, isFetch }) => {
-  // const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
   return (
       <div className="goods_wrap">

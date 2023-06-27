@@ -94,8 +94,6 @@ const Header = () => {
             <ChooseLanguage />
           </span>
           <span className="wrap_item text social_icon_none">
-            {/* <FaTelegramPlane
-            className="icon_social"/> */}
             <a href="viber://chat?number=380966267481">
               <FaViber
               className="icon_social"/>

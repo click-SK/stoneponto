@@ -1,15 +1,3 @@
-// import React from 'react';
-
-// const SelectedColor = () => {
-//     return (
-//         <div>
-            
-//         </div>
-//     );
-// };
-
-// export default SelectedColor;
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchLanguage } from '../../store/language';
@@ -37,7 +25,6 @@ const SelectedColor = ({ item, title, selectedOption, setSelectedOption, }) => {
   const handleClickOutside = (event) => {
     
     if (selectRef.current && !selectRef.current.contains(event.target)) {
-      console.log('event',event);
       setIsOpen(false);
     }
   };

@@ -1,18 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import i18n from '../i18n';
-import { useTranslation } from 'react-i18next';
 import { fetchLanguage } from '../store/language';
 import { useSelector, useDispatch } from 'react-redux';
 import useLocalStorage from '../hooks/use-localstorage';
 import '../style/choseLanguage.scss'
 const Test = () => {
     const dispatch = useDispatch();
-
-    const [ua, setUa] = useState([]);
-    const [ru, setRu] = useState([]);
     const [currentLang, setCurrentLang] = useState('ua');
     const [language, setLanguage] = useLocalStorage('language', 'Ua');
-    const { t } = useTranslation();
     const lang = useSelector((state) => state.lang.language);
 
     useEffect(() => {
@@ -25,8 +20,6 @@ const Test = () => {
         setLanguage(e);
         dispatch(fetchLanguage());
     };
-
-    console.log('currentLang',currentLang);
 
     return (
         <div className='lang_change'>

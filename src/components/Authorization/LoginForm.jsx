@@ -41,12 +41,6 @@ const LoginForm = () => {
     }
   };
 
-//   const handleClick = (e) => {
-//     if (e.key === 'Enter') {
-//       handleSubmit();
-//     }
-//   };
-
   return (
     <div className="login_wrap"> {/* Додано обробник події onClick */}
       <div className="login_block">

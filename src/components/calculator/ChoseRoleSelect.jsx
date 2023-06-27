@@ -22,8 +22,6 @@ const ChoseRoleSelect = ({user,setIsOpenAllusers,allUsers,currentUserState,isOpe
     setIsOpen(false);
   }
 
-  console.log('isOpen',isOpen);
-
   return (
     <>
       {user && user?.isAdmin && (

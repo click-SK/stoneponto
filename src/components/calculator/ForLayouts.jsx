@@ -1,14 +1,12 @@
 import React, { useState,useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from "react-redux";
-import { currentCurrency } from "../../store/currency";
 import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
 import '../../style/modal.scss'
 
 const ForLayouts = ({isOpen, setIsOpen, goodsList}) => {
     const dispatch = useDispatch();
-    const { currency } = useSelector(currentCurrency);
 
     const { t } = useTranslation();
 

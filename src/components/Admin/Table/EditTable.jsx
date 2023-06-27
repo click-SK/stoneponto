@@ -19,9 +19,6 @@ const EditTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
 
-  console.log('allOrders',allOrders);
-
-
   const dateTime = new Date(); // Отримати поточну дату та час
 
 const day = dateTime.getDate().toString().padStart(2, '0'); // День з лідируючим нулем
@@ -157,32 +154,6 @@ const renderPageNumbers = () => {
     }
   });
 };
-
-// const orders = [
-//   { orderId: 1, customerName: "John Doe", totalAmount: 100 },
-//   { orderId: 2, customerName: "Jane Smith", totalAmount: 200 },
-//   // Додай більше об'єктів замовлень
-// ];
-
-
-
-
-// const orders = currentItems.map((item) => {
-//   return {
-//     Id: item?.id,
-//     "Дата": item?.date,
-//     "Пользователь": item?.user.name,
-//     'Файл': item?.fileName,
-//     'Материал': item?.material,
-//     'Качество': item?.quality,
-//     'Ширина': item?.width,
-//     'Высота': item?.height,
-//     'Тираж': item?.count,
-//     totalAmount: item?.sum,
-//     'Опис': 'a',
-//     'Cтатус': item?.status?.name,
-//   };
-// });
 
 const orders = currentItems.map((item) => {
   const conditions = item?.conditions;

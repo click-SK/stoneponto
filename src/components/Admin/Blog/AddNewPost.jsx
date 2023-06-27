@@ -52,13 +52,10 @@ const AddNewPost = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Обробка відповіді сервера
-
         window.location.reload();
       })
       .catch((error) => {
-        // Обробка помилки
-        // console.log();
+        console.log(error);
       });
   };
 
@@ -121,15 +118,10 @@ const AddNewPost = () => {
       <div className="descript_wrap">
         <div className="descript_item">
           <p>{t(`Description in Ukrainian`)}</p>
-          {/* <textarea
-                value={descriptionUa}
-                onChange={(e) => setDescriptionUa(e.target.value)}
-              /> */}
           <ReactQuill
             className="textarea"
             value={descriptionUa}
             onChange={handleContentChangeUa}
-            //  modules={{ toolbar: toolbarOptions }}
           />
         </div>
         <div className="descript_item">
@@ -138,7 +130,6 @@ const AddNewPost = () => {
             className="textarea"
             value={descriptionRu}
             onChange={handleContentChangeRu}
-            //  modules={{ toolbar: toolbarOptions }}
           />
         </div>
       </div>

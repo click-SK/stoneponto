@@ -20,7 +20,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   const handleDownload = async (order) => {
     const resonse = await fetch(`http://91.206.30.132:4444/download?id=${order._id}`)
     if(resonse.status == 200) {
-      console.log('status 200');
+
       const link = document.createElement('a');
       link.href = `http://91.206.30.132:4444/download?id=${order._id}`;
       document.body.appendChild(link);
@@ -40,7 +40,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
         }),
       }).then((res) => res.json());
       setTimeout(() => {
-        console.log('The end promise');
+
         setIsFetch((state) => !state);
       }, 1000);
     } else {
@@ -49,7 +49,6 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   };
 
   const handleDelete = () => {
-    console.log('work');
     fetch("http://91.206.30.132:4444/update-status", {
       method: "PATCH",
       headers: {

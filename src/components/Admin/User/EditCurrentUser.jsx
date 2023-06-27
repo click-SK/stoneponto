@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
-import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import EditCurrentUserDetails from './EditCurrentUserDetails';
 import DisplayCurrentTransaction from '../../Modal/DisplayCurrentTransaction';
 import EditBalance from './EditBalance';
@@ -8,18 +7,9 @@ import EditUserPassword from './EditUserPassword';
 import DisabledUser from './DisabledUser';
 import EditDiscount from './EditDiscount';
 import Modal from '../../Modal/Modal';
-// import AdminTable from '../../Table/AdminTable';
+
 const EditCurrentUser = ({user, setIsFetch,setIsVisibleEdit}) => {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
     const { t } = useTranslation();
-
-    const handleCloseModal = () => {
-        setModalIsOpen(false);
-      };
-
-      const handleOpenModal = () => {
-        setModalIsOpen(true);
-      };
     
 
     return (

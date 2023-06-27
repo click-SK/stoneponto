@@ -8,8 +8,6 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
   const [newValue, setNewValue] = useState(0);
   const [isEditValue, setIsEditValue] = useState(false);
   const { t } = useTranslation();
-  // const [action, setAction] = useState('');
-  // const [historyValue, sethistoryValue] = useState('');
 
   const handleEditButtonSave = async () => {
     setIsEditValue((isEdit) => !isEdit);
@@ -38,7 +36,6 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
       }),
     }).then((res) => res.json());
     setTimeout(() => {
-      // window.location.reload();
       setIsFetch((state) => !state);
       setNewValue(0);
     }, 1000);

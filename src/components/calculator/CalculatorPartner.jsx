@@ -190,23 +190,18 @@ const CalculatorPartner = () => {
       }
     }
 
-    console.log('isBilateral',isBilateral);
-    console.log('descArray',descArray);
-
      useEffect(() =>{
       const linearMeter = ((width / 1000) + (height/1000)) * 2;
 
       const standartLuvers = linearMeter/0.3;
-      console.log('selectedOptionEyelets?.price',selectedOptionEyelets?.price);
+
       const currentLuvers = 
       (linearMeter)/((selectedOptionEyeletsValue) / 100);
 
       let differenceLuvers = 0;
       let currentLuversPrice = 0;
-      console.log('currentLuvers',currentLuvers);
-      console.log('standartLuvers',standartLuvers);
+
       if(currentLuvers > standartLuvers) {
-        console.log('Work!!');
         differenceLuvers = currentLuvers - standartLuvers;
       }
       
@@ -371,7 +366,6 @@ const CalculatorPartner = () => {
 
     const handleTotalSum = () => {
       const isValid = validationFunc();
-      console.log('Work total sum func');
     
       if (isValid) {
         setWaitingSendOrder(true);

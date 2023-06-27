@@ -3,7 +3,6 @@ import UserTableText from './UserTableText'
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAuthMe } from "../../store/auth";
 import { useTranslation } from 'react-i18next';
-import { MdDoneOutline } from "react-icons/md";
 
 const DisplayUserTableOrder = ({order, currentUser}) => {
     const { t } = useTranslation();
@@ -22,7 +21,6 @@ const DisplayUserTableOrder = ({order, currentUser}) => {
           }),
         }).then((res) => res.json())
         .then((res) => {
-          console.log('res',res)
           if(res.message == "Table status worked") {
             alert('Статус замовлення: в роботі')
           }

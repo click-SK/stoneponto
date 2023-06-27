@@ -15,15 +15,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
-
-{/* <CarouselCompound.Page>
-          <img src='./img/Ресурс 8.svg' alt="" />
-        </CarouselCompound.Page>
-        <CarouselCompound.Page>
-          <img src='./img/banner1.png' alt="" />
-        </CarouselCompound.Page>
-        <CarouselCompound.Page>
-          <img src='./img/banner3.png' alt="" />
-        </CarouselCompound.Page> */}

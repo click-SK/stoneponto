@@ -14,8 +14,6 @@ const UserPanel = () => {
     const [user, setUser] = useState(null);
     const { t } = useTranslation();
 
-    // const user = useSelector(currentUser);
-
     useEffect(() => {
       fetch('http://91.206.30.132:4444/get-me',{
         headers: {
