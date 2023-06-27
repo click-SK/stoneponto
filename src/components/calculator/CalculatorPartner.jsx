@@ -371,6 +371,7 @@ const CalculatorPartner = () => {
 
     const handleTotalSum = () => {
       const isValid = validationFunc();
+      console.log('Work total sum func');
     
       if (isValid) {
         setWaitingSendOrder(true);
@@ -915,7 +916,7 @@ const CalculatorPartner = () => {
               {((choseAnotherUser && choseAnotherUser.name != "Admin") ||
                 (user.name != "Admin" && user.name != "undefined")) && (
                 <div>
-                  <button onClick={handleTotalSum} disabled={isProgresBar}>
+                  <button onClick={() => handleTotalSum()} disabled={isProgresBar}>
                     {waitingSendOrder ? (
                       <p>{t(`Sending the order`)}</p>
                     ) : (

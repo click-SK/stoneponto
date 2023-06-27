@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 const AdminTableText = ({ order, handleDownload }) => {
   const { t } = useTranslation();
 
+  console.log('order',order);
+
   return (
     <>
       <div className="item_row_info item_id">
