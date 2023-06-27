@@ -48,46 +48,8 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
     }
   };
 
-  // const handleDownload = async (order) => {
-  //   const resonse = await fetch(`http://91.206.30.132:4444/download?id=${order._id}`)
-  //   if (resonse.status == 200) {
-  //     console.log('status 200');
-  //     const blob = await resonse.blob();
-  //     const link = document.createElement('a');
-  //     link.href = URL.createObjectURL(blob);
-  
-  //     const fileExtension = order.file.split('.').pop();
-  //     const invalidCharacters = /[<>:"\\/|?*.]/g;
-  //     var cleanedStr = order.fileName.replace(/\s/g, "").replace(invalidCharacters, "");
-  //     link.download = cleanedStr + '.' + fileExtension;
-  //     console.log('cleanedStr', cleanedStr);
-  //     console.log('fileExtension', fileExtension);
-  //     document.body.appendChild(link);
-  //     link.click();
-  //     // link.remove();
-  
-  //     await fetch("http://91.206.30.132:4444/update-status", {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         value: "download",
-  //         name: 'В роботі',
-  //         tableId: order._id,
-  //         paid: false,
-  //       }),
-  //     }).then((res) => res.json());
-  //     setTimeout(() => {
-  //       console.log('The end promise');
-  //       setIsFetch((state) => !state);
-  //     }, 1000);
-  //   } else {
-  //     alert('Помилка при завантаженні')
-  //   }
-  // };
-
   const handleDelete = () => {
+    console.log('work');
     fetch("http://91.206.30.132:4444/update-status", {
       method: "PATCH",
       headers: {
@@ -148,9 +110,15 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
 
             </div>
           </div>
+          <DeletetableModal 
+          isOpen={modalIsOpen} 
+          onClose={handleCloseModal}
+          setDeleteText={setDeleteText}
+          deleteText={deleteText}
+          handleDelete={handleDelete} />
         </div>
       )}
-      {(order?.status?.currentStatus == "download" || order?.status?.currentStatus == "new") && (
+      {(order?.status?.currentStatus == "download") && (
         <div
           className="table_item table_item_download"
         >
