@@ -6,23 +6,26 @@ import ChoseRoleSelect from './ChoseRoleSelect'
 import ProgressBar from './ProgressBar'
 import InputsTamplate from '../template/InputsTamplate';
 import ModalPrice from './ModalPrice';
+import ModalProgram from "../Modal/ModalProgram";
 import ForLayouts from "./ForLayouts";
+import DeliveryAddress from "./DeliveryAddress";
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentUser } from "../../store/auth";
 import { fetchLanguage } from "../../store/language";
 import '../../style/calculator.scss'
 import Loader from "../Loader/Loader";
+import DownloadProgram from "./DownloadProgram";
 
 const CalculatorPartner = () => {
     const [goodsList, setGoodsList] = useState ([])
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenProgramModal, setIsOpenProgramModal] = useState(false);
     const [isOpenLayoust, setIsOpenLayoust] = useState(false);
     const [isOpenAllusers, setIsOpenAllusers] = useState(false);
     const [currentItem, setСurrentItem] = useState({});
     const [width, setWitdh] = useState('')
     const [height, setHeight] = useState('')
-    // const [quadrature, setquadrature] = useState(null)
     const [count, setCount] = useState(1)
     const [selectedFile, setselectedFile] = useState(null);
     const [selectedFileBoolean, setselectedFileBoolean] = useState(true);
@@ -89,14 +92,16 @@ const CalculatorPartner = () => {
 
     const lang = useSelector((state) => state.lang.language);
 
+    const additionalHeightOrcal = 150;
+
     useEffect(() => {
-        fetch('http://91.206.30.132:4444/get-all-calc')
+        fetch('http://localhost:4444/get-all-calc')
        .then(response => response.json())
        .then(res => setGoodsList(res))
      },[])
 
      useEffect(() => {
-      fetch('http://91.206.30.132:4444/get-all-user')
+      fetch('http://localhost:4444/get-all-user')
      .then(response => response.json())
      .then(res => {
       setAllUsers(res);
@@ -151,7 +156,7 @@ const CalculatorPartner = () => {
         name:  isStretch ? (lang == "Ua" ? 'Натяжка на підрамник ' : 'Натяжка на подрамник ') : ''
       },
       stamp: {
-        name: isStamp ? (lang == "Ua" ? 'З печаткою ' : 'С печатью ') : ''
+        name: isStamp ? (lang == "Ua" ? 'З друком ' : 'С печатью ') : ''
       },
       mounting: {
         name:  isMounting ? (lang == "Ua" ? 'Намонтування ' : 'Намонтаживание ') : ''
@@ -213,9 +218,9 @@ const CalculatorPartner = () => {
       const currentSolderGates = ((!isBilateral ? ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) : ((selectedOptionSolderGates?.price * checkedSolder(selectedOptionSolderGates?.nameUa))) / 2) || 0);
       const currentSolderPockets = ((!isBilateral ? ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) : ((selectedOptionSolderPockets?.price * checkedSolder(selectedOptionSolderPockets?.nameUa))) / 2) || 0);
       const currentCutting = ((selectedOptionCutting?.nameUa == 'Плоттерна' ? 
-      (currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (selectedOptionCutting?.price * ((Number(1000) * Number(height))/1000000)) : (selectedOptionCutting?.price * quadrature)) : 
+      (currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (selectedOptionCutting?.price * ((Number(1000) * Number(height) + additionalHeightOrcal)/1000000)) : (selectedOptionCutting?.price * quadrature)) : 
       (selectedOptionCutting?.price * linearMeter)) || 0);
-      const currentStamp = ((isStamp ? (currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (currentItem?.stamp * ((1) + ((Number(1000) * (Number(height) + 100))/1000000))) : (currentItem?.stamp * linearMeter)) : 0))
+      const currentStamp = ((isStamp ? (currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (currentItem?.stamp * (((Number(1000) * (Number(height) + additionalHeightOrcal))/1000000))) : (currentItem?.stamp * linearMeter)) : 0))
       const currentStretchOnTheStretcher = (isStretch ? currentItem?.goods && (quadrature < 0.5 ? (currentItem?.goods[0]?.stretchOnTheStretcherMin * quadrature) : (currentItem?.goods[0]?.stretchOnTheStretcher) * quadrature) : 0);
       const currentLamination = ((selectedOptionLamination?.price * quadrature) || 0)
       setSolderGatesDisplay(currentSolderGates);
@@ -228,7 +233,7 @@ const CalculatorPartner = () => {
       const totalSum1 = 
      ((currentLuversPrice) || 0) +
      (isPosterDisabled ? 0 : ((selectedOptionQuality?.price * quadrature) || 0)) +
-     ((selectedOptionColor?.price * ((Number(1000) * (Number(height) + 100))/1000000)) || 0) +
+     ((selectedOptionColor?.price * ((Number(1000) * (Number(height) + additionalHeightOrcal))/1000000)) || 0) +
      (currentLamination) +
      (currentSolderGates || 0) +
      (currentSolderPockets || 0) +
@@ -341,9 +346,10 @@ const CalculatorPartner = () => {
         isValid = false;
       }
 
-      if (width <= 0) {
+      if (width <= 0 && currentItem.nameUa !== 'Кольорова плівка серії Oracal 641') {
         setValidationWidth(true);
         isValid = false;
+        console.log('width validation');
       }
     
       if (height <= 0) {
@@ -366,8 +372,10 @@ const CalculatorPartner = () => {
 
     const handleTotalSum = () => {
       const isValid = validationFunc();
+      console.log('total sum work 1');
     
       if (isValid) {
+      console.log('total sum work 2');
         setWaitingSendOrder(true);
         setIsProgressBar(true);
         const formData = new FormData();
@@ -403,7 +411,7 @@ const CalculatorPartner = () => {
         formData.append("status", JSON.stringify(status));
     
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://91.206.30.132:4444/create-table", true);
+        xhr.open("POST", "http://localhost:4444/create-table", true);
     
         xhr.upload.addEventListener("progress", (event) => {
           const loaded = (event.loaded / (1024 * 1024));
@@ -442,7 +450,7 @@ const CalculatorPartner = () => {
       setIsOpenAllusers((state) => !state)
       setCurrentId(e._id);
       setIsOpenAllusers((state) => !state);
-      setCurrentUserState(e?.name);
+      setCurrentUserState(e);
       setCurrentDiscount(e.discountValue);
       setChoseAnotherUser(e);
     }
@@ -455,7 +463,7 @@ const CalculatorPartner = () => {
       }
     
       if (selectedOptionColor?.price * ((Number(1000) * (Number(height) + 100))/1000000)) {
-        orderItems.push(`${t(`Color`)} ${(((selectedOptionColor?.price * ((Number(1000) * (Number(height) + 100))/1000000)) * currency.currency) || 0).toFixed(0)} грн`);
+        orderItems.push(`${t(`Color`)} ${(((selectedOptionColor?.price * ((Number(1000) * (Number(height) + additionalHeightOrcal))/1000000)) * currency.currency) || 0).toFixed(0)} грн`);
       }
     
       if (selectedOptionPoster?.price) {
@@ -523,409 +531,486 @@ const CalculatorPartner = () => {
         </div>
       );
     };
+
+    console.log('currentUserState',currentUserState);
     
     return (
       <>
-        <div style={{ display:'flex',justifyContent:'center', maxWidth:'1140px'}}>
-          <div style={{textAlign: 'start'}}>
-          <p style={{color:'red', fontSize:'14px', paddingBottom: '5px'}}>Напоминание</p>
-          <ul style={{color:'#222935', fontSize:'14px', lineHeight:'18px',}}>
-            <li>-{t(`Files must be in the CMYK color model`)}</li>
-            <li>-{t(`Files must be 1:1 in size`)}</li>
-            <li>-{t(`Vector files must have curved fonts`)}</li>
-            <li>-{t(`In raster files, all layers must be flattened into a single layer`)}</li>
-            <li>-{t(`For more information, read the Layout Requirements section`)}</li>
-          </ul>
-          <p style={{color:'red', fontSize:'14px', padding:'10px 0px', lineHeight:'18px'}}>{t(`ATTENTION! When uploading filenames`)}</p>
-        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            maxWidth: "1140px",
+          }}
+        >
+          <div style={{ textAlign: "start" }}>
+            <p style={{ color: "red", fontSize: "14px", paddingBottom: "5px" }}>
+              Напоминание
+            </p>
+            <ul
+              style={{ color: "#222935", fontSize: "14px", lineHeight: "18px" }}
+            >
+              <li>-{t(`Files must be in the CMYK color model`)}</li>
+              <li>-{t(`Files must be 1:1 in size`)}</li>
+              <li>-{t(`Vector files must have curved fonts`)}</li>
+              <li>
+                -
+                {t(
+                  `In raster files, all layers must be flattened into a single layer`
+                )}
+              </li>
+              <li>
+                -
+                {t(
+                  `For more information, read the Layout Requirements section`
+                )}
+              </li>
+            </ul>
+            <p
+              style={{
+                color: "red",
+                fontSize: "14px",
+                padding: "10px 0px",
+                lineHeight: "18px",
+              }}
+            >
+              {t(`ATTENTION! When uploading filenames`)}
+            </p>
           </div>
-            <div className="calc_wrap">
-        {goodsList.length != 0 && allUsers.length != 0 ? (
-          <>
-            <title>
-              <ChoseRoleSelect
-                user={user && user}
-                setIsOpenAllusers={setIsOpenAllusers}
-                allUsers={allUsers}
-                currentUserState={currentUserState}
-                isOpenAllusers={isOpenAllusers}
-                setCurrentIdFunc={setCurrentIdFunc}
-              />
-              <div style={{ display: "flex" }}>
-                <button
-                  className="btn"
-                  onClick={() => setIsOpenLayoust(!isOpenLayoust)}
-                >
-                  {t(`REQUIREMENTS FOR LAYOUTS`)}
-                </button>
-                <ForLayouts
-                  isOpen={isOpenLayoust}
-                  setIsOpen={setIsOpenLayoust}
+        </div>
+        <div className="calc_wrap">
+          {goodsList.length != 0 && allUsers.length != 0 ? (
+            <>
+              <title>
+                <ChoseRoleSelect
+                  user={user && user}
+                  setIsOpenAllusers={setIsOpenAllusers}
+                  allUsers={allUsers}
+                  currentUserState={currentUserState?.name}
+                  isOpenAllusers={isOpenAllusers}
+                  setCurrentIdFunc={setCurrentIdFunc}
                 />
+                <div style={{ display: "flex" }}>
                 <button
-                  style={{ margin: "0 0 0 10px" }}
-                  className="btn"
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  {t(`Prices for 1m2`)}
-                </button>
-                <ModalPrice
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                  goodsList={goodsList}
-                />
-              </div>
-            </title>
-            <div className="wrap_row">
-              <div className="calc-item material">
-                <h3>{t(`Material`)}</h3>
-                <Select goods={goodsList} setcurrentItem={setСurrentItem} />
-                {validationCurrentItem && (
-                  <p style={{ color: "red" }}>{t(`Validation material`)}</p>
-                )}
-              </div>
+                    className="btn"
+                    onClick={() => setIsOpenProgramModal(!isOpenProgramModal)}
+                  >
+                    {t(`Calculation of quadrature`)}
+                  </button>
+                  <ModalProgram
+                    isOpen={isOpenProgramModal}
+                    setIsOpen={setIsOpenProgramModal}
+                  />
+                  <button
+                    className="btn"
+                    onClick={() => setIsOpenLayoust(!isOpenLayoust)}
+                    style={{ margin: "0px 10px" }}
+                  >
+                    {t(`REQUIREMENTS FOR LAYOUTS`)}
+                  </button>
+                  <ForLayouts
+                    isOpen={isOpenLayoust}
+                    setIsOpen={setIsOpenLayoust}
+                  />
+                  <button
+                    className="btn"
+                    onClick={() => setIsOpen(!isOpen)}
+                  >
+                    {t(`Prices for 1m2`)}
+                  </button>
+                  <ModalPrice
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    goodsList={goodsList}
+                  />
+                </div>
+              </title>
+              <div className="wrap_row">
+                <div className="calc-item material">
+                  <h3>{t(`Material`)}</h3>
+                  <Select goods={goodsList} setcurrentItem={setСurrentItem} />
+                  {validationCurrentItem && (
+                    <p style={{ color: "red" }}>{t(`Validation material`)}</p>
+                  )}
+                </div>
 
-              <div className="calc-item quality">
-                {currentItem?.color && currentItem?.color != 0 && (
-                  <SelectedColor
-                    item={currentItem?.color}
-                    title={"Color"}
-                    selectedOption={selectedOptionColor}
-                    setSelectedOption={setSelectedOptionColor}
-                  />
-                )}
-                {validationOptionColor && (
-                  <p style={{ color: "red" }}>{t(`Validation color`)}</p>
-                )}
-                {currentItem?.quality && currentItem?.quality.length != 0 && (
-                  <SelectSec
-                    item={currentItem?.quality}
-                    title={"Quality"}
-                    selectedOption={selectedOptionQuality}
-                    setSelectedOption={setSelectedOptionQuality}
-                  />
-                )}
-                {currentItem?.goods && currentItem?.goods.length != 0 && (
-                  <SelectSec
-                    item={currentItem?.goods[0]?.quality}
-                    title={"Quality"}
-                    selectedOption={selectedOptionQuality}
-                    setSelectedOption={setSelectedOptionQuality}
-                  />
-                )}
-                {validationOptionQuality && currentItem?.quality && (
-                  <p style={{ color: "red" }}>{t(`Validation quality`)}</p>
-                )}
-              </div>
-            </div>
-            <div className="wrap_row">
-              {currentItem &&
-              currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (
-                <>
-                  <div className="calc-item input_size">
-                    <InputsTamplate
-                      title={"Width"}
-                      type={"number"}
-                      placeholder={"Enter the width in mm"}
-                      value={1000}
-                      handleCangeInput={setWitdh}
-                      disabled={true}
+                <div className="calc-item quality">
+                  {currentItem?.color && currentItem?.color != 0 && (
+                    <SelectedColor
+                      item={currentItem?.color}
+                      title={"Color"}
+                      selectedOption={selectedOptionColor}
+                      setSelectedOption={setSelectedOptionColor}
                     />
-                  </div>
-                  <div className="calc-item input_size">
-                    <InputsTamplate
-                      title={"Height"}
-                      type={"number"}
-                      placeholder={"Enter the height in mm"}
-                      value={height}
-                      handleCangeInput={setHeight}
-                    />
-                    {validationHeight && (
-                      <p style={{ color: "red" }}>{t(`Validation height`)}</p>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="calc-item input_size">
-                    <InputsTamplate
-                      title={"Width"}
-                      type={"number"}
-                      placeholder={"Enter the width in mm"}
-                      value={width}
-                      handleCangeInput={setWitdh}
-                      disabled={isPosterDisabled}
-                    />
-                    {validationWidth && (
-                      <p style={{ color: "red" }}>{t(`Validation width`)}</p>
-                    )}
-                  </div>
-                  <div className="calc-item input_size">
-                    <InputsTamplate
-                      title={"Height"}
-                      type={"number"}
-                      placeholder={"Enter the height in mm"}
-                      value={height}
-                      handleCangeInput={setHeight}
-                      disabled={isPosterDisabled}
-                    />
-                    {validationHeight && (
-                      <p style={{ color: "red" }}>{t(`Validation height`)}</p>
-                    )}
-                  </div>
-                </>
-              )}
-              <div className="calc-item input_size">
-                <InputsTamplate
-                  title={"Circulation"}
-                  type={"number"}
-                  placeholder={"Enter circulation"}
-                  value={count}
-                  handleCangeInput={setCount}
-                />
-                {validationCount && (
-                  <p style={{ color: "red" }}>{t(`Validation circulation`)}</p>
-                )}
-              </div>
-            </div>
-            <div className="wrap_row adding">
-              <div className="colum ">
-                {currentItem?.eyelets && currentItem?.eyelets.length != 0 && (
-                  <div className="eyelets_wrap">
+                  )}
+                  {validationOptionColor && (
+                    <p style={{ color: "red" }}>{t(`Validation color`)}</p>
+                  )}
+                  {currentItem?.quality && currentItem?.quality.length != 0 && (
                     <SelectSec
-                      item={currentItem?.eyelets}
-                      title={"Eyelets"}
-                      selectedOption={selectedOptionEyelets}
-                      setSelectedOption={setSelectedOptionEyelets}
+                      item={currentItem?.quality}
+                      title={"Quality"}
+                      selectedOption={selectedOptionQuality}
+                      setSelectedOption={setSelectedOptionQuality}
                     />
-                    {selectedOptionEyelets?.nameUa !== "По кутах" ? (
+                  )}
+                  {currentItem?.goods && currentItem?.goods.length != 0 && (
+                    <SelectSec
+                      item={currentItem?.goods[0]?.quality}
+                      title={"Quality"}
+                      selectedOption={selectedOptionQuality}
+                      setSelectedOption={setSelectedOptionQuality}
+                    />
+                  )}
+                  {validationOptionQuality && currentItem?.quality && (
+                    <p style={{ color: "red" }}>{t(`Validation quality`)}</p>
+                  )}
+                </div>
+              </div>
+              <div className="wrap_row">
+                {currentItem &&
+                currentItem?.nameUa == "Кольорова плівка серії Oracal 641" ? (
+                  <>
+                    <div className="calc-item input_size">
                       <InputsTamplate
-                        title={"через (cм)"}
+                        title={"Width"}
                         type={"number"}
-                        placeholder={"30"}
-                        value={selectedOptionEyeletsValue}
-                        handleCangeInput={setSelectedOptionEyeletsValue}
-                      />
-                    ) : (
-                      <InputsTamplate
-                        title={"через (cм)"}
-                        type={"number"}
-                        placeholder={"30"}
-                        value={selectedOptionEyeletsValue}
-                        handleCangeInput={setSelectedOptionEyeletsValue}
+                        placeholder={"Enter the width in mm"}
+                        value={1000}
+                        handleCangeInput={setWitdh}
                         disabled={true}
                       />
-                    )}
-                  </div>
+                    </div>
+                    <div className="calc-item input_size">
+                      <InputsTamplate
+                        title={"Height"}
+                        type={"number"}
+                        placeholder={"Enter the height in mm"}
+                        value={height}
+                        handleCangeInput={setHeight}
+                      />
+                      {validationHeight && (
+                        <p style={{ color: "red" }}>{t(`Validation height`)}</p>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="calc-item input_size">
+                      <InputsTamplate
+                        title={"Width"}
+                        type={"number"}
+                        placeholder={"Enter the width in mm"}
+                        value={width}
+                        handleCangeInput={setWitdh}
+                        disabled={isPosterDisabled}
+                      />
+                      {validationWidth && (
+                        <p style={{ color: "red" }}>{t(`Validation width`)}</p>
+                      )}
+                    </div>
+                    <div className="calc-item input_size">
+                      <InputsTamplate
+                        title={"Height"}
+                        type={"number"}
+                        placeholder={"Enter the height in mm"}
+                        value={height}
+                        handleCangeInput={setHeight}
+                        disabled={isPosterDisabled}
+                      />
+                      {validationHeight && (
+                        <p style={{ color: "red" }}>{t(`Validation height`)}</p>
+                      )}
+                    </div>
+                  </>
                 )}
-                {currentItem?.cutting && currentItem?.cutting.length != 0 && (
-                  <SelectSec
-                    item={currentItem?.cutting}
-                    title={"Cutting"}
-                    selectedOption={selectedOptionCutting}
-                    setSelectedOption={setSelectedOptionCutting}
+                <div className="calc-item input_size">
+                  <InputsTamplate
+                    title={"Circulation"}
+                    type={"number"}
+                    placeholder={"Enter circulation"}
+                    value={count}
+                    handleCangeInput={setCount}
                   />
-                )}
-                {currentItem &&
-                  currentItem.goods &&
-                  currentItem.goods.length > 0 &&
-                  currentItem.goods[0].cutting.length !== 0 && (
+                  {validationCount && (
+                    <p style={{ color: "red" }}>
+                      {t(`Validation circulation`)}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <div className="wrap_row adding">
+                <div className="colum ">
+                  {currentItem?.eyelets && currentItem?.eyelets.length != 0 && (
+                    <div className="eyelets_wrap">
+                      <SelectSec
+                        item={currentItem?.eyelets}
+                        title={"Eyelets"}
+                        selectedOption={selectedOptionEyelets}
+                        setSelectedOption={setSelectedOptionEyelets}
+                      />
+                      {selectedOptionEyelets?.nameUa !== "По кутах" ? (
+                        <InputsTamplate
+                          title={"через (cм)"}
+                          type={"number"}
+                          placeholder={"30"}
+                          value={selectedOptionEyeletsValue}
+                          handleCangeInput={setSelectedOptionEyeletsValue}
+                        />
+                      ) : (
+                        <InputsTamplate
+                          title={"через (cм)"}
+                          type={"number"}
+                          placeholder={"30"}
+                          value={selectedOptionEyeletsValue}
+                          handleCangeInput={setSelectedOptionEyeletsValue}
+                          disabled={true}
+                        />
+                      )}
+                    </div>
+                  )}
+                  {currentItem?.cutting && currentItem?.cutting.length != 0 && (
                     <SelectSec
-                      item={currentItem.goods[0].cutting}
+                      item={currentItem?.cutting}
                       title={"Cutting"}
                       selectedOption={selectedOptionCutting}
                       setSelectedOption={setSelectedOptionCutting}
                     />
                   )}
-                {currentItem?.lamination &&
-                  currentItem?.lamination.length != 0 && (
+                  {currentItem &&
+                    currentItem.goods &&
+                    currentItem.goods.length > 0 &&
+                    currentItem.goods[0].cutting.length !== 0 && (
+                      <SelectSec
+                        item={currentItem.goods[0].cutting}
+                        title={"Cutting"}
+                        selectedOption={selectedOptionCutting}
+                        setSelectedOption={setSelectedOptionCutting}
+                      />
+                    )}
+                  {currentItem?.lamination &&
+                    currentItem?.lamination.length != 0 && (
+                      <SelectSec
+                        item={currentItem?.lamination}
+                        title={"Lamination"}
+                        selectedOption={selectedOptionLamination}
+                        setSelectedOption={setSelectedOptionLamination}
+                      />
+                    )}
+                  {currentItem?.poster && currentItem?.poster.length != 0 && (
                     <SelectSec
-                      item={currentItem?.lamination}
-                      title={"Lamination"}
-                      selectedOption={selectedOptionLamination}
-                      setSelectedOption={setSelectedOptionLamination}
+                      item={currentItem?.poster}
+                      title={"Poster"}
+                      selectedOption={selectedOptionPoster}
+                      setSelectedOption={setSelectedOptionPoster}
                     />
                   )}
-                {currentItem?.poster && currentItem?.poster.length != 0 && (
-                  <SelectSec
-                    item={currentItem?.poster}
-                    title={"Poster"}
-                    selectedOption={selectedOptionPoster}
-                    setSelectedOption={setSelectedOptionPoster}
-                  />
-                )}
 
-                {currentItem?.goods &&
-                  currentItem?.goods[0]?.stretchOnTheStretcher && (
+                  {currentItem?.goods &&
+                    currentItem?.goods[0]?.stretchOnTheStretcher && (
+                      <div>
+                        <h3>{t(`StretchOnTheStretcher`)}</h3>
+                        <input
+                          type="checkbox"
+                          value={isStretch}
+                          onChange={handleStretch}
+                        />
+                      </div>
+                    )}
+                  {currentItem?.mounting && (
                     <div>
-                      <h3>{t(`StretchOnTheStretcher`)}</h3>
+                      <h3>{t(`Mounting`)}</h3>
                       <input
                         type="checkbox"
-                        value={isStretch}
-                        onChange={handleStretch}
+                        value={isMounting}
+                        onChange={handleMounting}
                       />
                     </div>
                   )}
-                {currentItem?.mounting && (
-                  <div>
-                    <h3>{t(`Mounting`)}</h3>
-                    <input
-                      type="checkbox"
-                      value={isMounting}
-                      onChange={handleMounting}
-                    />
-                  </div>
-                )}
-                {currentItem?.stamp && (
-                  <div>
-                    <h3>{t(`WithAStamp`)}</h3>
-                    <input
-                      type="checkbox"
-                      value={isStamp}
-                      onChange={handleStamp}
-                    />
-                  </div>
-                )}
-                <div>
-                  {currentItem &&
-                    (currentItem?.nameUa == "Банер 440 гр. Ламінований" ||
-                      currentItem?.nameUa == "Банер 510 гр. литий" ||
-                      currentItem?.nameUa == "Сітка банерна 380 гр.") && (
-                      <div>
-                        <h3>{t(`Bilateral`)}</h3>
-                        <input
-                          type="checkbox"
-                          value={isBilateral}
-                          onChange={() => setIsBilateral((state) => !state)}
-                        />
-                      </div>
-                    )}
-                </div>
-                {currentItem?.solderingOfGates &&
-                  currentItem?.solderingOfGates.length != 0 && (
-                    <div className="soldering">
-                      <div className="soldering_item">
-                        <SelectSec
-                          item={currentItem?.solderingOfGates}
-                          title={"SolderingOfGates"}
-                          selectedOption={selectedOptionSolderGates}
-                          setSelectedOption={setSelectedOptionSolderGates}
-                        />
-                      </div>
-                      <div className="soldering_item">
-                        <SelectSec
-                          item={currentItem?.solderingPockets}
-                          title={"SolderingPockets"}
-                          selectedOption={selectedOptionSolderPockets}
-                          setSelectedOption={setSelectedOptionSolderPockets}
-                        />
-                      </div>
+                  {currentItem?.stamp && (
+                    <div>
+                      <h3>{t(`WithAStamp`)}</h3>
+                      <input
+                        type="checkbox"
+                        value={isStamp}
+                        onChange={handleStamp}
+                      />
                     </div>
                   )}
-              </div>
-              {((choseAnotherUser && choseAnotherUser.name != "Admin") ||
-                (user.name != "Admin" && user.name != "undefined")) && (
-                <div className="colum upload">
-                  <h3>Файл</h3>
-                  <input
-                    type="file"
-                    accept=".jpg, .tiff, .tif, .rar, .zip, .7z, .cdr"
-                    hidden
-                    onChange={handleChange}
-                    ref={inputFileRef}
-                  />
-                  <button
-                    onClick={() => inputFileRef.current.click()}
-                    disabled={isProgresBar}
-                  >
-                    {t(`Download the file`)}
-                  </button>
                   <div>
-                    {selectedFile && (
-                      <p>
-                        {t(`File selected`)}: {selectedFile.name}
-                      </p>
-                    )}
+                    {currentItem &&
+                      (currentItem?.nameUa == "Банер 440 гр. Ламінований" ||
+                        currentItem?.nameUa == "Банер 510 гр. литий" ||
+                        currentItem?.nameUa == "Сітка банерна 380 гр.") && (
+                        <div>
+                          <h3>{t(`Bilateral`)}</h3>
+                          <input
+                            type="checkbox"
+                            value={isBilateral}
+                            onChange={() => setIsBilateral((state) => !state)}
+                          />
+                        </div>
+                      )}
                   </div>
-                  <ProgressBar
-                    isProgresBar={isProgresBar}
-                    currentSizeFile={currentSizeFile}
-                    totalSizeFile={totalSizeFile}
-                    progress={progress}
-                  />
-                  <div>
-                    {validationFile && (
-                      <p style={{ color: "red" }}>{t(`File not selected`)}</p>
+                  {currentItem?.solderingOfGates &&
+                    currentItem?.solderingOfGates.length != 0 && (
+                      <div className="soldering">
+                        <div className="soldering_item">
+                          <SelectSec
+                            item={currentItem?.solderingOfGates}
+                            title={"SolderingOfGates"}
+                            selectedOption={selectedOptionSolderGates}
+                            setSelectedOption={setSelectedOptionSolderGates}
+                          />
+                        </div>
+                        <div className="soldering_item">
+                          <SelectSec
+                            item={currentItem?.solderingPockets}
+                            title={"SolderingPockets"}
+                            selectedOption={selectedOptionSolderPockets}
+                            setSelectedOption={setSelectedOptionSolderPockets}
+                          />
+                        </div>
+                      </div>
                     )}
-                  </div>
                 </div>
-              )}
-            </div>
-            <div className="wrap_row">
-              <div className="calc-item">
-                <h3>{t(`Description`)}</h3>
-                <div className="description">
-                  {descArray.length !== 0 &&
-                    Object.entries(descArray)
-                      .filter(([_, value]) => value.name !== "")
-                      .map(([key, item], idx) => (
-                        <p key={idx}>
-                          {item?.option && t(`${item?.option}`)}
-                          {t(`${item?.name}`)}
-                          {item?.value}
+                {((choseAnotherUser &&
+                  choseAnotherUser.name != "ponto-print@ukr.net") ||
+                  (user.name != "ponto-print@ukr.net" &&
+                    user.name != "undefined")) && (
+                  <div className="colum upload">
+                    <h3>Файл</h3>
+                    <input
+                      type="file"
+                      accept=".jpg, .tiff, .tif, .rar, .zip, .7z, .cdr"
+                      hidden
+                      onChange={handleChange}
+                      ref={inputFileRef}
+                    />
+                    <button
+                      onClick={() => inputFileRef.current.click()}
+                      disabled={isProgresBar}
+                    >
+                      {t(`Download the file`)}
+                    </button>
+                    <div>
+                      {selectedFile && (
+                        <p>
+                          {t(`File selected`)}: {selectedFile.name}
                         </p>
-                      ))}
+                      )}
+                    </div>
+                    <ProgressBar
+                      isProgresBar={isProgresBar}
+                      currentSizeFile={currentSizeFile}
+                      totalSizeFile={totalSizeFile}
+                      progress={progress}
+                    />
+                    <div>
+                      {validationFile && (
+                        <p style={{ color: "red" }}>{t(`File not selected`)}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="wrap_row">
+                <div className="calc-item">
+                  <h3>{t(`Description`)}</h3>
+                  <div className="description">
+                    {descArray.length !== 0 &&
+                      Object.entries(descArray)
+                        .filter(([_, value]) => value.name !== "")
+                        .map(([key, item], idx) => (
+                          <p key={idx}>
+                            {item?.option && t(`${item?.option}`)}
+                            {t(`${item?.name}`)}
+                            {item?.value}
+                          </p>
+                        ))}
+                  </div>
+                </div>
+                <div className="calc-item">
+                  <h3>{t(`Notes`)}</h3>
+                  <textarea
+                    name="coment"
+                    id=""
+                    cols="50"
+                    rows="6"
+                    value={coment}
+                    onChange={(e) => setComent(e.target.value)}
+                  ></textarea>
                 </div>
               </div>
-              <div className="calc-item">
-                <h3>{t(`Notes`)}</h3>
-                <textarea
-                  name="coment"
-                  id=""
-                  cols="50"
-                  rows="6"
-                  value={coment}
-                  onChange={(e) => setComent(e.target.value)}
-                ></textarea>
-              </div>
-            </div>
-            <div className="wrap_row footer_calc">
-              <div className="calc-item delivery">
-                <InputsTamplate
-                  title={t(`Delivery address`)}
-                  type={"text"}
-                  placeholder={t(`Address`)}
-                  value={delivery}
-                  handleCangeInput={setDelivery}
-                />
-              </div>
-              <div className="total_sum">
-                <h3>
-                  {" "}
-                  {t(`Total`)}:{" "}
-                  <p>{isNaN(totalSum.toFixed(0)) ? 0 : totalSum.toFixed(0)}</p>{" "}
-                  грн
-                </h3>
-              </div>
-              {((choseAnotherUser && choseAnotherUser.name != "Admin") ||
-                (user.name != "Admin" && user.name != "undefined")) && (
-                <div>
-                  <button onClick={() => handleTotalSum()} disabled={isProgresBar}>
-                    {waitingSendOrder ? (
-                      <p>{t(`Sending the order`)}</p>
-                    ) : (
-                      <p>{t(`Download the order`)}</p>
-                    )}
-                  </button>
+              <div className="wrap_row footer_calc">
+                <div className="calc-item delivery">
+                  <DeliveryAddress
+                    title={t(`Delivery address`)}
+                    type={"text"}
+                    placeholder={t(`Address`)}
+                    value={delivery}
+                    handleCangeInput={setDelivery}
+                    currentUser={currentUserState || user}
+                  />
                 </div>
-              )}
-            </div>
-            {displayOrderStory()}
-          </>
-        ) : (
-          <Loader />
-        )}
-      </div>
+                <div className="total_sum">
+                  <h3>
+                    {" "}
+                    {t(`Total`)}:{" "}
+                    <p>
+                      {isNaN(totalSum.toFixed(0)) ? 0 : totalSum.toFixed(0)}
+                    </p>{" "}
+                    грн
+                  </h3>
+                </div>
+                {((choseAnotherUser &&
+                  choseAnotherUser.name != "ponto-print@ukr.net") ||
+                  (user.name != "ponto-print@ukr.net" &&
+                    user.name != "undefined")) && (
+                  <div className="send_button_and_validation_wrap">
+                    <button
+                      onClick={() => handleTotalSum()}
+                      disabled={isProgresBar}
+                    >
+                      {waitingSendOrder ? (
+                        <p>{t(`Sending the order`)}</p>
+                      ) : (
+                        <p>{t(`Download the order`)}</p>
+                      )}
+                    </button>
+                    <div className="validation_wrap">
+                      {validationCurrentItem && (
+                        <p>
+                          {t(`Validation material`)}
+                        </p>
+                      )}
+                      {validationOptionQuality && currentItem?.quality && (
+                        <p>
+                          {t(`Validation quality`)}
+                        </p>
+                      )}
+                      {validationOptionColor && (
+                        <p>{t(`Validation color`)}</p>
+                      )}
+                      {validationWidth && (
+                        <p>{t(`Validation width`)}</p>
+                      )}
+                      {validationHeight && (
+                        <p>{t(`Validation height`)}</p>
+                      )}
+                      {validationFile && (
+                        <p>{t(`File not selected`)}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+              {displayOrderStory()}
+            </>
+          ) : (
+            <Loader />
+          )}
+        </div>
       </>
     );
 };

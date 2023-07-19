@@ -45,7 +45,7 @@ const AddNewPost = () => {
     formData.append("descriptionUa", descriptionUa);
     formData.append("descriptionRu", descriptionRu);
 
-    fetch("http://91.206.30.132:4444/create-post", {
+    fetch("http://localhost:4444/create-post", {
 
       method: "POST",
       body: formData,

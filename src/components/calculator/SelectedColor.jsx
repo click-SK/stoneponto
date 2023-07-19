@@ -41,7 +41,7 @@ const SelectedColor = ({ item, title, selectedOption, setSelectedOption, }) => {
         <div className="selected-option option_color" onClick={() => setIsOpen(!isOpen)}>
           <div style={{display:'flex', paddingRight:'5px'}}>
           {selectedOption?.imageColor && 
-          <img className="color_img" src={`http://91.206.30.132:4444${selectedOption?.imageColor}`} />
+          <img className="color_img" src={`http://localhost:4444${selectedOption?.imageColor}`} />
           }
           </div>
           <p style={{paddingLeft:'5px'}}> 
@@ -53,7 +53,7 @@ const SelectedColor = ({ item, title, selectedOption, setSelectedOption, }) => {
             {item.map((el) => (
               <div className="option option_color" key={el._id} onClick={() => selectItemFunc(el)}>
                 <div style={{display:'flex', paddingRight:'5px'}}>
-                {el?.imageColor && <img className="color_img" src={`http://91.206.30.132:4444${el.imageColor}`} />}
+                {el?.imageColor && <img className="color_img" src={`http://localhost:4444${el.imageColor}`} />}
                 </div>
                 <p style={{paddingLeft:'5px'}}>
                 {lang === 'Ua' ? <>{el.nameUa}</> : <>{el.nameRu}</>}

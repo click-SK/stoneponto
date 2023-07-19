@@ -313,6 +313,21 @@ textarea{
     margin-top: 50px;
 }
 
+.send_button_and_validation_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.validation_wrap {
+    p {
+        font-weight: 600;
+        margin: 5px 0px;
+        color: red;
+    }
+}
+
 
 @media (max-width: 780px){
 

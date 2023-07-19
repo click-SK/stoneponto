@@ -1,9 +1,34 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useTranslation } from "react-i18next";
-
-
+import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
+import {RiFileEditFill} from 'react-icons/ri';
+import { MdDoneOutline } from "react-icons/md";
 const AdminTableText = ({ order, handleDownload }) => {
   const { t } = useTranslation();
+  const [isEditValue, setIsEditValue] = useState(false);
+  const [newValue, setNewValue] = useState(0);
+
+  useEffect(() => {
+    setNewValue(order.sum.toFixed(0));
+  },[order])
+
+  console.log('newValue',newValue);
+
+  const handleChangeSumSave = () => {
+    fetch("http://localhost:4444/update-table-sum", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tableId: order._id,
+        newValue
+      }),
+    }).then((res) => res.json());
+    setTimeout(() => {
+      setIsEditValue(!isEditValue);
+    }, 1000);
+  };
 
   return (
     <>
@@ -43,6 +68,23 @@ const AdminTableText = ({ order, handleDownload }) => {
       </div>
       <div className="item_row_info item_sum">
         <p>{order.sum.toFixed(0)}</p>
+        {isEditValue 
+        ?
+        <AiFillCloseCircle onClick={() => setIsEditValue(!isEditValue)} style={{cursor:'pointer'}}/>
+        :
+        <RiFileEditFill onClick={() => setIsEditValue(!isEditValue)} style={{cursor:'pointer'}}/>
+        }
+        { isEditValue && 
+        <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+          <input 
+          value={newValue}
+          onChange={(e) => setNewValue(e.target.value)}/>
+          <button 
+              style={{background:'#5aad5a', margin: '10px 0px', cursor:'pointer'}}
+              onClick={handleChangeSumSave}>
+                <MdDoneOutline/>
+        </button>
+        </div>}
       </div>
       <div className="item_row_info item_descript">
         <p>--{t(`Description`)}--</p>

@@ -12,6 +12,8 @@ const EditTable = () => {
   const [allOrders, setAllOrders] = useState([]);
   const [uniqueUsers, setUniqueUsers] = useState([]);
   const [uniqueStatuses, setUniqueStatuses] = useState([]);
+  const [isFilterArray, setIsFilterArray] = useState(false);
+  const [currentFilteredUser, setCurrentFilteredUser] = useState('');
   const [isFetch, setIsFetch] = useState(false);
 
   const { t } = useTranslation();
@@ -46,13 +48,22 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
   }, []);
 
   useEffect(() => {
-    fetch('http://91.206.30.132:4444/get-all-table')
+    console.log('Efect');
+    fetch('http://localhost:4444/get-all-table')
       .then((res) => res.json())
       .then((res) => {
         setCurrentOrders(res.reverse());
         setAllOrders(res);
       });
   }, [isFetch]);
+
+  useEffect(() => {
+    if(isFilterArray) {
+      filterOnUserFunc(currentFilteredUser);
+    }
+  },[allOrders])
+
+  console.log('currentFilteredUser',currentFilteredUser);
 
 
   useEffect(() => {
@@ -64,6 +75,10 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
       setTotalBalance(totalSum.toFixed(0));
     }
   }, [allOrders]);
+
+  setInterval(() => {
+    window.location.reload();
+  },600000)
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -98,11 +113,15 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
   }, [allOrders, currentOrders]);
 
   const filterOnUserFunc = (e) => {
+    console.log('event',e);
+    setCurrentFilteredUser(e);
     if (e === 'Всі') {
       setCurrentOrders(allOrders);
+      setIsFilterArray(false);
     } else {
       let newArr = allOrders.filter((item) => item.user.name === e);
       setCurrentOrders(newArr);
+      setIsFilterArray(true);
     }
   };
 
@@ -177,6 +196,8 @@ const orders = currentItems.map((item) => {
     'Cтатус': item?.status?.name,
   };
 });
+
+console.log('currentItems',currentItems);
 
   return (
     <div className="table_wrap">

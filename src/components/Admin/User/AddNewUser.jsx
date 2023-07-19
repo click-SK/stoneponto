@@ -19,7 +19,7 @@ const AddNewUser = () => {
             return;
           }
 
-        const response = await fetch('http://91.206.30.132:4444/register-user', {
+        const response = await fetch('http://localhost:4444/register-user', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

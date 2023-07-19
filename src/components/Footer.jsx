@@ -1,14 +1,17 @@
 import React from 'react';
-import '../style/footer.scss'
+import { useTranslation } from "react-i18next";
+import '../style/footer.scss';
 
 const Footer = () => {
+    const { t } = useTranslation();
     return (
         <div className='footer_wraper'>
             <img src="./img/logol.png" alt="" />
             <div>
-              <p>Украина, Одесская обл., г. Одесса, ponto-print@ukr.net</p>
-              <p>+380509767417</p>
-              <p>+380966267481</p>
+            <p>{t(`Ukraine. Odessa`)}</p>
+              <p>+380 96 626 7481</p>
+              <p>+380 50 976 7417</p>
+              <p>ponto-print@ukr.net</p>
             </div>
         </div>
     );

@@ -12,7 +12,7 @@ const EditCurrencyValue = ({data, setIsFetch}) => {
         setIsEdit((state) => !state);
         setIsFetch((state) => !state);
     
-        fetch('http://91.206.30.132:4444/update-currency', {
+        fetch('http://localhost:4444/update-currency', {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json'

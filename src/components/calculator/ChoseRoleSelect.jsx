@@ -30,13 +30,13 @@ const ChoseRoleSelect = ({user,setIsOpenAllusers,allUsers,currentUserState,isOpe
           onClick={() => setIsOpen(!isOpen)}
           ref={selectRef}
         >
-          {allUsers.length != 0 && (currentUserState || allUsers[0].name)}
+          {allUsers.length != 0 && ((currentUserState == 'ponto-print@ukr.net' ? 'Admin' : currentUserState) || (allUsers[0].name == 'ponto-print@ukr.net' && 'Admin'))}
           {isOpen && (
             <div className="options">
               {allUsers.length != 0 &&
                 allUsers.map((iten) => (
                   <p onClick={() => choseItemFunc(iten)} key={iten._id}>
-                    {iten.name}
+                    {iten.name == 'ponto-print@ukr.net' ? 'Admin' : iten.name}
                   </p>
                 ))}
             </div>

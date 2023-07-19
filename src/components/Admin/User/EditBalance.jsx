@@ -3,11 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import {RiFileEditFill} from 'react-icons/ri';
 
-const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
+const EditBalance = ({ data, editPath, title, userId, setIsFetch, debt }) => {
   const [editValue, setEditValue] = useState(0);
   const [newValue, setNewValue] = useState(0);
   const [isEditValue, setIsEditValue] = useState(false);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setEditValue(data);
+  },[data])
 
   const handleEditButtonSave = async () => {
     setIsEditValue((isEdit) => !isEdit);
@@ -42,16 +46,17 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch }) => {
   };
 
   const handleEditButton = () => {
+    setIsFetch((state) => !state);
     setIsEditValue((state) => !state);
-    setEditValue(data);
   };
-
+  console.log('data',data);
   return (
       <div className='details_wrap'>
         <div className='details_title'>
           <p>
           {t(`${title}`)}: {data}
           </p>
+          <p>{t('Debt')}: {debt.toFixed(0)}</p>
           {isEditValue && (
           <div className="details_input_balance">
             <p>{t(`User balance`)}</p>

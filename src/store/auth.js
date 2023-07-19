@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (params) => {
-    const {data} = await fetch('http://91.206.30.132:4444/register-user');
+    const {data} = await fetch('http://localhost:4444/register-user');
     return data
 })
 
 export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ({name, password}) => {
-    const response = await fetch('http://91.206.30.132:4444/login-user', {
+    const response = await fetch('http://localhost:4444/login-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ({name, passwo
 })
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-    const response = await fetch('http://91.206.30.132:4444/get-me', {
+    const response = await fetch('http://localhost:4444/get-me', {
         headers: {
             'authorization': window.localStorage.getItem('token')
           },
@@ -34,7 +34,7 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
 })
 
 export const fetchIsAdmin = createAsyncThunk('auth/fetchIsAdmin', async () => {
-    const {data} = await fetch('http://91.206.30.132:4444/get-me');
+    const {data} = await fetch('http://localhost:4444/get-me');
     return data.isadmin
 })
 
