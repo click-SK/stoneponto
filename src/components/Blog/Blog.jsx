@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../Loader/Loader";
 import BlogItem from "./BlogItem";
-import '../../style/blog.scss'
+import "../../style/blog.scss";
 
 const Blog = () => {
   const [allPosts, setAllPosts] = useState([]);
-  
+
   useEffect(() => {
-    fetch("http://localhost:4444/get-all-post")
+    fetch("http://91.206.30.132:4444/get-all-post")
       .then((res) => res.json())
       .then((res) => setAllPosts(res.reverse()));
   }, []);

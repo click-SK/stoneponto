@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import CurrentUser from "./CurrentUser";
-import '../../../style/editUser.scss'
+import "../../../style/editUser.scss";
 import Loader from "../../Loader/Loader";
 
 const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [isFetch, setIsFetch] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:4444/get-all-user")
+    fetch("http://91.206.30.132:4444/get-all-user")
       .then((res) => res.json())
       .then((res) => {
         const arr = res.slice(1);
         setAllUsers(arr);
       });
   }, [isFetch]);
-
 
   return (
     <div className="edit_user_wrap">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MdDoneOutline, MdOutlineDeleteForever } from "react-icons/md";
 import { useTranslation } from "react-i18next";
-import '../../style/deliveryAddress.scss'
+import "../../style/deliveryAddress.scss";
 const DeliveryAddress = ({
   handleCangeInput,
   value,
@@ -9,45 +9,45 @@ const DeliveryAddress = ({
   placeholder,
   title,
   disabled,
-  currentUser
+  currentUser,
 }) => {
   const { t } = useTranslation();
-  const [currentAddress, setCurrentAddress] = useState('');
+  const [currentAddress, setCurrentAddress] = useState("");
   const [isSaveAddress, setIsSaveAddress] = useState(false);
   const [isDeleteAddress, setIsDeleteAddress] = useState(false);
 
   useEffect(() => {
     handleCangeInput(currentUser?.address);
-    setCurrentAddress(currentUser?.address)
+    setCurrentAddress(currentUser?.address);
   }, [currentUser]);
 
   const handleCleanDeliveryText = () => {
-    handleCangeInput('');
+    handleCangeInput("");
     setIsDeleteAddress(true);
     setTimeout(() => {
       setIsDeleteAddress(false);
-    },2000)
-  }
+    }, 2000);
+  };
 
   const handleSaveDeliveryText = () => {
     setIsSaveAddress(true);
-    fetch("http://localhost:4444/update-user-address", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: currentUser._id,
-          newValue: value
-        }),
-      }).then((res) => res.json());
-      setTimeout(() => {
-        setCurrentAddress(value);
-        setIsSaveAddress(false);
-      }, 2000);
-  }
+    fetch("http://91.206.30.132:4444/update-user-address", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: currentUser._id,
+        newValue: value,
+      }),
+    }).then((res) => res.json());
+    setTimeout(() => {
+      setCurrentAddress(value);
+      setIsSaveAddress(false);
+    }, 2000);
+  };
 
-  console.log('delivery user',currentUser);
+  console.log("delivery user", currentUser);
 
   return (
     <div className="delivery_address_wrap">
@@ -76,10 +76,7 @@ const DeliveryAddress = ({
             >
               <MdOutlineDeleteForever className="delivery_icon" />
             </button>
-            <div>
-              {isDeleteAddress &&
-              <p>Видалено</p>}
-            </div>
+            <div>{isDeleteAddress && <p>Видалено</p>}</div>
           </>
         ) : (
           <>
@@ -95,10 +92,7 @@ const DeliveryAddress = ({
             >
               <MdDoneOutline className="delivery_icon" />
             </button>
-            <div>
-              {isSaveAddress &&
-              <p>Збережено</p>}
-            </div>
+            <div>{isSaveAddress && <p>Збережено</p>}</div>
           </>
         )}
       </div>

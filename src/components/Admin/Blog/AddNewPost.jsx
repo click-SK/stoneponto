@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useTranslation } from "react-i18next";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const AddNewPost = () => {
   const [image, setImage] = useState(null);
@@ -15,9 +15,12 @@ const AddNewPost = () => {
   const { t } = useTranslation();
 
   const toolbarOptions = [
-    [{ 'size': ['small', false, 'large', 'huge'] }], // розмір шрифту
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }], // налаштування заголовків
-    [{ 'color': ['red','white', 'black'] }, { 'background': ['red', 'grey', 'black', 'white'] }], // колір тексту та фону
+    [{ size: ["small", false, "large", "huge"] }], // розмір шрифту
+    [{ header: [1, 2, 3, 4, 5, 6, false] }], // налаштування заголовків
+    [
+      { color: ["red", "white", "black"] },
+      { background: ["red", "grey", "black", "white"] },
+    ], // колір тексту та фону
   ];
 
   useEffect(() => {
@@ -45,8 +48,7 @@ const AddNewPost = () => {
     formData.append("descriptionUa", descriptionUa);
     formData.append("descriptionRu", descriptionRu);
 
-    fetch("http://localhost:4444/create-post", {
-
+    fetch("http://91.206.30.132:4444/create-post", {
       method: "POST",
       body: formData,
     })

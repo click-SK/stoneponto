@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import DisplayAdminTableOrder from './DisplayAdminTableOrder';
-import socket from '../../../socket/socket';
-import {ExportCSV} from '../../ExelTable/ExportCSV'
-import '../../../style/table.scss';
-import Loader from '../../Loader/Loader';
-
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import DisplayAdminTableOrder from "./DisplayAdminTableOrder";
+import socket from "../../../socket/socket";
+import { ExportCSV } from "../../ExelTable/ExportCSV";
+import "../../../style/table.scss";
+import Loader from "../../Loader/Loader";
 
 const EditTable = () => {
   const [currentOrders, setCurrentOrders] = useState([]);
@@ -13,7 +12,7 @@ const EditTable = () => {
   const [uniqueUsers, setUniqueUsers] = useState([]);
   const [uniqueStatuses, setUniqueStatuses] = useState([]);
   const [isFilterArray, setIsFilterArray] = useState(false);
-  const [currentFilteredUser, setCurrentFilteredUser] = useState('');
+  const [currentFilteredUser, setCurrentFilteredUser] = useState("");
   const [isFetch, setIsFetch] = useState(false);
 
   const { t } = useTranslation();
@@ -23,33 +22,29 @@ const EditTable = () => {
 
   const dateTime = new Date(); // Отримати поточну дату та час
 
-const day = dateTime.getDate().toString().padStart(2, '0'); // День з лідируючим нулем
-const month = (dateTime.getMonth() + 1).toString().padStart(2, '0'); // Місяць з лідируючим нулем (у JavaScript місяці починаються з 0)
-const year = dateTime.getFullYear().toString(); // Рік
-const hours = dateTime.getHours().toString().padStart(2, '0'); // Година з лідируючим нулем
-const minutes = dateTime.getMinutes().toString().padStart(2, '0'); // Хвилина з лідируючим нулем
-const seconds = dateTime.getSeconds().toString().padStart(2, '0'); // Секунда з лідируючим нулем
+  const day = dateTime.getDate().toString().padStart(2, "0"); // День з лідируючим нулем
+  const month = (dateTime.getMonth() + 1).toString().padStart(2, "0"); // Місяць з лідируючим нулем (у JavaScript місяці починаються з 0)
+  const year = dateTime.getFullYear().toString(); // Рік
+  const hours = dateTime.getHours().toString().padStart(2, "0"); // Година з лідируючим нулем
+  const minutes = dateTime.getMinutes().toString().padStart(2, "0"); // Хвилина з лідируючим нулем
+  const seconds = dateTime.getSeconds().toString().padStart(2, "0"); // Секунда з лідируючим нулем
 
-const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds}`; // Форматований рядок дати та часу
+  const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds}`; // Форматований рядок дати та часу
 
   const itemsPerPage = 50;
 
-
   useEffect(() => {
-
-    socket.on('new table',(user) => {
-
-      setIsFetch(state => !state)
+    socket.on("new table", (user) => {
+      setIsFetch((state) => !state);
     });
-    socket.on('update table',(user) => {
-
-      setIsFetch(state => !state)
+    socket.on("update table", (user) => {
+      setIsFetch((state) => !state);
     });
   }, []);
 
   useEffect(() => {
-    console.log('Efect');
-    fetch('http://localhost:4444/get-all-table')
+    console.log("Efect");
+    fetch("http://91.206.30.132:4444/get-all-table")
       .then((res) => res.json())
       .then((res) => {
         setCurrentOrders(res.reverse());
@@ -58,13 +53,12 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
   }, [isFetch]);
 
   useEffect(() => {
-    if(isFilterArray) {
+    if (isFilterArray) {
       filterOnUserFunc(currentFilteredUser);
     }
-  },[allOrders])
+  }, [allOrders]);
 
-  console.log('currentFilteredUser',currentFilteredUser);
-
+  console.log("currentFilteredUser", currentFilteredUser);
 
   useEffect(() => {
     if (allOrders.length !== 0) {
@@ -78,7 +72,7 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
 
   setInterval(() => {
     window.location.reload();
-  },600000)
+  }, 600000);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -113,9 +107,9 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
   }, [allOrders, currentOrders]);
 
   const filterOnUserFunc = (e) => {
-    console.log('event',e);
+    console.log("event", e);
     setCurrentFilteredUser(e);
-    if (e === 'Всі') {
+    if (e === "Всі") {
       setCurrentOrders(allOrders);
       setIsFilterArray(false);
     } else {
@@ -126,7 +120,7 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
   };
 
   const filterStatusFunc = (e) => {
-    if (e === 'Всі') {
+    if (e === "Всі") {
       setCurrentOrders(allOrders);
     } else {
       let newArr = allOrders.filter((item) => item.status.name === e);
@@ -139,65 +133,81 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
     setCurrentOrders(newArr);
   };
 
-const renderPageNumbers = () => {
-  let renderedPages = [];
+  const renderPageNumbers = () => {
+    let renderedPages = [];
 
-  if (pageNumbers.length <= 5) {
-    renderedPages = pageNumbers;
-  } else {
-    if (currentPage === 2) {
-      renderedPages = [1, currentPage, currentPage + 1, pageNumbers.length];
-    } else if (currentPage <= 3) {
-      renderedPages = [...pageNumbers.slice(0, 4), pageNumbers.length];
-    } else if (currentPage >= pageNumbers.length - 2) {
-      renderedPages = [1, ...pageNumbers.slice(pageNumbers.length - 4)];
+    if (pageNumbers.length <= 5) {
+      renderedPages = pageNumbers;
     } else {
-      renderedPages = [1, currentPage - 1, currentPage, currentPage + 1, pageNumbers.length];
+      if (currentPage === 2) {
+        renderedPages = [1, currentPage, currentPage + 1, pageNumbers.length];
+      } else if (currentPage <= 3) {
+        renderedPages = [...pageNumbers.slice(0, 4), pageNumbers.length];
+      } else if (currentPage >= pageNumbers.length - 2) {
+        renderedPages = [1, ...pageNumbers.slice(pageNumbers.length - 4)];
+      } else {
+        renderedPages = [
+          1,
+          currentPage - 1,
+          currentPage,
+          currentPage + 1,
+          pageNumbers.length,
+        ];
+      }
     }
-  }
 
-  return renderedPages.map((page) => {
-    if (page === '...') {
-      return <p key={page}>{page}</p>;
-    } else {
-      return (
-        <p
-          style={{ padding: '0px 10px', fontSize: '18px', cursor: 'pointer' }}
-          key={page}
-          onClick={() => chosePage(page)}
-          className={`${page == currentPage ? 'bold' : ''}`}
-        >
-          {page}
-        </p>
-      );
-    }
-  });
-};
-
-const orders = currentItems.map((item) => {
-  const conditions = item?.conditions;
-  const description = Object.keys(conditions)
-    .filter((key) => conditions[key].name !== "")
-    .map((key) => `${conditions[key].option} ${conditions[key].name} ${conditions[key]?.value ? `: ${conditions[key]?.value}` : ' ' }`)
-    .join(", ");
-
-  return {
-    Id: item?.id,
-    "Дата": item?.date,
-    "Пользователь": item?.user.name,
-    'Файл': item?.fileName,
-    'Материал': item?.material,
-    'Качество': item?.quality,
-    'Ширина': item?.width,
-    'Высота': item?.height,
-    'Тираж': item?.count,
-    'Сума': item?.sum,
-    'Опис': description + (description ? ` ; ` : '') + item?.address + (item?.address ? ` ; ` : '') + item?.notes,
-    'Cтатус': item?.status?.name,
+    return renderedPages.map((page) => {
+      if (page === "...") {
+        return <p key={page}>{page}</p>;
+      } else {
+        return (
+          <p
+            style={{ padding: "0px 10px", fontSize: "18px", cursor: "pointer" }}
+            key={page}
+            onClick={() => chosePage(page)}
+            className={`${page == currentPage ? "bold" : ""}`}
+          >
+            {page}
+          </p>
+        );
+      }
+    });
   };
-});
 
-console.log('currentItems',currentItems);
+  const orders = currentItems.map((item) => {
+    const conditions = item?.conditions;
+    const description = Object.keys(conditions)
+      .filter((key) => conditions[key].name !== "")
+      .map(
+        (key) =>
+          `${conditions[key].option} ${conditions[key].name} ${
+            conditions[key]?.value ? `: ${conditions[key]?.value}` : " "
+          }`
+      )
+      .join(", ");
+
+    return {
+      Id: item?.id,
+      Дата: item?.date,
+      Пользователь: item?.user.name,
+      Файл: item?.fileName,
+      Материал: item?.material,
+      Качество: item?.quality,
+      Ширина: item?.width,
+      Высота: item?.height,
+      Тираж: item?.count,
+      Сума: item?.sum,
+      Опис:
+        description +
+        (description ? ` ; ` : "") +
+        item?.address +
+        (item?.address ? ` ; ` : "") +
+        item?.notes,
+      Cтатус: item?.status?.name,
+    };
+  });
+
+  console.log("currentItems", currentItems);
 
   return (
     <div className="table_wrap">
