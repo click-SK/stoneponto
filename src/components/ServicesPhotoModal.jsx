@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react';
 import "../style/photoModal.scss";
 import {AiOutlineArrowLeft} from 'react-icons/ai';
 import {AiOutlineArrowRight} from 'react-icons/ai';
+import { useTranslation } from "react-i18next";
 const ServicesPhotoModal = ({isOpen, setIsOpen, currentImg, allPhotos}) => {
     const [chosePhoto, setChosePhoto] = useState('');
+    const { t } = useTranslation();
     useEffect(() => {
         setChosePhoto(currentImg);
     },[])
@@ -43,7 +45,7 @@ const ServicesPhotoModal = ({isOpen, setIsOpen, currentImg, allPhotos}) => {
                 id='photo_modal_close'>
                 <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className='photo_modal_close_button'>Close</button>
+                className='photo_modal_close_button'>{t('Close')}</button>
                 </div>
                 <div className='photo_modal_image_block'
                 id='photo_modal_close'>

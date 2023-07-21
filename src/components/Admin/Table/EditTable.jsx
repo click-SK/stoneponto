@@ -5,6 +5,7 @@ import socket from "../../../socket/socket";
 import { ExportCSV } from "../../ExelTable/ExportCSV";
 import "../../../style/table.scss";
 import Loader from "../../Loader/Loader";
+import ConfirmationModal from "../../Modal/ConfirmationModal";
 
 const EditTable = () => {
   const [currentOrders, setCurrentOrders] = useState([]);
@@ -14,6 +15,8 @@ const EditTable = () => {
   const [isFilterArray, setIsFilterArray] = useState(false);
   const [currentFilteredUser, setCurrentFilteredUser] = useState("");
   const [isFetch, setIsFetch] = useState(false);
+  const [isCleartable, setIsClearTable] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { t } = useTranslation();
 
@@ -131,6 +134,18 @@ const EditTable = () => {
   const filterDateFunc = (e) => {
     let newArr = allOrders.filter((item) => item.date.substring(0, 10) === e);
     setCurrentOrders(newArr);
+  };
+
+  const handleClearTable = () => {
+    fetch("http://91.206.30.132:4444/delete-all-tables", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   const renderPageNumbers = () => {
@@ -309,6 +324,19 @@ const EditTable = () => {
               <img src="/img/right-pagination.svg" alt="Next" />
             </button>
           </div>
+          <div className="clear_table_button_wrap">
+            <button
+              className="clear_table_button"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              Очистити таблицю
+            </button>
+          </div>
+          <ConfirmationModal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            func={handleClearTable}
+          />
         </>
       ) : (
         <Loader />

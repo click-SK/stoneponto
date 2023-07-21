@@ -195,6 +195,16 @@
 
 }
 
+.clear_table_button_wrap {
+    display: flex;
+    justify-content: end;
+    margin: 0px 5px 5px 0px;
+}
+
+.clear_table_button {
+
+}
+
 @media (max-width: 780px){
 
     .button_wrap{

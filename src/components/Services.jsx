@@ -49,25 +49,7 @@ const Services = () => {
     },
     {
       imgUrl: './img/services/дизайн/13.jpg'
-    },
-    {
-      imgUrl: './img/services/дизайн/14.jpg'
-    },
-    {
-      imgUrl: './img/services/дизайн/15.jpg'
-    },
-    {
-      imgUrl: './img/services/дизайн/16.jpg'
-    },
-    {
-      imgUrl: './img/services/дизайн/17.jpg'
-    },
-    {
-      imgUrl: './img/services/дизайн/18.jpg'
-    },
-    {
-      imgUrl: './img/services/дизайн/19.jpg'
-    },
+    }
   ]);
   const [outdorAdvertisingPhotoArray] = useState([
     {
@@ -314,15 +296,15 @@ const Services = () => {
                       {t(`Production of outdoor advertising`)}
                     </button>
                   </div>
-                  <div className="modal_services_images_wrap">
-                    {designPhotoArray.map((img) => (
-                      <ServicesPhoto img={img} key={img.imgUrl} allPhotos={designPhotoArray}/>
-                    ))}
-                  </div>
                   <div className="modal_services_text_wrapper">
                     <p>{t(`description of services design paragraph 1`)}</p>
                     <p>{t(`description of services design paragraph 2`)}</p>
                     <p>{t(`description of services design paragraph 3`)}</p>
+                  </div>
+                  <div className="modal_services_images_wrap">
+                    {designPhotoArray.map((img) => (
+                      <ServicesPhoto img={img} key={img.imgUrl} allPhotos={designPhotoArray}/>
+                    ))}
                   </div>
                 </div>
               )}
@@ -342,7 +324,7 @@ const Services = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> На головну{" "}
+                    <BsBackspace className="back_img" /> {t(`The main`)}{" "}
                   </div>
                   <h3>{t(`Large format printing`)}</h3>
                   <div className="nav_services_wraper">
@@ -383,11 +365,6 @@ const Services = () => {
                       {t(`Production of outdoor advertising`)}
                     </button>
                   </div>
-                  <div className="modal_services_images_wrap">
-                    {largeFormatPrintingPhotoArray.map((img) => (
-                    <ServicesPhoto img={img} key={img.imgUrl} allPhotos={largeFormatPrintingPhotoArray}/>
-                    ))}
-                  </div>
                   <div className="modal_services_info modal_services_text_wrapper">
                     <p>{t(`Large format printing paragraph 1`)}</p>
                     <h4>{t(`Large format printing paragraph 2`)}:</h4>
@@ -401,6 +378,11 @@ const Services = () => {
                       <li>{t(`Large format printing paragraph 9`)}</li>
                       <li>{t(`Large format printing paragraph 10`)}</li>
                     </ul>
+                  </div>
+                  <div className="modal_services_images_wrap">
+                    {largeFormatPrintingPhotoArray.map((img) => (
+                    <ServicesPhoto img={img} key={img.imgUrl} allPhotos={largeFormatPrintingPhotoArray}/>
+                    ))}
                   </div>
                 </div>
               )}
@@ -421,7 +403,7 @@ const Services = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> На головну{" "}
+                    <BsBackspace className="back_img" /> {t(`The main`)}{" "}
                   </div>
                   <h3>{t(`Large format printing`)}</h3>
                   <div className="nav_services_wraper">
@@ -487,7 +469,7 @@ const Services = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> На головну{" "}
+                    <BsBackspace className="back_img" /> {t(`The main`)}{" "}
                   </div>
                   <h3>{t(`Plotter cutting`)}</h3>
                   <div className="nav_services_wraper">
@@ -528,16 +510,16 @@ const Services = () => {
                       {t(`Production of outdoor advertising`)}
                     </button>
                   </div>
-                  <div className="modal_services_images_wrap">
-                    {polterCuttingPhotoArray.map((img) => (
-                    <ServicesPhoto img={img} key={img.imgUrl} allPhotos={polterCuttingPhotoArray}/>
-                    ))}
-                  </div>
                   <div className="modal_services_text_wrapper">
                     <p>{t(`Plotter cutting paragraph 1`)} </p>
                     <p>{t(`Plotter cutting paragraph 2`)} </p>
                     <p>{t(`Plotter cutting paragraph 3`)} </p>
                     <p>{t(`Plotter cutting paragraph 4`)} </p>
+                  </div>
+                  <div className="modal_services_images_wrap">
+                    {polterCuttingPhotoArray.map((img) => (
+                    <ServicesPhoto img={img} key={img.imgUrl} allPhotos={polterCuttingPhotoArray}/>
+                    ))}
                   </div>
                 </div>
               )}
@@ -560,7 +542,7 @@ const Services = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> На головну{" "}
+                    <BsBackspace className="back_img" />{t(`The main`)}{" "}
                   </div>
                   <h3>{t(`Welding of gates and stuffing of eyelets`)}</h3>
                   <div className="nav_services_wraper">
@@ -601,16 +583,16 @@ const Services = () => {
                       {t(`Production of outdoor advertising`)}
                     </button>
                   </div>
-                  <div className="modal_services_images_wrap">
-                    {solderingAndStuffingPhotoArray.map((img) => (
-                    <ServicesPhoto img={img} key={img.imgUrl} allPhotos={solderingAndStuffingPhotoArray}/> 
-                    ))}
-                  </div>
                   <div className="modal_services_text_wrapper">
                     <p>{t(`welding turns and stuffing eyelets paragraph 1`)}</p>
                     <p>{t(`welding turns and stuffing eyelets paragraph 2`)}</p>
                     <p>{t(`welding turns and stuffing eyelets paragraph 3`)}</p>
                     <p>{t(`welding turns and stuffing eyelets paragraph 4`)}</p>
+                  </div>
+                  <div className="modal_services_images_wrap">
+                    {solderingAndStuffingPhotoArray.map((img) => (
+                    <ServicesPhoto img={img} key={img.imgUrl} allPhotos={solderingAndStuffingPhotoArray}/> 
+                    ))}
                   </div>
                 </div>
               )}
@@ -633,7 +615,7 @@ const Services = () => {
                     onClick={() => hendlerCloseAll()}
                   >
                     {" "}
-                    <BsBackspace className="back_img" /> На головну{" "}
+                    <BsBackspace className="back_img" />{t(`The main`)}{" "}
                   </div>
                   <h3>{t(`Production of outdoor advertising`)}</h3>
                   <div className="nav_services_wraper">
@@ -674,16 +656,16 @@ const Services = () => {
                       {t(`Production of outdoor advertising`)}
                     </button>
                   </div>
-                  <div className="modal_services_images_wrap">
-                    {outdorAdvertisingPhotoArray.map((img) => (
-                    <ServicesPhoto img={img} key={img.imgUrl} allPhotos={outdorAdvertisingPhotoArray}/>
-                    ))}
-                  </div>
                   <div className="modal_services_text_wrapper">
                     <p>{t(`Production of outdoor advertising paragraph 1`)}</p>
                     <p>{t(`Production of outdoor advertising paragraph 2`)}</p>
                     <p>{t(`Production of outdoor advertising paragraph 3`)}</p>
                     <p>{t(`Production of outdoor advertising paragraph 4`)}</p>
+                  </div>
+                  <div className="modal_services_images_wrap">
+                    {outdorAdvertisingPhotoArray.map((img) => (
+                    <ServicesPhoto img={img} key={img.imgUrl} allPhotos={outdorAdvertisingPhotoArray}/>
+                    ))}
                   </div>
                 </div>
               )}

@@ -12,8 +12,6 @@ const AdminTableText = ({ order, handleDownload }) => {
     setNewValue(order.sum.toFixed(0));
   }, [order]);
 
-  console.log("newValue", newValue);
-
   const handleChangeSumSave = () => {
     fetch("http://91.206.30.132:4444/update-table-sum", {
       method: "PATCH",

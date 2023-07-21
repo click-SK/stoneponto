@@ -16,6 +16,7 @@ import { fetchLanguage } from "../../store/language";
 import "../../style/calculator.scss";
 import Loader from "../Loader/Loader";
 import DownloadProgram from "./DownloadProgram";
+import ChoseAddressSelect from "./ChoseAddressSelect";
 
 const CalculatorPartner = () => {
   const [goodsList, setGoodsList] = useState([]);
@@ -730,7 +731,7 @@ const CalculatorPartner = () => {
     );
   };
 
-  console.log("currentUserState", currentUserState);
+  console.log("delivery", delivery);
 
   return (
     <>
@@ -1141,6 +1142,14 @@ const CalculatorPartner = () => {
                   value={delivery}
                   handleCangeInput={setDelivery}
                   currentUser={currentUserState || user}
+                />
+                <div className="saved_address_text_wrap">
+                  <p className="saved_address_text">Збережені адресси</p>
+                </div>
+                <ChoseAddressSelect
+                  allAddress={currentUserState.address || user.address}
+                  currentUser={currentUserState || user}
+                  handleCangeInput={setDelivery}
                 />
               </div>
               <div className="total_sum">
