@@ -484,7 +484,6 @@ const CalculatorPartner = () => {
     ) {
       setValidationWidth(true);
       isValid = false;
-      console.log("width validation");
     }
 
     if (height <= 0) {
@@ -507,10 +506,8 @@ const CalculatorPartner = () => {
 
   const handleTotalSum = () => {
     const isValid = validationFunc();
-    console.log("total sum work 1");
 
     if (isValid) {
-      console.log("total sum work 2");
       setWaitingSendOrder(true);
       setIsProgressBar(true);
       const formData = new FormData();
@@ -730,8 +727,6 @@ const CalculatorPartner = () => {
       </div>
     );
   };
-
-  console.log("delivery", delivery);
 
   return (
     <>

@@ -33,9 +33,7 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
   };
 
   const handleNext = () => {
-    console.log("work");
     if (currentPage < pageNumbers.length) {
-      console.log("work!!!");
       setCurrentPage(currentPage + 1);
     }
   };
@@ -45,8 +43,6 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
       setCurrentPage(currentPage - 1);
     }
   };
-
-  console.log("currentPage", currentPage);
 
   const renderPageNumbers = () => {
     let renderedPages = [];
@@ -88,8 +84,6 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
       }
     });
   };
-  console.log("currentItems", currentItems);
-
   return (
     <div className="edit_user_item_wrap">
       <div className="edit_user_data">

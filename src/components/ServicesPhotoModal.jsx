@@ -21,7 +21,6 @@ const ServicesPhotoModal = ({isOpen, setIsOpen, currentImg, allPhotos}) => {
 
     const handleNext = () => {
         const indexInArray = allPhotos.findIndex((el) => el.imgUrl == chosePhoto);
-        console.log('indexInArray',indexInArray);
         if(indexInArray != allPhotos.length - 1) {
             let idx = indexInArray + 1;
             setChosePhoto(allPhotos[idx].imgUrl)
@@ -32,10 +31,7 @@ const ServicesPhotoModal = ({isOpen, setIsOpen, currentImg, allPhotos}) => {
         if(e.target.id == 'photo_modal_close') {
             setIsOpen(!isOpen)
         }
-        
-        console.log('e',e.target.id);
     }
-    console.log('allPhotos.length',allPhotos.length);
     return (
         <div className='photo_modal_wrap'>
             <div className='photo_modal_block' 

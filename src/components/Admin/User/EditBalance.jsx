@@ -49,7 +49,6 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch, debt }) => {
     setIsFetch((state) => !state);
     setIsEditValue((state) => !state);
   };
-  console.log('data',data);
   return (
       <div className='details_wrap'>
         <div className='details_title'>

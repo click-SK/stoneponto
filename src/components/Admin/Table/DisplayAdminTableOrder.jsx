@@ -25,9 +25,7 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       link.href = `http://91.206.30.132:4444/download?id=${order._id}`;
       document.body.appendChild(link);
       link.click();
-      // link.remove();
 
-      console.log("order", order.status.currentStatus);
       if (order.status.currentStatus == "new") {
         await fetch("http://91.206.30.132:4444/update-status", {
           method: "PATCH",

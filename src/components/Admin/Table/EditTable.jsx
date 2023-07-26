@@ -39,7 +39,6 @@ const EditTable = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log("5 sec work");
       setIsEmptyTables(true);
     }, 5000);
   }, []);
@@ -54,7 +53,6 @@ const EditTable = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Efect");
     fetch("http://91.206.30.132:4444/get-all-table")
       .then((res) => res.json())
       .then((res) => {
@@ -68,8 +66,6 @@ const EditTable = () => {
       filterOnUserFunc(currentFilteredUser);
     }
   }, [allOrders]);
-
-  console.log("currentFilteredUser", currentFilteredUser);
 
   useEffect(() => {
     if (allOrders.length !== 0) {
@@ -132,13 +128,11 @@ const EditTable = () => {
 
     // Сортуємо масив імен
     usersArr.sort(compareNames);
-    console.log("usersArr", usersArr);
     setUniqueUsers(usersArr);
     setUniqueStatuses(statusArr);
   }, [allOrders, currentOrders]);
 
   const filterOnUserFunc = (e) => {
-    console.log("event", e);
     setCurrentFilteredUser(e);
     if (e === "Всі") {
       setCurrentOrders(allOrders);
@@ -249,21 +243,6 @@ const EditTable = () => {
       Cтатус: item?.status?.name,
     };
   });
-
-  console.log("allOrders", allOrders);
-
-  const arr = [
-    "TetsRostyslav",
-    "testPayment",
-    "РА СЛМ",
-    "Усов",
-    "Альтернатива",
-    "Alex_Burehin",
-    "Bema_print",
-    "ИП Александр",
-    "Радиус",
-    "Лена_админ",
-  ];
 
   return (
     <div className="table_wrap">

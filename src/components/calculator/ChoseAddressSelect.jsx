@@ -27,7 +27,6 @@ const ChoseAddressSelect = ({ allAddress, currentUser, handleCangeInput }) => {
     setIsOpen(false);
     handleCangeInput(item);
     setChoseValue(item);
-    console.log("item", item);
   };
 
   const handleRemoveDeliveryText = (idx, item) => {
@@ -47,8 +46,6 @@ const ChoseAddressSelect = ({ allAddress, currentUser, handleCangeInput }) => {
       });
     }, 400);
   };
-
-  console.log("allAddress", allAddress);
 
   return (
     <>
