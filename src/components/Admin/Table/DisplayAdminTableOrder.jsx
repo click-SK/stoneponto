@@ -27,21 +27,24 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
       link.click();
       // link.remove();
 
-      await fetch("http://91.206.30.132:4444/update-status", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          value: "download",
-          name: "В роботі",
-          tableId: order._id,
-          paid: false,
-        }),
-      }).then((res) => res.json());
-      setTimeout(() => {
-        setIsFetch((state) => !state);
-      }, 1000);
+      console.log("order", order.status.currentStatus);
+      if (order.status.currentStatus == "new") {
+        await fetch("http://91.206.30.132:4444/update-status", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            value: "download",
+            name: "В роботі",
+            tableId: order._id,
+            paid: false,
+          }),
+        }).then((res) => res.json());
+        setTimeout(() => {
+          setIsFetch((state) => !state);
+        }, 1000);
+      }
     } else {
       alert("Помилка при завантаженні");
     }

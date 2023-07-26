@@ -17,6 +17,7 @@ const EditTable = () => {
   const [isFetch, setIsFetch] = useState(false);
   const [isCleartable, setIsClearTable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isEmptyTables, setIsEmptyTables] = useState(false);
 
   const { t } = useTranslation();
 
@@ -35,6 +36,13 @@ const EditTable = () => {
   const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds}`; // Форматований рядок дати та часу
 
   const itemsPerPage = 50;
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("5 sec work");
+      setIsEmptyTables(true);
+    }, 5000);
+  }, []);
 
   useEffect(() => {
     socket.on("new table", (user) => {
@@ -105,6 +113,26 @@ const EditTable = () => {
   useEffect(() => {
     const usersArr = [...new Set(allOrders.map((item) => item.user.name))];
     const statusArr = [...new Set(allOrders.map((item) => item.status.name))];
+    function compareNames(a, b) {
+      // Переводимо обидва імені у нижній регістр перед порівнянням
+      a = a.toLowerCase();
+      b = b.toLowerCase();
+
+      // Порівнюємо кириличні символи з використанням localeCompare
+      const compareCyrillic = a.localeCompare(b, "ru", { sensitivity: "base" });
+
+      // Якщо кирилиця різна, повертаємо результат порівняння кириличних символів
+      if (compareCyrillic !== 0) {
+        return compareCyrillic;
+      }
+
+      // Якщо кирилиця однакова, повертаємо результат порівняння вихідних імен
+      return a.localeCompare(b, undefined, { sensitivity: "base" });
+    }
+
+    // Сортуємо масив імен
+    usersArr.sort(compareNames);
+    console.log("usersArr", usersArr);
     setUniqueUsers(usersArr);
     setUniqueStatuses(statusArr);
   }, [allOrders, currentOrders]);
@@ -222,7 +250,20 @@ const EditTable = () => {
     };
   });
 
-  console.log("currentItems", currentItems);
+  console.log("allOrders", allOrders);
+
+  const arr = [
+    "TetsRostyslav",
+    "testPayment",
+    "РА СЛМ",
+    "Усов",
+    "Альтернатива",
+    "Alex_Burehin",
+    "Bema_print",
+    "ИП Александр",
+    "Радиус",
+    "Лена_админ",
+  ];
 
   return (
     <div className="table_wrap">
@@ -339,7 +380,16 @@ const EditTable = () => {
           />
         </>
       ) : (
-        <Loader />
+        <>
+          {!isEmptyTables ? (
+            <Loader />
+          ) : (
+            <div className="not_fount_order_wrap">
+              <p>{t("Order not found paragraph 1")}</p>
+              <p>{t("Order not found paragraph 2")}</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
