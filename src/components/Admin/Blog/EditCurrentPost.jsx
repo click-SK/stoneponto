@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useTranslation } from 'react-i18next';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useTranslation } from "react-i18next";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
-import {RiFileEditFill} from 'react-icons/ri';
+import { RiFileEditFill } from "react-icons/ri";
 
 const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
   const [editValue, setEditValue] = useState("");
@@ -90,43 +90,34 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
 
   return (
     <div className="edit_blog_item">
-        <div className="item_nema_edit">
-            <div className="img_wrap">
-            {imageSrc ? (
-                  <img
-                    src={imageSrc}
-                    alt="Selected"
-                    
-                  />
-                ) : (
-                  <img
-                    src={`http://91.206.30.132:4444${post.blogImage}`}
-                    alt="Selected"
-                    
-                  />
-                )}
-            </div>
-          <p>{post.titleUa}</p>
-          {isEditValue ? (
-            <AiFillCloseCircle
-              onClick={() => setIsEditValue((state) => !state)}
-              
-            />
+      <div className="item_nema_edit">
+        <div className="img_wrap">
+          {imageSrc ? (
+            <img src={imageSrc} alt="Selected" />
           ) : (
-            <RiFileEditFill
-              onClick={handleEditButton}
-              
+            <img
+              src={`http://91.206.30.132:4444${post.blogImage}`}
+              alt="Selected"
             />
           )}
         </div>
-        {isEditValue && (
-          <div className="edit_curent_post">
-            <div className="post_info">
-              <div style={{paddingBottom: '10px'}}>
+        <p>{post.titleUa}</p>
+        {isEditValue ? (
+          <AiFillCloseCircle
+            onClick={() => setIsEditValue((state) => !state)}
+          />
+        ) : (
+          <RiFileEditFill onClick={handleEditButton} />
+        )}
+      </div>
+      {isEditValue && (
+        <div className="edit_curent_post">
+          <div className="post_info">
+            <div style={{ paddingBottom: "10px" }}>
               <button onClick={() => inputFileRef.current.click()}>
-            {t(`Choose a photo`)}
-            </button>
-              </div>
+                {t(`Choose a photo`)}
+              </button>
+            </div>
 
             <input
               type="file"
@@ -135,23 +126,19 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
               ref={inputFileRef}
               hidden
             />
-            <div >
-              <div
-                
-              >
+            <div>
+              <div>
                 {imageSrc ? (
                   <img
                     className="edit_post_img"
                     src={imageSrc}
                     alt="Selected"
-                    
                   />
                 ) : (
                   <img
                     className="edit_post_img"
                     src={`http://91.206.30.132:4444${post.blogImage}`}
                     alt="Selected"
-                    
                   />
                 )}
               </div>
@@ -175,10 +162,10 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
               <div>
                 <p>{t(`Description in Ukrainian`)}</p>
                 <ReactQuill
-                className="textarea"
-                value={descriptionUa}
-                onChange={handleContentChangeUa}
-               />
+                  className="textarea"
+                  value={descriptionUa}
+                  onChange={handleContentChangeUa}
+                />
               </div>
               <div>
                 <p>{t(`Description in Russian`)}</p>
@@ -186,15 +173,15 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                   className="textarea"
                   value={descriptionRu}
                   onChange={handleContentChangeRu}
-               />
+                />
               </div>
             </div>
             <button onClick={handleEditButtonSave}>{t(`Save changes`)}</button>
             <button onClick={handleRemovePost}>{t(`Delete the post`)}</button>
             <button onClick={() => setIsEditValue(false)}>{t(`Close`)}</button>
-            </div>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };

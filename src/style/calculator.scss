@@ -252,10 +252,47 @@ textarea{
     max-width: 400px;
 }
 
+.select_address {
+}
+
+.select_address_item_wrap {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding: 5px 0px 5px 5px;
+    align-items: center;
+}
+
+.select_address_delete_icon {
+    width: 30px;
+    height: 30px;
+    width: 10%;
+    &:hover {
+        color: red;
+    }
+}
+
+.select_address_item_text {
+    width: 90%;
+}
+
+.saved_address_text_wrap {
+    margin: 10px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    p {
+        font-size: 16px;
+    }
+}
+
 .eyelets_wrap{
     margin-bottom: 5px;
 }
 
+.saved_address_text {
+
+}
 .display_order_story {
     margin: 50px 0px;
     text-align: start;
@@ -311,6 +348,21 @@ textarea{
 .button_wraper_dell{
     display: flex;
     margin-top: 50px;
+}
+
+.send_button_and_validation_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.validation_wrap {
+    p {
+        font-weight: 600;
+        margin: 5px 0px;
+        color: red;
+    }
 }
 
 

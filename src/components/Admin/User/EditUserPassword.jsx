@@ -23,9 +23,7 @@ const EditUserPassword = ({ editPath, title, userId, setIsFetch }) => {
       }),
     }).then((res) => res.json());
     setTimeout(() => {
-      // window.location.reload();
       setIsFetch((state) => !state);
-    //   setNewValue(0);
     }, 1000);
   };
 

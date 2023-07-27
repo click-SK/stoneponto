@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useTranslation } from 'react-i18next';
-// import "../../../../style/historyTransactionsModal.scss";
 
 const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDelete }) => {
   const [textareaValue, setTextareaValue] = useState("");
@@ -53,7 +52,7 @@ const DeletetableModal = ({ isOpen, onClose, setDeleteText, deleteText, handleDe
               checked={deleteText === "По желанию заказчика"}
               onChange={handleOptionChange}
             />
-            <p>{t(`At the request of the custome`)}</p>
+            <p>{t(`At the request of the customer`)}</p>
           </div>
           <div className="wrap_item modal_dell_order">
             <input

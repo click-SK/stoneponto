@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useTranslation } from "react-i18next";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const AddNewPost = () => {
   const [image, setImage] = useState(null);
@@ -15,9 +15,12 @@ const AddNewPost = () => {
   const { t } = useTranslation();
 
   const toolbarOptions = [
-    [{ 'size': ['small', false, 'large', 'huge'] }], // розмір шрифту
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }], // налаштування заголовків
-    [{ 'color': ['red','white', 'black'] }, { 'background': ['red', 'grey', 'black', 'white'] }], // колір тексту та фону
+    [{ size: ["small", false, "large", "huge"] }], // розмір шрифту
+    [{ header: [1, 2, 3, 4, 5, 6, false] }], // налаштування заголовків
+    [
+      { color: ["red", "white", "black"] },
+      { background: ["red", "grey", "black", "white"] },
+    ], // колір тексту та фону
   ];
 
   useEffect(() => {
@@ -46,19 +49,15 @@ const AddNewPost = () => {
     formData.append("descriptionRu", descriptionRu);
 
     fetch("http://91.206.30.132:4444/create-post", {
-
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
-        // Обробка відповіді сервера
-
         window.location.reload();
       })
       .catch((error) => {
-        // Обробка помилки
-        // console.log();
+        console.log(error);
       });
   };
 
@@ -121,15 +120,10 @@ const AddNewPost = () => {
       <div className="descript_wrap">
         <div className="descript_item">
           <p>{t(`Description in Ukrainian`)}</p>
-          {/* <textarea
-                value={descriptionUa}
-                onChange={(e) => setDescriptionUa(e.target.value)}
-              /> */}
           <ReactQuill
             className="textarea"
             value={descriptionUa}
             onChange={handleContentChangeUa}
-            //  modules={{ toolbar: toolbarOptions }}
           />
         </div>
         <div className="descript_item">
@@ -138,7 +132,6 @@ const AddNewPost = () => {
             className="textarea"
             value={descriptionRu}
             onChange={handleContentChangeRu}
-            //  modules={{ toolbar: toolbarOptions }}
           />
         </div>
       </div>

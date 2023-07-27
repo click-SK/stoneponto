@@ -14,7 +14,7 @@ const UserTableText = ({ order }) => {
         <p>{order.date}</p>
       </div>
       <div className="item_row_info item_file">
-        <p>{order.fileName}</p>
+        <p>{order.originalFileName || order.origibalFileName || order.fileName}</p>
       </div>
       <div className="item_row_info item_material">
         <p>{t(`${order.material}`)}</p>

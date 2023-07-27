@@ -1,55 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import DisplayAdminTableOrder from './DisplayAdminTableOrder';
-import socket from '../../../socket/socket';
-import {ExportCSV} from '../../ExelTable/ExportCSV'
-import '../../../style/table.scss';
-import Loader from '../../Loader/Loader';
-
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import DisplayAdminTableOrder from "./DisplayAdminTableOrder";
+import socket from "../../../socket/socket";
+import { ExportCSV } from "../../ExelTable/ExportCSV";
+import "../../../style/table.scss";
+import Loader from "../../Loader/Loader";
+import ConfirmationModal from "../../Modal/ConfirmationModal";
 
 const EditTable = () => {
   const [currentOrders, setCurrentOrders] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
   const [uniqueUsers, setUniqueUsers] = useState([]);
   const [uniqueStatuses, setUniqueStatuses] = useState([]);
+  const [isFilterArray, setIsFilterArray] = useState(false);
+  const [currentFilteredUser, setCurrentFilteredUser] = useState("");
   const [isFetch, setIsFetch] = useState(false);
+  const [isCleartable, setIsClearTable] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isEmptyTables, setIsEmptyTables] = useState(false);
 
   const { t } = useTranslation();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
 
-  console.log('allOrders',allOrders);
-
-
   const dateTime = new Date(); // Отримати поточну дату та час
 
-const day = dateTime.getDate().toString().padStart(2, '0'); // День з лідируючим нулем
-const month = (dateTime.getMonth() + 1).toString().padStart(2, '0'); // Місяць з лідируючим нулем (у JavaScript місяці починаються з 0)
-const year = dateTime.getFullYear().toString(); // Рік
-const hours = dateTime.getHours().toString().padStart(2, '0'); // Година з лідируючим нулем
-const minutes = dateTime.getMinutes().toString().padStart(2, '0'); // Хвилина з лідируючим нулем
-const seconds = dateTime.getSeconds().toString().padStart(2, '0'); // Секунда з лідируючим нулем
+  const day = dateTime.getDate().toString().padStart(2, "0"); // День з лідируючим нулем
+  const month = (dateTime.getMonth() + 1).toString().padStart(2, "0"); // Місяць з лідируючим нулем (у JavaScript місяці починаються з 0)
+  const year = dateTime.getFullYear().toString(); // Рік
+  const hours = dateTime.getHours().toString().padStart(2, "0"); // Година з лідируючим нулем
+  const minutes = dateTime.getMinutes().toString().padStart(2, "0"); // Хвилина з лідируючим нулем
+  const seconds = dateTime.getSeconds().toString().padStart(2, "0"); // Секунда з лідируючим нулем
 
-const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds}`; // Форматований рядок дати та часу
+  const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds}`; // Форматований рядок дати та часу
 
   const itemsPerPage = 50;
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsEmptyTables(true);
+    }, 5000);
+  }, []);
 
   useEffect(() => {
-
-    socket.on('new table',(user) => {
-
-      setIsFetch(state => !state)
+    socket.on("new table", (user) => {
+      setIsFetch((state) => !state);
     });
-    socket.on('update table',(user) => {
-
-      setIsFetch(state => !state)
+    socket.on("update table", (user) => {
+      setIsFetch((state) => !state);
     });
   }, []);
 
   useEffect(() => {
-    fetch('http://91.206.30.132:4444/get-all-table')
+    fetch("http://91.206.30.132:4444/get-all-table")
       .then((res) => res.json())
       .then((res) => {
         setCurrentOrders(res.reverse());
@@ -57,6 +61,11 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
       });
   }, [isFetch]);
 
+  useEffect(() => {
+    if (isFilterArray) {
+      filterOnUserFunc(currentFilteredUser);
+    }
+  }, [allOrders]);
 
   useEffect(() => {
     if (allOrders.length !== 0) {
@@ -67,6 +76,10 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
       setTotalBalance(totalSum.toFixed(0));
     }
   }, [allOrders]);
+
+  setInterval(() => {
+    window.location.reload();
+  }, 600000);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -96,21 +109,43 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
   useEffect(() => {
     const usersArr = [...new Set(allOrders.map((item) => item.user.name))];
     const statusArr = [...new Set(allOrders.map((item) => item.status.name))];
+    function compareNames(a, b) {
+      // Переводимо обидва імені у нижній регістр перед порівнянням
+      a = a.toLowerCase();
+      b = b.toLowerCase();
+
+      // Порівнюємо кириличні символи з використанням localeCompare
+      const compareCyrillic = a.localeCompare(b, "ru", { sensitivity: "base" });
+
+      // Якщо кирилиця різна, повертаємо результат порівняння кириличних символів
+      if (compareCyrillic !== 0) {
+        return compareCyrillic;
+      }
+
+      // Якщо кирилиця однакова, повертаємо результат порівняння вихідних імен
+      return a.localeCompare(b, undefined, { sensitivity: "base" });
+    }
+
+    // Сортуємо масив імен
+    usersArr.sort(compareNames);
     setUniqueUsers(usersArr);
     setUniqueStatuses(statusArr);
   }, [allOrders, currentOrders]);
 
   const filterOnUserFunc = (e) => {
-    if (e === 'Всі') {
+    setCurrentFilteredUser(e);
+    if (e === "Всі") {
       setCurrentOrders(allOrders);
+      setIsFilterArray(false);
     } else {
       let newArr = allOrders.filter((item) => item.user.name === e);
       setCurrentOrders(newArr);
+      setIsFilterArray(true);
     }
   };
 
   const filterStatusFunc = (e) => {
-    if (e === 'Всі') {
+    if (e === "Всі") {
       setCurrentOrders(allOrders);
     } else {
       let newArr = allOrders.filter((item) => item.status.name === e);
@@ -123,89 +158,91 @@ const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds
     setCurrentOrders(newArr);
   };
 
-const renderPageNumbers = () => {
-  let renderedPages = [];
-
-  if (pageNumbers.length <= 5) {
-    renderedPages = pageNumbers;
-  } else {
-    if (currentPage === 2) {
-      renderedPages = [1, currentPage, currentPage + 1, pageNumbers.length];
-    } else if (currentPage <= 3) {
-      renderedPages = [...pageNumbers.slice(0, 4), pageNumbers.length];
-    } else if (currentPage >= pageNumbers.length - 2) {
-      renderedPages = [1, ...pageNumbers.slice(pageNumbers.length - 4)];
-    } else {
-      renderedPages = [1, currentPage - 1, currentPage, currentPage + 1, pageNumbers.length];
-    }
-  }
-
-  return renderedPages.map((page) => {
-    if (page === '...') {
-      return <p key={page}>{page}</p>;
-    } else {
-      return (
-        <p
-          style={{ padding: '0px 10px', fontSize: '18px', cursor: 'pointer' }}
-          key={page}
-          onClick={() => chosePage(page)}
-          className={`${page == currentPage ? 'bold' : ''}`}
-        >
-          {page}
-        </p>
-      );
-    }
-  });
-};
-
-// const orders = [
-//   { orderId: 1, customerName: "John Doe", totalAmount: 100 },
-//   { orderId: 2, customerName: "Jane Smith", totalAmount: 200 },
-//   // Додай більше об'єктів замовлень
-// ];
-
-
-
-
-// const orders = currentItems.map((item) => {
-//   return {
-//     Id: item?.id,
-//     "Дата": item?.date,
-//     "Пользователь": item?.user.name,
-//     'Файл': item?.fileName,
-//     'Материал': item?.material,
-//     'Качество': item?.quality,
-//     'Ширина': item?.width,
-//     'Высота': item?.height,
-//     'Тираж': item?.count,
-//     totalAmount: item?.sum,
-//     'Опис': 'a',
-//     'Cтатус': item?.status?.name,
-//   };
-// });
-
-const orders = currentItems.map((item) => {
-  const conditions = item?.conditions;
-  const description = Object.keys(conditions)
-    .filter((key) => conditions[key].name !== "")
-    .map((key) => `${conditions[key].option} ${conditions[key].name} ${conditions[key]?.value ? `: ${conditions[key]?.value}` : ' ' }`)
-    .join(", ");
-
-  return {
-    Id: item?.id,
-    "Дата": item?.date,
-    "Пользователь": item?.user.name,
-    'Файл': item?.fileName,
-    'Материал': item?.material,
-    'Качество': item?.quality,
-    'Ширина': item?.width,
-    'Высота': item?.height,
-    'Тираж': item?.count,
-    'Сума': item?.sum,
-    'Опис': description + (description ? ` ; ` : '') + item?.address + (item?.address ? ` ; ` : '') + item?.notes,
-    'Cтатус': item?.status?.name,
+  const handleClearTable = () => {
+    fetch("http://91.206.30.132:4444/delete-all-tables", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
-});
+
+  const renderPageNumbers = () => {
+    let renderedPages = [];
+
+    if (pageNumbers.length <= 5) {
+      renderedPages = pageNumbers;
+    } else {
+      if (currentPage === 2) {
+        renderedPages = [1, currentPage, currentPage + 1, pageNumbers.length];
+      } else if (currentPage <= 3) {
+        renderedPages = [...pageNumbers.slice(0, 4), pageNumbers.length];
+      } else if (currentPage >= pageNumbers.length - 2) {
+        renderedPages = [1, ...pageNumbers.slice(pageNumbers.length - 4)];
+      } else {
+        renderedPages = [
+          1,
+          currentPage - 1,
+          currentPage,
+          currentPage + 1,
+          pageNumbers.length,
+        ];
+      }
+    }
+
+    return renderedPages.map((page) => {
+      if (page === "...") {
+        return <p key={page}>{page}</p>;
+      } else {
+        return (
+          <p
+            style={{ padding: "0px 10px", fontSize: "18px", cursor: "pointer" }}
+            key={page}
+            onClick={() => chosePage(page)}
+            className={`${page == currentPage ? "bold" : ""}`}
+          >
+            {page}
+          </p>
+        );
+      }
+    });
+  };
+
+  const orders = currentItems.map((item) => {
+    const conditions = item?.conditions;
+    const description = Object.keys(conditions)
+      .filter((key) => conditions[key].name !== "")
+      .map(
+        (key) =>
+          `${conditions[key].option} ${conditions[key].name} ${
+            conditions[key]?.value ? `: ${conditions[key]?.value}` : " "
+          }`
+      )
+      .join(", ");
+
+    return {
+      Id: item?.id,
+      Дата: item?.date,
+      Пользователь: item?.user.name,
+      Файл: item?.fileName,
+      Материал: item?.material,
+      Качество: item?.quality,
+      Ширина: item?.width,
+      Высота: item?.height,
+      Тираж: item?.count,
+      Сума: item?.sum,
+      Опис:
+        description +
+        (description ? ` ; ` : "") +
+        item?.address +
+        (item?.address ? ` ; ` : "") +
+        item?.notes,
+      Cтатус: item?.status?.name,
+    };
+  });
 
   return (
     <div className="table_wrap">
@@ -307,9 +344,31 @@ const orders = currentItems.map((item) => {
               <img src="/img/right-pagination.svg" alt="Next" />
             </button>
           </div>
+          <div className="clear_table_button_wrap">
+            <button
+              className="clear_table_button"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              Очистити таблицю
+            </button>
+          </div>
+          <ConfirmationModal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            func={handleClearTable}
+          />
         </>
       ) : (
-        <Loader />
+        <>
+          {!isEmptyTables ? (
+            <Loader />
+          ) : (
+            <div className="not_fount_order_wrap">
+              <p>{t("Order not found paragraph 1")}</p>
+              <p>{t("Order not found paragraph 2")}</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

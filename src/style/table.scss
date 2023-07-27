@@ -195,6 +195,27 @@
 
 }
 
+.clear_table_button_wrap {
+    display: flex;
+    justify-content: end;
+    margin: 0px 5px 5px 0px;
+}
+
+.clear_table_button {
+
+}
+
+.not_fount_order_wrap {
+    margin-top: 10%;
+
+    p {
+        font-weight: 600;
+        font-size: 24px;
+        padding: 10px 0px;
+    }
+}
+
+
 @media (max-width: 780px){
 
     .button_wrap{

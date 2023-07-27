@@ -8,11 +8,11 @@ import AdminBlog from './Blog/AdminBlog';
 import { useTranslation } from 'react-i18next';
 import '../../style/adminPanel.scss'
 const AdminPanel = () => {
-    const [editPrice, setEditPrice] = useState(true);
+    const [editPrice, setEditPrice] = useState(false);
     const [editCurrency, setEditCurrency] = useState(false);
     const [editAddNewUser, setEditAddNewUser] = useState(false);
     const [editAllUsers, setEditAllUsers] = useState(false);
-    const [editTable, setEditTable] = useState(false);
+    const [editTable, setEditTable] = useState(true);
     const [editBlog, setEditBlog] = useState(false);
 
     const { t } = useTranslation();

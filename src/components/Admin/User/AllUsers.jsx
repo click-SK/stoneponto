@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CurrentUser from "./CurrentUser";
-import '../../../style/editUser.scss'
+import "../../../style/editUser.scss";
 import Loader from "../../Loader/Loader";
 
 const AllUsers = () => {
@@ -14,7 +14,6 @@ const AllUsers = () => {
         setAllUsers(arr);
       });
   }, [isFetch]);
-
 
   return (
     <div className="edit_user_wrap">

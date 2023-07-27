@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
 const DisabledUser =  ({user, editPath, setIsFetch, title}) => {
-    const [isEditValue, setIsEditValue] = useState(false);
     const [statusDisabled,setStatusDisabled] = useState(false);
     const { t } = useTranslation();
 
@@ -23,7 +22,6 @@ const DisabledUser =  ({user, editPath, setIsFetch, title}) => {
         })
           .then((res) => res.json())
           setTimeout(() => {
-            // window.location.reload();
             setIsFetch(state => !state)
           },1000)
       };

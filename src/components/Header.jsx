@@ -73,8 +73,8 @@ const Header = () => {
         <div className="decor_1"></div>
         <div className="decor_2"></div>
         <div className="wraper">
-          <span className="wrap_item text phone_none">+380 50 976 7417</span>
           <span className="wrap_item text phone_none">+380 96 626 7481</span>
+          <span className="wrap_item text phone_none">+380 50 976 7417</span>
           <span className="wrap_item text mail_none">ponto-print@ukr.net</span>
           {!user?.email ? (
             <span className="wrap_item">
@@ -94,8 +94,6 @@ const Header = () => {
             <ChooseLanguage />
           </span>
           <span className="wrap_item text social_icon_none">
-            {/* <FaTelegramPlane
-            className="icon_social"/> */}
             <a href="viber://chat?number=380966267481">
               <FaViber
               className="icon_social"/>
