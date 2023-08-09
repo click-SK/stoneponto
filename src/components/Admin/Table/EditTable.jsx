@@ -21,6 +21,8 @@ const EditTable = () => {
 
   const { t } = useTranslation();
 
+ 
+
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
 
@@ -77,6 +79,8 @@ const EditTable = () => {
     }
   }, [allOrders]);
 
+ 
+
   setInterval(() => {
     window.location.reload();
   }, 600000);
@@ -113,9 +117,8 @@ const EditTable = () => {
       // Переводимо обидва імені у нижній регістр перед порівнянням
       a = a.toLowerCase();
       b = b.toLowerCase();
-
       // Порівнюємо кириличні символи з використанням localeCompare
-      const compareCyrillic = a.localeCompare(b, "ru", { sensitivity: "base" });
+      const compareCyrillic = a.localeCompare(b, "en", { sensitivity: "base" });
 
       // Якщо кирилиця різна, повертаємо результат порівняння кириличних символів
       if (compareCyrillic !== 0) {
@@ -130,7 +133,11 @@ const EditTable = () => {
     usersArr.sort(compareNames);
     setUniqueUsers(usersArr);
     setUniqueStatuses(statusArr);
+
+    console.log('перевірка арр',usersArr);
+    
   }, [allOrders, currentOrders]);
+
 
   const filterOnUserFunc = (e) => {
     setCurrentFilteredUser(e);
@@ -266,7 +273,9 @@ const EditTable = () => {
             <div className="table_header_item table_header_name">
               <p>{t(`User`)}</p>
               <select onChange={(e) => filterOnUserFunc(e.target.value)}>
-                <option>Всі</option>
+                <option 
+                style={{overflowY: 'auto'}}
+                >Всі</option>
                 {uniqueUsers.map((user) => (
                   <option key={user} value={user}>
                     {user}
