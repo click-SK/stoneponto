@@ -18,7 +18,7 @@ const EditTable = () => {
   const [isCleartable, setIsClearTable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isEmptyTables, setIsEmptyTables] = useState(false);
-
+  const [allUsers, setAllUsers] = useState([]);
   const { t } = useTranslation();
 
  
@@ -138,6 +138,23 @@ const EditTable = () => {
     
   }, [allOrders, currentOrders]);
 
+  useEffect(() => {
+    fetch("http://91.206.30.132:4444/get-all-user")
+      .then((res) => res.json())
+      .then((res) => {
+        const arr = res.slice(1);
+        // Сортуємо користувачів за алфавітом
+        arr.sort(compareNames);
+        setAllUsers(arr);
+      });
+  }, [isFetch]);
+
+  // Функція для порівняння імен користувачів
+  function compareNames(a, b) {
+    return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
+  }
+
+  console.log('users', allUsers);
 
   const filterOnUserFunc = (e) => {
     setCurrentFilteredUser(e);
@@ -276,9 +293,9 @@ const EditTable = () => {
                 <option 
                 style={{overflowY: 'auto'}}
                 >Всі</option>
-                {uniqueUsers.map((user) => (
-                  <option key={user} value={user}>
-                    {user}
+                {allUsers.map((user) => (
+                  <option key={user.name} value={user.name}>
+                    {user.name}
                   </option>
                 ))}
               </select>
