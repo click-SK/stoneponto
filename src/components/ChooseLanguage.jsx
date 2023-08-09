@@ -10,9 +10,9 @@ const Test = () => {
     const [language, setLanguage] = useLocalStorage('language', 'Ua');
     const lang = useSelector((state) => state.lang.language);
 
-    useEffect(() => {
-        setCurrentLang(lang);
-    },[lang])
+    // useEffect(() => {
+    //     setCurrentLang(lang);
+    // },[lang])
 
 
     const handleLenguageChange = (e) => {

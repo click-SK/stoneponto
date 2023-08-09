@@ -92,6 +92,7 @@ const CalculatorPartner = () => {
   const { currency } = useSelector((state) => state.currency);
 
   const quadrature = (Number(width) * Number(height)) / 1000000;
+  const linearMeter = (width / 1000 + height / 1000) * 2;
 
   const user = useSelector(currentUser);
   const dispatch = useDispatch();
@@ -277,8 +278,6 @@ const CalculatorPartner = () => {
   };
 
   useEffect(() => {
-    const linearMeter = (width / 1000 + height / 1000) * 2;
-
     const standartLuvers = linearMeter / 0.3;
 
     const currentLuvers = linearMeter / (selectedOptionEyeletsValue / 100);
@@ -349,7 +348,7 @@ const CalculatorPartner = () => {
       (selectedOptionPoster?.price || 0) +
       currentStamp +
       currentStretchOnTheStretcher +
-      (isMounting ? currentItem?.mounting : 0);
+      (isMounting ? currentItem?.mounting * quadrature : 0);
 
     const sumMultiplyCurrency = totalSum1 * currency.currency || 0;
     const sumAndCount = sumMultiplyCurrency * count;
@@ -409,6 +408,7 @@ const CalculatorPartner = () => {
     setDelivery("");
     setSelectedOptionEyelets("");
     setIsPosterDisabled(false);
+    console.log("work");
   }, [currentItem]);
 
   const finlObj = {
@@ -679,9 +679,11 @@ const CalculatorPartner = () => {
 
     if (isMounting) {
       orderItems.push(
-        `${t(`Mounting`)} ${(currentItem?.mounting * currency.currency).toFixed(
-          0
-        )} грн`
+        `${t(`Mounting`)} ${(
+          currentItem?.mounting *
+          quadrature *
+          currency.currency
+        ).toFixed(0)} грн`
       );
     }
 
@@ -727,6 +729,8 @@ const CalculatorPartner = () => {
       </div>
     );
   };
+
+  console.log("isMounting", isMounting);
 
   return (
     <>
@@ -1008,7 +1012,7 @@ const CalculatorPartner = () => {
                     <h3>{t(`Mounting`)}</h3>
                     <input
                       type="checkbox"
-                      value={isMounting}
+                      checked={isMounting}
                       onChange={handleMounting}
                     />
                   </div>
