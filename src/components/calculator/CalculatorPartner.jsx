@@ -408,7 +408,7 @@ const CalculatorPartner = () => {
     setDelivery("");
     setSelectedOptionEyelets("");
     setIsPosterDisabled(false);
-    console.log("work");
+    // console.log("work");
   }, [currentItem]);
 
   const finlObj = {
@@ -730,7 +730,7 @@ const CalculatorPartner = () => {
     );
   };
 
-  console.log("isMounting", isMounting);
+  // console.log("isMounting", isMounting);
 
   return (
     <>
