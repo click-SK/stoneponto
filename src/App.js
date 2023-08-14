@@ -51,7 +51,7 @@ function App() {
   arr.sort(compareNames);
   
   // Результат відфільтрованого масиву
-  console.log(arr);
+  // console.log(arr);
   return (
     <div className="App">
       <FirstRequest />

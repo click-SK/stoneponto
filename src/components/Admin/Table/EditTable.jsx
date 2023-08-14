@@ -18,8 +18,10 @@ const EditTable = () => {
   const [isCleartable, setIsClearTable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isEmptyTables, setIsEmptyTables] = useState(false);
-
+  const [allUsers, setAllUsers] = useState([]);
   const { t } = useTranslation();
+
+ 
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
@@ -77,6 +79,8 @@ const EditTable = () => {
     }
   }, [allOrders]);
 
+ 
+
   setInterval(() => {
     window.location.reload();
   }, 600000);
@@ -113,9 +117,8 @@ const EditTable = () => {
       // Переводимо обидва імені у нижній регістр перед порівнянням
       a = a.toLowerCase();
       b = b.toLowerCase();
-
       // Порівнюємо кириличні символи з використанням localeCompare
-      const compareCyrillic = a.localeCompare(b, "ru", { sensitivity: "base" });
+      const compareCyrillic = a.localeCompare(b, "en", { sensitivity: "base" });
 
       // Якщо кирилиця різна, повертаємо результат порівняння кириличних символів
       if (compareCyrillic !== 0) {
@@ -130,7 +133,28 @@ const EditTable = () => {
     usersArr.sort(compareNames);
     setUniqueUsers(usersArr);
     setUniqueStatuses(statusArr);
+
+    console.log('перевірка арр',usersArr);
+    
   }, [allOrders, currentOrders]);
+
+  useEffect(() => {
+    fetch("http://91.206.30.132:4444/get-all-user")
+      .then((res) => res.json())
+      .then((res) => {
+        const arr = res.slice(1);
+        // Сортуємо користувачів за алфавітом
+        arr.sort(compareNames);
+        setAllUsers(arr);
+      });
+  }, [isFetch]);
+
+  // Функція для порівняння імен користувачів
+  function compareNames(a, b) {
+    return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
+  }
+
+  console.log('users', allUsers);
 
   const filterOnUserFunc = (e) => {
     setCurrentFilteredUser(e);
@@ -266,10 +290,12 @@ const EditTable = () => {
             <div className="table_header_item table_header_name">
               <p>{t(`User`)}</p>
               <select onChange={(e) => filterOnUserFunc(e.target.value)}>
-                <option>Всі</option>
-                {uniqueUsers.map((user) => (
-                  <option key={user} value={user}>
-                    {user}
+                <option 
+                style={{overflowY: 'auto'}}
+                >Всі</option>
+                {allUsers.map((user) => (
+                  <option key={user.name} value={user.name}>
+                    {user.name}
                   </option>
                 ))}
               </select>
