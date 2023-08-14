@@ -90,8 +90,14 @@ const CalculatorPartner = () => {
   const { t } = useTranslation();
 
   const { currency } = useSelector((state) => state.currency);
+  console.log('width',width);
+  console.log('height',height);
 
-  const quadrature = (Number(width) * Number(height)) / 1000000;
+  const currentItemOracal = currentItem?.nameUa == "Кольорова плівка серії Oracal 641";
+  console.log('currentItemOracal',currentItemOracal);
+
+  const quadrature =  ((currentItemOracal ? (Number(1000)) : (Number(width))) * Number(height)) / 1000000;
+  console.log('quadrature',quadrature);
   const linearMeter = (width / 1000 + height / 1000) * 2;
 
   const user = useSelector(currentUser);
@@ -349,6 +355,10 @@ const CalculatorPartner = () => {
       currentStamp +
       currentStretchOnTheStretcher +
       (isMounting ? currentItem?.mounting * quadrature : 0);
+
+      console.log('isMounting',isMounting);
+      console.log('currentItem?.mounting',currentItem?.mounting);
+      console.log('quadrature',quadrature);
 
     const sumMultiplyCurrency = totalSum1 * currency.currency || 0;
     const sumAndCount = sumMultiplyCurrency * count;
