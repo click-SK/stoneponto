@@ -28,6 +28,8 @@ const AdminTableText = ({ order, handleDownload }) => {
     }, 1000);
   };
 
+  console.log('order.conditions',order);
+
   return (
     <>
       <div className="item_row_info item_id">

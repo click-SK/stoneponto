@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 const UserTableText = ({ order }) => {
   const { t } = useTranslation();
 
+  console.log('order user',order);
+
   
   return (
     <>
@@ -37,70 +39,70 @@ const UserTableText = ({ order }) => {
       <div className="item_row_info item_descript">
         <p>--{t(`Description`)}--</p>
 
-        {order && order.descriptionDelete == "" ? (
+        {order && order?.descriptionDelete == "" ? (
           <>
-            {order.conditions.lamination?.name && (
+            {order?.conditions?.lamination?.name && (
               <div style={{ background: "red" }}>
-                <p>{order.conditions.lamination?.option}</p>
-                <p>{order.conditions.lamination?.name}</p>
+                <p>{order?.conditions?.lamination?.option}</p>
+                <p>{order?.conditions?.lamination?.name}</p>
               </div>
             )}
             {order.conditions.cutting?.name && (
               <div>
-                <p>{order.conditions.cutting?.option}</p>
-                <p>{order.conditions.cutting?.name}</p>
+                <p>{order?.conditions?.cutting?.option}</p>
+                <p>{order?.conditions?.cutting?.name}</p>
               </div>
             )}
-            {order.conditions.eyelets?.name && (
+            {order?.conditions?.eyelets?.name && (
               <div style={{ background: "green", color:'#fff' }}>
-                <p>{order.conditions.eyelets?.option}</p>
-                <p>{order.conditions.eyelets?.name}</p>
+                <p>{order?.conditions?.eyelets?.option}</p>
+                <p>{order?.conditions?.eyelets?.name}</p>
               </div>
             )}
-            {order.conditions.poster?.name && (
+            {order?.conditions?.poster?.name && (
               <div>
-                <p>{order.conditions.poster?.option}</p>
-                <p>{order.conditions.poster?.name}</p>
+                <p>{order?.conditions?.poster?.option}</p>
+                <p>{order?.conditions?.poster?.name}</p>
               </div>
             )}
-            {order.conditions.solderGates?.name && (
+            {order?.conditions?.solderGates?.name && (
               <div style={{ background: "blue", color:'#fff'}}>
-                <p>{order.conditions.solderGates?.option}</p>
-                <p>{order.conditions.solderGates?.name}</p>
+                <p>{order?.conditions?.solderGates?.option}</p>
+                <p>{order?.conditions?.solderGates?.name}</p>
               </div>
             )}
-            {order.conditions.solderPockets?.name && (
+            {order?.conditions?.solderPockets?.name && (
               <div style={{ background: "blue", color:'#fff' }}>
-                <p>{order.conditions.solderPockets?.option}</p>
-                <p>{order.conditions.solderPockets?.name}</p>
+                <p>{order?.conditions?.solderPockets?.option}</p>
+                <p>{order?.conditions?.solderPockets?.name}</p>
               </div>
             )}
-            {order.conditions.mounting?.name && (
+            {order?.conditions?.mounting?.name && (
               <div style={{ background: "#ff4d00" }}>
-                <p>{order.conditions.mounting?.name}</p>
+                <p>{order?.conditions?.mounting?.name}</p>
               </div>
             )}
-            {order.conditions.stamp?.name && (
+            {order?.conditions?.stamp?.name && (
               <div>
-                <p>{order.conditions.stamp?.name}</p>
+                <p>{order?.conditions?.stamp?.name}</p>
               </div>
             )}
-            {order.conditions.stretch?.name && (
+            {order?.conditions?.stretch?.name && (
               <div>
-                <p>{order.conditions.stretch?.name}</p>
+                <p>{order?.conditions?.stretch?.name}</p>
               </div>
             )}
           </>
         ) : (
           <>
-            <p>{order.descriptionDelete}</p>
+            <p>{order?.descriptionDelete}</p>
           </>
         )}
         {order?.notes != "" && (
           <div>
             <p>--{t(`Notes`)}--</p>
             <div>
-              <p>{order.notes}</p>
+              <p>{order?.notes}</p>
             </div>
           </div>
         )}
@@ -108,7 +110,7 @@ const UserTableText = ({ order }) => {
           <div>
             <p>--{t(`Delivery`)}--</p>
             <div style={{ background: "yellow" }}>
-              <p>{order.address}</p>
+              <p>{order?.address}</p>
             </div>
           </div>
         )}
