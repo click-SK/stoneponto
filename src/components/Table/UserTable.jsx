@@ -17,9 +17,9 @@ useEffect(() => {
   });
   socket.on('update table',({user, status}) => {
     if(currentUser._id == user) {
-      if(status) {
+      // if(status) {
 
-      }
+      // }
       setIsFetch(state => !state)
     }
   });

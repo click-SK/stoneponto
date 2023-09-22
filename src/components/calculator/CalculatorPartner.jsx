@@ -375,11 +375,24 @@ const CalculatorPartner = () => {
       setCurrentDiscountTwentyMeter("");
     }
     const finalSum = sumAndCount - onlyDiscount - discountTwentyMeter;
-    const minimalOrder = 1.5 * currency.currency;
+    const minimalOrder = (1.5 * currency.currency).toFixed(0);
     if (finalSum < minimalOrder && finalSum != 0) {
       return setTotalSum(minimalOrder);
     }
-    setTotalSum(sumAndCount - onlyDiscount - discountTwentyMeter);
+    console.log('sumAndCount',sumAndCount);
+    console.log('onlyDiscount',onlyDiscount);
+    console.log('discountTwentyMeter',discountTwentyMeter);
+    const numSumAndCount = Number(sumAndCount);
+    const numOnlyDiscount = Number(onlyDiscount);
+    const numDiscountTwentyMeter = Number(discountTwentyMeter);
+
+    if(numSumAndCount) {
+      const total = (numSumAndCount - numOnlyDiscount - numDiscountTwentyMeter).toFixed(0);
+      if(total) {
+        setTotalSum(total);
+      }
+      console.log('total',total);
+    }
   }, [
     count,
     selectedOptionCutting,
@@ -435,7 +448,7 @@ const CalculatorPartner = () => {
   const handleChange = (event) => {
     const file = event.target.files[0];
     const allowedExtensions = ["jpg", "tiff", "tif", "rar", "zip", "7z", "cdr"];
-    const fileExtension = getFileExtension(file.name);
+    const fileExtension = getFileExtension(file?.name);
 
     if (allowedExtensions.includes(fileExtension)) {
       setselectedFile(file);
@@ -453,7 +466,9 @@ const CalculatorPartner = () => {
   };
 
   const getFileExtension = (filename) => {
-    return filename.slice(filename.lastIndexOf(".") + 1);
+    if(filename) {
+      return filename.slice(filename.lastIndexOf(".") + 1);
+    }
   };
 
   const validationFunc = () => {
@@ -718,7 +733,7 @@ const CalculatorPartner = () => {
     }
 
     if (totalSum !== 0) {
-      orderItems.push(`= ${t(`Total`)} ${Number(totalSum).toFixed(0)} грн`);
+      orderItems.push(`= ${t(`Total`)} ${Number(totalSum)} грн`);
     }
 
     return (
@@ -1165,7 +1180,7 @@ const CalculatorPartner = () => {
                 <h3>
                   {" "}
                   {t(`Total`)}:{" "}
-                  <p>{isNaN(totalSum.toFixed(0)) ? 0 : totalSum.toFixed(0)}</p>{" "}
+                  <p>{isNaN(totalSum) ? 0 : totalSum}</p>{" "}
                   грн
                 </h3>
               </div>

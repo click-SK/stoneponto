@@ -51,7 +51,7 @@ const DisplayUserTableOrder = ({ order, currentUser }) => {
         }),
       }).then((res) => res.json());
       setTimeout(() => {
-        dispatch(fetchAuthMe());
+        // dispatch(fetchAuthMe());
       }, 2000);
 
       await fetch("http://91.206.30.132:4444/update-balance", {
