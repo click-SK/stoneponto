@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { BASE_URL } from "../../../http/BaseUrl";
 const AddNewUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,30 +14,34 @@ const AddNewUser = () => {
   };
 
   const handleSubmit = async () => {
-    if (!validateEmail(email)) {
-      setEmailError("Невірний формат електронної адреси");
-      return;
-    }
-
-    const response = await fetch("http://91.206.30.132:4444/register-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-        name,
-      }),
-    });
-
-    const data = await response.json();
-
-    if (data) {
-      setEmail("");
-      setPassword("");
-      setName("");
-      alert("Користувача успішно створено");
+    try {
+      if (!validateEmail(email)) {
+        setEmailError("Невірний формат електронної адреси");
+        return;
+      }
+  
+      const response = await fetch(`${BASE_URL}/register-user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          name,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (data) {
+        setEmail("");
+        setPassword("");
+        setName("");
+        alert("Користувача успішно створено");
+      }
+    } catch(error) {
+      console.log('error',error);
     }
   };
 

@@ -5,7 +5,7 @@ import EditCalculatorFullData from "./EditCalculatorFullData";
 import EditCalculatorAdditionalParameter from "./EditCalculatorAdditionalParameter";
 import EditCalculatorCurrentArray from "./EditCalculatorCurrentArray";
 import { AiOutlineDown } from "react-icons/ai";
-
+import { BASE_URL } from "../../../http/BaseUrl";
 const EditCalculatorFullTitleBlock = ({
   arrayGoods,
   additionalParameter,
@@ -238,7 +238,7 @@ const EditCalculatorFullTitleBlock = ({
                   mainId={mainId}
                   setIsFetch={setIsFetch}
                   goodsIndex={goodsIndex}
-                  editPath="http://91.206.30.132:4444/update-color"
+                  editPath={`${BASE_URL}/update-color`}
                   openCloseFunc={setColorFunc}
                   isOpen={isColor}
                 />
@@ -250,7 +250,7 @@ const EditCalculatorFullTitleBlock = ({
                   mainId={mainId}
                   setIsFetch={setIsFetch}
                   goodsIndex={goodsIndex}
-                  editPath="http://91.206.30.132:4444/update-eyelets-price"
+                  editPath={`${BASE_URL}/update-eyelets-price`}
                   openCloseFunc={setEyeletsFunc}
                   isOpen={isEyelets}
                 />
@@ -262,7 +262,7 @@ const EditCalculatorFullTitleBlock = ({
                   mainId={mainId}
                   setIsFetch={setIsFetch}
                   goodsIndex={goodsIndex}
-                  editPath="http://91.206.30.132:4444/update-quality"
+                  editPath={`${BASE_URL}/update-quality`}
                   openCloseFunc={setQualityFunc}
                   isOpen={isQuality}
                 />
@@ -274,7 +274,7 @@ const EditCalculatorFullTitleBlock = ({
                   mainId={mainId}
                   setIsFetch={setIsFetch}
                   goodsIndex={goodsIndex}
-                  editPath="http://91.206.30.132:4444/update-lamination"
+                  editPath={`${BASE_URL}/update-lamination`}
                   openCloseFunc={setLaminationFunc}
                   isOpen={isLamination}
                 />
@@ -286,7 +286,7 @@ const EditCalculatorFullTitleBlock = ({
                   mainId={mainId}
                   setIsFetch={setIsFetch}
                   goodsIndex={goodsIndex}
-                  editPath="http://91.206.30.132:4444/update-poster"
+                  editPath={`${BASE_URL}/update-poster`}
                   openCloseFunc={setPosterFunc}
                   isOpen={isPoster}
                 />
@@ -298,7 +298,7 @@ const EditCalculatorFullTitleBlock = ({
                   mainId={mainId}
                   setIsFetch={setIsFetch}
                   goodsIndex={goodsIndex}
-                  editPath="http://91.206.30.132:4444/update-soldering-of-gates"
+                  editPath={`${BASE_URL}/update-soldering-of-gates`}
                   openCloseFunc={setSolderingOfGatesFunc}
                   isOpen={isSolderingOfGates}
                 />
@@ -310,7 +310,7 @@ const EditCalculatorFullTitleBlock = ({
                   mainId={mainId}
                   setIsFetch={setIsFetch}
                   goodsIndex={goodsIndex}
-                  editPath="http://91.206.30.132:4444/update-soldering-pockets"
+                  editPath={`${BASE_URL}/update-soldering-pockets`}
                   openCloseFunc={setSolderingPocketsFunc}
                   isOpen={isSolderingPockets}
                 />
@@ -322,7 +322,7 @@ const EditCalculatorFullTitleBlock = ({
                   mainId={mainId}
                   setIsFetch={setIsFetch}
                   goodsIndex={goodsIndex}
-                  editPath="http://91.206.30.132:4444/update-cutting"
+                  editPath={`${BASE_URL}/update-cutting`}
                   openCloseFunc={setCuttingFunc}
                   isOpen={isCutting}
                 />
@@ -334,7 +334,7 @@ const EditCalculatorFullTitleBlock = ({
                   goodsIndex={goodsIndex}
                   data={arrayGoods?.mounting}
                   setIsFetch={setIsFetch}
-                  editPath="http://91.206.30.132:4444/update-mounting"
+                  editPath={`${BASE_URL}/update-mounting`}
                   openCloseFunc={setMountingFunc}
                   isOpen={isMounting}
                 />
@@ -346,7 +346,7 @@ const EditCalculatorFullTitleBlock = ({
                   goodsIndex={goodsIndex}
                   data={arrayGoods?.stamp}
                   setIsFetch={setIsFetch}
-                  editPath="http://91.206.30.132:4444/update-stamp"
+                  editPath={`${BASE_URL}/update-stamp`}
                   openCloseFunc={setStampFunc}
                   isOpen={isStamp}
                 />
@@ -365,7 +365,7 @@ const EditCalculatorFullTitleBlock = ({
                 mainId={mainId}
                 setIsFetch={setIsFetch}
                 goodsIndex={goodsIndex}
-                editPath="http://91.206.30.132:4444/update-quality"
+                editPath={`${BASE_URL}/update-quality`}
                 openCloseFunc={setQualityFunc}
                 isOpen={isQuality}
               />
@@ -377,7 +377,7 @@ const EditCalculatorFullTitleBlock = ({
                 mainId={mainId}
                 setIsFetch={setIsFetch}
                 goodsIndex={goodsIndex}
-                editPath="http://91.206.30.132:4444/update-cutting"
+                editPath={`${BASE_URL}/update-cutting`}
                 openCloseFunc={setCuttingFunc}
                 isOpen={isCutting}
               />
@@ -389,7 +389,7 @@ const EditCalculatorFullTitleBlock = ({
                 mainId={mainId}
                 setIsFetch={setIsFetch}
                 goodsIndex={goodsIndex}
-                editPath="http://91.206.30.132:4444/update-stretch-on-the-stretcher"
+                editPath={`${BASE_URL}/update-stretch-on-the-stretcher`}
                 openCloseFunc={setStretchOnTheStretcherFunc}
                 isOpen={isStretchOnTheStretcher}
               />
@@ -401,7 +401,7 @@ const EditCalculatorFullTitleBlock = ({
                 mainId={mainId}
                 setIsFetch={setIsFetch}
                 goodsIndex={goodsIndex}
-                editPath="http://91.206.30.132:4444/update-stretch-on-the-stretcher-min"
+                editPath={`${BASE_URL}/update-stretch-on-the-stretcher-min`}
                 openCloseFunc={setStretchOnTheStretcherFuncMin}
                 isOpen={isStretchOnTheStretcherMin}
               />

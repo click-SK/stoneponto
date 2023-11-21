@@ -4,7 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import { RiFileEditFill } from "react-icons/ri";
-
+import { BASE_URL } from "../../../http/BaseUrl";
 const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
   const [editValue, setEditValue] = useState("");
   const [isEditValue, setIsEditValue] = useState(false);
@@ -39,10 +39,12 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
     formData.append("postId", post._id);
     setIsEditValue((isEdit) => !isEdit);
 
-    fetch("http://91.206.30.132:4444/update-post", {
+    fetch(`${BASE_URL}/update-post`, {
       method: "PATCH",
       body: formData,
-    }).then((res) => res.json());
+    }).then((res) => res.json()).catch((error) => {
+      console.log('error',error);
+    });
     setTimeout(() => {
       setIsFetch((state) => !state);
     }, 1000);
@@ -66,7 +68,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
   };
 
   const handleRemovePost = () => {
-    fetch("http://91.206.30.132:4444/remove-post", {
+    fetch(`${BASE_URL}/remove-post`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -75,6 +77,8 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
         postId: post._id,
         filename: post.blogImage,
       }),
+    }).catch((error) => {
+      console.log('error',error);
     });
     setTimeout(() => {
       setIsFetch((state) => !state);
@@ -96,7 +100,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
             <img src={imageSrc} alt="Selected" />
           ) : (
             <img
-              src={`http://91.206.30.132:4444${post.blogImage}`}
+              src={`${BASE_URL}${post.blogImage}`}
               alt="Selected"
             />
           )}
@@ -137,7 +141,7 @@ const EditCurrentPost = ({ post, editPath, title, setIsFetch }) => {
                 ) : (
                   <img
                     className="edit_post_img"
-                    src={`http://91.206.30.132:4444${post.blogImage}`}
+                    src={`${BASE_URL}${post.blogImage}`}
                     alt="Selected"
                   />
                 )}

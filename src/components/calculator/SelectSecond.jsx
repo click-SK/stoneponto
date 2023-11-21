@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchLanguage } from "../../store/language";
 import "../../style/calculator.scss";
 import { useTranslation } from "react-i18next";
-
+import { BASE_URL } from "../../http/BaseUrl";
 const SelectSecond = ({ item, title, selectedOption, setSelectedOption }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +41,7 @@ const SelectSecond = ({ item, title, selectedOption, setSelectedOption }) => {
           {selectedOption?.imageColor && (
             <img
               className="color_img"
-              src={`http://91.206.30.132:4444${selectedOption?.imageColor}`}
+              src={`${BASE_URL}${selectedOption?.imageColor}`}
             />
           )}
           {(selectedOption?.nameUa && lang === "Ua"
@@ -60,7 +60,7 @@ const SelectSecond = ({ item, title, selectedOption, setSelectedOption }) => {
                 {el?.imageColor && (
                   <img
                     className="color_img"
-                    src={`http://91.206.30.132:4444${el.imageColor}`}
+                    src={`${BASE_URL}${el.imageColor}`}
                   />
                 )}
                 {lang === "Ua" ? <>{el.nameUa}</> : <>{el.nameRu}</>}

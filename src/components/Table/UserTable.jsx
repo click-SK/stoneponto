@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useTranslation } from 'react-i18next';
 import DisplayUserTableOrder from './DisplayUserTableOrder';
+import { ExportCSV } from "../ExelTable/ExportCSV";
 import socket from '../../socket/socket'
 import '../../style/userProfile.scss'
 import '../../style/table.scss'
@@ -8,6 +9,17 @@ const UserTable = ({allOrders, currentUser, setIsFetch}) => {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
+
+  const dateTime = new Date(); // Отримати поточну дату та час
+  
+  const day = dateTime.getDate().toString().padStart(2, "0"); // День з лідируючим нулем
+  const month = (dateTime.getMonth() + 1).toString().padStart(2, "0"); // Місяць з лідируючим нулем (у JavaScript місяці починаються з 0)
+  const year = dateTime.getFullYear().toString(); // Рік
+  const hours = dateTime.getHours().toString().padStart(2, "0"); // Година з лідируючим нулем
+  const minutes = dateTime.getMinutes().toString().padStart(2, "0"); // Хвилина з лідируючим нулем
+  const seconds = dateTime.getSeconds().toString().padStart(2, "0"); // Секунда з лідируючим нулем
+
+  const formattedDateTime = `${day} ${month} ${year} ${hours}_${minutes}_${seconds}`; // Форматований рядок дати та часу
 
 useEffect(() => {
   socket.on('new table',({user}) => {
@@ -85,6 +97,39 @@ useEffect(() => {
       }
     });
   };
+
+  const orders = currentItems.map((item) => {
+    const conditions = item?.conditions;
+    const description = Object.keys(conditions)
+      .filter((key) => conditions[key].name !== "")
+      .map(
+        (key) =>
+          `${conditions[key].option} ${conditions[key].name} ${
+            conditions[key]?.value ? `: ${conditions[key]?.value}` : " "
+          }`
+      )
+      .join(", ");
+
+    return {
+      Id: item?.id,
+      Дата: item?.date,
+      Пользователь: item?.user.name,
+      Файл: item?.fileName,
+      Материал: item?.material,
+      Качество: item?.quality,
+      Ширина: item?.width,
+      Высота: item?.height,
+      Тираж: item?.count,
+      Сума: item?.sum,
+      Опис:
+        description +
+        (description ? ` ; ` : "") +
+        item?.address +
+        (item?.address ? ` ; ` : "") +
+        item?.notes,
+      Cтатус: item?.status?.name,
+    };
+  });
   
 
 
@@ -159,6 +204,10 @@ useEffect(() => {
             <img src="/img/right-pagination.svg" alt="Next" />
           </button>
         </div>
+        <div className="btn_exel">
+            <ExportCSV csvData={orders} fileName={formattedDateTime} />
+            {/* Export Exel */}
+          </div>
       </div>
     );
 };

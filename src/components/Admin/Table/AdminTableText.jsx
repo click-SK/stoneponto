@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import { RiFileEditFill } from "react-icons/ri";
 import { MdDoneOutline } from "react-icons/md";
+import { BASE_URL } from "../../../http/BaseUrl";
 const AdminTableText = ({ order, handleDownload }) => {
   const { t } = useTranslation();
   const [isEditValue, setIsEditValue] = useState(false);
@@ -13,7 +14,7 @@ const AdminTableText = ({ order, handleDownload }) => {
   }, [order]);
 
   const handleChangeSumSave = () => {
-    fetch("http://91.206.30.132:4444/update-table-sum", {
+    fetch(`${BASE_URL}/update-table-sum`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -22,13 +23,13 @@ const AdminTableText = ({ order, handleDownload }) => {
         tableId: order._id,
         newValue,
       }),
-    }).then((res) => res.json());
+    }).then((res) => res.json()).catch((error) => {
+      console.log('error',error);
+    });
     setTimeout(() => {
       setIsEditValue(!isEditValue);
     }, 1000);
   };
-
-  console.log('order.conditions',order);
 
   return (
     <>

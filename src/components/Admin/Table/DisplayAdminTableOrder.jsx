@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import AdminTableText from "./AdminTableText";
 import { MdDoneOutline, MdOutlineDeleteForever } from "react-icons/md";
 import DeletetableModal from "./DeletetableModal/DeletetableModal";
+import { BASE_URL } from "../../../http/BaseUrl";
 const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   const [deleteText, setDeleteText] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -17,39 +18,43 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
   const { t } = useTranslation();
 
   const handleDownload = async (order) => {
-    const resonse = await fetch(
-      `http://91.206.30.132:4444/download?id=${order._id}`
-    );
-    if (resonse.status == 200) {
-      const link = document.createElement("a");
-      link.href = `http://91.206.30.132:4444/download?id=${order._id}`;
-      document.body.appendChild(link);
-      link.click();
-
-      if (order.status.currentStatus == "new") {
-        await fetch("http://91.206.30.132:4444/update-status", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            value: "download",
-            name: "В роботі",
-            tableId: order._id,
-            paid: false,
-          }),
-        }).then((res) => res.json());
-        setTimeout(() => {
-          setIsFetch((state) => !state);
-        }, 1000);
+    try {
+      const resonse = await fetch(
+        `${BASE_URL}/download?id=${order._id}`
+      );
+      if (resonse.status == 200) {
+        const link = document.createElement("a");
+        link.href = `${BASE_URL}/download?id=${order._id}`;
+        document.body.appendChild(link);
+        link.click();
+  
+        if (order.status.currentStatus == "new") {
+          await fetch(`${BASE_URL}/update-status`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              value: "download",
+              name: "В роботі",
+              tableId: order._id,
+              paid: false,
+            }),
+          }).then((res) => res.json());
+          setTimeout(() => {
+            setIsFetch((state) => !state);
+          }, 1000);
+        }
+      } else {
+        alert("Помилка при завантаженні");
       }
-    } else {
-      alert("Помилка при завантаженні");
+    } catch(error) {
+      console.log('error',error);
     }
   };
 
   const handleDelete = () => {
-    fetch("http://91.206.30.132:4444/update-status", {
+    fetch(`${BASE_URL}/update-status`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -61,14 +66,17 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
         paid: false,
         descriptionDelete: deleteText,
       }),
-    }).then((res) => res.json());
+    }).then((res) => res.json())
+    .catch((error) => {
+      console.log('error',error);
+    });
     setTimeout(() => {
       setIsFetch((state) => !state);
     }, 1000);
   };
 
   const handleFinished = () => {
-    fetch("http://91.206.30.132:4444/update-status", {
+    fetch(`${BASE_URL}/update-status`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +87,10 @@ const DisplayAdminTableOrder = ({ order, setIsFetch }) => {
         tableId: order._id,
         paid: false,
       }),
-    }).then((res) => res.json());
+    }).then((res) => res.json())
+    .catch((error) => {
+      console.log('error',error);
+    });
     setTimeout(() => {
       setIsFetch((state) => !state);
     }, 1000);

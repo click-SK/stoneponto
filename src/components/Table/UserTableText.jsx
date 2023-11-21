@@ -4,8 +4,6 @@ import { useTranslation } from "react-i18next";
 const UserTableText = ({ order }) => {
   const { t } = useTranslation();
 
-  console.log('order user',order);
-
   
   return (
     <>

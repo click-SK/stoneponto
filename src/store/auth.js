@@ -1,47 +1,63 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { BASE_URL } from "../http/BaseUrl";
 export const fetchRegister = createAsyncThunk(
   "auth/fetchRegister",
   async (params) => {
-    const { data } = await fetch("http://91.206.30.132:4444/register-user");
-    return data;
+    try {
+      const { data } = await fetch(`${BASE_URL}/register-user`);
+      return data;
+    } catch(error) {
+      console.log('error',error);
+    }
   }
 );
 
 export const fetchAuth = createAsyncThunk(
   "auth/fetchAuth",
   async ({ name, password }) => {
-    const response = await fetch("http://91.206.30.132:4444/login-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        password,
-      }),
-    });
-    const data = await response.json();
-    return data || null;
+    try {
+      const response = await fetch(`${BASE_URL}/login-user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          password,
+        }),
+      });
+      const data = await response.json();
+      return data || null;
+    } catch(error) {
+      console.log('error',error);
+    }
   }
 );
 
 export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
-  const response = await fetch("http://91.206.30.132:4444/get-me", {
-    headers: {
-      authorization: window.localStorage.getItem("token"),
-    },
-  });
-  const data = await response.json();
-  // if(!data.loggedIn) {
-  //     window.localStorage.removeItem("token");
-  // }
-  return data;
+  try {
+    const response = await fetch(`${BASE_URL}/get-me`, {
+      headers: {
+        authorization: window.localStorage.getItem("token"),
+      },
+    });
+    const data = await response.json();
+    // if(!data.loggedIn) {
+    //     window.localStorage.removeItem("token");
+    // }
+    return data;
+  } catch(error) {
+    console.log('error',error);
+  }
 });
 
 export const fetchIsAdmin = createAsyncThunk("auth/fetchIsAdmin", async () => {
-  const { data } = await fetch("http://91.206.30.132:4444/get-me");
-  return data.isadmin;
+  try {
+    const { data } = await fetch(`${BASE_URL}/get-me`);
+    return data.isadmin;
+  } catch(error) {
+    console.log('error',error);
+  }
 });
 
 const initialState = {

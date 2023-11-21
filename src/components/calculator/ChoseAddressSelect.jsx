@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import { BASE_URL } from "../../http/BaseUrl";
 const ChoseAddressSelect = ({ allAddress, currentUser, handleCangeInput }) => {
   const selectRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ const ChoseAddressSelect = ({ allAddress, currentUser, handleCangeInput }) => {
   };
 
   const handleRemoveDeliveryText = (idx, item) => {
-    fetch("http://91.206.30.132:4444/remove-user-address", {
+    fetch(`${BASE_URL}/remove-user-address`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -39,6 +40,8 @@ const ChoseAddressSelect = ({ allAddress, currentUser, handleCangeInput }) => {
         userId: currentUser._id,
         addressIndex: idx,
       }),
+    }).catch((error) => {
+      console.log('error',error);
     });
     setTimeout(() => {
       setStateAllAddress((address) => {

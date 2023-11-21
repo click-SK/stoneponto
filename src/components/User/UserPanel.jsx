@@ -6,7 +6,7 @@ import Modal from "../Modal/Modal";
 import UserTable from "../Table/UserTable";
 import "../../style/userProfile.scss";
 import Loader from "../Loader/Loader";
-
+import { BASE_URL } from "../../http/BaseUrl";
 const UserPanel = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [debt, setDebt] = useState(0);
@@ -15,13 +15,16 @@ const UserPanel = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    fetch("http://91.206.30.132:4444/get-me", {
+    fetch(`${BASE_URL}/get-me`, {
       headers: {
         authorization: window.localStorage.getItem("token"),
       },
     })
       .then((res) => res.json())
-      .then((res) => setUser(res));
+      .then((res) => setUser(res))
+      .catch((error) => {
+        console.log('error',error);
+      });
   }, [isFetch]);
 
   useEffect(() => {

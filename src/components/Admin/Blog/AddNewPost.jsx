@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import { BASE_URL } from "../../../http/BaseUrl";
 const AddNewPost = () => {
   const [image, setImage] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
@@ -48,7 +48,7 @@ const AddNewPost = () => {
     formData.append("descriptionUa", descriptionUa);
     formData.append("descriptionRu", descriptionRu);
 
-    fetch("http://91.206.30.132:4444/create-post", {
+    fetch(`${BASE_URL}/create-post`, {
       method: "POST",
       body: formData,
     })

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MdDoneOutline, MdOutlineDeleteForever } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import "../../style/deliveryAddress.scss";
+import { BASE_URL } from "../../http/BaseUrl";
 import ChoseAddressSelect from "./ChoseAddressSelect";
 const DeliveryAddress = ({
   handleCangeInput,
@@ -19,7 +20,7 @@ const DeliveryAddress = ({
 
   const handleSaveDeliveryText = () => {
     setIsSaveAddress(true);
-    fetch("http://91.206.30.132:4444/add-user-address", {
+    fetch(`${BASE_URL}/add-user-address`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +29,10 @@ const DeliveryAddress = ({
         userId: currentUser._id,
         newValue: value,
       }),
-    }).then((res) => res.json());
+    }).then((res) => res.json())
+    .catch((error) => {
+      console.log('error',error);
+    });
     setTimeout(() => {
       setIsSaveAddress(false);
     }, 2000);

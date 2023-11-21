@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { BASE_URL } from "../http/BaseUrl";
 export const fetchCurrency = createAsyncThunk(
   "data/fetchCurrency",
   async () => {
-    const response = await fetch("http://91.206.30.132:4444/get-currency");
+    const response = await fetch(`${BASE_URL}/get-currency`);
     const data = await response.json();
     return data[0] || null;
   }

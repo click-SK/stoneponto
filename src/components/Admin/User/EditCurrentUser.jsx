@@ -7,7 +7,7 @@ import EditUserPassword from "./EditUserPassword";
 import DisabledUser from "./DisabledUser";
 import EditDiscount from "./EditDiscount";
 import Modal from "../../Modal/Modal";
-
+import { BASE_URL } from "../../../http/BaseUrl";
 const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [historyPaymant, setHistoryPaymant] = useState([]);
@@ -97,7 +97,7 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
           <EditCurrentUserDetails
             data={user.name}
             userId={user._id}
-            editPath={"http://91.206.30.132:4444/update-name"}
+            editPath={`${BASE_URL}/update-name`}
             title={t(`Name`)}
             setIsFetch={setIsFetch}
           />
@@ -110,7 +110,7 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
           />
           <EditUserPassword
             userId={user._id}
-            editPath={"http://91.206.30.132:4444/update-password"}
+            editPath={`${BASE_URL}/update-password`}
             title={t(`Password change`)}
             setIsFetch={setIsFetch}
           />
@@ -119,7 +119,7 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
           <EditBalance
             data={user.balance.toFixed(0)}
             userId={user._id}
-            editPath={"http://91.206.30.132:4444/update-balance"}
+            editPath={`${BASE_URL}/update-balance`}
             title={t(`Balance`)}
             setIsFetch={setIsFetch}
             debt={debt}
@@ -127,14 +127,14 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
           <EditDiscount
             data={user.discountValue}
             userId={user._id}
-            editPath={"http://91.206.30.132:4444/update-discount"}
+            editPath={`${BASE_URL}/update-discount`}
             title={t(`Discount`)}
             setIsFetch={setIsFetch}
           />
           <DisabledUser
             user={user}
             title={t(`Block user`)}
-            editPath={"http://91.206.30.132:4444/update-user-status"}
+            editPath={`${BASE_URL}/update-user-status`}
             setIsFetch={setIsFetch}
           />
         </div>

@@ -6,7 +6,7 @@ import { fetchCurrency } from "../../../store/currency";
 import "../../../style/editCurency.scss";
 import { RiFileEditFill } from "react-icons/ri";
 import Loader from "../../Loader/Loader";
-
+import { BASE_URL } from "../../../http/BaseUrl";
 const EditCurrency = () => {
   const [bankCurrency, setBankCurrency] = useState("");
   const [currentStateCurrency, setCurrentStateCurrency] = useState("");
@@ -17,13 +17,15 @@ const EditCurrency = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://91.206.30.132:4444/get-currency")
+    fetch(`${BASE_URL}/get-currency`)
       .then((res) => res.json())
       .then((cur) => {
         setBankCurrency(cur[0].banckCurrency);
         setCurrentStateCurrency(cur[0].currency);
         setCurrentValue(cur[0].value);
         dispatch(fetchCurrency());
+      }).catch((error) => {
+        console.log('error',error);
       });
   }, [isFetch]);
 

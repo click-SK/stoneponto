@@ -3,13 +3,13 @@ import UserTableText from "./UserTableText";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAuthMe } from "../../store/auth";
 import { useTranslation } from "react-i18next";
-
+import { BASE_URL } from "../../http/BaseUrl";
 const DisplayUserTableOrder = ({ order, currentUser }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    fetch("http://91.206.30.132:4444/update-user-table-status", {
+    fetch(`${BASE_URL}/update-user-table-status`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +25,8 @@ const DisplayUserTableOrder = ({ order, currentUser }) => {
         if (res.message == "Table status worked") {
           alert("Статус замовлення: в роботі");
         }
+      }).catch((error) => {
+        console.log('error',error);
       });
     setTimeout(() => {
       dispatch(fetchAuthMe());
@@ -37,37 +39,41 @@ const DisplayUserTableOrder = ({ order, currentUser }) => {
   }, 600000);
 
   const handlePay = async () => {
-    if (currentUser.balance >= order.sum) {
-      await fetch("http://91.206.30.132:4444/update-status", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          value: "finished",
-          name: "Виконано",
-          tableId: order._id,
-          paid: true,
-        }),
-      }).then((res) => res.json());
-      setTimeout(() => {
-        // dispatch(fetchAuthMe());
-      }, 2000);
-
-      await fetch("http://91.206.30.132:4444/update-balance", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: currentUser._id,
-          value: currentUser.balance - order.sum,
-          action: "Оплата замовлення",
-          historyValue: `-${order.sum}`,
-        }),
-      }).then((res) => res.json());
-    } else {
-      return alert("Недостатньо коштів");
+    try {
+      if (currentUser.balance >= order.sum) {
+        await fetch(`${BASE_URL}/update-status`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            value: "finished",
+            name: "Виконано",
+            tableId: order._id,
+            paid: true,
+          }),
+        }).then((res) => res.json());
+        setTimeout(() => {
+          // dispatch(fetchAuthMe());
+        }, 2000);
+  
+        await fetch(`${BASE_URL}/update-balance`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: currentUser._id,
+            value: currentUser.balance - order.sum,
+            action: "Оплата замовлення",
+            historyValue: `-${order.sum}`,
+          }),
+        }).then((res) => res.json());
+      } else {
+        return alert("Недостатньо коштів");
+      }
+    } catch(error) {
+      console.log('error',error);
     }
   };
   return (

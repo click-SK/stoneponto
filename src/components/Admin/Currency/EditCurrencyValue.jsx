@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import { RiFileEditFill } from "react-icons/ri";
-
+import { BASE_URL } from "../../../http/BaseUrl";
 const EditCurrencyValue = ({ data, setIsFetch }) => {
   const [isEdit, setIsEdit] = useState("");
   const [newvalue, setNewValue] = useState("");
@@ -12,7 +12,7 @@ const EditCurrencyValue = ({ data, setIsFetch }) => {
     setIsEdit((state) => !state);
     setIsFetch((state) => !state);
 
-    fetch("http://91.206.30.132:4444/update-currency", {
+    fetch(`${BASE_URL}/update-currency`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +20,9 @@ const EditCurrencyValue = ({ data, setIsFetch }) => {
       body: JSON.stringify({
         value: newvalue,
       }),
-    }).then((res) => res.json());
+    }).then((res) => res.json()).catch((error) => {
+      console.log('error',error);
+    });
     setTimeout(() => {
       setIsFetch((state) => !state);
     }, 1000);

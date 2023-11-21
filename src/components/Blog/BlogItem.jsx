@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLanguage } from "../../store/language";
 import ReactQuill from "react-quill";
+import { BASE_URL } from "../../http/BaseUrl";
 const BlogItem = ({ post }) => {
   const dispatch = useDispatch();
 
@@ -22,7 +23,7 @@ const BlogItem = ({ post }) => {
   return (
     <div className="blog_item">
       <div className="img_blog_wrap">
-        <img src={`http://91.206.30.132:4444${post.blogImage}`} />
+        <img src={`${BASE_URL}${post.blogImage}`} />
       </div>
       <div className="content_wrap">
         <h3 className="title_blog_item">

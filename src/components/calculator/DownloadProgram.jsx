@@ -1,17 +1,22 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import "../../style/downloadFile.scss";
+import { BASE_URL } from "../../http/BaseUrl";
 const DownloadProgram = () => {
   const { t } = useTranslation();
 
   const dowloadProgram = async () => {
-    const resonse = await fetch(`http://91.206.30.132:4444/download-program`);
-
-    if (resonse.status == 200) {
-      const link = document.createElement("a");
-      link.href = `http://91.206.30.132:4444/download-program`;
-      document.body.appendChild(link);
-      link.click();
+    try {
+      const resonse = await fetch(`${BASE_URL}/download-program`);
+  
+      if (resonse.status == 200) {
+        const link = document.createElement("a");
+        link.href = `${BASE_URL}/download-program`;
+        document.body.appendChild(link);
+        link.click();
+      }
+    } catch(error) {
+      console.log('error',error);
     }
   };
 

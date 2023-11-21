@@ -17,7 +17,7 @@ import "../../style/calculator.scss";
 import Loader from "../Loader/Loader";
 import DownloadProgram from "./DownloadProgram";
 import ChoseAddressSelect from "./ChoseAddressSelect";
-
+import { BASE_URL } from "../../http/BaseUrl";
 const CalculatorPartner = () => {
   const [goodsList, setGoodsList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -90,14 +90,11 @@ const CalculatorPartner = () => {
   const { t } = useTranslation();
 
   const { currency } = useSelector((state) => state.currency);
-  console.log('width',width);
-  console.log('height',height);
 
   const currentItemOracal = currentItem?.nameUa == "Кольорова плівка серії Oracal 641";
-  console.log('currentItemOracal',currentItemOracal);
 
   const quadrature =  ((currentItemOracal ? (Number(1000)) : (Number(width))) * Number(height)) / 1000000;
-  console.log('quadrature',quadrature);
+
   const linearMeter = (width / 1000 + height / 1000) * 2;
 
   const user = useSelector(currentUser);
@@ -108,18 +105,23 @@ const CalculatorPartner = () => {
   const additionalHeightOrcal = 150;
 
   useEffect(() => {
-    fetch("http://91.206.30.132:4444/get-all-calc")
+    fetch(`${BASE_URL}/get-all-calc`)
       .then((response) => response.json())
-      .then((res) => setGoodsList(res));
+      .then((res) => setGoodsList(res))
+      .catch((error) => {
+        console.log('error',error);
+      });
   }, []);
 
   useEffect(() => {
-    fetch("http://91.206.30.132:4444/get-all-user")
+    fetch(`${BASE_URL}/get-all-user`)
       .then((response) => response.json())
       .then((res) => {
         setAllUsers(res);
         const newArr = res.filter((item) => user._id == item._id);
         setCurrentId(newArr[0]._id);
+      }).catch((error) => {
+        console.log('error',error);
       });
   }, [user]);
 
@@ -356,10 +358,6 @@ const CalculatorPartner = () => {
       currentStretchOnTheStretcher +
       (isMounting ? currentItem?.mounting * quadrature : 0);
 
-      console.log('isMounting',isMounting);
-      console.log('currentItem?.mounting',currentItem?.mounting);
-      console.log('quadrature',quadrature);
-
     const sumMultiplyCurrency = totalSum1 * currency.currency || 0;
     const sumAndCount = sumMultiplyCurrency * count;
 
@@ -379,9 +377,7 @@ const CalculatorPartner = () => {
     if (finalSum < minimalOrder && finalSum != 0) {
       return setTotalSum(minimalOrder);
     }
-    console.log('sumAndCount',sumAndCount);
-    console.log('onlyDiscount',onlyDiscount);
-    console.log('discountTwentyMeter',discountTwentyMeter);
+
     const numSumAndCount = Number(sumAndCount);
     const numOnlyDiscount = Number(onlyDiscount);
     const numDiscountTwentyMeter = Number(discountTwentyMeter);
@@ -391,7 +387,7 @@ const CalculatorPartner = () => {
       if(total) {
         setTotalSum(total);
       }
-      console.log('total',total);
+
     }
   }, [
     count,
@@ -570,7 +566,8 @@ const CalculatorPartner = () => {
       formData.append("status", JSON.stringify(status));
 
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://91.206.30.132:4444/create-table", true);
+      // xhr.open(`"POST", "http://localhost:4444/create-table`, true);
+      xhr.open(`POST`, `http://localhost:4444/create-table`, true);
 
       xhr.upload.addEventListener("progress", (event) => {
         const loaded = event.loaded / (1024 * 1024);
@@ -614,6 +611,147 @@ const CalculatorPartner = () => {
     setChoseAnotherUser(e);
   };
 
+  // const displayOrderStory = () => {
+  //   const orderItems = [];
+
+  //   if (isPosterDisabled ? 0 : selectedOptionQuality?.price * quadrature) {
+  //     orderItems.push(
+  //       `${t(`Printing`)} ${(
+  //         selectedOptionQuality?.price *
+  //         quadrature *
+  //         currency.currency
+  //       ).toFixed(0)} грн`
+  //     );
+  //   }
+
+  //   if (
+  //     selectedOptionColor?.price *
+  //     ((Number(1000) * (Number(height) + 100)) / 1000000)
+  //   ) {
+  //     orderItems.push(
+  //       `${t(`Color`)} ${(
+  //         selectedOptionColor?.price *
+  //           ((Number(1000) * (Number(height) + additionalHeightOrcal)) /
+  //             1000000) *
+  //           currency.currency || 0
+  //       ).toFixed(0)} грн`
+  //     );
+  //   }
+
+  //   if (selectedOptionPoster?.price) {
+  //     orderItems.push(
+  //       `${t(`Постер`)} ${(
+  //         selectedOptionPoster?.price * currency.currency
+  //       ).toFixed(0)} грн`
+  //     );
+  //   }
+  //   if (currentLuversDisplay) {
+  //     orderItems.push(
+  //       `${t(`Eyelets`)} ${(currentLuversDisplay * currency.currency).toFixed(
+  //         0
+  //       )} грн`
+  //     );
+  //   }
+
+  //   if (cuttingDisplay) {
+  //     orderItems.push(
+  //       `${t(`Cutting`)} ${(cuttingDisplay * currency.currency).toFixed(0)} грн`
+  //     );
+  //   }
+
+  //   if (solderGatesDisplay) {
+  //     orderItems.push(
+  //       `${t(`SolderingOfGates`)} ${(
+  //         solderGatesDisplay * currency.currency
+  //       ).toFixed(0)} грн`
+  //     );
+  //   }
+
+  //   if (solderPocketsDisplay) {
+  //     orderItems.push(
+  //       `${t(`SolderingPockets`)} ${(
+  //         solderPocketsDisplay * currency.currency
+  //       ).toFixed(0)} грн`
+  //     );
+  //   }
+
+  //   if (selectedOptionLamination?.price) {
+  //     orderItems.push(
+  //       `${t(`Lamination`)} ${(laminationDisplay * currency.currency).toFixed(
+  //         0
+  //       )} грн`
+  //     );
+  //   }
+
+  //   if (stampDisplay) {
+  //     orderItems.push(
+  //       `${t(`WithAStamp`)} ${(stampDisplay * currency.currency).toFixed(
+  //         0
+  //       )} грн`
+  //     );
+  //   }
+
+  //   if (stretchOnTheStretcherDisplay) {
+  //     orderItems.push(
+  //       `${t(`StretchOnTheStretcher`)} ${(
+  //         stretchOnTheStretcherDisplay * currency.currency
+  //       ).toFixed(0)} грн`
+  //     );
+  //   }
+
+  //   if (isMounting) {
+  //     orderItems.push(
+  //       `${t(`Mounting`)} ${(
+  //         currentItem?.mounting *
+  //         quadrature *
+  //         currency.currency
+  //       ).toFixed(0)} грн`
+  //     );
+  //   }
+
+  //   if (currentDiscountTwentyMeter) {
+  //     orderItems.push(
+  //       `- ${t(`Discount`)} ${Number(currentDiscountTwentyMeter).toFixed(
+  //         0
+  //       )} грн`
+  //     );
+  //   }
+
+  //   if (currentPersonalDiscount !== 0) {
+  //     orderItems.push(
+  //       `- ${t(`Personal Discount`)} ${Number(currentPersonalDiscount).toFixed(
+  //         0
+  //       )} грн`
+  //     );
+  //   }
+
+  //   if (count && totalSum !== 0) {
+  //     orderItems.push(`x ${count} ${t(`Circulation`)}`);
+  //   }
+
+  //   if (totalSum !== 0) {
+  //     orderItems.push(`= ${t(`Total`)} ${Number(totalSum)} грн`);
+  //   }
+
+  //   return (
+  //     <div className="display_order_story">
+  //       {orderItems.map((item, index) => {
+  //         if (index === 0) {
+  //           return item;
+  //         } else if (
+  //           item.startsWith("-") ||
+  //           item.startsWith("=") ||
+  //           item.startsWith("x")
+  //         ) {
+  //           return ` ${item}`;
+  //         } else {
+  //           return ` + ${item}`;
+  //         }
+  //       })}
+  //     </div>
+  //   );
+  // };
+
   const displayOrderStory = () => {
     const orderItems = [];
 
@@ -622,8 +760,9 @@ const CalculatorPartner = () => {
         `${t(`Printing`)} ${(
           selectedOptionQuality?.price *
           quadrature *
-          currency.currency
-        ).toFixed(0)} грн`
+          currency.currency *
+          count
+        ).toFixed(2)} грн`
       );
     }
 
@@ -637,7 +776,7 @@ const CalculatorPartner = () => {
             ((Number(1000) * (Number(height) + additionalHeightOrcal)) /
               1000000) *
             currency.currency || 0
-        ).toFixed(0)} грн`
+        ).toFixed(0) * count} грн`
       );
     }
 
@@ -645,51 +784,53 @@ const CalculatorPartner = () => {
       orderItems.push(
         `${t(`Постер`)} ${(
           selectedOptionPoster?.price * currency.currency
-        ).toFixed(0)} грн`
+          *
+          count
+        ).toFixed(2)} грн`
       );
     }
     if (currentLuversDisplay) {
       orderItems.push(
-        `${t(`Eyelets`)} ${(currentLuversDisplay * currency.currency).toFixed(
-          0
+        `${t(`Eyelets`)} ${(currentLuversDisplay * currency.currency * count).toFixed(
+          2
         )} грн`
       );
     }
 
     if (cuttingDisplay) {
       orderItems.push(
-        `${t(`Cutting`)} ${(cuttingDisplay * currency.currency).toFixed(0)} грн`
+        `${t(`Cutting`)} ${(cuttingDisplay * currency.currency * count).toFixed(2)} грн`
       );
     }
 
     if (solderGatesDisplay) {
       orderItems.push(
         `${t(`SolderingOfGates`)} ${(
-          solderGatesDisplay * currency.currency
-        ).toFixed(0)} грн`
+          solderGatesDisplay * currency.currency * count
+        ).toFixed(2)} грн`
       );
     }
 
     if (solderPocketsDisplay) {
       orderItems.push(
         `${t(`SolderingPockets`)} ${(
-          solderPocketsDisplay * currency.currency
-        ).toFixed(0)} грн`
+          solderPocketsDisplay * currency.currency * count
+        ).toFixed(2)} грн`
       );
     }
 
     if (selectedOptionLamination?.price) {
       orderItems.push(
-        `${t(`Lamination`)} ${(laminationDisplay * currency.currency).toFixed(
-          0
+        `${t(`Lamination`)} ${(laminationDisplay * currency.currency * count).toFixed(
+          2
         )} грн`
       );
     }
 
     if (stampDisplay) {
       orderItems.push(
-        `${t(`WithAStamp`)} ${(stampDisplay * currency.currency).toFixed(
-          0
+        `${t(`WithAStamp`)} ${(stampDisplay * currency.currency * count).toFixed(
+          2
         )} грн`
       );
     }
@@ -697,8 +838,8 @@ const CalculatorPartner = () => {
     if (stretchOnTheStretcherDisplay) {
       orderItems.push(
         `${t(`StretchOnTheStretcher`)} ${(
-          stretchOnTheStretcherDisplay * currency.currency
-        ).toFixed(0)} грн`
+          stretchOnTheStretcherDisplay * currency.currency * count
+        ).toFixed(2)} грн`
       );
     }
 
@@ -707,8 +848,8 @@ const CalculatorPartner = () => {
         `${t(`Mounting`)} ${(
           currentItem?.mounting *
           quadrature *
-          currency.currency
-        ).toFixed(0)} грн`
+          currency.currency * count
+        ).toFixed(2)} грн`
       );
     }
 
@@ -728,9 +869,9 @@ const CalculatorPartner = () => {
       );
     }
 
-    if (count && totalSum !== 0) {
-      orderItems.push(`x ${count} ${t(`Circulation`)}`);
-    }
+    // if (count && totalSum !== 0) {
+    //   orderItems.push(`x ${count} ${t(`Circulation`)}`);
+    // }
 
     if (totalSum !== 0) {
       orderItems.push(`= ${t(`Total`)} ${Number(totalSum)} грн`);
@@ -743,8 +884,8 @@ const CalculatorPartner = () => {
             return item;
           } else if (
             item.startsWith("-") ||
-            item.startsWith("=") ||
-            item.startsWith("x")
+            item.startsWith("=") 
+            //|| item.startsWith("x")
           ) {
             return ` ${item}`;
           } else {
@@ -799,7 +940,7 @@ const CalculatorPartner = () => {
         </div>
       </div>
       <div className="calc_wrap">
-        {goodsList.length != 0 && allUsers.length != 0 ? (
+        {!!goodsList.length ? (
           <>
             <title>
               <ChoseRoleSelect

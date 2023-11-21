@@ -6,7 +6,8 @@ import { ExportCSV } from "../../ExelTable/ExportCSV";
 import "../../../style/table.scss";
 import Loader from "../../Loader/Loader";
 import ConfirmationModal from "../../Modal/ConfirmationModal";
-
+import axios from "axios";
+import { BASE_URL } from "../../../http/BaseUrl";
 const EditTable = () => {
   const [currentOrders, setCurrentOrders] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
@@ -21,10 +22,10 @@ const EditTable = () => {
   const [allUsers, setAllUsers] = useState([]);
   const { t } = useTranslation();
 
- 
+  const [totalBalance, setTotalBalance] = useState(0);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalBalance, setTotalBalance] = useState(0);
+  const [visibleCurrentPage, setVisibleCurrentPage] = useState(1);
 
   const dateTime = new Date(); // Отримати поточну дату та час
 
@@ -55,13 +56,18 @@ const EditTable = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://91.206.30.132:4444/get-all-table")
-      .then((res) => res.json())
-      .then((res) => {
-        setCurrentOrders(res.reverse());
-        setAllOrders(res);
-      });
-  }, [isFetch]);
+    console.log('change current page');
+    const fetchData = () => {
+      getAllTables();
+    };
+    const timeoutId = setTimeout(() => {
+      fetchData();
+    }, 500); // Debounce the API call by 500ms
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [isFetch, currentPage]);
 
   useEffect(() => {
     if (isFilterArray) {
@@ -85,30 +91,16 @@ const EditTable = () => {
     window.location.reload();
   }, 600000);
 
+  console.log('allOrders',allOrders);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = currentOrders.slice(indexOfFirstItem, indexOfLastItem);
-  const pageNumbers = [];
+  // const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(currentOrders.length / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  const handleNext = () => {
-    if (currentPage < pageNumbers.length) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const chosePage = (page) => {
-    setCurrentPage(page);
-  };
+  // for (let i = 1; i <= Math.ceil(currentOrders.length / itemsPerPage); i++) {
+  //   pageNumbers.push(i);
+  // }
 
   useEffect(() => {
     const usersArr = [...new Set(allOrders.map((item) => item.user.name))];
@@ -133,19 +125,19 @@ const EditTable = () => {
     usersArr.sort(compareNames);
     setUniqueUsers(usersArr);
     setUniqueStatuses(statusArr);
-
-    console.log('перевірка арр',usersArr);
     
   }, [allOrders, currentOrders]);
 
   useEffect(() => {
-    fetch("http://91.206.30.132:4444/get-all-user")
+    fetch(`${BASE_URL}/get-all-user`)
       .then((res) => res.json())
       .then((res) => {
         const arr = res.slice(1);
         // Сортуємо користувачів за алфавітом
         arr.sort(compareNames);
         setAllUsers(arr);
+      }).catch((error) => {
+        console.log('error',error);
       });
   }, [isFetch]);
 
@@ -154,88 +146,95 @@ const EditTable = () => {
     return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
   }
 
-  console.log('users', allUsers);
+  const getAllTables = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/get-all-table`, {
+        params: { page: currentPage, limit: 50, },
+      });
+      if (response.data.length) {
+        setCurrentOrders(response.data);
+        setAllOrders(response.data);
+      } else {
+        const lastPage = currentPage - 1;
+        setCurrentPage(lastPage);
+      }
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  }
 
-  const filterOnUserFunc = (e) => {
-    setCurrentFilteredUser(e);
-    if (e === "Всі") {
-      setCurrentOrders(allOrders);
-      setIsFilterArray(false);
-    } else {
-      let newArr = allOrders.filter((item) => item.user.name === e);
-      setCurrentOrders(newArr);
-      setIsFilterArray(true);
+  const filterOnUserFunc = async (e) => {
+    try {
+      if(e == "Всі") {
+        setCurrentPage(1);
+        return getAllTables();
+      }
+      const response = await axios.get(`${BASE_URL}/get-tables-sort-by-user`, {
+        params: { name: e },
+      })
+  
+      const data = await response.data;
+  
+      if(data.length) {
+        setAllOrders(data)
+      }
+    } catch(error) {
+      console.log('error',error);
     }
   };
 
-  const filterStatusFunc = (e) => {
-    if (e === "Всі") {
-      setCurrentOrders(allOrders);
-    } else {
-      let newArr = allOrders.filter((item) => item.status.name === e);
-      setCurrentOrders(newArr);
+  const filterStatusFunc = async (e) => {
+    try {
+      if(e == "Всі") {
+        setCurrentPage(1);
+        return getAllTables();
+      }
+      const response = await axios.get(`${BASE_URL}/get-tables-sort-by-status`, {
+        params: { status: e },
+      })
+  
+      const data = await response.data;
+      if(data.length) {
+        setAllOrders(data)
+      }
+    } catch(error) {
+      console.log('error',error);
     }
   };
 
-  const filterDateFunc = (e) => {
-    let newArr = allOrders.filter((item) => item.date.substring(0, 10) === e);
-    setCurrentOrders(newArr);
+  const filterDateFunc = async (e) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/get-tables-sort-by-date`, {
+        params: { date: e },
+      })
+  
+      const data = await response.data;
+  
+      if(data.length) {
+        setAllOrders(data)
+      }
+    } catch(error) {
+      console.log('error',error);
+    }
   };
 
   const handleClearTable = () => {
-    fetch("http://91.206.30.132:4444/delete-all-tables", {
+    fetch(`${BASE_URL}/delete-all-tables`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
+    }).catch((error) => {
+      console.log('error',error);
     });
     setTimeout(() => {
       window.location.reload();
     }, 1000);
   };
 
-  const renderPageNumbers = () => {
-    let renderedPages = [];
+  console.log('allUsers',allUsers);
 
-    if (pageNumbers.length <= 5) {
-      renderedPages = pageNumbers;
-    } else {
-      if (currentPage === 2) {
-        renderedPages = [1, currentPage, currentPage + 1, pageNumbers.length];
-      } else if (currentPage <= 3) {
-        renderedPages = [...pageNumbers.slice(0, 4), pageNumbers.length];
-      } else if (currentPage >= pageNumbers.length - 2) {
-        renderedPages = [1, ...pageNumbers.slice(pageNumbers.length - 4)];
-      } else {
-        renderedPages = [
-          1,
-          currentPage - 1,
-          currentPage,
-          currentPage + 1,
-          pageNumbers.length,
-        ];
-      }
-    }
-
-    return renderedPages.map((page) => {
-      if (page === "...") {
-        return <p key={page}>{page}</p>;
-      } else {
-        return (
-          <p
-            style={{ padding: "0px 10px", fontSize: "18px", cursor: "pointer" }}
-            key={page}
-            onClick={() => chosePage(page)}
-            className={`${page == currentPage ? "bold" : ""}`}
-          >
-            {page}
-          </p>
-        );
-      }
-    });
-  };
-
-  const orders = currentItems.map((item) => {
+  const orders = allOrders.map((item) => {
     const conditions = item?.conditions;
     const description = Object.keys(conditions)
       .filter((key) => conditions[key].name !== "")
@@ -267,6 +266,8 @@ const EditTable = () => {
       Cтатус: item?.status?.name,
     };
   });
+
+  console.log('currentPage',currentPage);
 
   return (
     <div className="table_wrap">
@@ -337,7 +338,7 @@ const EditTable = () => {
             </div>
           </div>
           <div className="table_body">
-            {currentItems.map((el) => (
+            {allOrders.map((el) => (
               <DisplayAdminTableOrder
                 key={el.id}
                 order={el}
@@ -352,20 +353,19 @@ const EditTable = () => {
               justifyContent: "center",
             }}
           >
-            {renderPageNumbers()}
+            {currentPage}
           </div>
           <div className="pagination">
             <button
               className="btn"
-              onClick={handlePrev}
-              disabled={currentPage === 1}
+              disabled={currentPage == 1 ? true : false}
+              onClick={() => setCurrentPage((state) => (state -= 1))}
             >
               <img src="/img/left-pagination.svg" alt="Previous" />
             </button>
             <button
               className="btn"
-              onClick={handleNext}
-              disabled={currentPage === pageNumbers.length}
+              onClick={() => setCurrentPage((state) => (state += 1))}
             >
               <img src="/img/right-pagination.svg" alt="Next" />
             </button>

@@ -3,7 +3,7 @@ import EditCalculatorFullTitleBlock from "./EditCalculatorFullTitleBlock";
 import { useTranslation } from "react-i18next";
 import "../../../style/editeCalc.scss";
 import Loader from "../../Loader/Loader";
-
+import { BASE_URL } from "../../../http/BaseUrl";
 const EditCalculator = () => {
   const [goodsList, setGoodsList] = useState([]);
   const [isFetch, setIsFetch] = useState(false);
@@ -18,10 +18,12 @@ const EditCalculator = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    fetch("http://91.206.30.132:4444/get-all-calc")
+    fetch(`${BASE_URL}/get-all-calc`)
       .then((response) => response.json())
       .then((res) => {
         setGoodsList(res);
+      }).catch((error) => {
+        console.log('error',error);
       });
   }, [isFetch]);
 
