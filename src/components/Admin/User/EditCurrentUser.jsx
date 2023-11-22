@@ -6,6 +6,7 @@ import EditBalance from "./EditBalance";
 import EditUserPassword from "./EditUserPassword";
 import DisabledUser from "./DisabledUser";
 import EditDiscount from "./EditDiscount";
+import DisabledPaymanyUser from "./DisabledPaymanyUser";
 import Modal from "../../Modal/Modal";
 import { BASE_URL } from "../../../http/BaseUrl";
 const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
@@ -112,6 +113,12 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
             userId={user._id}
             editPath={`${BASE_URL}/update-password`}
             title={t(`Password change`)}
+            setIsFetch={setIsFetch}
+          />
+          <DisabledPaymanyUser
+            user={user}
+            title={t(`Block user paymant`)}
+            editPath={`${BASE_URL}/update-user-paymant-status`}
             setIsFetch={setIsFetch}
           />
         </div>

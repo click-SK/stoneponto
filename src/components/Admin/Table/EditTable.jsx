@@ -12,7 +12,7 @@ const EditTable = () => {
   const [currentOrders, setCurrentOrders] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
   const [uniqueUsers, setUniqueUsers] = useState([]);
-  const [uniqueStatuses, setUniqueStatuses] = useState([]);
+  const [uniqueStatuses, setUniqueStatuses] = useState(['New', 'В роботі', 'Виконано', 'Видалено']);
   const [isFilterArray, setIsFilterArray] = useState(false);
   const [currentFilteredUser, setCurrentFilteredUser] = useState("");
   const [isFetch, setIsFetch] = useState(false);
@@ -124,18 +124,29 @@ const EditTable = () => {
     // Сортуємо масив імен
     usersArr.sort(compareNames);
     setUniqueUsers(usersArr);
-    setUniqueStatuses(statusArr);
+    // setUniqueStatuses(statusArr);
     
   }, [allOrders, currentOrders]);
 
+  // useEffect(() => {
+  //   fetch(`${BASE_URL}/get-all-user`)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       const arr = res.slice(1);
+  //       // Сортуємо користувачів за алфавітом
+  //       arr.sort(compareNames);
+  //       setAllUsers(arr);
+  //     }).catch((error) => {
+  //       console.log('error',error);
+  //     });
+  // }, [isFetch]);
+
   useEffect(() => {
-    fetch(`${BASE_URL}/get-all-user`)
+    fetch(`${BASE_URL}/get-all-users-name`)
       .then((res) => res.json())
       .then((res) => {
-        const arr = res.slice(1);
         // Сортуємо користувачів за алфавітом
-        arr.sort(compareNames);
-        setAllUsers(arr);
+        setAllUsers(res);
       }).catch((error) => {
         console.log('error',error);
       });
@@ -267,7 +278,7 @@ const EditTable = () => {
     };
   });
 
-  console.log('currentPage',currentPage);
+  console.log('allOrders',allOrders);
 
   return (
     <div className="table_wrap">

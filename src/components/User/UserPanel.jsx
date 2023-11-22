@@ -65,6 +65,7 @@ const UserPanel = () => {
                   <p className="value">{user.name}</p>
                 </div>
               </div>
+              {!user.disabledPaymant &&
               <div className="balance_block">
                 <div className="user_profile_balance">
                   <p>{t(`Balance`)}:</p>
@@ -79,6 +80,7 @@ const UserPanel = () => {
                   <p>{t(`Debt`)}:</p> <p>{debt && debt.toFixed(0)}</p>
                 </div>
               </div>
+              }
             </div>
 
             <button className="button_open" onClick={handleOpenModal}>

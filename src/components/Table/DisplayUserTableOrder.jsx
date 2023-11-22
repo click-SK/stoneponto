@@ -114,16 +114,28 @@ const DisplayUserTableOrder = ({ order, currentUser }) => {
             <div style={{ padding: "10px 0px" }}>
               {!order.status.paid && (
                 <div>
+                  {currentUser.disabledPaymant 
+                  ?
                   <button
-                    style={{
-                      padding: "5px 10px",
-                      margin: "0 0 5px 0",
-                      background: "rgb(90, 173, 90)",
-                    }}
-                    onClick={handlePay}
-                  >
-                    $
-                  </button>
+                  style={{
+                    padding: "5px 10px",
+                    margin: "0 0 5px 0",
+                    background: "rgb(114, 114, 114)",
+                  }}
+                >
+                  $
+                </button>
+                  :
+                  <button
+                  style={{
+                    padding: "5px 10px",
+                    margin: "0 0 5px 0",
+                    background: "rgb(90, 173, 90)",
+                  }}
+                  onClick={handlePay}
+                >
+                  $
+                </button>}
                   <p>{t(`Pay`)}</p>
                 </div>
               )}
