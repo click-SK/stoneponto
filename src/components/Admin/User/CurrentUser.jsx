@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import EditCurrentUser from "./EditCurrentUser";
 import { useTranslation } from 'react-i18next';
+
 const CurrentUser = ({ user, setIsFetch }) => {
   const [isVisibleEdit, setIsVisibleEdit] = useState(false);
   const [debt, setDebt] = useState(0)
   const { t } = useTranslation();
-
+  console.log('user',user);
   useEffect(() => {
     const sum = user?.orders.reduce((accumulator, currentObject) => {
       if (!currentObject.status.paid && currentObject.status.currentStatus != 'delete') {

@@ -1,14 +1,19 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useTranslation } from 'react-i18next';
 import DisplayUserTableOrder from './DisplayUserTableOrder';
+import Pagination from '../template/Pagination';
+import axios from 'axios';
+import { BASE_URL } from '../../http/BaseUrl';
 import { ExportCSV } from "../ExelTable/ExportCSV";
 import socket from '../../socket/socket'
 import '../../style/userProfile.scss'
 import '../../style/table.scss'
-const UserTable = ({allOrders, currentUser, setIsFetch}) => {
+import Loader from '../Loader/Loader';
+const UserTable = ({ currentUser, setIsFetch, isFetch}) => {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const [allOrders, setAllOrders] = useState([]);
+  const [itemsPerPage] = useState(50);
 
   const dateTime = new Date(); // Отримати поточну дату та час
   
@@ -29,76 +34,41 @@ useEffect(() => {
   });
   socket.on('update table',({user, status}) => {
     if(currentUser._id == user) {
-      // if(status) {
-
-      // }
       setIsFetch(state => !state)
     }
   });
 }, []);
 
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = allOrders.slice(indexOfFirstItem, indexOfLastItem);
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(allOrders.length / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  const handleNext = () => {
-    if (currentPage < pageNumbers.length) {
-      setCurrentPage(currentPage + 1);
-    }
+useEffect(() => {
+  const fetchData = () => {
+    getAllTables();
   };
+  const timeoutId = setTimeout(() => {
+    fetchData();
+  }, 500); // Debounce the API call by 500ms
 
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+  return () => {
+    clearTimeout(timeoutId);
   };
+},[currentPage, isFetch])
 
-  const chosePage = (page) => {
-    setCurrentPage(page);
-  };
-
-  const renderPageNumbers = () => {
-    let renderedPages = [];
-  
-    if (pageNumbers.length <= 5) {
-      renderedPages = pageNumbers;
-    } else {
-      if (currentPage === 2) {
-        renderedPages = [1, currentPage, currentPage + 1, pageNumbers.length];
-      } else if (currentPage <= 3) {
-        renderedPages = [...pageNumbers.slice(0, 4), pageNumbers.length];
-      } else if (currentPage >= pageNumbers.length - 2) {
-        renderedPages = [1, ...pageNumbers.slice(pageNumbers.length - 4)];
-      } else {
-        renderedPages = [1, currentPage - 1, currentPage, currentPage + 1, pageNumbers.length];
-      }
-    }
-  
-    return renderedPages.map((page) => {
-      if (page === '...') {
-        return <p key={page}>{page}</p>;
-      } else {
-        return (
-          <p
-            style={{ padding: '0px 10px', fontSize: '18px', cursor: 'pointer' }}
-            key={page}
-            onClick={() => chosePage(page)}
-            className={`${page == currentPage ? 'bold' : ''}`}
-          >
-            {page}
-          </p>
-        );
-      }
+const getAllTables = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/get-all-user-table`, {
+      params: { page: currentPage, limit: itemsPerPage, id: currentUser._id },
     });
-  };
+    if (response.data.length) {
+      setAllOrders(response.data);
+    } else {
+      const lastPage = currentPage - 1;
+      setCurrentPage(lastPage);
+    }
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+  }
+}
 
-  const orders = currentItems.map((item) => {
+  const orders = allOrders.map((item) => {
     const conditions = item?.conditions;
     const description = Object.keys(conditions)
       .filter((key) => conditions[key].name !== "")
@@ -130,8 +100,13 @@ useEffect(() => {
       Cтатус: item?.status?.name,
     };
   });
-  
 
+
+  if(!allOrders.length) {
+    return(
+      <Loader/>
+    )
+  }
 
     return (
       <div className="table_wrap">
@@ -171,7 +146,7 @@ useEffect(() => {
           </div>
         </div>
         <div className="table_body">
-          {currentItems.map((order) => (
+          {allOrders.map((order) => (
             <DisplayUserTableOrder
               key={order.id}
               order={order}
@@ -179,34 +154,11 @@ useEffect(() => {
             />
           ))}
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {renderPageNumbers()}
-        </div>
-        <div className="pagination">
-          <button
-            className="btn"
-            onClick={handlePrev}
-            disabled={currentPage === 1}
-          >
-            <img src="/img/left-pagination.svg" alt="Previous" />
-          </button>
-          <button
-            className="btn"
-            onClick={handleNext}
-            disabled={currentPage === pageNumbers.length}
-          >
-            <img src="/img/right-pagination.svg" alt="Next" />
-          </button>
-        </div>
+        <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}/>
         <div className="btn_exel">
             <ExportCSV csvData={orders} fileName={formattedDateTime} />
-            {/* Export Exel */}
           </div>
       </div>
     );

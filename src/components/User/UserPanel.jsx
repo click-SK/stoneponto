@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { currentUser } from "../../store/auth";
-import Modal from "../Modal/Modal";
+import ModalHistoryTransaction from "../Modal/ModalHistoryTransaction";
 import UserTable from "../Table/UserTable";
 import "../../style/userProfile.scss";
 import Loader from "../Loader/Loader";
@@ -87,7 +87,7 @@ const UserPanel = () => {
               {t(`Transaction history`)}
             </button>
 
-            <Modal
+            <ModalHistoryTransaction
               isOpen={modalIsOpen}
               onClose={handleCloseModal}
               historyData={user.balanceHistory}
@@ -97,6 +97,7 @@ const UserPanel = () => {
               allOrders={[...user.orders].reverse()}
               currentUser={user}
               setIsFetch={setIsFetch}
+              isFetch={isFetch}
             />
           </div>
         </div>

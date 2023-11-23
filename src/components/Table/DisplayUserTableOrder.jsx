@@ -1,12 +1,27 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import UserTableText from "./UserTableText";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAuthMe } from "../../store/auth";
 import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../../http/BaseUrl";
 const DisplayUserTableOrder = ({ order, currentUser }) => {
+  const [debt, setDebt] = useState(0);
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const sum = currentUser?.orders.reduce((accumulator, currentObject) => {
+      if (
+        !currentObject.status.paid &&
+        currentObject.status.currentStatus != "delete"
+      ) {
+        return accumulator + currentObject.sum;
+      }
+      return accumulator;
+    }, 0);
+    setDebt(sum);
+  }, [currentUser]);
 
   const handleDelete = () => {
     fetch(`${BASE_URL}/update-user-table-status`, {
@@ -67,6 +82,9 @@ const DisplayUserTableOrder = ({ order, currentUser }) => {
             value: currentUser.balance - order.sum,
             action: "Оплата замовлення",
             historyValue: `-${order.sum}`,
+            balance: currentUser.balance - order.sum,
+            debt: debt - order.sum
+
           }),
         }).then((res) => res.json());
       } else {

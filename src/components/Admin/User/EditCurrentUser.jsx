@@ -7,7 +7,7 @@ import EditUserPassword from "./EditUserPassword";
 import DisabledUser from "./DisabledUser";
 import EditDiscount from "./EditDiscount";
 import DisabledPaymanyUser from "./DisabledPaymanyUser";
-import Modal from "../../Modal/Modal";
+// import Modal from "../../Modal/Modal";
 import { BASE_URL } from "../../../http/BaseUrl";
 const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -125,7 +125,7 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
         <div className="data_item user_info_balance">
           <EditBalance
             data={user.balance.toFixed(0)}
-            userId={user._id}
+            user={user}
             editPath={`${BASE_URL}/update-balance`}
             title={t(`Balance`)}
             setIsFetch={setIsFetch}
@@ -152,6 +152,8 @@ const EditCurrentUser = ({ user, setIsFetch, setIsVisibleEdit, debt }) => {
           <p>{t(`Date`)}</p>
           <p>{t(`Operation`)}</p>
           <p>{t(`Sum`)}</p>
+          <p>{t(`Balance`)}</p>
+          <p>{t(`Debt`)}</p>
         </div>
         <div className="history_wrap_item">
           {currentItems.map((transaction) => (

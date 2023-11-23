@@ -2,7 +2,7 @@ import React from "react";
 import DisplayCurrentTransaction from './DisplayCurrentTransaction'
 import {AiOutlineClose} from 'react-icons/ai';
 import '../../style/historyTransactionsModal.scss';
-const Modal = ({ isOpen, onClose, historyData }) => {
+const ModalHistoryTransaction = ({ isOpen, onClose, historyData }) => {
     if (!isOpen) return null;
   
     return (
@@ -23,5 +23,5 @@ const Modal = ({ isOpen, onClose, historyData }) => {
     );
   };
   
-  export default Modal;
+  export default ModalHistoryTransaction;
   

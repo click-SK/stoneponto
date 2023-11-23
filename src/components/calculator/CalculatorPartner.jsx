@@ -86,6 +86,7 @@ const CalculatorPartner = () => {
     paid: false,
   });
   const inputFileRef = useRef(null);
+  const xhrRef = useRef();
 
   const { t } = useTranslation();
 
@@ -566,6 +567,8 @@ const CalculatorPartner = () => {
       formData.append("status", JSON.stringify(status));
 
       const xhr = new XMLHttpRequest();
+      xhrRef.current = xhr;
+
       xhr.open(`POST`, `${BASE_URL}/create-table`, true);
 
       xhr.upload.addEventListener("progress", (event) => {
@@ -610,146 +613,16 @@ const CalculatorPartner = () => {
     setChoseAnotherUser(e);
   };
 
-  // const displayOrderStory = () => {
-  //   const orderItems = [];
-
-  //   if (isPosterDisabled ? 0 : selectedOptionQuality?.price * quadrature) {
-  //     orderItems.push(
-  //       `${t(`Printing`)} ${(
-  //         selectedOptionQuality?.price *
-  //         quadrature *
-  //         currency.currency
-  //       ).toFixed(0)} грн`
-  //     );
-  //   }
-
-  //   if (
-  //     selectedOptionColor?.price *
-  //     ((Number(1000) * (Number(height) + 100)) / 1000000)
-  //   ) {
-  //     orderItems.push(
-  //       `${t(`Color`)} ${(
-  //         selectedOptionColor?.price *
-  //           ((Number(1000) * (Number(height) + additionalHeightOrcal)) /
-  //             1000000) *
-  //           currency.currency || 0
-  //       ).toFixed(0)} грн`
-  //     );
-  //   }
-
-  //   if (selectedOptionPoster?.price) {
-  //     orderItems.push(
-  //       `${t(`Постер`)} ${(
-  //         selectedOptionPoster?.price * currency.currency
-  //       ).toFixed(0)} грн`
-  //     );
-  //   }
-  //   if (currentLuversDisplay) {
-  //     orderItems.push(
-  //       `${t(`Eyelets`)} ${(currentLuversDisplay * currency.currency).toFixed(
-  //         0
-  //       )} грн`
-  //     );
-  //   }
-
-  //   if (cuttingDisplay) {
-  //     orderItems.push(
-  //       `${t(`Cutting`)} ${(cuttingDisplay * currency.currency).toFixed(0)} грн`
-  //     );
-  //   }
-
-  //   if (solderGatesDisplay) {
-  //     orderItems.push(
-  //       `${t(`SolderingOfGates`)} ${(
-  //         solderGatesDisplay * currency.currency
-  //       ).toFixed(0)} грн`
-  //     );
-  //   }
-
-  //   if (solderPocketsDisplay) {
-  //     orderItems.push(
-  //       `${t(`SolderingPockets`)} ${(
-  //         solderPocketsDisplay * currency.currency
-  //       ).toFixed(0)} грн`
-  //     );
-  //   }
-
-  //   if (selectedOptionLamination?.price) {
-  //     orderItems.push(
-  //       `${t(`Lamination`)} ${(laminationDisplay * currency.currency).toFixed(
-  //         0
-  //       )} грн`
-  //     );
-  //   }
-
-  //   if (stampDisplay) {
-  //     orderItems.push(
-  //       `${t(`WithAStamp`)} ${(stampDisplay * currency.currency).toFixed(
-  //         0
-  //       )} грн`
-  //     );
-  //   }
-
-  //   if (stretchOnTheStretcherDisplay) {
-  //     orderItems.push(
-  //       `${t(`StretchOnTheStretcher`)} ${(
-  //         stretchOnTheStretcherDisplay * currency.currency
-  //       ).toFixed(0)} грн`
-  //     );
-  //   }
-
-  //   if (isMounting) {
-  //     orderItems.push(
-  //       `${t(`Mounting`)} ${(
-  //         currentItem?.mounting *
-  //         quadrature *
-  //         currency.currency
-  //       ).toFixed(0)} грн`
-  //     );
-  //   }
-
-  //   if (currentDiscountTwentyMeter) {
-  //     orderItems.push(
-  //       `- ${t(`Discount`)} ${Number(currentDiscountTwentyMeter).toFixed(
-  //         0
-  //       )} грн`
-  //     );
-  //   }
-
-  //   if (currentPersonalDiscount !== 0) {
-  //     orderItems.push(
-  //       `- ${t(`Personal Discount`)} ${Number(currentPersonalDiscount).toFixed(
-  //         0
-  //       )} грн`
-  //     );
-  //   }
-
-  //   if (count && totalSum !== 0) {
-  //     orderItems.push(`x ${count} ${t(`Circulation`)}`);
-  //   }
-
-  //   if (totalSum !== 0) {
-  //     orderItems.push(`= ${t(`Total`)} ${Number(totalSum)} грн`);
-  //   }
-
-  //   return (
-  //     <div className="display_order_story">
-  //       {orderItems.map((item, index) => {
-  //         if (index === 0) {
-  //           return item;
-  //         } else if (
-  //           item.startsWith("-") ||
-  //           item.startsWith("=") ||
-  //           item.startsWith("x")
-  //         ) {
-  //           return ` ${item}`;
-  //         } else {
-  //           return ` + ${item}`;
-  //         }
-  //       })}
-  //     </div>
-  //   );
-  // };
+  const stopDownloading = () => {
+    try {
+      if (xhrRef.current) {
+        xhrRef.current.abort();
+      }
+      setIsProgressBar(false);
+    } catch(error) {
+      console.log(error);
+    }
+  }
 
   const displayOrderStory = () => {
     const orderItems = [];
@@ -1261,6 +1134,7 @@ const CalculatorPartner = () => {
                     totalSizeFile={totalSizeFile}
                     progress={progress}
                   />
+                  {isProgresBar && <button style={{cursor: 'pointer'}} onClick={stopDownloading}>{t(`Cancel download`)}</button>}
                   <div>
                     {validationFile && (
                       <p style={{ color: "red" }}>{t(`File not selected`)}</p>
@@ -1333,7 +1207,7 @@ const CalculatorPartner = () => {
                     onClick={() => handleTotalSum()}
                     disabled={isProgresBar}
                   >
-                    {waitingSendOrder ? (
+                    {isProgresBar ? (
                       <p>{t(`Sending the order`)}</p>
                     ) : (
                       <p>{t(`Download the order`)}</p>

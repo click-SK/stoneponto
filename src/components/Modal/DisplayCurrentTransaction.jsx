@@ -14,6 +14,8 @@ const DisplayCurrentTransaction = ({ transaction }) => {
         <p>{transaction.date}</p>
         <p>{transaction.action}</p>
         <p className={transactionSum}>{withoutDot}</p>
+        <p className="deposit">{transaction?.balance}</p>
+        <p className="withdrawal">{transaction?.debt}</p>
       </div>
   );
 };

@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import {RiFileEditFill} from 'react-icons/ri';
 
-const EditBalance = ({ data, editPath, title, userId, setIsFetch, debt }) => {
+const EditBalance = ({ data, editPath, title, user, setIsFetch, debt }) => {
   const [editValue, setEditValue] = useState(0);
   const [newValue, setNewValue] = useState(0);
   const [isEditValue, setIsEditValue] = useState(false);
   const { t } = useTranslation();
+  console.log('data',data);
+  console.log('editValue',editValue);
 
   useEffect(() => {
     setEditValue(data);
@@ -33,10 +35,12 @@ const EditBalance = ({ data, editPath, title, userId, setIsFetch, debt }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId,
+        userId: user._id,
         value: editValue,
         action,
-        historyValue
+        historyValue,
+        balance: editValue,
+        debt
       }),
     }).then((res) => res.json());
     setTimeout(() => {
