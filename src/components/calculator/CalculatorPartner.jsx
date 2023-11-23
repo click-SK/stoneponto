@@ -566,8 +566,7 @@ const CalculatorPartner = () => {
       formData.append("status", JSON.stringify(status));
 
       const xhr = new XMLHttpRequest();
-      // xhr.open(`"POST", "http://localhost:4444/create-table`, true);
-      xhr.open(`POST`, `http://localhost:4444/create-table`, true);
+      xhr.open(`POST`, `${BASE_URL}/create-table`, true);
 
       xhr.upload.addEventListener("progress", (event) => {
         const loaded = event.loaded / (1024 * 1024);
