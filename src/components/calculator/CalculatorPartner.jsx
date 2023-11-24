@@ -115,7 +115,7 @@ const CalculatorPartner = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/get-all-user`)
+    fetch(`${BASE_URL}/get-all-only-user`)
       .then((response) => response.json())
       .then((res) => {
         setAllUsers(res);

@@ -4,10 +4,12 @@ import "../../../style/editUser.scss";
 import Loader from "../../Loader/Loader";
 import { BASE_URL } from "../../../http/BaseUrl";
 import axios from "axios";
+import Pagination from "../../template/Pagination";
 const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [isFetch, setIsFetch] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [visibleCurrentPage, setVisibleCurrentPage] = useState(1);
 
   // useEffect(() => {
   //   axios.get(`${BASE_URL}/get-all-user`)
@@ -41,6 +43,7 @@ const AllUsers = () => {
       });
       if (response.data.length) {
         setAllUsers(response.data);
+        setVisibleCurrentPage(currentPage);
       } else {
         const lastPage = currentPage - 1;
         setCurrentPage(lastPage);
@@ -70,22 +73,9 @@ const AllUsers = () => {
       )}
       {!!allUsers.length && 
       <div>
-      <div>{currentPage}</div>
-            <div className="pagination">
-            <button
-              className="btn"
-              disabled={currentPage == 1 ? true : false}
-              onClick={() => setCurrentPage((state) => (state -= 1))}
-            >
-              <img src="/img/left-pagination.svg" alt="Previous" />
-            </button>
-            <button
-              className="btn"
-              onClick={() => setCurrentPage((state) => (state += 1))}
-            >
-              <img src="/img/right-pagination.svg" alt="Next" />
-            </button>
-          </div>
+          <Pagination
+            currentPage={visibleCurrentPage}
+            setCurrentPage={setCurrentPage}/>
       </div>
       }
     </div>

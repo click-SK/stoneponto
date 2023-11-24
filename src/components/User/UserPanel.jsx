@@ -90,7 +90,7 @@ const UserPanel = () => {
             <ModalHistoryTransaction
               isOpen={modalIsOpen}
               onClose={handleCloseModal}
-              historyData={user.balanceHistory}
+              historyData={user.balanceHistory.reverse()}
             />
 
             <UserTable

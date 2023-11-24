@@ -22,6 +22,7 @@ const EditTable = () => {
   const { t } = useTranslation();
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [visibleCurrentPage, setVisibleCurrentPage] = useState(1);
   const [itemsPerPage] = useState(50);
   const [currentFilter, setCurrentFilter] = useState('all');
   const [currentFilterStatus, setCurrentFilterStatus] = useState('Всі');
@@ -120,6 +121,7 @@ const EditTable = () => {
       if (response.data.length) {
         setCurrentOrders(response.data);
         setAllOrders(response.data);
+        setVisibleCurrentPage(currentPage);
       } else {
         const lastPage = currentPage - 1;
         setCurrentPage(lastPage);
@@ -144,6 +146,7 @@ const EditTable = () => {
 
       if (response.data.length) {
         setAllOrders(response.data)
+        setVisibleCurrentPage(currentPage);
       } else {
         const lastPage = currentPage - 1;
         setCurrentPage(lastPage);
@@ -171,6 +174,7 @@ const EditTable = () => {
 
       if (response.data.length) {
         setAllOrders(response.data)
+        setVisibleCurrentPage(currentPage);
       } else {
         const lastPage = currentPage - 1;
         setCurrentPage(lastPage);
@@ -321,7 +325,7 @@ const EditTable = () => {
           </div>
           {currentFilter != "date" && (
             <Pagination
-            currentPage={currentPage}
+            currentPage={visibleCurrentPage}
             setCurrentPage={setCurrentPage}/>
           )}
           <div className="clear_table_button_wrap">

@@ -12,6 +12,7 @@ import Loader from '../Loader/Loader';
 const UserTable = ({ currentUser, setIsFetch, isFetch}) => {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
+  const [visibleCurrentPage, setVisibleCurrentPage] = useState(1);
   const [allOrders, setAllOrders] = useState([]);
   const [itemsPerPage] = useState(50);
 
@@ -59,6 +60,7 @@ const getAllTables = async () => {
     });
     if (response.data.length) {
       setAllOrders(response.data);
+      setVisibleCurrentPage(currentPage);
     } else {
       const lastPage = currentPage - 1;
       setCurrentPage(lastPage);
@@ -155,7 +157,7 @@ const getAllTables = async () => {
           ))}
         </div>
         <Pagination
-        currentPage={currentPage}
+        currentPage={visibleCurrentPage}
         setCurrentPage={setCurrentPage}/>
         <div className="btn_exel">
             <ExportCSV csvData={orders} fileName={formattedDateTime} />
